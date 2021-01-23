@@ -21,27 +21,10 @@
     "import",
     "prettier"
   ],
-  "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto"
-      }
-    ],
-    "lines-between-class-members": "off",
-    "@typescript-eslint/lines-between-class-members": [
-      "error",
-      "always",
-      {
-        "exceptAfterSingleLine": true
-      }
-    ],
-    "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/no-explicit-any": "error",
-    "radix": "off",
 
-    "react/jsx-props-no-spreading": "off",
-    "react/prop-types": "off",
+  "rules": {
+    "radix": "off",
+    "lines-between-class-members": "off",
     "no-param-reassign": "off",
     "no-console": [
       "error",
@@ -53,6 +36,27 @@
         ]
       }
     ],
+
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+
+    "@typescript-eslint/lines-between-class-members": [
+      "error",
+      "always",
+      {
+        "exceptAfterSingleLine": true
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off",
 
     "import/prefer-default-export": "off",
     "import/order": [
