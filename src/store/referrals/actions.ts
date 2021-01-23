@@ -6,7 +6,7 @@ const actionCreator = actionCreatorFactory()
 
 export const fetchReferralsAction = actionCreator.async<
   undefined,
-  [ReferralType],
+  ReferralType[],
   Error
 >('FETCH_REFERRALS')
 

@@ -46,7 +46,7 @@ export interface Donor extends DonorInput {
 }
 
 export interface Referrals {
-  referrals?: [ReferralType]
+  referrals?: ReferralType[]
 }
 
 export interface DonorFormValues extends DonorInput {

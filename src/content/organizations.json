@@ -1,0 +1,10 @@
+[
+  {
+    "abbriv": "Foo",
+    "name": "Foo Inc",
+    "id": 1,
+    "infoUrl": "https://example.com",
+    "shortDesc": "About Foo Inc.",
+    "standardShare": 0
+  }
+]

@@ -3,6 +3,7 @@ import { call, put, select } from 'redux-saga/effects'
 import { Action } from 'typescript-fsa'
 
 import { API_URL } from '../../config/api'
+import contentReferrals from '../../content/referrals.json'
 import { IServerResponse, ReferralType } from '../../types/Temp'
 import { nextPane } from '../layout/actions'
 import { State } from '../state'
@@ -10,24 +11,12 @@ import { State } from '../state'
 import { fetchReferralsAction, submitReferralAction } from './actions'
 
 export function* fetchReferrals(action: Action<undefined>): SagaIterator<void> {
-  try {
-    const request = yield call(fetch, `${API_URL}/referrals/types`)
-    const result: IServerResponse<[ReferralType]> = yield call(
-      request.json.bind(request)
-    )
-    if (result.status !== 200) throw new Error(result.content as string)
-
-    yield put(
-      fetchReferralsAction.done({
-        params: action.payload,
-        result: result.content as [ReferralType],
-      })
-    )
-  } catch (ex) {
-    yield put(
-      fetchReferralsAction.failed({ params: action.payload, error: ex })
-    )
-  }
+  yield put(
+    fetchReferralsAction.done({
+      params: action.payload,
+      result: contentReferrals as ReferralType[],
+    })
+  )
 }
 
 export function* submitReferral(action: Action<number>): SagaIterator<void> {
