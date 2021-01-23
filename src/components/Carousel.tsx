@@ -1,46 +1,44 @@
-import React, { useRef, useState, useEffect, ReactNode } from "react";
-import { useSelector } from "react-redux";
+import React, { useRef, useState, useEffect, ReactNode } from 'react'
+import { useSelector } from 'react-redux'
 
-import { State } from "../store/state";
-import "./Carousel.style.css";
+import { State } from '../store/state'
+import './Carousel.style.css'
 
 interface ICarouselProps {
-  children: React.ReactNode[];
+  children: React.ReactNode[]
 }
 
 export const Carousel: React.FC<ICarouselProps> = ({ children }) => {
-  const [currentPaneNumber, setCurrentPaneNumber] = useState(0); // get from redux global state
-  const reduxPaneNumber = useSelector(
-    (state: State) => state.layout.paneNumber
-  );
-  const [renderedPanes, setRenderedPanes] = useState([1]);
-  const renderedPanesRef = useRef(renderedPanes);
-  renderedPanesRef.current = renderedPanes;
-  const currentPaneNumberRef = useRef(currentPaneNumber);
-  currentPaneNumberRef.current = currentPaneNumber;
+  const [currentPaneNumber, setCurrentPaneNumber] = useState(0) // get from redux global state
+  const reduxPaneNumber = useSelector((state: State) => state.layout.paneNumber)
+  const [renderedPanes, setRenderedPanes] = useState([1])
+  const renderedPanesRef = useRef(renderedPanes)
+  renderedPanesRef.current = renderedPanes
+  const currentPaneNumberRef = useRef(currentPaneNumber)
+  currentPaneNumberRef.current = currentPaneNumber
 
   const changePaneByOffset = (offset: number) => {
-    const newRenderedPanes = [...renderedPanes];
-    newRenderedPanes[currentPaneNumber + offset] = 1;
-    setRenderedPanes(newRenderedPanes);
+    const newRenderedPanes = [...renderedPanes]
+    newRenderedPanes[currentPaneNumber + offset] = 1
+    setRenderedPanes(newRenderedPanes)
 
-    setCurrentPaneNumber(currentPaneNumber + offset);
+    setCurrentPaneNumber(currentPaneNumber + offset)
 
     setTimeout(() => {
-      const newRenderedPanes2 = [...renderedPanesRef.current];
-      newRenderedPanes2[currentPaneNumberRef.current - offset] = 0;
-      setRenderedPanes(newRenderedPanes2);
-    }, 200);
-  };
+      const newRenderedPanes2 = [...renderedPanesRef.current]
+      newRenderedPanes2[currentPaneNumberRef.current - offset] = 0
+      setRenderedPanes(newRenderedPanes2)
+    }, 200)
+  }
 
   // This hook detects when paneNumber changes in the Redux store
   useEffect(() => {
     if (reduxPaneNumber > currentPaneNumber) {
-      changePaneByOffset(1);
+      changePaneByOffset(1)
     } else if (reduxPaneNumber < currentPaneNumber) {
-      changePaneByOffset(-1);
+      changePaneByOffset(-1)
     }
-  }, [reduxPaneNumber]);
+  }, [reduxPaneNumber])
 
   /*
   // TODO: Remove
@@ -75,11 +73,11 @@ export const Carousel: React.FC<ICarouselProps> = ({ children }) => {
                 <div className="pane" key={i}>
                   {renderedPanes[i] === 1 && child}
                 </div>
-              );
+              )
             })}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Carousel;
+export default Carousel

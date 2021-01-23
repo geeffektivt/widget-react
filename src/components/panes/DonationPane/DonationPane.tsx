@@ -1,42 +1,44 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useForm } from "react-hook-form";
-import Validator from "validator";
+import React, { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import Validator from 'validator'
+
 import {
   registerDonationAction,
   setSum,
   setShareType,
-} from "../../../store/donation/actions";
-import { Pane, PaneContainer } from "../Panes.style";
-import { State } from "../../../store/state";
-import { PaymentMethod, ShareType } from "../../../types/Enums";
-import { RichSelectOption } from "../../shared/RichSelect/RichSelectOption";
-import { RichSelect } from "../../shared/RichSelect/RichSelect";
-import { NextButton } from "../../shared/Buttons/NavigationButtons.style";
-import { SharesSelection } from "./ShareSelection";
-import { TextInput } from "../../shared/Input/TextInput";
-import { SumWrapper } from "./DonationPane.style";
-import { SharesSum } from "./SharesSum";
+} from '../../../store/donation/actions'
+import { State } from '../../../store/state'
+import { PaymentMethod, ShareType } from '../../../types/Enums'
+import { NextButton } from '../../shared/Buttons/NavigationButtons.style'
+import { TextInput } from '../../shared/Input/TextInput'
+import { RichSelect } from '../../shared/RichSelect/RichSelect'
+import { RichSelectOption } from '../../shared/RichSelect/RichSelectOption'
+import { Pane, PaneContainer } from '../Panes.style'
+
+import { SumWrapper } from './DonationPane.style'
+import { SharesSelection } from './ShareSelection'
+import { SharesSum } from './SharesSum'
 
 interface DonationFormValues {
-  recurring: string;
-  customShare: string;
-  sum: string;
+  recurring: string
+  customShare: string
+  sum: string
 }
 
 export const DonationPane: React.FC = () => {
-  const dispatch = useDispatch();
-  const shareType = useSelector((state: State) => state.donation.shareType);
-  const donationMethod = useSelector((state: State) => state.donation.method);
-  const donationValid = useSelector((state: State) => state.donation.isValid);
+  const dispatch = useDispatch()
+  const shareType = useSelector((state: State) => state.donation.shareType)
+  const donationMethod = useSelector((state: State) => state.donation.method)
+  const donationValid = useSelector((state: State) => state.donation.isValid)
 
   const {
     register,
     watch,
     errors,
     handleSubmit,
-  } = useForm<DonationFormValues>();
-  const watchAllFields = watch();
+  } = useForm<DonationFormValues>()
+  const watchAllFields = watch()
 
   useEffect(() => {
     /**
@@ -44,13 +46,13 @@ export const DonationPane: React.FC = () => {
      * Handle errors, set donation valid
      */
 
-    const values = watchAllFields;
+    const values = watchAllFields
     if (values.sum)
-      dispatch(setSum(Validator.isInt(values.sum) ? parseInt(values.sum) : 0));
-  }, [dispatch, errors, watchAllFields]);
+      dispatch(setSum(Validator.isInt(values.sum) ? parseInt(values.sum) : 0))
+  }, [dispatch, errors, watchAllFields])
 
   function onSubmit() {
-    dispatch(registerDonationAction.started(undefined));
+    dispatch(registerDonationAction.started(undefined))
   }
 
   return (
@@ -98,5 +100,5 @@ export const DonationPane: React.FC = () => {
         </form>
       </PaneContainer>
     </Pane>
-  );
-};
+  )
+}

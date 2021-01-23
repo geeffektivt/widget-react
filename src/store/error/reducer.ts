@@ -1,11 +1,13 @@
-import { Reducer } from "redux";
-import { Error } from "../state";
-import { ErrorActionTypes, SET_ERROR } from "./types";
+import { Reducer } from 'redux'
+
+import { Error } from '../state'
+
+import { ErrorActionTypes, SET_ERROR } from './types'
 
 const initialState: Error = {
-  message: "",
+  message: '',
   isVisible: false,
-};
+}
 
 /**
  * The reducer is a pure function that takes in the previous state,
@@ -25,8 +27,8 @@ export const errorReducer: Reducer<Error, ErrorActionTypes> = (
         ...state,
         message: action.payload.message,
         isVisible: action.payload.isVisible,
-      };
+      }
     default:
-      return state;
+      return state
   }
-};
+}

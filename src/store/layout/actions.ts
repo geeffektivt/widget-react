@@ -1,5 +1,7 @@
-import actionCreatorFactory from "typescript-fsa";
-import { Organization } from "../../types/Organization";
+import actionCreatorFactory from 'typescript-fsa'
+
+import { Organization } from '../../types/Organization'
+
 import {
   DECREMENT_CURRENT_PANE,
   INCREMENT_CURRENT_PANE,
@@ -8,9 +10,9 @@ import {
   SET_ANSWERED_REFERRAL,
   SET_LOADING,
   SET_PANE_NUMBER,
-} from "./types";
+} from './types'
 
-const actionCreator = actionCreatorFactory();
+const actionCreator = actionCreatorFactory()
 
 export function selectPrivacyPolicy(privacyPolicy: boolean): LayoutActionTypes {
   return {
@@ -18,7 +20,7 @@ export function selectPrivacyPolicy(privacyPolicy: boolean): LayoutActionTypes {
     payload: {
       privacyPolicy,
     },
-  };
+  }
 }
 
 export function setPaneNumber(paneNumber: number): LayoutActionTypes {
@@ -27,19 +29,19 @@ export function setPaneNumber(paneNumber: number): LayoutActionTypes {
     payload: {
       paneNumber,
     },
-  };
+  }
 }
 
 export function nextPane(): LayoutActionTypes {
   return {
     type: INCREMENT_CURRENT_PANE,
-  };
+  }
 }
 
 export function prevPane(): LayoutActionTypes {
   return {
     type: DECREMENT_CURRENT_PANE,
-  };
+  }
 }
 
 export function setAnsweredReferral(
@@ -50,18 +52,18 @@ export function setAnsweredReferral(
     payload: {
       answeredReferral,
     },
-  };
+  }
 }
 
 export function setLoading(loading: boolean): LayoutActionTypes {
   return {
     type: SET_LOADING,
     payload: loading,
-  };
+  }
 }
 
 export const fetchOrganizationsAction = actionCreator.async<
   undefined,
   Organization[],
   Error
->("FETCH_ORGANIZATIONS");
+>('FETCH_ORGANIZATIONS')

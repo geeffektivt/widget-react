@@ -1,19 +1,21 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { State } from "../../../store/state";
-import { Pane, PaneContainer, PaneTitle } from "../Panes.style";
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { nextPane } from '../../../store/layout/actions'
+import { submitReferralAction } from '../../../store/referrals/actions'
+import { State } from '../../../store/state'
+import { NextButton } from '../../shared/Buttons/NavigationButtons.style'
+import { Pane, PaneContainer, PaneTitle } from '../Panes.style'
+
 import {
   ReferralButton,
   ReferralsWrapper,
   ReferralButtonsWrapper,
-} from "./ReferralPane.style";
-import { submitReferralAction } from "../../../store/referrals/actions";
-import { NextButton } from "../../shared/Buttons/NavigationButtons.style";
-import { nextPane } from "../../../store/layout/actions";
+} from './ReferralPane.style'
 
 export const ReferralPane: React.FC = () => {
-  const referrals = useSelector((state: State) => state.referrals.referrals);
-  const dispatch = useDispatch();
+  const referrals = useSelector((state: State) => state.referrals.referrals)
+  const dispatch = useDispatch()
 
   return (
     <Pane>
@@ -35,5 +37,5 @@ export const ReferralPane: React.FC = () => {
         <NextButton onClick={() => dispatch(nextPane())}>Hopp over</NextButton>
       </PaneContainer>
     </Pane>
-  );
-};
+  )
+}

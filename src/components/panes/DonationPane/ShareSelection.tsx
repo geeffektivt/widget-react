@@ -1,20 +1,21 @@
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import Validator from "validator";
-import { Organization } from "../../../types/Organization";
-import { setShares } from "../../../store/donation/actions";
-import { State } from "../../../store/state";
-import { TextInput } from "../../shared/Input/TextInput";
-import { OrganizationShare } from "../../../types/Temp";
+import React, { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import Validator from 'validator'
+
+import { setShares } from '../../../store/donation/actions'
+import { State } from '../../../store/state'
+import { Organization } from '../../../types/Organization'
+import { OrganizationShare } from '../../../types/Temp'
+import { TextInput } from '../../shared/Input/TextInput'
 
 export const SharesSelection: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const organizations = useSelector(
     (state: State) => state.layout.organizations
-  );
-  const { register, watch } = useForm({ mode: "all" });
-  const watchAllFields = watch();
+  )
+  const { register, watch } = useForm({ mode: 'all' })
+  const watchAllFields = watch()
 
   /**
    * TODO:
@@ -29,12 +30,12 @@ export const SharesSelection: React.FC = () => {
             ? parseInt(watchAllFields[key])
             : 0,
         })
-      );
-      dispatch(setShares(shares));
+      )
+      dispatch(setShares(shares))
     }
-  }, [watchAllFields]);
+  }, [watchAllFields])
 
-  if (!organizations) return <div>Ingen organisasjoner</div>;
+  if (!organizations) return <div>Ingen organisasjoner</div>
 
   return (
     <div>
@@ -55,5 +56,5 @@ export const SharesSelection: React.FC = () => {
         </div>
       </form>
     </div>
-  );
-};
+  )
+}

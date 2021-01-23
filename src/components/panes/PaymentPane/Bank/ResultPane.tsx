@@ -1,7 +1,9 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { State } from "../../../../store/state";
-import { Pane, PaneContainer, PaneTitle } from "../../Panes.style";
+import React from 'react'
+import { useSelector } from 'react-redux'
+
+import { State } from '../../../../store/state'
+import { Pane, PaneContainer, PaneTitle } from '../../Panes.style'
+
 import {
   BlackContainer,
   BoldWhiteText,
@@ -10,11 +12,11 @@ import {
   WhiteText,
   TextWrapper,
   InfoText,
-} from "./ResultPane.style";
+} from './ResultPane.style'
 
 export const ResultPane: React.FC = () => {
-  const donorEmail = useSelector((state: State) => state.donation.donor?.email);
-  const kid = useSelector((state: State) => state.donation.kid);
+  const donorEmail = useSelector((state: State) => state.donation.donor?.email)
+  const kid = useSelector((state: State) => state.donation.kid)
 
   return (
     <Pane>
@@ -40,5 +42,5 @@ export const ResultPane: React.FC = () => {
         </ResultWrapper>
       </PaneContainer>
     </Pane>
-  );
-};
+  )
+}

@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { gray18 } from "../../../config/colors";
+import styled from 'styled-components'
+
+import { gray18 } from '../../../config/colors'
 
 export const RichSelectWrapper = styled.div`
   border-radius: 5px;
@@ -9,4 +10,4 @@ export const RichSelectWrapper = styled.div`
   & > div:last-child {
     border-bottom: none;
   }
-`;
+`

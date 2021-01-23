@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
-export const ReferralsWrapper = styled.div``;
+export const ReferralsWrapper = styled.div``
 
 export const ReferralButtonsWrapper = styled.div`
   white-space: normal;
@@ -8,21 +8,21 @@ export const ReferralButtonsWrapper = styled.div`
   align-items: space-between;
   flex-wrap: wrap;
   align-self: center;
-`;
+`
 
 export const OtherInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+`
 
 export const OtherInput = styled.textarea`
   margin-top: 10px;
   width: 200px;
   height: 100px;
   padding: 5px;
-`;
+`
 
 export const ReferralButton = styled.button`
   width: 48%;
@@ -40,4 +40,4 @@ export const ReferralButton = styled.button`
     cursor: pointer;
     background-color: #f0f0f0;
   }
-`;
+`

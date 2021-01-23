@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { gray18 } from "../../config/colors";
+import styled from 'styled-components'
+
+import { gray18 } from '../../config/colors'
 
 export const Form = styled.form`
   display: flex;
@@ -7,12 +8,12 @@ export const Form = styled.form`
   align-items: center;
   justify-content: center;
   width: 100%;
-`;
+`
 
 export const InputFieldWrapper = styled.div`
   display: flex;
   flex-direction: column;
-`;
+`
 
 export const TextField = styled.input`
   padding: 20px;
@@ -22,7 +23,7 @@ export const TextField = styled.input`
   border: 1px solid ${gray18};
   border-radius: 5px;
   box-sizing: border-box;
-`;
+`
 
 export const CheckBox = styled.input`
   margin-left: 10px;
@@ -30,16 +31,16 @@ export const CheckBox = styled.input`
     cursor: pointer;
     opacity: 0.5;
   }
-`;
+`
 
-export const RadioWrapper = styled.div``;
+export const RadioWrapper = styled.div``
 
 export const RadioButton = styled.input`
   margin-left: 10px;
   &:hover {
     cursor: pointer;
   }
-`;
+`
 
 export const InputLabel = styled.p`
   align-self: start;
@@ -48,4 +49,4 @@ export const InputLabel = styled.p`
   position: relative;
   bottom: 2px;
   margin-left: 5px;
-`;
+`

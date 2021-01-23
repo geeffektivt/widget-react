@@ -1,4 +1,8 @@
-import actionCreatorFactory from "typescript-fsa";
+import actionCreatorFactory from 'typescript-fsa'
+
+import { PaymentMethod, RecurringDonation, ShareType } from '../../types/Enums'
+import { OrganizationShare } from '../../types/Temp'
+
 import {
   DonationActionTypes,
   SELECT_PAYMENT_METHOD,
@@ -12,11 +16,9 @@ import {
   SET_PAYMENT_PROVIDER_URL,
   SELECT_CUSTOM_SHARE,
   SET_SHARE_TYPE,
-} from "./types";
-import { PaymentMethod, RecurringDonation, ShareType } from "../../types/Enums";
-import { OrganizationShare } from "../../types/Temp";
+} from './types'
 
-const actionCreator = actionCreatorFactory();
+const actionCreator = actionCreatorFactory()
 
 export function selectPaymentMethod(
   method: PaymentMethod
@@ -26,7 +28,7 @@ export function selectPaymentMethod(
     payload: {
       method,
     },
-  };
+  }
 }
 
 export function selectTaxDeduction(taxDeduction: boolean): DonationActionTypes {
@@ -35,7 +37,7 @@ export function selectTaxDeduction(taxDeduction: boolean): DonationActionTypes {
     payload: {
       taxDeduction,
     },
-  };
+  }
 }
 
 export function submitDonorInfo(
@@ -54,7 +56,7 @@ export function submitDonorInfo(
       ssn,
       newsletter,
     },
-  };
+  }
 }
 
 export function setShares(shares: OrganizationShare[]): DonationActionTypes {
@@ -63,7 +65,7 @@ export function setShares(shares: OrganizationShare[]): DonationActionTypes {
     payload: {
       shares,
     },
-  };
+  }
 }
 
 export function setSum(sum: number): DonationActionTypes {
@@ -72,7 +74,7 @@ export function setSum(sum: number): DonationActionTypes {
     payload: {
       sum,
     },
-  };
+  }
 }
 
 export function setRecurring(
@@ -83,7 +85,7 @@ export function setRecurring(
     payload: {
       recurring,
     },
-  };
+  }
 }
 
 export function setDonorID(donorID: number): DonationActionTypes {
@@ -92,7 +94,7 @@ export function setDonorID(donorID: number): DonationActionTypes {
     payload: {
       donorID,
     },
-  };
+  }
 }
 
 export function setKID(kid: string): DonationActionTypes {
@@ -101,7 +103,7 @@ export function setKID(kid: string): DonationActionTypes {
     payload: {
       kid,
     },
-  };
+  }
 }
 
 export function setPaymentProviderURL(url: string): DonationActionTypes {
@@ -110,7 +112,7 @@ export function setPaymentProviderURL(url: string): DonationActionTypes {
     payload: {
       url,
     },
-  };
+  }
 }
 
 export function selectCustomShare(customShare: boolean): DonationActionTypes {
@@ -119,7 +121,7 @@ export function selectCustomShare(customShare: boolean): DonationActionTypes {
     payload: {
       customShare,
     },
-  };
+  }
 }
 
 export function setShareType(shareType: ShareType): DonationActionTypes {
@@ -128,7 +130,7 @@ export function setShareType(shareType: ShareType): DonationActionTypes {
     payload: {
       shareType,
     },
-  };
+  }
 }
 
 /**
@@ -136,14 +138,14 @@ export function setShareType(shareType: ShareType): DonationActionTypes {
  */
 
 export type RegisterDonationResponse = {
-  KID: string;
-  donorID: number;
-  hasAnsweredReferral: boolean;
-  paymentProviderUrl: string;
-};
+  KID: string
+  donorID: number
+  hasAnsweredReferral: boolean
+  paymentProviderUrl: string
+}
 
 export const registerDonationAction = actionCreator.async<
   undefined,
   RegisterDonationResponse,
   Error
->("REGISTER_DONATION");
+>('REGISTER_DONATION')

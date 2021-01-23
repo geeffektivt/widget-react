@@ -1,23 +1,24 @@
-import styled from "styled-components";
-import { gray20 } from "../../../config/colors";
+import styled from 'styled-components'
+
+import { gray20 } from '../../../config/colors'
 
 export const MethodWrapper = styled.div`
   display: flex;
   flex-direction: column;
-`;
+`
 
 export const TextWrapper = styled.div`
   display: flex;
   margin-top: 20px;
   margin-bottom: 20px;
-`;
+`
 
 export const InfoText = styled.p`
   font-size: 12px;
   line-height: 150%;
   color: ${gray20};
   margin: 0;
-`;
+`
 
 export const MethodButton = styled.div`
   padding: 16px;
@@ -41,41 +42,41 @@ export const MethodButton = styled.div`
   }
 
   &.bank {
-    background-image: url("https://storage.googleapis.com/effekt-widget/assets/logos/bank.png");
+    background-image: url('https://storage.googleapis.com/effekt-widget/assets/logos/bank.png');
     background-position: 16px center;
     background-size: 120px;
     background-repeat: no-repeat;
   }
 
   &.vipps {
-    background-image: url("https://storage.googleapis.com/effekt-widget/assets/logos/vipps.png");
+    background-image: url('https://storage.googleapis.com/effekt-widget/assets/logos/vipps.png');
     background-position: 16px center;
     background-size: 120px;
     background-repeat: no-repeat;
   }
 
   &.paypal {
-    background-image: url("https://storage.googleapis.com/effekt-widget/assets/logos/PayPal.png");
+    background-image: url('https://storage.googleapis.com/effekt-widget/assets/logos/PayPal.png');
     background-position: 16px center;
     background-size: 120px;
     background-repeat: no-repeat;
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     right: 16px;
     top: 0;
     height: 100%;
     width: 32px;
-    background-image: url("https://storage.googleapis.com/effekt-widget/assets/next.svg");
+    background-image: url('https://storage.googleapis.com/effekt-widget/assets/next.svg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
   }
-`;
+`
 
 export const RecurringSelectWrapper = styled.div`
   padding-top: 10px;
   padding-bottom: 15px;
-`;
+`

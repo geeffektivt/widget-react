@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable react/destructuring-assignment */
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
 export const ErrorWrapper = styled.div`
   position: relative;
   left: 10px;
-`;
+`
 
 export const ErrorMessage = styled.div`
   margin-left: 5px;
@@ -16,7 +16,7 @@ export const ErrorMessage = styled.div`
   display: inline;
   position: relative;
   bottom: 1px;
-`;
+`
 
 export default function ErrorField(props: any) {
   return (
@@ -37,5 +37,5 @@ export default function ErrorField(props: any) {
       </svg>
       <ErrorMessage>{props.text}</ErrorMessage>
     </ErrorWrapper>
-  );
+  )
 }

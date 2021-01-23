@@ -1,30 +1,32 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import {
   selectPaymentMethod,
   setRecurring,
-} from "../../../store/donation/actions";
-import { State } from "../../../store/state";
-import { nextPane } from "../../../store/layout/actions";
-import { Pane } from "../Panes.style";
+} from '../../../store/donation/actions'
+import { nextPane } from '../../../store/layout/actions'
+import { State } from '../../../store/state'
+import { PaymentMethod, RecurringDonation } from '../../../types/Enums'
+import { RichSelect } from '../../shared/RichSelect/RichSelect'
+import { RichSelectOption } from '../../shared/RichSelect/RichSelectOption'
+import { Pane } from '../Panes.style'
+
 import {
   MethodWrapper,
   MethodButton,
   InfoText,
   RecurringSelectWrapper,
-} from "./MethodPane.style";
-import { RichSelect } from "../../shared/RichSelect/RichSelect";
-import { RichSelectOption } from "../../shared/RichSelect/RichSelectOption";
-import { PaymentMethod, RecurringDonation } from "../../../types/Enums";
+} from './MethodPane.style'
 
 export const MethodPane: React.FC = () => {
-  const dispatch = useDispatch();
-  const recurring = useSelector((state: State) => state.donation.recurring);
+  const dispatch = useDispatch()
+  const recurring = useSelector((state: State) => state.donation.recurring)
 
   const selectMethod = (method: PaymentMethod) => {
-    dispatch(selectPaymentMethod(method));
-    dispatch(nextPane());
-  };
+    dispatch(selectPaymentMethod(method))
+    dispatch(nextPane())
+  }
 
   return (
     <Pane>
@@ -67,5 +69,5 @@ export const MethodPane: React.FC = () => {
         </MethodButton>
       </MethodWrapper>
     </Pane>
-  );
-};
+  )
+}

@@ -1,3 +1,3 @@
-import { AnyAction } from "redux";
+import { AnyAction } from 'redux'
 
-export type ReferralActionTypes = AnyAction;
+export type ReferralActionTypes = AnyAction

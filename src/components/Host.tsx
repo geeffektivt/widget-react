@@ -1,5 +1,6 @@
-import React from "react";
-import { Splash, SplashTitle, WidgetWrapper } from "./Host.style";
+import React from 'react'
+
+import { Splash, SplashTitle, WidgetWrapper } from './Host.style'
 
 export const Host: React.FC = ({ children }) => {
   return (
@@ -9,5 +10,5 @@ export const Host: React.FC = ({ children }) => {
       </Splash>
       {children}
     </WidgetWrapper>
-  );
-};
+  )
+}

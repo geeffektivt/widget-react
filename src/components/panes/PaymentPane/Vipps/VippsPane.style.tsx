@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const VippsButton = styled.div`
   width: 210px;
@@ -14,4 +14,4 @@ export const VippsButton = styled.div`
     opacity: 0.5;
     cursor: pointer;
   }
-`;
+`

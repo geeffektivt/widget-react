@@ -1,13 +1,15 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { State } from "../../../../store/state";
-import { Pane, PaneContainer, PaneTitle, UnderTitle } from "../../Panes.style";
-import { PayPalFormWrapper, OrangeSubmit } from "./PayPalPane.style";
+import React from 'react'
+import { useSelector } from 'react-redux'
+
+import { State } from '../../../../store/state'
+import { Pane, PaneContainer, PaneTitle, UnderTitle } from '../../Panes.style'
+
+import { PayPalFormWrapper, OrangeSubmit } from './PayPalPane.style'
 
 export const PaypalPane: React.FC = () => {
-  const isRecurring = useSelector((state: State) => state.donation.recurring);
-  const donationAmount = useSelector((state: State) => state.donation.sum);
-  const donationKID = useSelector((state: State) => state.donation.kid);
+  const isRecurring = useSelector((state: State) => state.donation.recurring)
+  const donationAmount = useSelector((state: State) => state.donation.sum)
+  const donationKID = useSelector((state: State) => state.donation.kid)
 
   const singleForm = (
     <PayPalFormWrapper>
@@ -32,19 +34,19 @@ export const PaypalPane: React.FC = () => {
         <input
           type="submit"
           id="single-paypal-submit"
-          style={{ display: "none" }}
+          style={{ display: 'none' }}
         />
 
         <OrangeSubmit
           type="button"
           value="Betal nå"
           onClick={() => {
-            document.getElementById("single-paypal-submit")?.click();
+            document.getElementById('single-paypal-submit')?.click()
           }}
         />
       </form>
     </PayPalFormWrapper>
-  );
+  )
 
   const recurringForm = (
     <PayPalFormWrapper>
@@ -78,18 +80,18 @@ export const PaypalPane: React.FC = () => {
         <input
           type="submit"
           id="recurring-paypal-submit"
-          style={{ display: "none" }}
+          style={{ display: 'none' }}
         />
         <OrangeSubmit
           type="button"
           value="Abonner nå"
           onClick={() => {
-            document.getElementById("recurring-paypal-submit")?.click();
+            document.getElementById('recurring-paypal-submit')?.click()
           }}
         />
       </form>
     </PayPalFormWrapper>
-  );
+  )
 
   return (
     <Pane>
@@ -99,5 +101,5 @@ export const PaypalPane: React.FC = () => {
         {isRecurring && recurringForm}
       </PaneContainer>
     </Pane>
-  );
-};
+  )
+}

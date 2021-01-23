@@ -1,9 +1,10 @@
-import React from "react";
+import React from 'react'
+
 import {
   TextInputField,
   TextInputProps,
   TextInputWrapper,
-} from "./TextInput.style";
+} from './TextInput.style'
 
 export const TextInput: React.FC<TextInputProps> = ({
   label,
@@ -26,9 +27,9 @@ export const TextInput: React.FC<TextInputProps> = ({
         denomination={denomination}
         ref={innerRef}
         onClick={(e) => {
-          if (selectOnClick) e.currentTarget.select();
+          if (selectOnClick) e.currentTarget.select()
         }}
       />
     </TextInputWrapper>
-  );
-};
+  )
+}

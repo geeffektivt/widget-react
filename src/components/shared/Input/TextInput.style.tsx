@@ -1,18 +1,19 @@
-import styled from "styled-components";
-import { gray18, orange15 } from "../../../config/colors";
+import styled from 'styled-components'
+
+import { gray18, orange15 } from '../../../config/colors'
 
 export interface TextInputProps extends TextInputWrapperProps {
-  type: string;
-  name?: string;
-  placeholder?: string;
-  defaultValue?: string | number;
-  selectOnClick?: boolean;
-  innerRef?: React.Ref<HTMLInputElement>;
+  type: string
+  name?: string
+  placeholder?: string
+  defaultValue?: string | number
+  selectOnClick?: boolean
+  innerRef?: React.Ref<HTMLInputElement>
 }
 
 export interface TextInputWrapperProps {
-  label?: string;
-  denomination?: string;
+  label?: string
+  denomination?: string
 }
 
 export const TextInputWrapper = styled.div`
@@ -25,7 +26,7 @@ export const TextInputWrapper = styled.div`
   position: relative;
 
   &:before {
-    content: "${(props: TextInputWrapperProps) => props.label}";
+    content: '${(props: TextInputWrapperProps) => props.label}';
     height: 100%;
     position: absolute;
     left: 12px;
@@ -52,16 +53,16 @@ export const TextInputWrapper = styled.div`
           align-items: center;
           font-weight: normal;
         }
-      `;
+      `
     }
-    return "";
+    return ''
   }}
 
   transition: box-shadow 180ms;
   &:focus-within {
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
   }
-`;
+`
 
 export const TextInputField = styled.input`
   font-size: inherit;
@@ -70,11 +71,11 @@ export const TextInputField = styled.input`
     if (props.denomination) {
       return `
         padding-right: 30px;
-      `;
+      `
     }
-    return "";
+    return ''
   }}
-  text-align: ${(props: TextInputProps) => (props.label ? "right" : "left")};
+  text-align: ${(props: TextInputProps) => (props.label ? 'right' : 'left')};
   border: none;
   box-sizing: border-box;
   width: 100%;
@@ -90,4 +91,4 @@ export const TextInputField = styled.input`
     outline: none;
     box-shadow: 0px 0px 0px 1.5px ${orange15};
   }
-`;
+`

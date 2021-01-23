@@ -1,4 +1,4 @@
-import { ErrorActionTypes, SET_ERROR } from "./types";
+import { ErrorActionTypes, SET_ERROR } from './types'
 
 export function setError(
   message: string,
@@ -10,5 +10,5 @@ export function setError(
       message,
       isVisible,
     },
-  };
+  }
 }

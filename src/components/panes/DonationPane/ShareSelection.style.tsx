@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const ShareInputContainer = styled.div`
   border: 1px solid gray;
@@ -7,13 +7,13 @@ export const ShareInputContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
+`
 
 export const OrganizationName = styled.p`
   margin-left: 5px;
   display: inline-block;
   font-size: 20px;
-`;
+`
 
 export const PercentageText = styled.p`
   margin-left: 5px;
@@ -21,7 +21,7 @@ export const PercentageText = styled.p`
   display: inline-block;
   color: gray;
   font-size: 20px;
-`;
+`
 
 export const ShareInput = styled.input`
   width: 4vw;
@@ -42,4 +42,4 @@ export const ShareInput = styled.input`
     border: 2px solid black;
     border-radius: 5px;
   }
-`;
+`

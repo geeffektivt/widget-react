@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const PayPalFormWrapper = styled.div`
   width: 300px;
@@ -6,7 +6,7 @@ export const PayPalFormWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
+`
 
 export const OrangeSubmit = styled.input`
   background-color: #ffaa2b;
@@ -25,4 +25,4 @@ export const OrangeSubmit = styled.input`
     opacity: 0.5;
     cursor: pointer;
   }
-`;
+`

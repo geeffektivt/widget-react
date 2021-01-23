@@ -1,10 +1,12 @@
-import { Reducer } from "redux";
-import { isType } from "typescript-fsa";
-import { Referrals } from "../state";
-import { fetchReferralsAction } from "./actions";
-import { ReferralActionTypes } from "./types";
+import { Reducer } from 'redux'
+import { isType } from 'typescript-fsa'
 
-const initialState: Referrals = {};
+import { Referrals } from '../state'
+
+import { fetchReferralsAction } from './actions'
+import { ReferralActionTypes } from './types'
+
+const initialState: Referrals = {}
 
 /**
  * The reducer is a pure function that takes in the previous state,
@@ -22,8 +24,8 @@ export const referralReducer: Reducer<Referrals, ReferralActionTypes> = (
     return {
       ...state,
       referrals: action.payload.result,
-    };
+    }
   }
 
-  return state;
-};
+  return state
+}

@@ -1,11 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components'
+
 import {
   gray14,
   gray18,
   gray20,
   orange15,
   orange20,
-} from "../../../config/colors";
+} from '../../../config/colors'
 
 export const Wrapper = styled.div`
   border-bottom: 1px solid ${gray14};
@@ -23,7 +24,7 @@ export const Wrapper = styled.div`
     font-weight: 300;
     margin: 0;
   }
-`;
+`
 
 export const LabelWrapper = styled.div`
   display: flex;
@@ -39,12 +40,12 @@ export const LabelWrapper = styled.div`
       }
     }
   }
-`;
+`
 
 export const HeaderWrapper = styled.div`
   padding-top: 4px;
   margin-left: 10px;
-`;
+`
 
 export const RadioBall = styled.div`
   width: 24px;
@@ -54,7 +55,7 @@ export const RadioBall = styled.div`
   position: relative;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -66,18 +67,18 @@ export const RadioBall = styled.div`
     border: ${(props: RadioBallProps) =>
       props.selected ? `7px solid ${orange20}` : `1px solid ${gray18}`};
   }
-`;
+`
 
 interface RadioBallProps {
-  selected: boolean | undefined;
+  selected: boolean | undefined
 }
 
 export const Content = styled.div`
-  height: ${(props: ContentProps) => (props.selected ? "auto" : "0px")};
-  overflow: ${(props: ContentProps) => (props.selected ? "visible" : "hidden")};
+  height: ${(props: ContentProps) => (props.selected ? 'auto' : '0px')};
+  overflow: ${(props: ContentProps) => (props.selected ? 'visible' : 'hidden')};
   box-sizing: border-box;
-`;
+`
 
 interface ContentProps {
-  selected: boolean;
+  selected: boolean
 }

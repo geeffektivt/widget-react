@@ -1,66 +1,66 @@
-import { PaymentMethod, RecurringDonation, ShareType } from "../types/Enums";
-import { Organization } from "../types/Organization";
-import { OrganizationShare, ReferralType } from "../types/Temp";
+import { PaymentMethod, RecurringDonation, ShareType } from '../types/Enums'
+import { Organization } from '../types/Organization'
+import { OrganizationShare, ReferralType } from '../types/Temp'
 
 export interface State {
-  donation: Donation;
-  layout: Layout;
-  referrals: Referrals;
-  error: Error;
+  donation: Donation
+  layout: Layout
+  referrals: Referrals
+  error: Error
 }
 
 export interface Layout {
-  privacyPolicy: boolean;
-  paneNumber: number;
-  answeredReferral?: boolean;
-  height: number;
-  loading: boolean;
-  organizations?: Organization[];
+  privacyPolicy: boolean
+  paneNumber: number
+  answeredReferral?: boolean
+  height: number
+  loading: boolean
+  organizations?: Organization[]
 }
 
 export interface DonationInput {
-  method?: PaymentMethod;
-  sum?: number;
-  shareType: ShareType;
-  recurring: RecurringDonation;
-  donor?: Donor;
-  shares: OrganizationShare[];
+  method?: PaymentMethod
+  sum?: number
+  shareType: ShareType
+  recurring: RecurringDonation
+  donor?: Donor
+  shares: OrganizationShare[]
 }
 
 export interface Donation extends DonationInput {
-  kid?: string;
-  paymentProviderURL?: string;
-  isValid: boolean;
+  kid?: string
+  paymentProviderURL?: string
+  isValid: boolean
 }
 
 export interface DonorInput {
-  name?: string;
-  email?: string;
-  taxDeduction?: boolean;
-  ssn?: number;
-  newsletter?: boolean;
+  name?: string
+  email?: string
+  taxDeduction?: boolean
+  ssn?: number
+  newsletter?: boolean
 }
 
 export interface Donor extends DonorInput {
-  donorID?: number;
+  donorID?: number
 }
 
 export interface Referrals {
-  referrals?: [ReferralType];
+  referrals?: [ReferralType]
 }
 
 export interface DonorFormValues extends DonorInput {
-  privacyPolicy: boolean;
+  privacyPolicy: boolean
 }
 
 export interface Share {
-  organizationID: number;
-  share: number;
+  organizationID: number
+  share: number
 }
 
 export interface Error {
-  isVisible: boolean;
-  message: string;
+  isVisible: boolean
+  message: string
 }
 
 export enum PaneNumber {

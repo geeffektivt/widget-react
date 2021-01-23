@@ -1,12 +1,13 @@
-import React from "react";
-import { RichSelectWrapper } from "./RichSelect.style";
-import { OptionProps, RichSelectOption } from "./RichSelectOption";
+import React from 'react'
+
+import { RichSelectWrapper } from './RichSelect.style'
+import { OptionProps, RichSelectOption } from './RichSelectOption'
 
 interface RichSelectProps {
-  children: React.ReactElement<OptionProps>[];
+  children: React.ReactElement<OptionProps>[]
   // An enum
-  selected: number;
-  onChange: (value: number) => void;
+  selected: number
+  onChange: (value: number) => void
 }
 
 export const RichSelect: React.FC<RichSelectProps> = ({
@@ -27,5 +28,5 @@ export const RichSelect: React.FC<RichSelectProps> = ({
         />
       ))}
     </RichSelectWrapper>
-  );
-};
+  )
+}
