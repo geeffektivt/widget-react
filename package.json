@@ -15,15 +15,12 @@
     "@types/redux-form": "^8.3.0",
     "@types/styled-components": "^5.1.4",
     "@types/validator": "^13.1.0",
-    "axios": "^0.21.1",
     "email-validator": "^2.0.4",
-    "pure-react-carousel": "^1.27.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.11.2",
     "react-query": "^2.26.2",
     "react-redux": "^7.2.1",
-    "react-responsive-carousel": "^3.2.11",
     "react-scripts": "^4.0.1",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
@@ -54,7 +51,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext .js,.jsx --ignore-pattern public .",
+    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx --ignore-pattern public ."
   },
   "eslintConfig": {
     "extends": "react-app"

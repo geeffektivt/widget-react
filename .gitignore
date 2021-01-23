@@ -22,3 +22,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .eslintcache
+
+# Common settings are kept in .code-workspace file
+# settings.json are for local settings
+.vscode/settings.json
