@@ -6,8 +6,8 @@ import { applyMiddleware, combineReducers, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import createSagaMiddleware from 'redux-saga'
 
+import AppEntryPoint from './AppEntryPoint'
 import { Host } from './components/Host'
-import { Widget } from './components/Widget'
 import { donationReducer } from './store/donation/reducer'
 import { errorReducer } from './store/error/reducer'
 import { layoutReducer } from './store/layout/reducer'
@@ -33,7 +33,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Host>
       <Provider store={store}>
-        <Widget />
+        <AppEntryPoint />
       </Provider>
     </Host>
   </React.StrictMode>,

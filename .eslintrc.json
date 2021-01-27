@@ -27,7 +27,7 @@
     "lines-between-class-members": "off",
     "no-param-reassign": "off",
     "no-console": [
-      "error",
+      1,
       {
         "allow": [
           "warn",
@@ -38,29 +38,30 @@
     ],
 
     "prettier/prettier": [
-      "error",
+      1,
       {
         "endOfLine": "auto"
       }
     ],
 
     "@typescript-eslint/lines-between-class-members": [
-      "error",
+      1,
       "always",
       {
         "exceptAfterSingleLine": true
       }
     ],
-    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-unused-vars": 1,
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-use-before-define": 0,
 
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
 
     "import/prefer-default-export": "off",
     "import/order": [
-      "error",
+      1,
       {
         "alphabetize": {
           "order": "asc",

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import useAllTexts from '../../../hooks/content/useAllTexts'
 import {
   selectPaymentMethod,
   setRecurring,
@@ -23,6 +24,10 @@ export const MethodPane: React.FC = () => {
   const dispatch = useDispatch()
   const recurring = useSelector((state: State) => state.donation.recurring)
 
+  const texts = useAllTexts()
+
+  const paneTexts = texts.donations.method
+
   const selectMethod = (method: PaymentMethod) => {
     dispatch(selectPaymentMethod(method))
     dispatch(nextPane())
@@ -30,22 +35,19 @@ export const MethodPane: React.FC = () => {
 
   return (
     <Pane>
-      <InfoText>
-        Kostnadene angitt dekkes av oss, slik at 100% av din donasjon kommer
-        frem.
-      </InfoText>
+      <InfoText>{paneTexts.info}</InfoText>
       <RecurringSelectWrapper>
         <RichSelect
           selected={recurring}
           onChange={(value: RecurringDonation) => dispatch(setRecurring(value))}
         >
           <RichSelectOption
-            label="Gi en fast månedlig sum"
-            sublabel="Du vil bli varslet ved trekk og kan avslutte når som helst"
+            label={paneTexts.monthlyPaymentLabel}
+            sublabel={paneTexts.monthlyPaymentSubLabel}
             value={RecurringDonation.RECURRING}
           />
           <RichSelectOption
-            label="Gi et engangsbeløp"
+            label={paneTexts.singlePaymentLabel}
             value={RecurringDonation.NON_RECURRING}
           />
         </RichSelect>
@@ -53,19 +55,13 @@ export const MethodPane: React.FC = () => {
       <MethodWrapper>
         <MethodButton
           className="bank"
-          onClick={() => selectMethod(PaymentMethod.BANK)}
+          onClick={() => selectMethod(PaymentMethod.Bank)}
         />
         <MethodButton
-          className="vipps"
-          onClick={() => selectMethod(PaymentMethod.VIPPS)}
+          className="swish"
+          onClick={() => selectMethod(PaymentMethod.Swish)}
         >
-          2,99%
-        </MethodButton>
-        <MethodButton
-          className="paypal"
-          onClick={() => selectMethod(PaymentMethod.PAYPAL)}
-        >
-          1,90%
+          {paneTexts.swishPercentage}
         </MethodButton>
       </MethodWrapper>
     </Pane>

@@ -1,3 +1,11 @@
 {
-
+  "donations": {
+    "method": {
+      "info": "Kostnadene angitt dekkes av oss, slik at 100% av din donasjon kommer frem.",
+      "monthlyPaymentLabel": "Gi en fast månedlig sum",
+      "monthlyPaymentSubLabel": "Du vil bli varslet ved trekk og kan avslutte når som helst",
+      "singlePaymentLabel": "Gi et engangsbeløp",
+      "swishPercentage": "2,99%"
+    }
+  }
 }

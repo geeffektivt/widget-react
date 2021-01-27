@@ -59,8 +59,7 @@ export const DonationPane: React.FC = () => {
     <Pane>
       <PaneContainer>
         <form onSubmit={handleSubmit(onSubmit)}>
-          {(donationMethod === PaymentMethod.VIPPS ||
-            donationMethod === PaymentMethod.PAYPAL) && (
+          {donationMethod === PaymentMethod.Swish && (
             <SumWrapper>
               <TextInput
                 label="Sum"

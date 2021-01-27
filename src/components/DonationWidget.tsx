@@ -13,7 +13,7 @@ import { PaymentPane } from './panes/PaymentPane/PaymentPane'
 import { ReferralPane } from './panes/ReferralPane/ReferralPane'
 import './Carousel.style.css'
 
-export const Widget: React.FC = () => {
+export default function DonationWidget() {
   const dispatch = useDispatch()
   const answeredReferal = useSelector(
     (state: State) => state.layout.answeredReferral
