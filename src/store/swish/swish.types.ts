@@ -9,6 +9,7 @@ export interface SwishState {
   readonly paymentStatus: SwishPaymentStatus | null
 
   readonly createPaymentError: AppError | null
+  readonly pollStatusError: AppError | null
 
   readonly isCreatingPayment: boolean
   readonly isPollingStatus: boolean

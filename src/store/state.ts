@@ -2,11 +2,14 @@ import { PaymentMethod, RecurringDonation, ShareType } from '../types/Enums'
 import { Organization } from '../types/Organization'
 import { OrganizationShare, ReferralType } from '../types/Temp'
 
+import { SwishState } from './swish/swish.types'
+
 export interface State {
   donation: Donation
   layout: Layout
   referrals: Referrals
   error: Error
+  swish: SwishState
 }
 
 export interface Layout {

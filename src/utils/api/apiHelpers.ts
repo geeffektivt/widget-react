@@ -11,8 +11,8 @@ export interface RequestOptions extends Omit<RequestInit, 'body'> {
 }
 
 export interface ResponseData<T = unknown> {
-  body: T | null
-  bodyStr: string | null
+  body?: T | null
+  bodyStr?: string | null
 }
 
 export class ApiResponse<T = unknown> implements ResponseData<T> {

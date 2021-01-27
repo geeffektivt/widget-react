@@ -14,12 +14,14 @@ import { layoutReducer } from './store/layout/reducer'
 import { referralReducer } from './store/referrals/reducer'
 import watchAll from './store/root.saga'
 import { State } from './store/state'
+import swishReducer from './store/swish/swish.reducer'
 
 const rootReducer = combineReducers<State>({
   donation: donationReducer,
   layout: layoutReducer,
   error: errorReducer,
   referrals: referralReducer,
+  swish: swishReducer,
 })
 
 const sagaMiddleware = createSagaMiddleware()
