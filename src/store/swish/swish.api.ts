@@ -35,9 +35,33 @@ export async function pollSwishPaymentStatusRequest(
   if (process.env.USE_DEV_DATA === 'true') {
     await new Promise((resolve) => setTimeout(resolve, 500))
 
-    return new ApiResponse(undefined, {
+    if (Math.random() > 0.5) {
+      return new ApiResponse<SwishPaymentStatusResponse>(undefined, {
+        body: {
+          status: 'CREATED',
+        },
+      })
+    }
+
+    if (window.location.search.includes('payment=error')) {
+      return new ApiResponse<SwishPaymentStatusResponse>(undefined, {
+        body: {
+          status: 'ERROR',
+        },
+      })
+    }
+
+    if (window.location.search.includes('payment=declined')) {
+      return new ApiResponse<SwishPaymentStatusResponse>(undefined, {
+        body: {
+          status: 'DECLINED',
+        },
+      })
+    }
+
+    return new ApiResponse<SwishPaymentStatusResponse>(undefined, {
       body: {
-        status: 'CREATED',
+        status: 'PAID',
       },
     })
   }
