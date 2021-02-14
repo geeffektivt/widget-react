@@ -12,3 +12,10 @@ export enum PaymentMethod {
   Bank,
   Swish,
 }
+
+export enum PaymentStatus {
+  Failed,
+  Idle,
+  Started,
+  Success,
+}

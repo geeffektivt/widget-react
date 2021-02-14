@@ -11,6 +11,7 @@ import { DonorPane } from './panes/DonorPane/DonorPane'
 import { MethodPane } from './panes/MethodPane/MethodPane'
 import { PaymentPane } from './panes/PaymentPane/PaymentPane'
 import { ReferralPane } from './panes/ReferralPane/ReferralPane'
+
 import './Carousel.style.css'
 
 export default function DonationWidget() {
