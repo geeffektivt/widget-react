@@ -6,4 +6,8 @@ export default styled.div`
   height: 100%;
   justify-content: center;
   width: 100%;
+
+  &:focus-visible {
+    outline: none;
+  }
 `

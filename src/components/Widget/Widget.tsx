@@ -7,7 +7,7 @@ import Modal from '../shared/Modal'
 export default function Widget() {
   return (
     <Modal open>
-      <Payment status={PaymentStatus.Success} />
+      <Payment status={PaymentStatus.Started} />
     </Modal>
   )
 }
