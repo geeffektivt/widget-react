@@ -2,12 +2,12 @@ import React from 'react'
 
 import { PaymentStatus } from '../../types/Enums'
 import Payment from '../Payment'
-import Modal from '../shared/Modal'
+import Dialog from '../shared/Dialog'
 
 export default function Widget() {
   return (
-    <Modal open>
-      <Payment status={PaymentStatus.Started} />
-    </Modal>
+    <Dialog open>
+      <Payment status={PaymentStatus.Success} />
+    </Dialog>
   )
 }

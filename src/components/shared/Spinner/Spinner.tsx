@@ -1,14 +1,16 @@
 import React from 'react'
 
-import StyledSpinnerStyle from './styled/StyledSpinner.style'
+import * as styles from './Spinner.styles'
 
 export default function Spinner() {
   return (
-    <StyledSpinnerStyle>
-      <div />
-      <div />
-      <div />
-      <div />
-    </StyledSpinnerStyle>
+    <>
+      <div className={styles.spinner}>
+        <div />
+        <div />
+        <div />
+        <div />
+      </div>
+    </>
   )
 }

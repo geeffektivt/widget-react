@@ -1,9 +1,12 @@
 import React from 'react'
-import styled from 'styled-components/macro'
 
-export default function SwishLogo() {
+interface SwishLogoProps {
+  className?: string
+}
+
+export default function SwishLogo({ className }: SwishLogoProps) {
   return (
-    <svg height="176" viewBox="0 0 578 176" width="578">
+    <svg className={className} height="176" viewBox="0 0 578 176" width="578">
       <linearGradient
         id="a"
         x1="80.815054%"

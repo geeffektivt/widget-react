@@ -1,8 +1,10 @@
 import React from 'react'
 
 import { PaymentStatus } from '../../types/Enums'
-import Spinner from '../shared/Spinner'
-import SwishLogo from '../shared/_svg/SwishLogo'
+
+import PaymentFailed from './components/PaymentFailed'
+import PaymentStarted from './components/PaymentStarted'
+import PaymentSuccess from './components/PaymentSuccess'
 
 interface PaymentProps {
   status: PaymentStatus
@@ -11,21 +13,13 @@ interface PaymentProps {
 export default function Payment({ status }: PaymentProps) {
   switch (status) {
     case PaymentStatus.Started:
-      return (
-        <>
-          <h1>Payment started</h1>
-
-          <Spinner />
-
-          <SwishLogo />
-        </>
-      )
+      return <PaymentStarted />
 
     case PaymentStatus.Failed:
-      return <h1>Payment failed</h1>
+      return <PaymentFailed />
 
     case PaymentStatus.Success:
-      return <h1>Payment suceess</h1>
+      return <PaymentSuccess />
 
     default:
       return null
