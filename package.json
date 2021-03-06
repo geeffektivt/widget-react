@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "@radix-ui/react-accordion": "^0.0.7",
     "@radix-ui/react-dialog": "^0.0.6",
+    "@radix-ui/react-slider": "^0.0.6",
     "@stitches/react": "^0.0.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
