@@ -1,13 +1,11 @@
-import styled from 'styled-components'
+import { styled } from '../../../styles/stitches.config'
 
-import { gray18 } from '../../../config/colors'
+export const RichSelectWrapper = styled('div', {
+  borderRadius: 5,
+  padding: '0 12px',
+  border: '1px solid $grey18',
 
-export const RichSelectWrapper = styled.div`
-  border-radius: 5px;
-  padding: 0 12px;
-  border: 1px solid ${gray18};
-
-  & > div:last-child {
-    border-bottom: none;
-  }
-`
+  '& > :last-child': {
+    borderBottom: 'none',
+  },
+})

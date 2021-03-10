@@ -1,24 +1,15 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable react/destructuring-assignment */
-import React from 'react'
-import styled from 'styled-components'
+import { styled } from '../../../styles/stitches.config'
+import { ErrorMessage } from '../../panes/Panes.style'
 
-export const ErrorWrapper = styled.div`
-  position: relative;
-  left: 10px;
-`
+export const ErrorWrapper = styled('div', {
+  paddingLeft: '$s50',
+})
 
-export const ErrorMessage = styled.div`
-  margin-left: 5px;
-  font-size: 12px;
-  color: red;
-  display: inline;
-  position: relative;
-  bottom: 1px;
-`
+interface ErrorFieldProps {
+  text: string
+}
 
-export default function ErrorField(props: any) {
+export default function ErrorField({ text }: ErrorFieldProps) {
   return (
     <ErrorWrapper>
       <svg
@@ -35,7 +26,8 @@ export default function ErrorField(props: any) {
         <path d="M9 13c0 0.552-0.448 1-1 1s-1-0.448-1-1c0-0.552 0.448-1 1-1s1 0.448 1 1z" />
         <path d="M8 11c-0.552 0-1-0.448-1-1v-3c0-0.552 0.448-1 1-1s1 0.448 1 1v3c0 0.552-0.448 1-1 1z" />
       </svg>
-      <ErrorMessage>{props.text}</ErrorMessage>
+
+      <ErrorMessage>{text}</ErrorMessage>
     </ErrorWrapper>
   )
 }

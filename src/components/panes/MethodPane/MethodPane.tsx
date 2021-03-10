@@ -20,7 +20,7 @@ import {
   RecurringSelectWrapper,
 } from './MethodPane.style'
 
-export const MethodPane: React.FC = () => {
+export function MethodPane() {
   const dispatch = useDispatch()
   const recurring = useSelector((state: State) => state.donation.recurring)
 
@@ -28,7 +28,7 @@ export const MethodPane: React.FC = () => {
 
   const paneTexts = texts.donations.method
 
-  const selectMethod = (method: PaymentMethod) => {
+  function selectMethod(method: PaymentMethod) {
     dispatch(selectPaymentMethod(method))
     dispatch(nextPane())
   }
@@ -36,10 +36,12 @@ export const MethodPane: React.FC = () => {
   return (
     <Pane>
       <InfoText>{paneTexts.info}</InfoText>
+
       <RecurringSelectWrapper>
         <RichSelect
+          name="recurring"
           selected={recurring}
-          onChange={(value: RecurringDonation) => dispatch(setRecurring(value))}
+          onChange={(value) => dispatch(setRecurring(value))}
         >
           <RichSelectOption
             label={paneTexts.monthlyPaymentLabel}
@@ -52,17 +54,16 @@ export const MethodPane: React.FC = () => {
           />
         </RichSelect>
       </RecurringSelectWrapper>
+
       <MethodWrapper>
         <MethodButton
-          className="bank"
+          paymentType="bank"
           onClick={() => selectMethod(PaymentMethod.Bank)}
         />
         <MethodButton
-          className="swish"
+          paymentType="swish"
           onClick={() => selectMethod(PaymentMethod.Swish)}
-        >
-          {paneTexts.swishPercentage}
-        </MethodButton>
+        />
       </MethodWrapper>
     </Pane>
   )

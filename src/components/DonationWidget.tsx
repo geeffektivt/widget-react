@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import useOnMount from '../hooks/utils/useOnMount'
 import { fetchOrganizationsAction } from '../store/layout/actions'
 import { fetchReferralsAction } from '../store/referrals/actions'
 import { State } from '../store/state'
+import { blueTheme } from '../styles/theme'
 
-import { Carousel } from './Carousel'
+import Carousel from './Carousel'
+import { DonationWidgetWrapper } from './DonationWidget.style'
 import { DonationPane } from './panes/DonationPane/DonationPane'
 import { DonorPane } from './panes/DonorPane/DonorPane'
 import { MethodPane } from './panes/MethodPane/MethodPane'
 import { PaymentPane } from './panes/PaymentPane/PaymentPane'
 import { ReferralPane } from './panes/ReferralPane/ReferralPane'
-
-import './Carousel.style.css'
 
 export default function DonationWidget() {
   const dispatch = useDispatch()
@@ -20,13 +20,13 @@ export default function DonationWidget() {
     (state: State) => state.layout.answeredReferral
   )
 
-  useEffect(() => {
+  useOnMount(() => {
     dispatch(fetchOrganizationsAction.started(undefined))
     dispatch(fetchReferralsAction.started(undefined))
-  }, [])
+  })
 
   return (
-    <div id="app">
+    <DonationWidgetWrapper>
       <Carousel>
         <MethodPane />
         <DonorPane />
@@ -34,6 +34,6 @@ export default function DonationWidget() {
         {answeredReferal !== true && <ReferralPane />}
         <PaymentPane />
       </Carousel>
-    </div>
+    </DonationWidgetWrapper>
   )
 }

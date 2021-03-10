@@ -1,52 +1,44 @@
-import styled from 'styled-components'
+import { styled } from '../../styles/stitches.config'
 
-import { gray18 } from '../../config/colors'
+export const Form = styled('form', {
+  // alignItems: 'center',
+  // display: 'flex',
+  // flexDirection: 'column',
+  // justifyContent: 'center',
+  // width: '100%',
+})
 
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-`
+export const InputFieldWrapper = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+})
 
-export const InputFieldWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`
+export const TextField = styled('input', {
+  // padding: 20px;
+  // display: block;
+  // margin: 5px;
+  // font-size: 15px;
+  // border: 1px solid ${gray18};
+  // border-radius: 5px;
+  // box-sizing: border-box;
+})
 
-export const TextField = styled.input`
-  padding: 20px;
-  display: block;
-  margin: 5px;
-  font-size: 15px;
-  border: 1px solid ${gray18};
-  border-radius: 5px;
-  box-sizing: border-box;
-`
+export const CheckboxWrapper = styled('label', {
+  alignItems: 'center',
+  display: 'flex',
+})
 
-export const CheckBox = styled.input`
-  margin-left: 10px;
-  &:hover {
-    cursor: pointer;
-    opacity: 0.5;
-  }
-`
+export const CheckBox = styled('input', {
+  marginLeft: '$s50',
 
-export const RadioWrapper = styled.div``
+  // &:hover {
+  //   cursor: pointer;
+  //   opacity: 0.5;
+  // }
+})
 
-export const RadioButton = styled.input`
-  margin-left: 10px;
-  &:hover {
-    cursor: pointer;
-  }
-`
-
-export const InputLabel = styled.p`
-  align-self: start;
-  font-size: 12px;
-  display: inline;
-  position: relative;
-  bottom: 2px;
-  margin-left: 5px;
-`
+export const CheckboxLabel = styled('p', {
+  display: 'inline-block',
+  fontSize: '$12',
+  marginLeft: '$s25',
+})

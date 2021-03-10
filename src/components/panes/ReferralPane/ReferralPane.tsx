@@ -13,7 +13,7 @@ import {
   ReferralButtonsWrapper,
 } from './ReferralPane.style'
 
-export const ReferralPane: React.FC = () => {
+export function ReferralPane() {
   const referrals = useSelector((state: State) => state.referrals.referrals)
   const dispatch = useDispatch()
 
@@ -22,6 +22,7 @@ export const ReferralPane: React.FC = () => {
       <PaneContainer>
         <ReferralsWrapper>
           <PaneTitle>Hvor hørte du om oss?</PaneTitle>
+
           {/* TODO: Handle other input */}
           <ReferralButtonsWrapper>
             {referrals?.map((ref) => (

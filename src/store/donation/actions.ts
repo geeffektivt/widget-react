@@ -2,6 +2,7 @@ import actionCreatorFactory from 'typescript-fsa'
 
 import { PaymentMethod, RecurringDonation, ShareType } from '../../types/Enums'
 import { OrganizationShare } from '../../types/Temp'
+import { DonorInput } from '../state'
 
 import {
   DonationActionTypes,
@@ -41,21 +42,11 @@ export function selectTaxDeduction(taxDeduction: boolean): DonationActionTypes {
 }
 
 export function submitDonorInfo(
-  name: string,
-  email: string,
-  taxDeduction: boolean,
-  ssn: number,
-  newsletter: boolean
+  donorInfo: Required<DonorInput>
 ): DonationActionTypes {
   return {
     type: SUBMIT_DONOR_INFO,
-    payload: {
-      name,
-      email,
-      taxDeduction,
-      ssn,
-      newsletter,
-    },
+    payload: donorInfo,
   }
 }
 

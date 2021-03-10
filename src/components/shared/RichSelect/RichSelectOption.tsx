@@ -1,40 +1,65 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 import {
   Content,
+  HeaderLabel,
+  HeaderSubLabel,
   HeaderWrapper,
+  HiddenInput,
   LabelWrapper,
   RadioBall,
   Wrapper,
 } from './RichSelectOption.style'
 
-export interface OptionProps {
+export interface OptionProps<T> {
   label: string
   sublabel?: string
-  // An enum
-  value: number
+
+  name?: string
+  value: T
   selected?: boolean
-  select?: (value: number) => void
+
+  children?: ReactNode
+
+  onSelect?: (value: T) => void
 }
 
-export const RichSelectOption: React.FC<OptionProps> = ({
+export function RichSelectOption<T>({
   label,
   sublabel,
+
+  name,
   value,
   selected,
+
   children,
-  select,
-}) => {
+
+  onSelect,
+}: OptionProps<T>) {
+  function onInputChange() {
+    onSelect?.(value)
+  }
+
   return (
     <Wrapper>
-      <LabelWrapper onClick={() => select && select(value)}>
-        <RadioBall selected={selected} />
+      <LabelWrapper>
+        <HiddenInput
+          name={name}
+          type="radio"
+          value={(value as unknown) as string}
+          checked={selected}
+          onChange={onInputChange}
+        />
+
+        <RadioBall />
+
         <HeaderWrapper>
-          <h2>{label}</h2>
-          <h3>{sublabel}</h3>
+          <HeaderLabel>{label}</HeaderLabel>
+          {sublabel && <HeaderSubLabel>{sublabel}</HeaderSubLabel>}
         </HeaderWrapper>
       </LabelWrapper>
-      <Content selected={selected || false}>{children}</Content>
+
+      {children && selected && <Content>{children}</Content>}
     </Wrapper>
   )
 }

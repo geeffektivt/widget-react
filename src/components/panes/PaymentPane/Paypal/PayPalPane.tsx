@@ -14,6 +14,7 @@ export const PaypalPane: React.FC = () => {
   const singleForm = (
     <PayPalFormWrapper>
       <UnderTitle>Engangsdonasjon</UnderTitle>
+
       <form
         action="https://www.paypal.com/cgi-bin/webscr"
         method="post"

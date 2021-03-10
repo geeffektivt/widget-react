@@ -1,84 +1,75 @@
-import styled from 'styled-components'
+import { styled } from '../../../styles/stitches.config'
 
-import {
-  gray14,
-  gray18,
-  gray20,
-  orange15,
-  orange20,
-} from '../../../config/colors'
+export const Wrapper = styled('div', {
+  borderBottom: '1px solid $grey14',
+})
 
-export const Wrapper = styled.div`
-  border-bottom: 1px solid ${gray14};
+export const LabelWrapper = styled('label', {
+  cursor: 'pointer',
+  display: 'flex',
+  padding: '16px 0',
+  userSelect: 'none',
+})
+export const HiddenInput = styled('input', {
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: '1px',
+  overflow: 'hidden',
+  position: 'absolute',
+  whiteSpace: 'nowrap',
+  width: '1px',
+})
 
-  h2 {
-    font-weight: 600;
-    font-size: 14px;
-    margin: 0;
-    margin-bottom: 4px;
-  }
+export const RadioBall = styled('span', {
+  background: 'white',
+  borderRadius: '50%',
+  height: 24,
+  position: 'relative',
+  width: 24,
 
-  h3 {
-    font-size: 11px;
-    color: ${gray20};
-    font-weight: 300;
-    margin: 0;
-  }
-`
+  '::after': {
+    border: '1px solid $grey18',
+    borderRadius: '50%',
+    boxSizing: 'border-box',
+    content: '""',
+    height: '100%',
+    left: 0,
+    position: 'absolute',
+    top: 0,
+    transition: 'border 100ms',
+    width: '100%',
+  },
 
-export const LabelWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  cursor: pointer;
-  padding: 16px 0;
-  user-select: none;
+  [`${HiddenInput}:focus + &`]: {
+    '::after': {
+      outline: '1px solid black',
+    },
+  },
 
-  &:active {
-    & > div:first-child {
-      &::after {
-        border: 3px solid ${orange15};
-      }
-    }
-  }
-`
+  [`${HiddenInput}:checked + &`]: {
+    '::after': {
+      border: '7px solid $primary100',
+    },
+  },
+})
 
-export const HeaderWrapper = styled.div`
-  padding-top: 4px;
-  margin-left: 10px;
-`
+export const HeaderWrapper = styled('span', {
+  marginLeft: 10,
+  paddingTop: 4,
+})
 
-export const RadioBall = styled.div`
-  width: 24px;
-  height: 24px;
-  background: white;
-  border-radius: 50%;
-  position: relative;
+export const HeaderLabel = styled('span', {
+  display: 'block',
+  fontSize: 14,
+  fontWeight: 600,
+})
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    border-radius: 50%;
-    transition: all 100ms;
-    border: ${(props: RadioBallProps) =>
-      props.selected ? `7px solid ${orange20}` : `1px solid ${gray18}`};
-  }
-`
+export const HeaderSubLabel = styled('span', {
+  color: '$grey20',
+  fontSize: 11,
+  fontWeight: 300,
+})
 
-interface RadioBallProps {
-  selected: boolean | undefined
-}
-
-export const Content = styled.div`
-  height: ${(props: ContentProps) => (props.selected ? 'auto' : '0px')};
-  overflow: ${(props: ContentProps) => (props.selected ? 'visible' : 'hidden')};
-  box-sizing: border-box;
-`
-
-interface ContentProps {
-  selected: boolean
-}
+export const Content = styled('div', {
+  boxSizing: 'border-box',
+})

@@ -1,22 +1,25 @@
-import styled from 'styled-components'
+import { styled } from '../../../styles/stitches.config'
 
-import { gray20 } from '../../../config/colors'
+export const NextButton = styled('button', {
+  alignItems: 'center',
+  backgroundColor: '$black',
+  border: 'none',
+  color: '$white',
+  display: 'flex',
+  fontSize: '$14',
+  fontWeight: '$600',
+  height: 45,
+  justifyContent: 'center',
+  marginTop: '$s200',
+  width: '100%',
 
-export const NextButton = styled.button`
-  height: 45px;
-  background: ${(props: NextButtonProps) => (props.disabled ? gray20 : '#000')};
-  color: white;
-  font-weight: 600;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 30px;
-  width: 100%;
-  border: none;
-  cursor: pointer;
-`
+  ':disabled': {
+    backgroundColor: '$grey20',
+  },
 
-interface NextButtonProps {
-  disabled?: boolean
-}
+  ':not(:disabled)': {
+    cursor: 'pointer',
+  },
+
+  ':not(:disabled):hover': {},
+})
