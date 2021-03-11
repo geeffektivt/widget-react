@@ -5,7 +5,9 @@
       "monthlyPaymentLabel": "Ge en fast månadssumma",
       "monthlyPaymentSubLabel": "Du kan avsluta när du vill.",
       "singlePaymentLabel": "Ge ett engångsbelopp",
-      "swishPercentage": "2,99%"
+      "notAvailableForMonthlyLabel": "Endast engångsbelopp",
+      "bankAriaLabel": "Banköverföring",
+      "swishAriaLabel":  "Swishbetalning"
     },
 
     "donor": {
@@ -34,6 +36,11 @@
         "newsletter": false,
         "privacyPolicy": true
       }
+    },
+
+    "referral": {
+      "title": "Hur hörde du talas om oss?",
+      "skipLabel": "Hoppa över"
     }
   }
 }

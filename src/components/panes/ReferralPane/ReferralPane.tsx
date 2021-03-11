@@ -1,9 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import useAllTexts from '../../../hooks/content/useAllTexts'
 import { nextPane } from '../../../store/layout/actions'
 import { submitReferralAction } from '../../../store/referrals/actions'
 import { State } from '../../../store/state'
+import { ReferralType } from '../../../types/Temp'
 import { NextButton } from '../../shared/Buttons/NavigationButtons.style'
 import { Pane, PaneContainer, PaneTitle } from '../Panes.style'
 
@@ -14,28 +16,40 @@ import {
 } from './ReferralPane.style'
 
 export function ReferralPane() {
-  const referrals = useSelector((state: State) => state.referrals.referrals)
   const dispatch = useDispatch()
+
+  const referrals = useSelector((state: State) => state.referrals.referrals)
+
+  const allTexts = useAllTexts()
+  const paneTexts = allTexts.donations.referral
+
+  function onReferralSelect(referral: ReferralType) {
+    dispatch(submitReferralAction.started(referral.id))
+  }
+
+  function onSkipClick() {
+    dispatch(nextPane())
+  }
 
   return (
     <Pane>
       <PaneContainer>
         <ReferralsWrapper>
-          <PaneTitle>Hvor hørte du om oss?</PaneTitle>
+          <PaneTitle>{paneTexts.title}</PaneTitle>
 
-          {/* TODO: Handle other input */}
           <ReferralButtonsWrapper>
-            {referrals?.map((ref) => (
+            {referrals?.map((referral) => (
               <ReferralButton
-                key={ref.id}
-                onClick={() => dispatch(submitReferralAction.started(ref.id))}
+                key={referral.id}
+                onClick={() => onReferralSelect(referral)}
               >
-                {ref.name}
+                {referral.name}
               </ReferralButton>
             ))}
           </ReferralButtonsWrapper>
         </ReferralsWrapper>
-        <NextButton onClick={() => dispatch(nextPane())}>Hopp over</NextButton>
+
+        <NextButton onClick={onSkipClick}>{paneTexts.skipLabel}</NextButton>
       </PaneContainer>
     </Pane>
   )

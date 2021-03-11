@@ -6,7 +6,7 @@ import {
   TextInputWrapper,
 } from './TextInput.style'
 
-export const TextInput: React.FC<TextInputProps> = ({
+export function TextInput({
   label,
   denomination,
   name,
@@ -15,7 +15,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   defaultValue,
   innerRef,
   selectOnClick,
-}) => {
+}: TextInputProps) {
   return (
     <TextInputWrapper label={label} denomination={denomination}>
       <TextInputField

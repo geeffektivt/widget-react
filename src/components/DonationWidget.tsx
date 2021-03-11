@@ -4,11 +4,11 @@ import useOnMount from '../hooks/utils/useOnMount'
 import { fetchOrganizationsAction } from '../store/layout/actions'
 import { fetchReferralsAction } from '../store/referrals/actions'
 import { State } from '../store/state'
-import { blueTheme } from '../styles/theme'
 
 import Carousel from './Carousel'
 import { DonationWidgetWrapper } from './DonationWidget.style'
-import { DonationPane } from './panes/DonationPane/DonationPane'
+import FlowProgress from './FlowProgress'
+import DistributionSelectionPane from './panes/DistributionSelectionPane'
 import { DonorPane } from './panes/DonorPane/DonorPane'
 import { MethodPane } from './panes/MethodPane/MethodPane'
 import { PaymentPane } from './panes/PaymentPane/PaymentPane'
@@ -30,10 +30,12 @@ export default function DonationWidget() {
       <Carousel>
         <MethodPane />
         <DonorPane />
-        <DonationPane />
+        <DistributionSelectionPane />
         {answeredReferal !== true && <ReferralPane />}
         <PaymentPane />
       </Carousel>
+
+      <FlowProgress />
     </DonationWidgetWrapper>
   )
 }

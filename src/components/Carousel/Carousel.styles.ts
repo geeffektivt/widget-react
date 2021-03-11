@@ -1,8 +1,6 @@
 import { css } from '../../styles/stitches.config'
 
 export const carousel = css({
-  boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.2)',
-  display: 'flex',
   flexDirection: 'column',
   margin: '0 auto',
   maxWidth: '$contentMaxWidth',

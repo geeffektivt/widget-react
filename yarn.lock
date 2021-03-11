@@ -1762,6 +1762,15 @@
   dependencies:
     "@radix-ui/react-polymorphic" "0.0.6"
 
+"@radix-ui/react-progress@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-progress/-/react-progress-0.0.6.tgz#2c2d4d7e8ce46d39db23553039ec70ea9cf15747"
+  integrity sha512-KD+cy5HI0WzRzygUY5nzgF8Iy3M/S18eT243KJXhhLET7+pYXG9C9DsRraMrWd3vsNe9ApIzcW117YwFd9bcrA==
+  dependencies:
+    "@radix-ui/react-context" "0.0.1"
+    "@radix-ui/react-polymorphic" "0.0.6"
+    "@radix-ui/react-primitive" "0.0.5"
+
 "@radix-ui/react-slider@^0.0.6":
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-slider/-/react-slider-0.0.6.tgz#30a1f50a49b1f62b86d578466fec19c23dd8f27c"

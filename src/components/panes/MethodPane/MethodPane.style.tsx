@@ -26,13 +26,14 @@ export const MethodButton = styled('button', {
   boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.15)',
   boxSizing: 'border-box',
   color: '$grey20',
-  cursor: 'pointer',
   display: 'flex',
+  fontStyle: 'italic',
   height: pxToRem(80),
   justifyContent: 'flex-end',
   marginBottom: 15,
+  paddingRight: '2em',
   position: 'relative',
-  transition: 'box-shadow 90ms',
+  transition: 'box-shadow 90ms, opacity 150ms',
   userSelect: 'none',
   width: '100%',
 
@@ -40,8 +41,16 @@ export const MethodButton = styled('button', {
     boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.3)',
   },
 
+  ':disabled': {
+    opacity: 0.5,
+  },
+
+  ':not(:disabled)': {
+    cursor: 'pointer',
+  },
+
   '::after': {
-    backgroundColor: '$primary100',
+    backgroundColor: '$white',
     content: '""',
     height: '30%',
     position: 'absolute',
@@ -53,7 +62,7 @@ export const MethodButton = styled('button', {
   },
 
   '::before': {
-    backgroundColor: '$primary100',
+    backgroundColor: '$white',
     bottom: '50%',
     content: '""',
     height: '30%',
@@ -62,6 +71,16 @@ export const MethodButton = styled('button', {
     transform: 'rotate(-45deg)',
     transformOrigin: 'center bottom',
     width: 2,
+  },
+
+  ':not(:disabled)::after': {
+    backgroundColor: '$primary100',
+    transition: 'background-color 150ms',
+  },
+
+  ':not(:disabled)::before': {
+    backgroundColor: '$primary100',
+    transition: 'background-color 150ms',
   },
 
   variants: {

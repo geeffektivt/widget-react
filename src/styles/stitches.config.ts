@@ -13,8 +13,11 @@ export const { styled, css } = createStyled({
       $grey18: '#B9B9B9',
       $grey14: '#DBDBDB',
 
-      $primary100: '#FFAA2B', // orange 20
-      $primary200: '#FFBB55', // orange 15
+      $primary100: 'hsl(198deg 82% 23%)',
+      $primary200: 'hsl(198deg 82% 13%)',
+
+      $secondary100: 'hsl(36deg 100% 58%)', // orange 20
+      $secondary200: 'hsl(36deg 100% 67%)', // orange 15
 
       $error100: '#ff0000',
 
@@ -59,6 +62,7 @@ export const { styled, css } = createStyled({
     },
 
     sizes: {
+      $progressBarHeight: '0.5rem',
       $contentMaxWidth: '600px',
     },
   },

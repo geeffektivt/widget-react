@@ -22,11 +22,16 @@ import {
 
 export function MethodPane() {
   const dispatch = useDispatch()
-  const recurring = useSelector((state: State) => state.donation.recurring)
+  const selectedRecurringType = useSelector(
+    (state: State) => state.donation.recurring
+  )
 
   const texts = useAllTexts()
 
   const paneTexts = texts.donations.method
+
+  const isRecurringSelected =
+    selectedRecurringType === RecurringDonation.RECURRING
 
   function selectMethod(method: PaymentMethod) {
     dispatch(selectPaymentMethod(method))
@@ -40,7 +45,7 @@ export function MethodPane() {
       <RecurringSelectWrapper>
         <RichSelect
           name="recurring"
-          selected={recurring}
+          selected={selectedRecurringType}
           onChange={(value) => dispatch(setRecurring(value))}
         >
           <RichSelectOption
@@ -57,13 +62,19 @@ export function MethodPane() {
 
       <MethodWrapper>
         <MethodButton
+          aria-label={paneTexts.bankAriaLabel}
           paymentType="bank"
           onClick={() => selectMethod(PaymentMethod.Bank)}
         />
+
         <MethodButton
+          aria-label={paneTexts.swishAriaLabel}
+          disabled={isRecurringSelected}
           paymentType="swish"
           onClick={() => selectMethod(PaymentMethod.Swish)}
-        />
+        >
+          {isRecurringSelected && paneTexts.notAvailableForMonthlyLabel}
+        </MethodButton>
       </MethodWrapper>
     </Pane>
   )
