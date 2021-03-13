@@ -1,4 +1,10 @@
-import { PaymentMethod, RecurringDonation, ShareType } from '../../types/Enums'
+import {
+  CauseId,
+  OrganizationId,
+} from '../../@types/import/content/organizations.types'
+import { PaymentMethod } from '../../constants/enums/PaymentMethod'
+import { DonationFrequency } from '../../constants/enums/RecurringDonation'
+import { ShareType } from '../../constants/enums/ShareType'
 import { OrganizationShare } from '../../types/Temp'
 
 export const SELECT_PAYMENT_METHOD = 'SELECT_PAYMENT_METHOD'
@@ -12,6 +18,25 @@ export const SET_DONOR_ID = 'SET_DONOR_ID'
 export const SET_PAYMENT_PROVIDER_URL = 'SET_PAYMENT_PROVIDER_URL'
 export const SELECT_CUSTOM_SHARE = 'SELECT_CUSTOM_SHARE'
 export const SET_SHARE_TYPE = 'SET_SHARE_TYPE'
+
+export interface DonationState {
+  method: PaymentMethod | null
+  sum: number | null
+  shareType: ShareType
+  recurring: DonationFrequency
+  // donor?: Donor
+
+  distribution: Array<{
+    causeId: CauseId
+    share: number
+    shareType: ShareType
+    organizationDistribution: Array<{
+      organizationId: OrganizationId
+      share: number
+    }>
+  }>
+  shares: OrganizationShare[]
+}
 
 interface SelectPaymentMethod {
   type: typeof SELECT_PAYMENT_METHOD
@@ -55,7 +80,7 @@ interface SetSum {
 interface SetRecurring {
   type: typeof SET_RECURRING
   payload: {
-    recurring: RecurringDonation
+    recurring: DonationFrequency
   }
 }
 

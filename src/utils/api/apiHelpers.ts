@@ -22,8 +22,8 @@ export class ApiResponse<T = unknown> implements ResponseData<T> {
   body
   bodyStr
 
-  static async fromResponse<T>(response: Response) {
-    return new ApiResponse(response, await parseResponseData<T>(response))
+  static async fromResponse<TT>(response: Response) {
+    return new ApiResponse(response, await parseResponseData<TT>(response))
   }
 
   constructor(response: Response | undefined, responseData: ResponseData<T>) {

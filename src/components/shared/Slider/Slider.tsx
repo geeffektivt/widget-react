@@ -15,14 +15,12 @@ interface SliderProps extends SliderOwnProps {
 
 export default function Slider({ className, ...sliderOwnProps }: SliderProps) {
   return (
-    <div>
-      <Root className={styles.root} {...sliderOwnProps}>
-        <Track className={styles.track}>
-          <Range className={styles.range} />
-        </Track>
+    <Root className={styles.root} {...sliderOwnProps}>
+      <Track className={styles.track}>
+        <Range className={styles.range} />
+      </Track>
 
-        <Thumb className={styles.thumb} />
-      </Root>
-    </div>
+      <Thumb className={styles.thumb} />
+    </Root>
   )
 }

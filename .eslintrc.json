@@ -51,6 +51,8 @@
     "react/prop-types": "off",
     "react/require-default-props": "off",
     "react/react-in-jsx-scope": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-curly-newline": "off",
 
     "import/prefer-default-export": "off",
     "import/order": [

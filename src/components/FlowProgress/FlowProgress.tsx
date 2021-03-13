@@ -1,7 +1,7 @@
 import { Root, Indicator } from '@radix-ui/react-progress'
-import { useSelector } from 'react-redux'
 
-import { State } from '../../store/state'
+import { DonationStepsOrder } from '../../constants/DonationStepsOrder'
+import useCurrentStepIndex from '../../hooks/ui/useCurrentStepIndex'
 import { styled } from '../../styles/stitches.config'
 
 const StyledProgressRoot = styled(Root, {
@@ -17,13 +17,13 @@ const StyledIndicator = styled(Indicator, {
 })
 
 export default function FlowProgress() {
-  const currentPane = useSelector((state: State) => state.layout.paneNumber)
-  const totalPanes = 5
+  const currentStepIndex = useCurrentStepIndex()
+  const totalPanes = DonationStepsOrder.length
 
-  const progressPercentage = (currentPane / totalPanes) * 100
+  const progressPercentage = (currentStepIndex / totalPanes) * 100
 
   return (
-    <StyledProgressRoot value={currentPane} max={totalPanes}>
+    <StyledProgressRoot value={currentStepIndex} max={totalPanes}>
       <StyledIndicator style={{ width: `${progressPercentage}%` }} />
     </StyledProgressRoot>
   )

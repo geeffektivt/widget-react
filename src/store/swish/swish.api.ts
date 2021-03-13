@@ -1,4 +1,5 @@
 import {
+  SwishPaymentRequest,
   SwishPaymentResponse,
   SwishPaymentStatusRequest,
   SwishPaymentStatusResponse,
@@ -8,10 +9,8 @@ import { get, post } from '../../services/apiService'
 import { ApiResponse } from '../../utils/api/apiHelpers'
 import { joinUrlPaths } from '../../utils/urlUtils'
 
-import { CreateSwishPaymentActionArgs } from './swish.actions'
-
 export async function createSwishPaymentRequest(
-  requestArgs: CreateSwishPaymentActionArgs
+  requestArgs: SwishPaymentRequest
 ): Promise<ApiResponse<SwishPaymentResponse>> {
   if (process.env.USE_DEV_DATA === 'true') {
     await new Promise((resolve) => setTimeout(resolve, 1000))

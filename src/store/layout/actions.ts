@@ -1,6 +1,6 @@
 import actionCreatorFactory from 'typescript-fsa'
 
-import { Organization } from '../../types/Organization'
+import { Organization } from '../../@types/import/content/organizations.types'
 
 import {
   DECREMENT_CURRENT_PANE,

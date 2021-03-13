@@ -89,14 +89,14 @@ export const MethodButton = styled('button', {
         backgroundImage: `url('https://storage.googleapis.com/effekt-widget/assets/logos/bank.png')`,
         backgroundPosition: '16px center',
         backgroundRepeat: 'no-repeat',
-        backgroundSize: 120,
+        backgroundSize: '120px 60px',
       },
 
       swish: {
         backgroundImage: `url('/images/swish-logotype.svg')`,
         backgroundPosition: '16px center',
         backgroundRepeat: 'no-repeat',
-        backgroundSize: 120,
+        backgroundSize: '120px 36.5px',
       },
     },
   },

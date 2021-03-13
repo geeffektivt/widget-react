@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { PaymentStatus } from '../../types/Enums'
+import { PaymentStatus } from '../../constants/enums/PaymentStatus'
 import Payment from '../Payment'
 import Dialog from '../shared/Dialog'
 

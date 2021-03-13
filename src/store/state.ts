@@ -1,16 +1,8 @@
-import { PaymentMethod, RecurringDonation, ShareType } from '../types/Enums'
-import { Organization } from '../types/Organization'
-import { OrganizationShare, ReferralType } from '../types/Temp'
-
-import { SwishState } from './swish/swish.types'
-
-export interface State {
-  donation: Donation
-  layout: Layout
-  referrals: Referrals
-  error: Error
-  swish: SwishState
-}
+import { Organization } from '../@types/import/content/organizations.types'
+import { PaymentMethod } from '../constants/enums/PaymentMethod'
+import { DonationFrequency } from '../constants/enums/RecurringDonation'
+import { ShareType } from '../constants/enums/ShareType'
+import { OrganizationShare } from '../types/Temp'
 
 export interface Layout {
   privacyPolicy: boolean
@@ -25,7 +17,7 @@ export interface DonationInput {
   method?: PaymentMethod
   sum?: number
   shareType: ShareType
-  recurring: RecurringDonation
+  recurring: DonationFrequency
   donor?: Donor
   shares: OrganizationShare[]
 }
@@ -46,33 +38,4 @@ export interface DonorInput {
 
 export interface Donor extends DonorInput {
   donorID?: number
-}
-
-export interface Referrals {
-  referrals?: ReferralType[]
-}
-
-export interface DonorFormValues extends DonorInput {
-  privacyPolicy: boolean
-}
-
-export interface Share {
-  organizationID: number
-  share: number
-}
-
-export interface Error {
-  isVisible: boolean
-  message: string
-}
-
-export enum PaneNumber {
-  MethodPane = 0,
-  DonorPane = 1,
-  DonationPane = 2,
-  SharesPane = 3,
-  ReferralPane = 4,
-  PayPalPane = 5,
-  VippsPane = 6,
-  ResultPane = 7,
 }

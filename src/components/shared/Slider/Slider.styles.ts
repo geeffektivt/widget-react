@@ -6,33 +6,35 @@ export const root = css({
   alignItems: 'center',
   userSelect: 'none',
   touchAction: 'none',
-  height: 16,
+  height: '3rem',
 })
 
 export const track = css({
-  backgroundColor: 'gainsboro',
-  position: 'relative',
+  backgroundColor: '$grey14',
+  borderRadius: '9999px',
   flexGrow: 1,
-  height: 2,
+  height: '0.5rem',
+  overflow: 'hidden',
+  position: 'relative',
 })
 
 export const range = css({
   position: 'absolute',
-  backgroundColor: 'dodgerblue',
-  borderRadius: '9999px',
+  backgroundColor: '$primary100',
   height: '100%',
 })
 
 export const thumb = css({
-  display: 'block',
-  width: 16,
-  height: 16,
   backgroundColor: 'white',
   border: '1px solid lightgray',
-  borderRadius: '20px',
+  borderRadius: '50%',
+  display: 'block',
+  height: '2rem',
+  // pointerEvents: 'none',
+  width: '2rem',
 
   ':focus': {
-    borderColor: 'dodgerblue',
+    borderColor: '$primary100',
     outline: 'none',
   },
 })

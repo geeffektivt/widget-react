@@ -1,10 +1,77 @@
 [
   {
-    "abbriv": "Foo",
-    "name": "Foo Inc",
-    "id": 1,
-    "infoUrl": "https://example.com",
-    "shortDesc": "About Foo Inc.",
-    "standardShare": 0
+    "id": "1",
+    "name": "Global hälsa",
+    "standardShare": 50,
+    "organizations": [
+      {
+        "id": "1",
+        "name": "New incentives",
+        "infoUrl": "https://example.com",
+        "shortDesc": "Short description."
+      },
+      {
+        "id": "2",
+        "name": "Agains Malaria Foundation",
+        "infoUrl": "https://example.com",
+        "shortDesc": "Short description."
+      },
+      {
+        "id": "3",
+        "name": "SCI Foundation",
+        "infoUrl": "https://example.com",
+        "shortDesc": "Short description."
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Klimat",
+    "standardShare": 25,
+    "organizations": [
+      {
+        "id": "4",
+        "name": "Klimat 1",
+        "infoUrl": "https://example.com",
+        "shortDesc": "Short description."
+      },
+      {
+        "id": "5",
+        "name": "Klimat 2",
+        "infoUrl": "https://example.com",
+        "shortDesc": "Short description."
+      },
+      {
+        "id": "6",
+        "name": "Klimat 3",
+        "infoUrl": "https://example.com",
+        "shortDesc": "Short description."
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "Djurhälsa",
+    "standardShare": 25,
+    "organizations": [
+      {
+        "id": "4",
+        "name": "Djurhälsa 1",
+        "infoUrl": "https://example.com",
+        "shortDesc": "Short description."
+      },
+      {
+        "id": "5",
+        "name": "Djurhälsa 2",
+        "infoUrl": "https://example.com",
+        "shortDesc": "Short description."
+      },
+      {
+        "id": "6",
+        "name": "Djurhälsa 3",
+        "infoUrl": "https://example.com",
+        "shortDesc": "Short description."
+      }
+    ]
   }
 ]

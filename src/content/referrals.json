@@ -1,6 +1,18 @@
 [
   {
-    "id": 1,
-    "name": "Through the grapevine"
+    "id": "1",
+    "name": "Facebook"
+  },
+  {
+    "id": "2",
+    "name": "Friend"
+  },
+  {
+    "id": "3",
+    "name": "Effective Altruism"
+  },
+  {
+    "id": "4",
+    "name": "Twitter"
   }
 ]

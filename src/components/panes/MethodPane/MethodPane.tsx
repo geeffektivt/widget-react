@@ -1,14 +1,12 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 
+import { PaymentMethod } from '../../../constants/enums/PaymentMethod'
+import { DonationFrequency } from '../../../constants/enums/RecurringDonation'
 import useAllTexts from '../../../hooks/content/useAllTexts'
-import {
-  selectPaymentMethod,
-  setRecurring,
-} from '../../../store/donation/actions'
-import { nextPane } from '../../../store/layout/actions'
-import { State } from '../../../store/state'
-import { PaymentMethod, RecurringDonation } from '../../../types/Enums'
+import useTypedDispatch from '../../../hooks/store/useTypedDispatch'
+import useTypedSelector from '../../../hooks/store/useTypedSelector'
+import { donationActions } from '../../../store/donation/donation.slice'
+import { uiActions } from '../../../store/ui/ui.slice'
 import { RichSelect } from '../../shared/RichSelect/RichSelect'
 import { RichSelectOption } from '../../shared/RichSelect/RichSelectOption'
 import { Pane } from '../Panes.style'
@@ -21,21 +19,25 @@ import {
 } from './MethodPane.style'
 
 export function MethodPane() {
-  const dispatch = useDispatch()
-  const selectedRecurringType = useSelector(
-    (state: State) => state.donation.recurring
+  const dispatch = useTypedDispatch()
+  const selectedDonationFrequency = useTypedSelector(
+    (state) => state.donation.recurring
   )
 
   const texts = useAllTexts()
 
   const paneTexts = texts.donations.method
 
-  const isRecurringSelected =
-    selectedRecurringType === RecurringDonation.RECURRING
+  const isMonthlySelected =
+    selectedDonationFrequency === DonationFrequency.Monthly
 
-  function selectMethod(method: PaymentMethod) {
-    dispatch(selectPaymentMethod(method))
-    dispatch(nextPane())
+  function onDonationFrequencyChange(donationFrequency: DonationFrequency) {
+    dispatch(donationActions.setDonationFrequency(donationFrequency))
+  }
+
+  function onPaymentMethodSelect(method: PaymentMethod) {
+    dispatch(donationActions.setPaymentMethod(method))
+    dispatch(uiActions.goToNextStep())
   }
 
   return (
@@ -45,17 +47,17 @@ export function MethodPane() {
       <RecurringSelectWrapper>
         <RichSelect
           name="recurring"
-          selected={selectedRecurringType}
-          onChange={(value) => dispatch(setRecurring(value))}
+          selected={selectedDonationFrequency}
+          onChange={onDonationFrequencyChange}
         >
           <RichSelectOption
             label={paneTexts.monthlyPaymentLabel}
             sublabel={paneTexts.monthlyPaymentSubLabel}
-            value={RecurringDonation.RECURRING}
+            value={DonationFrequency.Monthly}
           />
           <RichSelectOption
             label={paneTexts.singlePaymentLabel}
-            value={RecurringDonation.NON_RECURRING}
+            value={DonationFrequency.Single}
           />
         </RichSelect>
       </RecurringSelectWrapper>
@@ -64,16 +66,16 @@ export function MethodPane() {
         <MethodButton
           aria-label={paneTexts.bankAriaLabel}
           paymentType="bank"
-          onClick={() => selectMethod(PaymentMethod.Bank)}
+          onClick={() => onPaymentMethodSelect(PaymentMethod.Bank)}
         />
 
         <MethodButton
           aria-label={paneTexts.swishAriaLabel}
-          disabled={isRecurringSelected}
+          disabled={isMonthlySelected}
           paymentType="swish"
-          onClick={() => selectMethod(PaymentMethod.Swish)}
+          onClick={() => onPaymentMethodSelect(PaymentMethod.Swish)}
         >
-          {isRecurringSelected && paneTexts.notAvailableForMonthlyLabel}
+          {isMonthlySelected && paneTexts.notAvailableForMonthlyLabel}
         </MethodButton>
       </MethodWrapper>
     </Pane>

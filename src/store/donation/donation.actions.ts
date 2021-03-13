@@ -1,6 +1,8 @@
 import actionCreatorFactory from 'typescript-fsa'
 
-import { PaymentMethod, RecurringDonation, ShareType } from '../../types/Enums'
+import { PaymentMethod } from '../../constants/enums/PaymentMethod'
+import { DonationFrequency } from '../../constants/enums/RecurringDonation'
+import { ShareType } from '../../constants/enums/ShareType'
 import { OrganizationShare } from '../../types/Temp'
 import { DonorInput } from '../state'
 
@@ -17,7 +19,7 @@ import {
   SET_PAYMENT_PROVIDER_URL,
   SELECT_CUSTOM_SHARE,
   SET_SHARE_TYPE,
-} from './types'
+} from './old.donation.types'
 
 const actionCreator = actionCreatorFactory()
 
@@ -69,7 +71,7 @@ export function setSum(sum: number): DonationActionTypes {
 }
 
 export function setRecurring(
-  recurring: RecurringDonation
+  recurring: DonationFrequency
 ): DonationActionTypes {
   return {
     type: SET_RECURRING,

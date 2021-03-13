@@ -1,13 +1,13 @@
-import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
 import Validate from 'validator'
 
+import { DonorType } from '../../../constants/enums/DonorType'
 import useAllTexts from '../../../hooks/content/useAllTexts'
-import { submitDonorInfo } from '../../../store/donation/actions'
-import { nextPane } from '../../../store/layout/actions'
+import useTypedDispatch from '../../../hooks/store/useTypedDispatch'
+import useTypedSelector from '../../../hooks/store/useTypedSelector'
+import { donationActions } from '../../../store/donation/donation.slice'
 import { DonorInput } from '../../../store/state'
-import { DonorType } from '../../../types/Temp'
+import { uiActions } from '../../../store/ui/ui.slice'
 import { NextButton } from '../../shared/Buttons/NavigationButtons.style'
 import ErrorField from '../../shared/Error/ErrorField'
 import { TextInput } from '../../shared/Input/TextInput'
@@ -24,19 +24,19 @@ import {
 } from '../Forms.style'
 import { PrimaryLink, Pane } from '../Panes.style'
 
-import { DonorForm } from './DonorPane.style'
-
 interface DonorFormValues extends DonorInput {
   privacyPolicy: boolean
 }
 
 export function DonorPane() {
-  const dispatch = useDispatch()
+  const dispatch = useTypedDispatch()
+
+  const selectedDonorType = useTypedSelector(
+    (state) => state.donation.donorType
+  )
 
   const texts = useAllTexts()
   const paneTexts = texts.donations.donor
-
-  const [donorType, setDonorType] = useState(DonorType.DONOR)
 
   const {
     register,
@@ -53,13 +53,17 @@ export function DonorPane() {
   const isSsnInvalid = Boolean(errors.ssn)
   const isPrivacyPolicyInvalid = Boolean(errors.privacyPolicy)
 
-  const isAnonymous = donorType === DonorType.ANONYMOUS
+  const isAnonymous = selectedDonorType === DonorType.Anonymous
 
   const isNextDisabled = !isAnonymous && Object.keys(errors).length > 0
 
+  function onDonorTypeChange(donorType: DonorType) {
+    dispatch(donationActions.setDonorType(donorType))
+  }
+
   function onFormSubmit(formValues: DonorFormValues) {
     let donorInfo: Required<DonorInput>
-    if (donorType === DonorType.ANONYMOUS) {
+    if (selectedDonorType === DonorType.Anonymous) {
       donorInfo = { ...paneTexts.anonymousDonor }
     } else {
       donorInfo = {
@@ -71,21 +75,21 @@ export function DonorPane() {
       }
     }
 
-    dispatch(submitDonorInfo(donorInfo))
-    dispatch(nextPane())
+    // dispatch(submitDonorInfo(donorInfo))
+    dispatch(uiActions.goToNextStep())
   }
 
   return (
     <Pane>
-      <DonorForm onSubmit={handleSubmit(onFormSubmit)}>
+      <form onSubmit={handleSubmit(onFormSubmit)}>
         <RichSelect
           name="donorType"
-          selected={donorType}
-          onChange={(type) => setDonorType(type)}
+          selected={selectedDonorType}
+          onChange={onDonorTypeChange}
         >
           <RichSelectOption
             label={paneTexts.personalInfoLabel}
-            value={DonorType.DONOR}
+            value={DonorType.Donor}
           >
             <InputFieldWrapper>
               <TextInput
@@ -175,14 +179,14 @@ export function DonorPane() {
 
           <RichSelectOption
             label={paneTexts.donateAnonymouslyLabel}
-            value={DonorType.ANONYMOUS}
+            value={DonorType.Anonymous}
           />
         </RichSelect>
 
         <NextButton type="submit" disabled={isNextDisabled}>
           {paneTexts.nextLabel}
         </NextButton>
-      </DonorForm>
+      </form>
     </Pane>
   )
 }

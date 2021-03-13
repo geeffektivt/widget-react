@@ -1,18 +1,18 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-import { pollSwishPaymentStatusAction } from '../../store/swish/swish.actions'
 import {
   getSwishPaymentStatus,
   getIsPollingSwishPaymentStatus,
   getSwishPaymentId,
 } from '../../store/swish/swish.selectors'
-import useAppDispatch from '../store/useAppDispatch'
+import { swishAsyncActions } from '../../store/swish/swish.slice'
+import useTypedDispatch from '../store/useTypedDispatch'
 import usePrevious from '../utils/usePrevious'
 import useTimeout from '../utils/useTimeout'
 
 export default function usePollForPaymentStatus(pollingIntervalMs = 2000) {
-  const dispatch = useAppDispatch()
+  const dispatch = useTypedDispatch()
 
   const safeSetTimeout = useTimeout()
 
@@ -42,13 +42,13 @@ export default function usePollForPaymentStatus(pollingIntervalMs = 2000) {
 
     const isFirstFrame = wasPollingPreviousFrame === undefined
     if (isFirstFrame) {
-      dispatch(pollSwishPaymentStatusAction.started({ id: paymentId }))
+      dispatch(swishAsyncActions.pollSwishPaymentStatus({ id: paymentId }))
       return
     }
 
     if (wasPollingPreviousFrame) {
       safeSetTimeout(() => {
-        dispatch(pollSwishPaymentStatusAction.started({ id: paymentId }))
+        dispatch(swishAsyncActions.pollSwishPaymentStatus({ id: paymentId }))
       }, pollingIntervalMs)
     }
   }, [dispatch, paymentId, paymentStatus, isPolling, wasPollingPreviousFrame])

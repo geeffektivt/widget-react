@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect, ReactNode } from 'react'
-import { useSelector } from 'react-redux'
 
-import { State } from '../../store/state'
+import useCurrentStepIndex from '../../hooks/ui/useCurrentStepIndex'
 
 import * as styles from './Carousel.styles'
 
@@ -19,7 +18,7 @@ export default function Carousel({ children }: ICarouselProps) {
   const currentPaneNumberRef = useRef(currentPaneNumber)
   currentPaneNumberRef.current = currentPaneNumber
 
-  const reduxPaneNumber = useSelector((state: State) => state.layout.paneNumber)
+  const reduxPaneNumber = useCurrentStepIndex()
 
   // This hook detects when paneNumber changes in the Redux store
   useEffect(() => {

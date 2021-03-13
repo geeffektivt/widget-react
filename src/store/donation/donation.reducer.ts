@@ -1,12 +1,11 @@
 import { Reducer } from 'redux'
 import { isType } from 'typescript-fsa'
 
-import { RecurringDonation, ShareType } from '../../types/Enums'
-import { OrganizationShare } from '../../types/Temp'
-import { fetchOrganizationsAction } from '../layout/actions'
+import { DonationFrequency } from '../../constants/enums/RecurringDonation'
+import { ShareType } from '../../constants/enums/ShareType'
 import { Donation } from '../state'
 
-import { registerDonationAction } from './actions'
+import { registerDonationAction } from './donation.actions'
 import {
   DonationActionTypes,
   SELECT_PAYMENT_METHOD,
@@ -20,11 +19,11 @@ import {
   SET_PAYMENT_PROVIDER_URL,
   SET_SHARE_TYPE,
   SELECT_CUSTOM_SHARE,
-} from './types'
+} from './old.donation.types'
 
 const initialState: Donation = {
-  recurring: RecurringDonation.RECURRING,
-  shareType: ShareType.STANDARD,
+  recurring: DonationFrequency.Monthly,
+  shareType: ShareType.Standard,
   donor: {
     taxDeduction: false,
     newsletter: false,
@@ -45,18 +44,6 @@ export const donationReducer: Reducer<Donation, DonationActionTypes> = (
   state: Donation = initialState,
   action: DonationActionTypes
 ) => {
-  if (isType(action, fetchOrganizationsAction.done)) {
-    state = {
-      ...state,
-      shares: action.payload.result.map(
-        (org): OrganizationShare => ({
-          id: org.id,
-          share: org.standardShare,
-        })
-      ),
-    }
-  }
-
   if (isType(action, registerDonationAction.done)) {
     state = {
       ...state,
@@ -116,7 +103,7 @@ export const donationReducer: Reducer<Donation, DonationActionTypes> = (
       state = { ...state, shareType: action.payload.shareType }
       break
     case SELECT_CUSTOM_SHARE:
-      state = { ...state, shareType: ShareType.CUSTOM }
+      state = { ...state, shareType: ShareType.Custom }
       break
     default:
   }
@@ -125,7 +112,7 @@ export const donationReducer: Reducer<Donation, DonationActionTypes> = (
    * Validate donation
    */
   if (
-    state.shareType === ShareType.CUSTOM &&
+    state.shareType === ShareType.Custom &&
     state.shares.reduce((acc, curr) => acc + curr.share, 0) !== 100
   )
     return { ...state, isValid: false }

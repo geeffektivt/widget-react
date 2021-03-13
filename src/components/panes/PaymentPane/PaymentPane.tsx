@@ -1,18 +1,17 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 
-import { State } from '../../../store/state'
-import { PaymentMethod } from '../../../types/Enums'
+import { PaymentMethod } from '../../../constants/enums/PaymentMethod'
+import useTypedSelector from '../../../hooks/store/useTypedSelector'
 
-import { ResultPane } from './Bank/ResultPane'
+import BankPane from './Bank/BankPane'
 import Swish from './Swish'
 
 export function PaymentPane() {
-  const method = useSelector((state: State) => state.donation.method)
+  const method = useTypedSelector((state) => state.donation.method)
 
   switch (method) {
     case PaymentMethod.Bank:
-      return <ResultPane />
+      return <BankPane />
     case PaymentMethod.Swish:
       return <Swish />
     default:

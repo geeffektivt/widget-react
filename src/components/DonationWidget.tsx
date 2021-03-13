@@ -1,9 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux'
-
+import useAllCauses from '../hooks/content/useAllCauses'
+import useTypedDispatch from '../hooks/store/useTypedDispatch'
 import useOnMount from '../hooks/utils/useOnMount'
-import { fetchOrganizationsAction } from '../store/layout/actions'
-import { fetchReferralsAction } from '../store/referrals/actions'
-import { State } from '../store/state'
+import { donationActions } from '../store/donation/donation.slice'
 
 import Carousel from './Carousel'
 import { DonationWidgetWrapper } from './DonationWidget.style'
@@ -15,14 +13,12 @@ import { PaymentPane } from './panes/PaymentPane/PaymentPane'
 import { ReferralPane } from './panes/ReferralPane/ReferralPane'
 
 export default function DonationWidget() {
-  const dispatch = useDispatch()
-  const answeredReferal = useSelector(
-    (state: State) => state.layout.answeredReferral
-  )
+  const dispatch = useTypedDispatch()
+
+  const causes = useAllCauses()
 
   useOnMount(() => {
-    dispatch(fetchOrganizationsAction.started(undefined))
-    dispatch(fetchReferralsAction.started(undefined))
+    dispatch(donationActions.resetDistribution(causes))
   })
 
   return (
@@ -31,7 +27,7 @@ export default function DonationWidget() {
         <MethodPane />
         <DonorPane />
         <DistributionSelectionPane />
-        {answeredReferal !== true && <ReferralPane />}
+        <ReferralPane />
         <PaymentPane />
       </Carousel>
 

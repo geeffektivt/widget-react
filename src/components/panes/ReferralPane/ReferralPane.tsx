@@ -1,11 +1,10 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
+import { ReferralOption } from '../../../@types/import/content/referrals.types'
+import useAllReferralOptions from '../../../hooks/content/useAllReferralOptions'
 import useAllTexts from '../../../hooks/content/useAllTexts'
-import { nextPane } from '../../../store/layout/actions'
-import { submitReferralAction } from '../../../store/referrals/actions'
-import { State } from '../../../store/state'
-import { ReferralType } from '../../../types/Temp'
+import { uiActions } from '../../../store/ui/ui.slice'
 import { NextButton } from '../../shared/Buttons/NavigationButtons.style'
 import { Pane, PaneContainer, PaneTitle } from '../Panes.style'
 
@@ -18,27 +17,27 @@ import {
 export function ReferralPane() {
   const dispatch = useDispatch()
 
-  const referrals = useSelector((state: State) => state.referrals.referrals)
+  const referralOptions = useAllReferralOptions()
 
   const allTexts = useAllTexts()
   const paneTexts = allTexts.donations.referral
 
-  function onReferralSelect(referral: ReferralType) {
-    dispatch(submitReferralAction.started(referral.id))
+  function onReferralSelect(referral: ReferralOption) {
+    // dispatch(submitReferralAction.started(referral.id))
   }
 
   function onSkipClick() {
-    dispatch(nextPane())
+    dispatch(uiActions.goToNextStep())
   }
 
   return (
     <Pane>
       <PaneContainer>
-        <ReferralsWrapper>
-          <PaneTitle>{paneTexts.title}</PaneTitle>
+        <PaneTitle>{paneTexts.title}</PaneTitle>
 
+        <ReferralsWrapper>
           <ReferralButtonsWrapper>
-            {referrals?.map((referral) => (
+            {referralOptions?.map((referral) => (
               <ReferralButton
                 key={referral.id}
                 onClick={() => onReferralSelect(referral)}

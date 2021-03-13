@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { PaymentStatus } from '../../types/Enums'
+import { PaymentStatus } from '../../constants/enums/PaymentStatus'
 
 import PaymentFailed from './components/PaymentFailed'
 import PaymentStarted from './components/PaymentStarted'

@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect'
 
-import { State } from '../state'
+import { WidgetStoreState } from '../store'
 
 import { SwishState } from './swish.types'
 
-function getSwishState(storeState: State): SwishState {
+function getSwishState(storeState: WidgetStoreState): SwishState {
   return storeState.swish
 }
 
