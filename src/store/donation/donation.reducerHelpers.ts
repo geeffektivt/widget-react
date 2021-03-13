@@ -11,15 +11,18 @@ import {
 } from './donation.types'
 
 export function resetDistributionsHelper(causesData: Cause[]) {
-  let totalShareLeft = 100
+  let totalCauseShareLeft = 100
 
   return causesData.map((cause) => {
     const share = Math.max(
-      totalShareLeft - cause.standardShare,
+      totalCauseShareLeft - cause.standardShare,
       cause.standardShare
     )
 
-    totalShareLeft -= share
+    totalCauseShareLeft -= share
+
+    let totalOrganizationShareLeft = 100
+    const nbrOfOrganizations = cause.organizations.length
 
     const causeDistribution: CauseDistribution = {
       id: cause.id,
@@ -29,14 +32,27 @@ export function resetDistributionsHelper(causesData: Cause[]) {
 
       lastOrganizationRoundRobinIndex: 0,
 
-      organizationsDistribution: cause.organizations.map((organization) => {
-        const organizationDistribution: OrganizationDistribution = {
-          id: organization.id,
-          share: 0,
-        }
+      organizationsDistribution: cause.organizations.map(
+        (organization, index) => {
+          const isLast = index === nbrOfOrganizations - 1
 
-        return organizationDistribution
-      }),
+          const startShare = isLast
+            ? totalOrganizationShareLeft
+            : Math.min(
+                totalOrganizationShareLeft,
+                Math.round(100 / nbrOfOrganizations)
+              )
+
+          totalOrganizationShareLeft -= startShare
+
+          const organizationDistribution: OrganizationDistribution = {
+            id: organization.id,
+            share: startShare,
+          }
+
+          return organizationDistribution
+        }
+      ),
     }
 
     return causeDistribution

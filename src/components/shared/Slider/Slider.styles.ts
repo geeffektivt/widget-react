@@ -7,6 +7,10 @@ export const root = css({
   userSelect: 'none',
   touchAction: 'none',
   height: '3rem',
+
+  '&[data-disabled]': {
+    opacity: 0.25,
+  },
 })
 
 export const track = css({

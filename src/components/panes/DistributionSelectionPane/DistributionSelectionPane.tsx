@@ -90,7 +90,7 @@ export default function DistributionSelectionPane() {
                 />
               </CausesAccordionHeader>
 
-              <CausesAccordionPanel>
+              <CausesAccordionPanel style={{ paddingLeft: '1rem' }}>
                 {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                 <label>
                   <input
@@ -107,11 +107,14 @@ export default function DistributionSelectionPane() {
                   />
                 </label>
 
-                {/* {cause.organizations.map((organization, organizationIndex) => (
+                {cause.organizations.map((organization, organizationIndex) => (
                   <div key={organization.id}>
                     <span>{organization.name}</span>
 
                     <Slider
+                      disabled={
+                        causeDistribution.shareType === ShareType.Standard
+                      }
                       min={0}
                       max={100}
                       value={[
@@ -124,7 +127,7 @@ export default function DistributionSelectionPane() {
                       }
                     />
                   </div>
-                ))} */}
+                ))}
               </CausesAccordionPanel>
             </CausesAccordionItem>
           )

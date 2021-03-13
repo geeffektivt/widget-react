@@ -9,8 +9,10 @@ export function roundRobinUpdateValueAtIndex(
     return { values: [updatedValue], roundRobinEndIndex: 0 }
   }
 
+  const totalSum = values.reduce((acc, value) => (acc += value))
+
   const minValue = 0
-  const maxValue = 100
+  const maxValue = Math.min(totalSum, 100)
 
   const clampedUpdatedValue = clamp(minValue, maxValue, updatedValue)
 

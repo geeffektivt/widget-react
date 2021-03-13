@@ -21,12 +21,14 @@
     "radix": "off",
     "lines-between-class-members": "off",
     "no-param-reassign": "off",
+    "no-return-assign": "off",
     "no-console": [
       1,
       {
         "allow": ["warn", "error", "info"]
       }
     ],
+
 
     "prettier/prettier": [
       1,
