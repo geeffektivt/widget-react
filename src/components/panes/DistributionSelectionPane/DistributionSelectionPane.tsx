@@ -9,8 +9,9 @@ import useTypedSelector from '../../../hooks/store/useTypedSelector'
 import useRequestAnimationFrame from '../../../hooks/utils/useRequestAnimationFrame'
 import { donationActions } from '../../../store/donation/donation.slice'
 import { uiActions } from '../../../store/ui/ui.slice'
+import { styled } from '../../../styles/stitches.config'
 import { NextButton } from '../../shared/Buttons/NavigationButtons.style'
-import Slider from '../../shared/Slider'
+import Slider from '../../shared/_inputs/Slider'
 import { Pane } from '../Panes.style'
 
 import {
@@ -20,6 +21,7 @@ import {
   CausesAccordionItem,
   CausesAccordionPanel,
 } from './CausesAccordion'
+import DonationSumPanel from './DonationSumPanel'
 
 export default function DistributionSelectionPane() {
   const dispatch = useTypedDispatch()
@@ -75,18 +77,26 @@ export default function DistributionSelectionPane() {
       <CausesAccordion type="multiple">
         {allCauses.map((cause, causeIndex) => {
           const causeDistribution = causesDistribution[causeIndex]
+          const inputId = `cause-${cause.id}`
 
           return (
             <CausesAccordionItem key={cause.id} value={cause.id}>
               <CausesAccordionHeader>
                 <span>{cause.name}</span> -{' '}
-                <span>{causeDistribution.share}%</span>
+                <output htmlFor={inputId}>{causeDistribution.share}%</output>
                 <CausesAccordionButton>Expand</CausesAccordionButton>
                 <Slider
+                  id={inputId}
                   min={0}
                   max={100}
-                  value={[causeDistribution.share]}
-                  onValueChange={([value]) => onCauseSliderChange(cause, value)}
+                  step={1}
+                  value={causeDistribution.share}
+                  onChange={(event) =>
+                    onCauseSliderChange(
+                      cause,
+                      parseInt(event.currentTarget.value, 10)
+                    )
+                  }
                 />
               </CausesAccordionHeader>
 
@@ -117,13 +127,17 @@ export default function DistributionSelectionPane() {
                       }
                       min={0}
                       max={100}
-                      value={[
+                      value={
                         causeDistribution.organizationsDistribution[
                           organizationIndex
-                        ].share,
-                      ]}
-                      onValueChange={([value]) =>
-                        onOrganizationSliderChange(cause, organization, value)
+                        ].share
+                      }
+                      onChange={(event) =>
+                        onOrganizationSliderChange(
+                          cause,
+                          organization,
+                          parseInt(event.currentTarget.value, 10)
+                        )
                       }
                     />
                   </div>
@@ -133,6 +147,8 @@ export default function DistributionSelectionPane() {
           )
         })}
       </CausesAccordion>
+
+      <DonationSumPanel />
 
       <NextButton onClick={onNextClick}>Next</NextButton>
     </Pane>

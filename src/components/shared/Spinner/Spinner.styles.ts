@@ -1,16 +1,16 @@
-import { css } from '../../../styles/stitches.config'
+import { css, keyframes } from '../../../styles/stitches.config'
 
-const ldsEllipsis1 = css.keyframes({
+const ldsEllipsis1 = keyframes({
   '0%': { transform: 'scale(0)' },
   '100%': { transform: 'scale(1)' },
 })
 
-const ldsEllipsis2 = css.keyframes({
+const ldsEllipsis2 = keyframes({
   '0%': { transform: 'translate(0, 0)' },
   '100%': { transform: 'translate(24px, 0)' },
 })
 
-const ldsEllipsis3 = css.keyframes({
+const ldsEllipsis3 = keyframes({
   '0%': { transform: 'scale(1)' },
   '100%': { transform: 'scale(0)' },
 })

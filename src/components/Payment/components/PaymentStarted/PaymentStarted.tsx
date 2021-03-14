@@ -13,13 +13,13 @@ export default function PaymentStarted() {
 
   return (
     <>
-      <Heading className={styles.title}>{title}</Heading>
+      <Heading className={styles.title()}>{title}</Heading>
 
-      <Text className={styles.description}>{description}</Text>
+      <Text className={styles.description()}>{description}</Text>
 
       <Spinner />
 
-      <SwishLogo className={styles.logo} />
+      <SwishLogo className={styles.logo()} />
     </>
   )
 }

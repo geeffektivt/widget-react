@@ -37,48 +37,40 @@ export const MethodButton = styled('button', {
   userSelect: 'none',
   width: '100%',
 
-  ':active': {
+  '&:active': {
     boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.3)',
   },
 
-  ':disabled': {
+  '&:disabled': {
     opacity: 0.5,
   },
 
-  ':not(:disabled)': {
+  '&:not(:disabled)': {
     cursor: 'pointer',
   },
 
-  '::after': {
+  '&::after, &::before': {
     backgroundColor: '$white',
     content: '""',
     height: '30%',
     position: 'absolute',
     right: '$s100',
+    width: 2,
+  },
+
+  '&::after': {
     top: '50%',
     transform: 'rotate(45deg)',
     transformOrigin: 'center top',
-    width: 2,
   },
 
-  '::before': {
-    backgroundColor: '$white',
+  '&::before': {
     bottom: '50%',
-    content: '""',
-    height: '30%',
-    position: 'absolute',
-    right: '$s100',
     transform: 'rotate(-45deg)',
     transformOrigin: 'center bottom',
-    width: 2,
   },
 
-  ':not(:disabled)::after': {
-    backgroundColor: '$primary100',
-    transition: 'background-color 150ms',
-  },
-
-  ':not(:disabled)::before': {
+  '&:not(:disabled)::after, &:not(:disabled)::before': {
     backgroundColor: '$primary100',
     transition: 'background-color 150ms',
   },

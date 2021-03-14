@@ -20,11 +20,11 @@ export default function PaymentSuccess() {
 
   return (
     <>
-      <Heading className={styles.title}>{title}</Heading>
+      <Heading className={styles.title()}>{title}</Heading>
 
-      <Text className={styles.description}>{description}</Text>
+      <Text className={styles.description()}>{description}</Text>
 
-      <CheckCircle className={styles.icon} />
+      <CheckCircle className={styles.icon()} />
 
       <Accordion>
         {accordionItems.map((item) => (

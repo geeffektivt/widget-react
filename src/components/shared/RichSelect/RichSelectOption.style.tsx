@@ -10,6 +10,7 @@ export const LabelWrapper = styled('label', {
   padding: '16px 0',
   userSelect: 'none',
 })
+
 export const HiddenInput = styled('input', {
   clip: 'rect(0 0 0 0)',
   clipPath: 'inset(50%)',
@@ -27,7 +28,7 @@ export const RadioBall = styled('span', {
   position: 'relative',
   width: 24,
 
-  '::after': {
+  '&::after': {
     border: '1px solid $grey18',
     borderRadius: '50%',
     boxSizing: 'border-box',
@@ -41,13 +42,13 @@ export const RadioBall = styled('span', {
   },
 
   [`${HiddenInput}:focus + &`]: {
-    '::after': {
+    '&::after': {
       outline: '1px solid black',
     },
   },
 
   [`${HiddenInput}:checked + &`]: {
-    '::after': {
+    '&::after': {
       border: '7px solid $primary100',
     },
   },

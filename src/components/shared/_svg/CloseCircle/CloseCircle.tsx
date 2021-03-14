@@ -12,7 +12,7 @@ export default function CloseCircle({ className }: CloseCircleProps) {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      className={classNames(styles.circle.toString(), className?.toString())} // ! TODO search a better alternative for this
+      className={classNames(styles.circle(), className?.toString())} // ! TODO search a better alternative for this
     >
       <circle cx="12" cy="12" r="10" />
 

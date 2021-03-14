@@ -13,11 +13,11 @@ export default function PaymentFailed() {
 
   return (
     <>
-      <Heading className={styles.title}>{title}</Heading>
+      <Heading className={styles.title()}>{title}</Heading>
 
-      <Text className={styles.description}>{description}</Text>
+      <Text className={styles.description()}>{description}</Text>
 
-      <CloseCircle className={styles.icon} />
+      <CloseCircle className={styles.icon()} />
     </>
   )
 }

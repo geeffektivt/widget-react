@@ -11,12 +11,12 @@ type AccordionItemType = {
 
 export function AccordionItem({ id, title, children }: AccordionItemType) {
   return (
-    <Item className={styles.item} key={id} value={id}>
-      <Header className={styles.itemHeader}>
-        <Button className={styles.itemButton}>{title}</Button>
+    <Item className={styles.item()} key={id} value={id}>
+      <Header className={styles.itemHeader()}>
+        <Button className={styles.itemButton()}>{title}</Button>
       </Header>
 
-      <Panel className={styles.itemPanel}>{children}</Panel>
+      <Panel className={styles.itemPanel()}>{children}</Panel>
     </Item>
   )
 }

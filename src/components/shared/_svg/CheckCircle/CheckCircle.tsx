@@ -10,7 +10,7 @@ interface CheckCircleProps {
 export default function CheckCircle({ className }: CheckCircleProps) {
   return (
     <svg
-      className={classNames(styles.circle.toString(), className?.toString())}
+      className={classNames(styles.circle(), className?.toString())}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
     >

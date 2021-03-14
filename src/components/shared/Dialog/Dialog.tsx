@@ -29,9 +29,9 @@ export default function Dialog({
     <Root {...dialogOwnProps}>
       {trigger && <Trigger>{trigger}</Trigger>}
 
-      <Overlay className={styles.overlay} />
+      <Overlay className={styles.overlay()} />
 
-      <Content className={styles.content}>
+      <Content className={styles.content()}>
         {children}
 
         {close && <Close>{close}</Close>}
