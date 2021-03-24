@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+
 import {
   Cause,
   Organization,
@@ -9,7 +11,6 @@ import useTypedSelector from '../../../hooks/store/useTypedSelector'
 import useRequestAnimationFrame from '../../../hooks/utils/useRequestAnimationFrame'
 import { donationActions } from '../../../store/donation/donation.slice'
 import { uiActions } from '../../../store/ui/ui.slice'
-import { styled } from '../../../styles/stitches.config'
 import { NextButton } from '../../shared/Buttons/NavigationButtons.style'
 import Slider from '../../shared/_inputs/Slider'
 import { Pane } from '../Panes.style'
@@ -35,12 +36,21 @@ export default function DistributionSelectionPane() {
   function onCauseSliderChange(cause: Cause, value: number) {
     safeRequestAnimationFrame(() => {
       dispatch(
-        donationActions.updateCauseDistribution({
+        donationActions.updateCauseShare({
           causeId: cause.id,
           causeShare: value,
         })
       )
     })
+  }
+
+  function onCauseLockChange(cause: Cause, isLocked: boolean) {
+    dispatch(
+      donationActions.updateCauseShareLock({
+        causeId: cause.id,
+        isLocked,
+      })
+    )
   }
 
   function onCauseShareTypeChange(cause: Cause, shareType: ShareType) {
@@ -68,6 +78,20 @@ export default function DistributionSelectionPane() {
     })
   }
 
+  function onOrganizationLockChange(
+    cause: Cause,
+    organization: Organization,
+    isLocked: boolean
+  ) {
+    dispatch(
+      donationActions.updateOrganizationShareLock({
+        causeId: cause.id,
+        organizationId: organization.id,
+        isLocked,
+      })
+    )
+  }
+
   function onNextClick() {
     dispatch(uiActions.goToNextStep())
   }
@@ -84,6 +108,16 @@ export default function DistributionSelectionPane() {
               <CausesAccordionHeader>
                 <span>{cause.name}</span> -{' '}
                 <output htmlFor={inputId}>{causeDistribution.share}%</output>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={causeDistribution.isLocked}
+                    onChange={(event) =>
+                      onCauseLockChange(cause, event.currentTarget.checked)
+                    }
+                  />
+                  Lås
+                </label>
                 <CausesAccordionButton>Expand</CausesAccordionButton>
                 <Slider
                   id={inputId}
@@ -91,6 +125,7 @@ export default function DistributionSelectionPane() {
                   max={100}
                   step={1}
                   value={causeDistribution.share}
+                  disabled={causeDistribution.isLocked}
                   onChange={(event) =>
                     onCauseSliderChange(
                       cause,
@@ -101,7 +136,6 @@ export default function DistributionSelectionPane() {
               </CausesAccordionHeader>
 
               <CausesAccordionPanel style={{ paddingLeft: '1rem' }}>
-                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                 <label>
                   <input
                     type="checkbox"
@@ -115,33 +149,54 @@ export default function DistributionSelectionPane() {
                       )
                     }
                   />
+                  Låt oss välja
                 </label>
 
-                {cause.organizations.map((organization, organizationIndex) => (
-                  <div key={organization.id}>
-                    <span>{organization.name}</span>
+                {cause.organizations.map((organization, organizationIndex) => {
+                  const organizationDistribution =
+                    causeDistribution.organizationsDistribution[
+                      organizationIndex
+                    ]
 
-                    <Slider
-                      disabled={
-                        causeDistribution.shareType === ShareType.Standard
-                      }
-                      min={0}
-                      max={100}
-                      value={
-                        causeDistribution.organizationsDistribution[
-                          organizationIndex
-                        ].share
-                      }
-                      onChange={(event) =>
-                        onOrganizationSliderChange(
-                          cause,
-                          organization,
-                          parseInt(event.currentTarget.value, 10)
-                        )
-                      }
-                    />
-                  </div>
-                ))}
+                  return (
+                    <div key={organization.id}>
+                      <div>
+                        {organization.name}
+                        <label>
+                          <input
+                            type="checkbox"
+                            checked={organizationDistribution.isLocked}
+                            onChange={(event) =>
+                              onOrganizationLockChange(
+                                cause,
+                                organization,
+                                event.currentTarget.checked
+                              )
+                            }
+                          />
+                          Lås
+                        </label>
+                      </div>
+
+                      <Slider
+                        disabled={
+                          causeDistribution.shareType === ShareType.Standard ||
+                          organizationDistribution.isLocked
+                        }
+                        min={0}
+                        max={100}
+                        value={organizationDistribution.share}
+                        onChange={(event) =>
+                          onOrganizationSliderChange(
+                            cause,
+                            organization,
+                            parseInt(event.currentTarget.value, 10)
+                          )
+                        }
+                      />
+                    </div>
+                  )
+                })}
               </CausesAccordionPanel>
             </CausesAccordionItem>
           )

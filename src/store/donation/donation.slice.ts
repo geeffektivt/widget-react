@@ -13,7 +13,6 @@ import { ShareType } from '../../constants/enums/ShareType'
 import {
   resetDistributionsHelper,
   updateDistributionsHelper,
-  updateDistributionValuesHelper,
 } from './donation.reducerHelpers'
 import { DonationState } from './donation.types'
 
@@ -56,7 +55,7 @@ export const donationSlice = createSlice({
       state.lastCauseRoundRobinIndex = 0
     },
 
-    updateCauseDistribution(
+    updateCauseShare(
       state,
       action: PayloadAction<{ causeId: CauseId; causeShare: number }>
     ) {
@@ -71,11 +70,21 @@ export const donationSlice = createSlice({
 
       if (updatedDistribution) {
         state.lastCauseRoundRobinIndex = updatedDistribution.roundRobinEndIndex
+      }
+    },
 
-        updateDistributionValuesHelper(
-          state.causesDistribution,
-          updatedDistribution.values
-        )
+    updateCauseShareLock(
+      state,
+      action: PayloadAction<{ causeId: CauseId; isLocked: boolean }>
+    ) {
+      const { causeId, isLocked } = action.payload
+
+      const cause = state.causesDistribution.find(
+        (causeItem) => causeItem.id === causeId
+      )
+
+      if (cause) {
+        cause.isLocked = isLocked
       }
     },
 
@@ -119,12 +128,28 @@ export const donationSlice = createSlice({
         if (updatedDistribution) {
           cause.lastOrganizationRoundRobinIndex =
             updatedDistribution.roundRobinEndIndex
-
-          updateDistributionValuesHelper(
-            cause.organizationsDistribution,
-            updatedDistribution.values
-          )
         }
+      }
+    },
+
+    updateOrganizationShareLock(
+      state,
+      action: PayloadAction<{
+        causeId: CauseId
+        organizationId: OrganizationId
+        isLocked: boolean
+      }>
+    ) {
+      const { causeId, organizationId, isLocked } = action.payload
+
+      const cause = state.causesDistribution.find(
+        (causeItem) => causeItem.id === causeId
+      )
+      const organization = cause?.organizationsDistribution.find(
+        (organizationItem) => organizationItem.id === organizationId
+      )
+      if (organization) {
+        organization.isLocked = isLocked
       }
     },
   },

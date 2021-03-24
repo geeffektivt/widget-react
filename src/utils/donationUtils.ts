@@ -1,28 +1,45 @@
-export function roundRobinUpdateValueAtIndex(
-  values: number[],
+import { BaseDistribution } from '../store/donation/donation.types'
+
+type ShareEntry = BaseDistribution
+
+/**
+ * Will mutate entries
+ */
+export function mutableRoundRobinUpdateShareAtIndex(
+  entries: ShareEntry[],
   updatedIndex: number,
-  updatedValue: number,
+  updatedShare: number,
   lastRoundRobinIndex: number
-): { values: number[]; roundRobinEndIndex: number } {
-  const nbrOfValues = values.length
+): { roundRobinEndIndex: number } {
+  const nbrOfValues = entries.length
   if (nbrOfValues === 1) {
-    return { values: [updatedValue], roundRobinEndIndex: 0 }
+    entries[updatedIndex].share = updatedShare
+    return { roundRobinEndIndex: 0 }
   }
 
-  const totalSum = values.reduce((acc, value) => (acc += value))
+  const anyEntriesExceptIndexUnlocked = entries.some(
+    (entry, index) => index !== updatedIndex && !entry.isLocked
+  )
+  if (!anyEntriesExceptIndexUnlocked) {
+    return { roundRobinEndIndex: lastRoundRobinIndex }
+  }
+
+  const totalSumAvailable = entries.reduce(
+    (acc, entry) => (acc += entry.isLocked ? 0 : entry.share),
+    0
+  )
 
   const minValue = 0
-  const maxValue = Math.min(totalSum, 100)
+  const maxValue = Math.min(totalSumAvailable, 100)
 
-  const clampedUpdatedValue = clamp(minValue, maxValue, updatedValue)
+  const clampedUpdatedValue = clamp(minValue, maxValue, updatedShare)
 
-  const currentValue = values[updatedIndex]
+  const currentValue = entries[updatedIndex].share
   const updateDelta = currentValue - clampedUpdatedValue
   let updateAbsDiff = Math.abs(updateDelta)
   const deltaPerStep = updateDelta / updateAbsDiff
 
-  const valuesClone = [...values]
-  valuesClone[updatedIndex] = clampedUpdatedValue
+  entries[updatedIndex].share = clampedUpdatedValue
 
   let roundRobinIndex = lastRoundRobinIndex
   while (updateAbsDiff > 0) {
@@ -33,15 +50,21 @@ export function roundRobinUpdateValueAtIndex(
       continue
     }
 
-    const currentStepValue = valuesClone[roundRobinIndex]
+    const entry = entries[roundRobinIndex]
+    if (entry.isLocked) {
+      // eslint-disable-next-line no-continue
+      continue
+    }
+
+    const currentStepValue = entry.share
     const nextValue = clamp(minValue, maxValue, currentStepValue + deltaPerStep)
     if (currentStepValue !== nextValue) {
-      valuesClone[roundRobinIndex] = nextValue
+      entries[roundRobinIndex].share = nextValue
       updateAbsDiff -= 1
     }
   }
 
-  return { values: valuesClone, roundRobinEndIndex: roundRobinIndex }
+  return { roundRobinEndIndex: roundRobinIndex }
 }
 
 function clamp(min: number, max: number, value: number) {

@@ -1,8 +1,6 @@
-import { WritableDraft } from 'immer/dist/internal'
-
 import { Cause } from '../../@types/import/content/organizations.types'
 import { ShareType } from '../../constants/enums/ShareType'
-import { roundRobinUpdateValueAtIndex } from '../../utils/donationUtils'
+import { mutableRoundRobinUpdateShareAtIndex } from '../../utils/donationUtils'
 
 import {
   BaseDistribution,
@@ -28,6 +26,7 @@ export function resetDistributionsHelper(causesData: Cause[]) {
       id: cause.id,
 
       share,
+      isLocked: false,
       shareType: ShareType.Standard,
 
       lastOrganizationRoundRobinIndex: 0,
@@ -48,6 +47,7 @@ export function resetDistributionsHelper(causesData: Cause[]) {
           const organizationDistribution: OrganizationDistribution = {
             id: organization.id,
             share: startShare,
+            isLocked: false,
           }
 
           return organizationDistribution
@@ -71,21 +71,19 @@ export function updateDistributionsHelper(
     return null
   }
 
-  const currentValues = distributions.map((item) => item.share)
-
-  return roundRobinUpdateValueAtIndex(
-    currentValues,
+  return mutableRoundRobinUpdateShareAtIndex(
+    distributions,
     itemIndex,
     updatedValue,
     lastRoundRobinIndex
   )
 }
 
-export function updateDistributionValuesHelper(
-  distributions: WritableDraft<BaseDistribution>[],
-  values: number[]
-) {
-  distributions.forEach((item, index) => {
-    item.share = values[index]
-  })
-}
+// export function updateDistributionValuesHelper(
+//   distributions: WritableDraft<BaseDistribution>[],
+//   values: BaseDistribution[]
+// ) {
+//   distributions.forEach((item, index) => {
+//     item.share = values[index]
+//   })
+// }

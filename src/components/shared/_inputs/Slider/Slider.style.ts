@@ -29,7 +29,7 @@ const thumbStyle: CSS = {
 export const sliderInput = css({
   appearance: 'none',
   background: 'transparent',
-  cursor: 'grab',
+
   height: thumbSize,
   margin: 0,
   outline: 'none',
@@ -50,11 +50,15 @@ export const sliderInput = css({
     ...thumbStyle,
   },
 
-  '&:active': {
+  '&:not(:disabled)': {
+    cursor: 'grab',
+  },
+
+  '&:not(:disabled):active': {
     cursor: 'grabbing',
   },
 
-  '&:hover::-webkit-slider-thumb': {
+  '&:not(:disabled):hover::-webkit-slider-thumb': {
     transform: 'scale(1.1)',
   },
 })
