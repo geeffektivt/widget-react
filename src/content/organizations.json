@@ -3,6 +3,7 @@
     "id": "1",
     "name": "Global hälsa",
     "standardShare": 50,
+    "standardOrganizationShareText": "Låt GiveWell välja",
     "organizations": [
       {
         "id": "1",
@@ -28,6 +29,7 @@
     "id": "2",
     "name": "Klimat",
     "standardShare": 25,
+    "standardOrganizationShareText": "Låt Klimat välja",
     "organizations": [
       {
         "id": "4",
@@ -53,6 +55,7 @@
     "id": "3",
     "name": "Djurhälsa",
     "standardShare": 25,
+    "standardOrganizationShareText": "Låt Djuren välja",
     "organizations": [
       {
         "id": "4",

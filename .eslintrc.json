@@ -55,6 +55,9 @@
     "react/react-in-jsx-scope": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-curly-newline": "off",
+    "react/jsx-new-line": "off",
+
+    "jsx-a11y/label-has-associated-control": "off",
 
     "import/prefer-default-export": "off",
     "import/order": [

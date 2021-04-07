@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import { useEffect, useRef } from 'react'
 
 import { sliderInput, sliderRoot, sliderProgress } from './Slider.style'
@@ -25,7 +26,11 @@ export default function Slider({
   })
 
   return (
-    <div className={sliderRoot()} ref={rootRef} data-disabled={disabled}>
+    <div
+      className={classNames(sliderRoot().className, className)}
+      ref={rootRef}
+      data-disabled={disabled}
+    >
       <input
         className={sliderInput()}
         type="range"

@@ -1,9 +1,11 @@
+/* eslint-disable no-continue */
+
 import { BaseDistribution } from '../store/donation/donation.types'
 
 type ShareEntry = BaseDistribution
 
 /**
- * Will mutate entries
+ * @warn Will mutate entries.
  */
 export function mutableRoundRobinUpdateShareAtIndex(
   entries: ShareEntry[],
@@ -46,13 +48,11 @@ export function mutableRoundRobinUpdateShareAtIndex(
     roundRobinIndex = (roundRobinIndex + 1) % nbrOfValues
 
     if (roundRobinIndex === updatedIndex) {
-      // eslint-disable-next-line no-continue
       continue
     }
 
     const entry = entries[roundRobinIndex]
     if (entry.isLocked) {
-      // eslint-disable-next-line no-continue
       continue
     }
 

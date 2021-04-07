@@ -5,6 +5,7 @@ export interface Cause {
   id: CauseId
   name: string
   standardShare: number
+  standardOrganizationShareText: string
   organizations: Organization[]
 }
 
