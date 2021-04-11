@@ -15,6 +15,8 @@ export function TextInput({
   defaultValue,
   innerRef,
   selectOnClick,
+  onChange,
+  value,
 }: TextInputProps) {
   return (
     <TextInputWrapper label={label} denomination={denomination}>
@@ -29,6 +31,8 @@ export function TextInput({
         onClick={(e) => {
           if (selectOnClick) e.currentTarget.select()
         }}
+        onChange={onChange}
+        value={value}
       />
     </TextInputWrapper>
   )

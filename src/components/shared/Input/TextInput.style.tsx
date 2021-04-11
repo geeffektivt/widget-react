@@ -1,3 +1,4 @@
+import { ChangeEvent } from 'react'
 import styled from 'styled-components'
 
 import { gray18, orange15 } from '../../../config/colors'
@@ -9,6 +10,8 @@ export interface TextInputProps extends TextInputWrapperProps {
   defaultValue?: string | number
   selectOnClick?: boolean
   innerRef?: React.Ref<HTMLInputElement>
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+  value?: string | number | readonly string[]
 }
 
 export interface TextInputWrapperProps {

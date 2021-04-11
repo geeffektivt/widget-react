@@ -1,4 +1,3 @@
-import { DonationFrequency } from '../../../../../constants/enums/RecurringDonation'
 import useAllTexts from '../../../../../hooks/content/useAllTexts'
 import useTypedSelector from '../../../../../hooks/store/useTypedSelector'
 import { Pane, PaneTitle } from '../../../Panes.style'
@@ -9,10 +8,7 @@ import {
 } from '../ResultPane.style'
 
 export default function BankPane() {
-  const donationFrequency = useTypedSelector(
-    (state) => state.donation.recurring
-  )
-  const isMonthlySelected = donationFrequency === DonationFrequency.Monthly
+  const sum = useTypedSelector((state) => state.donation.sum)
   const texts = useAllTexts()
   const paymentTexts = texts.donations.payment
   return (
@@ -20,6 +16,10 @@ export default function BankPane() {
       <PaneTitle>{paymentTexts.title}</PaneTitle>
       {paymentTexts.description}
       <PaymentDetailsWrapper>
+        <DetailsRow>
+          <BoldText>{paymentTexts.sumTitle}</BoldText>
+          <p>{sum}</p>
+        </DetailsRow>
         <DetailsRow>
           <BoldText>{paymentTexts.kontonummerTitle}</BoldText>
           <p>{paymentTexts.kontonummer}</p>

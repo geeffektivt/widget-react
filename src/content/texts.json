@@ -46,6 +46,7 @@
     "payment": {
       "title": "Tack!",
       "description": "Du kan nu överföra till oss",
+      "sumTitle": "Belopp",
       "kontonummerTitle": "Kontonr",
       "kontonummer": "00000000",
       "ocrTitle": "OCR",
