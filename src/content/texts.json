@@ -7,7 +7,7 @@
       "singlePaymentLabel": "Ge ett engångsbelopp",
       "notAvailableForMonthlyLabel": "Endast engångsbelopp",
       "bankAriaLabel": "Banköverföring",
-      "swishAriaLabel":  "Swishbetalning"
+      "swishAriaLabel": "Swishbetalning"
     },
 
     "donor": {
@@ -41,6 +41,16 @@
     "referral": {
       "title": "Hur hörde du talas om oss?",
       "skipLabel": "Hoppa över"
+    },
+
+    "payment": {
+      "title": "Tack!",
+      "description": "Du kan nu överföra till oss",
+      "kontonummerTitle": "Kontonr",
+      "kontonummer": "00000000",
+      "ocrTitle": "OCR",
+      "ocr": "0000000",
+      "ocrDescription": "Om du vill donera med samma fördelning senare kan du använda samma OCR-nummer igen. Om du har några frågor kan du blabla"
     }
   }
 }
