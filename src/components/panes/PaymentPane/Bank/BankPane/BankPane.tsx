@@ -2,7 +2,11 @@ import { DonationFrequency } from '../../../../../constants/enums/RecurringDonat
 import useAllTexts from '../../../../../hooks/content/useAllTexts'
 import useTypedSelector from '../../../../../hooks/store/useTypedSelector'
 import { Pane, PaneTitle } from '../../../Panes.style'
-import { PaymentDetailsWrapper, DetailsRow } from '../ResultPane.style'
+import {
+  PaymentDetailsWrapper,
+  DetailsRow,
+  BoldText,
+} from '../ResultPane.style'
 
 export default function BankPane() {
   const donationFrequency = useTypedSelector(
@@ -17,12 +21,12 @@ export default function BankPane() {
       {paymentTexts.description}
       <PaymentDetailsWrapper>
         <DetailsRow>
-          <span>{paymentTexts.kontonummerTitle}</span>
-          <span>{paymentTexts.kontonummer}</span>
+          <BoldText>{paymentTexts.kontonummerTitle}</BoldText>
+          <p>{paymentTexts.kontonummer}</p>
         </DetailsRow>
         <DetailsRow>
-          <span>{paymentTexts.ocrTitle}</span>
-          <span>{paymentTexts.ocr}</span>
+          <BoldText>{paymentTexts.ocrTitle}</BoldText>
+          <p>{paymentTexts.ocr}</p>
         </DetailsRow>
       </PaymentDetailsWrapper>
       {paymentTexts.ocrDescription}
