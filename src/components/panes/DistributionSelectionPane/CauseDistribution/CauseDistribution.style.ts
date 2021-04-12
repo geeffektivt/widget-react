@@ -1,15 +1,11 @@
-import { css } from '../../../../styles/stitches.config'
+import { styled } from '../../../../styles/stitches.config'
 
-export const nameContainer = css({})
-
-export const sliderContainer = css({
-  // display: 'flex',
+export const AccordionContainer = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
 })
 
-export const expandButton = css({
-  // flex: 0,
-})
-
-export const slider = css({
-  // flex: 1,
+export const CauseTitle = styled('h3', {
+  paddingLeft: '$s50',
 })

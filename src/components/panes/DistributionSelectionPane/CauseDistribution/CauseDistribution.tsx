@@ -5,15 +5,17 @@ import useRequestAnimationFrame from '../../../../hooks/utils/useRequestAnimatio
 import { donationActions } from '../../../../store/donation/donation.slice'
 import { CauseDistribution as CauseDistributionType } from '../../../../store/donation/donation.types'
 import Slider from '../../../shared/_inputs/Slider'
+import Chevron from '../../../shared/_svg/Chevron'
 import {
   CausesAccordionButton,
+  CausesAccordionChevron,
   CausesAccordionHeader,
   CausesAccordionItem,
   CausesAccordionPanel,
 } from '../CausesAccordion'
 import OrganizationDistribution from '../OrganizationDistribution'
 
-import * as styles from './CauseDistribution.style'
+import { AccordionContainer, CauseTitle } from './CauseDistribution.style'
 
 interface CauseDistributionProps {
   cause: Cause
@@ -66,28 +68,29 @@ export default function CauseDistribution({
   return (
     <CausesAccordionItem value={cause.id}>
       <CausesAccordionHeader>
-        <div className={styles.nameContainer()}>
-          <span>{cause.name}</span>
-
-          <label>
-            <input
-              type="checkbox"
-              checked={causeDistribution.isLocked}
-              onChange={onLockCheckboxChange}
-            />
-            Lås
-          </label>
-
-          <output htmlFor={inputId}>{causeDistribution.share}%</output>
-        </div>
-
-        <div className={styles.sliderContainer()}>
-          <CausesAccordionButton className={styles.expandButton()}>
-            Expandera
+        <AccordionContainer>
+          <CausesAccordionButton>
+            <CausesAccordionChevron>
+              <Chevron />
+            </CausesAccordionChevron>
+            <CauseTitle>{cause.name}</CauseTitle>
           </CausesAccordionButton>
+          <div>
+            <label>
+              <input
+                type="checkbox"
+                checked={causeDistribution.isLocked}
+                onChange={onLockCheckboxChange}
+              />
+              Lås
+            </label>
 
+            <output htmlFor={inputId}> {causeDistribution.share}%</output>
+          </div>
+        </AccordionContainer>
+
+        <div>
           <Slider
-            className={styles.slider()}
             id={inputId}
             min={0}
             max={100}
