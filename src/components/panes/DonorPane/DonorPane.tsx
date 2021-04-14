@@ -38,13 +38,7 @@ export function DonorPane() {
   const texts = useAllTexts()
   const paneTexts = texts.donations.donor
 
-  const {
-    register,
-    watch,
-    errors,
-    handleSubmit,
-    clearErrors,
-  } = useForm<DonorFormValues>()
+  const { register, watch, errors, handleSubmit } = useForm<DonorFormValues>()
 
   const watchAllFields = watch()
 

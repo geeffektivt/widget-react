@@ -1,6 +1,6 @@
 import { SagaIterator } from 'redux-saga'
 // import { call, put, select } from 'redux-saga/effects'
-import { Action } from 'typescript-fsa'
+// import { Action } from 'typescript-fsa'
 
 // import { API_URL } from '../../config/api'
 // import { IServerResponse } from '../../types/Temp'
@@ -9,7 +9,7 @@ import { Action } from 'typescript-fsa'
 
 // import { submitReferralAction } from './actions'
 
-export function* submitReferral(action: Action<number>): SagaIterator<void> {
+export function* submitReferral(): SagaIterator<void> {
   // const donorId = yield select((state: State) => state.donation.donor?.donorID)
   // try {
   //   const data = {

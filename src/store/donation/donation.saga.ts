@@ -1,6 +1,6 @@
 import { SagaIterator } from 'redux-saga'
 // import { call, put, select } from 'redux-saga/effects'
-import { Action } from 'typescript-fsa'
+// import { Action } from 'typescript-fsa'
 
 // import { API_URL } from '../../config/api'
 // import { ShareType } from '../../constants/enums/ShareType'
@@ -13,9 +13,8 @@ import { Action } from 'typescript-fsa'
 //   RegisterDonationResponse,
 // } from './donation.actions'
 
-export function* registerDonation(
-  action: Action<undefined>
-): SagaIterator<void> {
+export function* registerDonation(): SagaIterator<void> {
+  // action: Action<undefined>
   // yield put(setLoading(true))
   // try {
   //   const donation: Donation = yield select((state: State) => state.donation)
