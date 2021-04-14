@@ -39,9 +39,6 @@ export function mutableRoundRobinUpdateShareAtIndex(
   lastRoundRobinIndex: number,
   sum: number
 ): { roundRobinEndIndex: number } {
-  if (entries[updatedIndex].isLocked) {
-    return { roundRobinEndIndex: lastRoundRobinIndex }
-  }
   const nbrOfValues = entries.length
   if (nbrOfValues === 1) {
     entries[updatedIndex].share = updatedShare
@@ -61,7 +58,7 @@ export function mutableRoundRobinUpdateShareAtIndex(
   )
 
   const minValue = 0
-  const maxValue = Math.min(totalSumAvailable, sum)
+  const maxValue = Math.min(totalSumAvailable, 100)
 
   const clampedUpdatedValue = clamp(minValue, maxValue, updatedShare)
   const currentValue = entries[updatedIndex].share
@@ -91,8 +88,7 @@ export function updateValues(
   updatedIndex?: number
 ) {
   let updateAbsDiff = Math.abs(updateDelta)
-  const nbrOfValues = entries.length
-  let stepLength = getStepLength(Math.round(updateDelta / nbrOfValues))
+  const deltaPerStep = updateDelta / updateAbsDiff
 
   let deltaPerStep = (updateDelta / updateAbsDiff) * stepLength
 
@@ -121,11 +117,10 @@ export function updateValues(
     }
 
     const currentStepValue = entry.share
-    const nextValue = Math.max(minValue, currentStepValue + deltaPerStep) // clamp(minValue, maxValue, currentStepValue + deltaPerStep)
-    const rounded = Math.round(nextValue / stepLength) * stepLength
-    if (currentStepValue !== rounded) {
-      entry.share = rounded
-      updateAbsDiff -= Math.abs(currentStepValue - rounded)
+    const nextValue = clamp(minValue, maxValue, currentStepValue + deltaPerStep)
+    if (currentStepValue !== nextValue) {
+      entries[roundRobinIndex].share = nextValue
+      updateAbsDiff -= 1
     }
   }
 

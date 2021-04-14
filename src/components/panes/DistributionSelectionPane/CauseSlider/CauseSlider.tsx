@@ -48,8 +48,8 @@ const CauseSlider = ({
       <div>
         <Slider
           min={0}
-          max={sum ?? 0}
-          step={share % 5 === 0 ? getStepLength(sum ?? 0) : 1}
+          max={100}
+          step={1}
           value={share}
           disabled={disabled || isLocked}
           onChange={onSliderChange}
