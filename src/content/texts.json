@@ -51,7 +51,8 @@
       "kontonummer": "00000000",
       "ocrTitle": "OCR",
       "ocr": "0000000",
-      "ocrDescription": "Om du vill donera med samma fördelning senare kan du använda samma OCR-nummer igen. Om du har några frågor kan du blabla"
+      "ocrDescription": "Om du vill donera med samma fördelning senare kan du använda samma OCR-nummer igen. Om du har några frågor kan du blabla",
+      "goBackTitle": "Gå tillbaka till startsidan"
     }
   }
 }

@@ -23,7 +23,7 @@ const initialState: DonationState = {
 
   donorType: DonorType.Donor,
 
-  sum: null,
+  sum: 200,
 
   lastCauseRoundRobinIndex: 0,
   causesDistribution: [],
@@ -34,6 +34,10 @@ export const donationSlice = createSlice({
   initialState,
 
   reducers: {
+    resetState() {
+      return initialState
+    },
+
     setDonationFrequency(state, action: PayloadAction<DonationFrequency>) {
       state.recurring = action.payload
     },

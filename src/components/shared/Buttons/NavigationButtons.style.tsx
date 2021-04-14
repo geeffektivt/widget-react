@@ -14,13 +14,11 @@ export const NextButton = styled('button', {
   marginTop: '$s200',
   width: '100%',
 
-  ':disabled': {
+  '&:disabled': {
     backgroundColor: '$grey20',
   },
 
-  ':not(:disabled)': {
+  '&:not(:disabled)': {
     cursor: 'pointer',
   },
-
-  ':not(:disabled):hover': {},
 })
