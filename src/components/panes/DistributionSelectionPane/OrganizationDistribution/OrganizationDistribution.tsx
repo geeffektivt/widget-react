@@ -1,3 +1,5 @@
+import React from 'react'
+
 import {
   Cause,
   Organization,
@@ -6,13 +8,12 @@ import useTypedDispatch from '../../../../hooks/store/useTypedDispatch'
 import useRequestAnimationFrame from '../../../../hooks/utils/useRequestAnimationFrame'
 import { donationActions } from '../../../../store/donation/donation.slice'
 import { OrganizationDistribution as OrganizationDistributionType } from '../../../../store/donation/donation.types'
-import Slider from '../../../shared/_inputs/Slider'
+import CauseSlider from '../CauseSlider/CauseSlider'
 
 interface OrganizationDistributionProps {
   cause: Cause
   organization: Organization
   organizationDistribution: OrganizationDistributionType
-
   isEnabled: boolean
 }
 
@@ -20,7 +21,6 @@ export default function OrganizationDistribution({
   cause,
   organization,
   organizationDistribution,
-
   isEnabled,
 }: OrganizationDistributionProps) {
   const dispatch = useTypedDispatch()
@@ -28,7 +28,6 @@ export default function OrganizationDistribution({
 
   const causeId = cause.id
   const organizationId = organization.id
-  const inputId = `organization-${causeId}-${organizationId}`
 
   function onSliderChange(event: React.ChangeEvent<HTMLInputElement>) {
     const updatedShare = parseInt(event.currentTarget.value, 10)
@@ -44,40 +43,27 @@ export default function OrganizationDistribution({
     })
   }
 
-  function onLockChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function onLockButtonChange() {
     dispatch(
       donationActions.updateOrganizationShareLock({
         causeId,
         organizationId,
-        isLocked: event.currentTarget.checked,
+        isLocked: !organizationDistribution.isLocked,
       })
     )
   }
 
   return (
     <div>
-      <div>
-        <span>{organization.name} - </span>
-        <output htmlFor={inputId}>{organizationDistribution.share}%</output>
-
-        <label>
-          <input
-            type="checkbox"
-            checked={organizationDistribution.isLocked}
-            onChange={onLockChange}
-          />
-          Lås
-        </label>
-      </div>
-
-      <Slider
-        id={inputId}
-        disabled={!isEnabled || organizationDistribution.isLocked}
-        min={0}
-        max={100}
-        value={organizationDistribution.share}
-        onChange={onSliderChange}
-      />
+      <CauseSlider
+        isLocked={organizationDistribution.isLocked}
+        disabled={!isEnabled}
+        share={organizationDistribution.share}
+        onLockButtonChange={onLockButtonChange}
+        onSliderChange={onSliderChange}
+      >
+        <span>{organization.name}</span>
+      </CauseSlider>
     </div>
   )
 }

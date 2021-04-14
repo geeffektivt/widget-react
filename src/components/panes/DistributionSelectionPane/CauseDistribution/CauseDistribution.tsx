@@ -1,11 +1,13 @@
+import React from 'react'
+
 import { Cause } from '../../../../@types/import/content/organizations.types'
 import { ShareType } from '../../../../constants/enums/ShareType'
 import useTypedDispatch from '../../../../hooks/store/useTypedDispatch'
 import useRequestAnimationFrame from '../../../../hooks/utils/useRequestAnimationFrame'
 import { donationActions } from '../../../../store/donation/donation.slice'
 import { CauseDistribution as CauseDistributionType } from '../../../../store/donation/donation.types'
-import Slider from '../../../shared/_inputs/Slider'
 import Chevron from '../../../shared/_svg/Chevron'
+import CauseSlider from '../CauseSlider/CauseSlider'
 import {
   CausesAccordionButton,
   CausesAccordionChevron,
@@ -15,7 +17,7 @@ import {
 } from '../CausesAccordion'
 import OrganizationDistribution from '../OrganizationDistribution'
 
-import { AccordionContainer, CauseTitle } from './CauseDistribution.style'
+import { CauseTitle, ShareTypeContainer } from './CauseDistribution.style'
 
 interface CauseDistributionProps {
   cause: Cause
@@ -30,7 +32,6 @@ export default function CauseDistribution({
   const safeRequestAnimationFrame = useRequestAnimationFrame()
 
   const causeId = cause.id
-  const inputId = `cause-${causeId}`
 
   function onSliderChange(event: React.ChangeEvent<HTMLInputElement>) {
     const updatedShare = parseInt(event.currentTarget.value, 10)
@@ -45,11 +46,11 @@ export default function CauseDistribution({
     })
   }
 
-  function onLockCheckboxChange(event: React.ChangeEvent<HTMLInputElement>) {
+  const onLockButtonChange = () => {
     dispatch(
       donationActions.updateCauseShareLock({
         causeId,
-        isLocked: event.currentTarget.checked,
+        isLocked: !causeDistribution.isLocked,
       })
     )
   }
@@ -68,49 +69,32 @@ export default function CauseDistribution({
   return (
     <CausesAccordionItem value={cause.id}>
       <CausesAccordionHeader>
-        <AccordionContainer>
+        <CauseSlider
+          isLocked={causeDistribution.isLocked}
+          share={causeDistribution.share}
+          onLockButtonChange={onLockButtonChange}
+          onSliderChange={onSliderChange}
+        >
           <CausesAccordionButton>
             <CausesAccordionChevron>
               <Chevron />
             </CausesAccordionChevron>
             <CauseTitle>{cause.name}</CauseTitle>
           </CausesAccordionButton>
-          <div>
-            <label>
-              <input
-                type="checkbox"
-                checked={causeDistribution.isLocked}
-                onChange={onLockCheckboxChange}
-              />
-              Lås
-            </label>
-
-            <output htmlFor={inputId}> {causeDistribution.share}%</output>
-          </div>
-        </AccordionContainer>
-
-        <div>
-          <Slider
-            id={inputId}
-            min={0}
-            max={100}
-            step={1}
-            value={causeDistribution.share}
-            disabled={causeDistribution.isLocked}
-            onChange={onSliderChange}
-          />
-        </div>
+        </CauseSlider>
       </CausesAccordionHeader>
 
       <CausesAccordionPanel>
-        <label>
-          <input
-            type="checkbox"
-            checked={causeDistribution.shareType === ShareType.Standard}
-            onChange={onShareTypeChange}
-          />
-          {cause.standardOrganizationShareText}
-        </label>
+        <ShareTypeContainer>
+          <label>
+            <input
+              type="checkbox"
+              checked={causeDistribution.shareType === ShareType.Standard}
+              onChange={onShareTypeChange}
+            />
+            {cause.standardOrganizationShareText}
+          </label>
+        </ShareTypeContainer>
 
         {cause.organizations.map((organization, index) => (
           <OrganizationDistribution

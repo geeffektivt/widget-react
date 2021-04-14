@@ -22,6 +22,7 @@ export const CausesAccordionButton = styled(Button, {
   padding: 10,
   display: 'flex',
   alignItems: 'center',
+  cursor: 'pointer',
 })
 
 export const CausesAccordionChevron = styled(Header, {
