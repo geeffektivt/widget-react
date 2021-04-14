@@ -46,7 +46,7 @@ const CauseSlider = ({
         <Slider
           min={0}
           max={100}
-          step={1}
+          step={5}
           value={share}
           disabled={disabled || isLocked}
           onChange={onSliderChange}
