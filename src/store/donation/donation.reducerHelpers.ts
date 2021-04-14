@@ -90,15 +90,15 @@ export function updateCauseDistributionsHelper(
     sum
   )
 
-  distributions.forEach((d, i) => {
-    const { roundRobinEndIndex } = mutableRoundRobinUpdateAllShares(
-      d.organizationsDistribution,
-      oldDistributionShares[i],
-      d.share,
-      d.lastOrganizationRoundRobinIndex
-    )
-    d.lastOrganizationRoundRobinIndex = roundRobinEndIndex
-  })
+  // distributions.forEach((d, i) => {
+  //   const { roundRobinEndIndex } = mutableRoundRobinUpdateAllShares(
+  //     d.organizationsDistribution,
+  //     oldDistributionShares[i],
+  //     d.share,
+  //     d.lastOrganizationRoundRobinIndex
+  //   )
+  //   d.lastOrganizationRoundRobinIndex = roundRobinEndIndex
+  // })
 
   return roundrobinIndex
 }

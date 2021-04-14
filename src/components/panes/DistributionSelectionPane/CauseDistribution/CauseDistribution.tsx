@@ -7,6 +7,7 @@ import useTypedSelector from '../../../../hooks/store/useTypedSelector'
 import useRequestAnimationFrame from '../../../../hooks/utils/useRequestAnimationFrame'
 import { donationActions } from '../../../../store/donation/donation.slice'
 import { CauseDistribution as CauseDistributionType } from '../../../../store/donation/donation.types'
+import { PercentageToKronor } from '../../../../utils/donationUtils'
 import Chevron from '../../../shared/_svg/Chevron'
 import Info from '../../../shared/_svg/Info'
 import CauseSlider from '../CauseSlider/CauseSlider'
@@ -77,9 +78,9 @@ export default function CauseDistribution({
     <CausesAccordionItem value={cause.id}>
       <CausesAccordionHeader>
         <CauseSlider
+          sum={sum}
           isLocked={causeDistribution.isLocked}
           share={causeDistribution.share}
-          sum={sum}
           onLockButtonChange={onLockButtonChange}
           onSliderChange={onSliderChange}
         >
@@ -112,8 +113,8 @@ export default function CauseDistribution({
 
         {cause.organizations.map((organization, index) => (
           <OrganizationDistribution
+            sum={PercentageToKronor(causeDistribution.share, sum)}
             key={organization.id}
-            sum={causeDistribution.share}
             cause={cause}
             organization={organization}
             organizationDistribution={

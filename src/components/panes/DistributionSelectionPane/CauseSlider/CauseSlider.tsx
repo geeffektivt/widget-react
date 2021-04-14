@@ -1,6 +1,6 @@
 import React, { ChangeEvent, ReactNode } from 'react'
 
-import { getStepLength } from '../../../../utils/donationUtils'
+import { PercentageToKronor } from '../../../../utils/donationUtils'
 import Slider from '../../../shared/_inputs/Slider'
 import Lock from '../../../shared/_svg/Lock'
 
@@ -34,7 +34,7 @@ const CauseSlider = ({
       <AccordionContainer>
         {children}
         <FlexContainer>
-          <span>{share} kr</span>
+          <span>{share} %</span>
           <LockButton
             disabled={disabled}
             title="Lås"
@@ -43,6 +43,8 @@ const CauseSlider = ({
           >
             <Lock isLocked={isLocked} disabled={disabled} />
           </LockButton>
+          {/* <span>{share}%</span> */}
+          <span>{PercentageToKronor(share, sum)} kr</span>
         </FlexContainer>
       </AccordionContainer>
       <div>

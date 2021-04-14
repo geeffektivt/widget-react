@@ -87,13 +87,25 @@ export function updateValues(
   maxValue: number,
   updatedIndex?: number
 ) {
+  if (updateDelta === 0) {
+    console.log('Zero!!!!')
+    return { roundRobinEndIndex: lastRoundRobinIndex }
+  }
   let updateAbsDiff = Math.abs(updateDelta)
-  const deltaPerStep = updateDelta / updateAbsDiff
+  const nbrOfValues = entries.length
+  // const deltaPerStep = updateDelta / updateAbsDiff
+  let stepLength = 1
 
   let deltaPerStep = (updateDelta / updateAbsDiff) * stepLength
-
+  console.log('deltaPerStep', deltaPerStep)
   let roundRobinIndex = lastRoundRobinIndex
-  while (updateAbsDiff > 0) {
+  let tries = 0
+  while (updateAbsDiff > 0 && tries < 1000) {
+    tries += 1
+    if (tries >= 999) {
+      console.log('OHNO')
+    }
+    console.log('updateAbsDiff', updateAbsDiff)
     if (updateAbsDiff < deltaPerStep) {
       stepLength = 1
       deltaPerStep = (updateDelta / Math.abs(updateDelta)) * stepLength
@@ -101,27 +113,37 @@ export function updateValues(
     roundRobinIndex = (roundRobinIndex + 1) % nbrOfValues
 
     if (roundRobinIndex === updatedIndex) {
+      console.log('roundRobinIndex === updatedIndex')
       continue
     }
 
     const entry = entries[roundRobinIndex]
     // If a cause was set to 0, then it should be kept at 0 unless the remaining causes also are 0 or locked
     // ie only update a 0-cause when there is no other option
-    const shouldStickToZero = () =>
-      entry.share === 0 &&
-      entries
-        .filter((_, i) => i !== updatedIndex)
-        .filter((e) => e.share === 0 || e.isLocked).length === 1
+    const shouldStickToZero = () => false
+    // () =>
+    //   entry.share === 0 &&
+    //   entries
+    //     .filter((_, i) => i !== updatedIndex)
+    //     .filter((e) => e.share === 0 || e.isLocked).length === 1
     if (updatedIndex !== undefined && (entry.isLocked || shouldStickToZero())) {
+      console.log(
+        'updatedIndex !== undefined && (entry.isLocked || shouldStickToZero())'
+      )
       continue
     }
 
     const currentStepValue = entry.share
-    const nextValue = clamp(minValue, maxValue, currentStepValue + deltaPerStep)
+    const nextValue = currentStepValue + deltaPerStep // clamp(minValue, maxValue, currentStepValue + deltaPerStep)
+    console.log('nextValue', nextValue)
+    console.log('currentStepValue', currentStepValue)
     if (currentStepValue !== nextValue) {
       entries[roundRobinIndex].share = nextValue
       updateAbsDiff -= 1
     }
+    // else {
+    //   updateAbsDiff = 0
+    // }
   }
 
   return { roundRobinEndIndex: roundRobinIndex }
@@ -129,4 +151,11 @@ export function updateValues(
 
 function clamp(min: number, max: number, value: number) {
   return Math.min(max, Math.max(min, value))
+}
+
+export const PercentageToKronor = (percentage: number, max: number | null) => {
+  const stepLength = 5
+  const value = max ? (percentage / 100) * max : 0
+  const rounded = Math.round(value / stepLength) * stepLength
+  return rounded
 }

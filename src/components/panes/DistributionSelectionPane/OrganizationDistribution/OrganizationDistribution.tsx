@@ -17,7 +17,7 @@ interface OrganizationDistributionProps {
   organization: Organization
   organizationDistribution: OrganizationDistributionType
   isEnabled: boolean
-  sum: number
+  sum: number | null
 }
 
 export default function OrganizationDistribution({
