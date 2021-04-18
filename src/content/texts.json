@@ -48,10 +48,12 @@
       "description": "Du kan nu överföra till oss",
       "sumTitle": "Belopp",
       "kontonummerTitle": "Kontonr",
-      "kontonummer": "00000000",
+      "kontonummer": "8327-9,704 665 512-7",
+      "bankTitle": "Bank",
+      "bank": "Swedbank",
       "ocrTitle": "OCR",
       "ocr": "0000000",
-      "ocrDescription": "Om du vill donera med samma fördelning senare kan du använda samma OCR-nummer igen. Om du har några frågor kan du blabla",
+      "ocrDescription": "Om du vill donera med samma fördelning senare kan du använda samma OCR-nummer igen. Du kan även sätta upp gåvan som automatiskt återkommande varje månad i din bank om du skulle vilja. Om du har några frågor kan du höra av dig till oss på donationer@geeffektivt.se.",
       "goBackTitle": "Gå tillbaka till startsidan"
     }
   }
