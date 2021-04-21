@@ -70,8 +70,8 @@ describe('mutableRoundRobinUpdateShareAtIndex', () => {
         ]
         mutableRoundRobinUpdateShareAtIndex(entries, 0, 55, 0, 100)
         expect(entries[0].share).toBe(55)
-        expect(entries[1].share).toBe(25)
-        expect(entries[2].share).toBe(20)
+        expect(entries[1].share).toBe(27)
+        expect(entries[2].share).toBe(18)
       })
       it('should not update cause set to 0', () => {
         const entries: BaseDistribution[] = [

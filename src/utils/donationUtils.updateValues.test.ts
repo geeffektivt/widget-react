@@ -26,6 +26,17 @@ describe('updateValues', () => {
       expect(entries[1].share).toBe(20)
       expect(entries[2].share).toBe(0)
     })
+    it('decreased and shares not rounded, all shares should decrease', () => {
+      const entries: BaseDistribution[] = [
+        { id: 'climate', share: 17, isLocked: false },
+        { id: 'health', share: 17, isLocked: false },
+        { id: 'animal', share: 16, isLocked: false },
+      ]
+      updateValues(entries, -10, 2, 0, 40, undefined)
+      expect(entries[0].share).toBe(13)
+      expect(entries[1].share).toBe(14)
+      expect(entries[2].share).toBe(13)
+    })
     it('decreased a lot, all shares should decrease', () => {
       const entries: BaseDistribution[] = [
         { id: 'climate', share: 17, isLocked: false },
@@ -47,6 +58,17 @@ describe('updateValues', () => {
       expect(entries[0].share).toBe(110)
       expect(entries[1].share).toBe(170)
       expect(entries[2].share).toBe(120)
+    })
+    it('increased and shares not rounded, all shares should increase', () => {
+      const entries: BaseDistribution[] = [
+        { id: 'climate', share: 17, isLocked: false },
+        { id: 'health', share: 17, isLocked: false },
+        { id: 'animal', share: 16, isLocked: false },
+      ]
+      updateValues(entries, 5, 2, 0, 55, undefined)
+      expect(entries[0].share).toBe(19)
+      expect(entries[1].share).toBe(19)
+      expect(entries[2].share).toBe(17)
     })
     it('increased, locked distributions should also increase', () => {
       const entries: BaseDistribution[] = [

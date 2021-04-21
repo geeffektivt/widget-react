@@ -1,5 +1,6 @@
 import React, { ChangeEvent, ReactNode } from 'react'
 
+import { getStepLength } from '../../../../utils/donationUtils'
 import Slider from '../../../shared/_inputs/Slider'
 import Lock from '../../../shared/_svg/Lock'
 
@@ -48,7 +49,7 @@ const CauseSlider = ({
         <Slider
           min={0}
           max={sum ?? 0}
-          step={1}
+          step={share % 5 === 0 ? getStepLength(sum ?? 0) : 1}
           value={share}
           disabled={disabled || isLocked}
           onChange={onSliderChange}

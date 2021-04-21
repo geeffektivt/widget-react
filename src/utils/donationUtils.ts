@@ -4,6 +4,8 @@ import { BaseDistribution } from '../store/donation/donation.types'
 
 type ShareEntry = BaseDistribution
 
+export const getStepLength = (sum: number) => (sum < 5 ? 1 : 5)
+
 /**
  * @warn Will mutate entries.
  */
@@ -88,14 +90,18 @@ export function updateValues(
   maxValue: number,
   updatedIndex?: number
 ) {
-  const stepLength = 1
   let updateAbsDiff = Math.abs(updateDelta)
   const nbrOfValues = entries.length
+  let stepLength = getStepLength(Math.round(updateDelta / nbrOfValues))
 
-  const deltaPerStep = (updateDelta / updateAbsDiff) * stepLength
+  let deltaPerStep = (updateDelta / updateAbsDiff) * stepLength
 
   let roundRobinIndex = lastRoundRobinIndex
   while (updateAbsDiff > 0) {
+    if (updateAbsDiff < deltaPerStep) {
+      stepLength = 1
+      deltaPerStep = (updateDelta / Math.abs(updateDelta)) * stepLength
+    }
     roundRobinIndex = (roundRobinIndex + 1) % nbrOfValues
 
     if (roundRobinIndex === updatedIndex) {
