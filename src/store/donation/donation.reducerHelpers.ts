@@ -1,6 +1,9 @@
 import { Cause } from '../../@types/import/content/organizations.types'
 import { ShareType } from '../../constants/enums/ShareType'
-import { mutableRoundRobinUpdateShareAtIndex } from '../../utils/donationUtils'
+import {
+  mutableRoundRobinUpdateAllShares,
+  mutableRoundRobinUpdateShareAtIndex,
+} from '../../utils/donationUtils'
 
 import {
   BaseDistribution,
@@ -8,18 +11,19 @@ import {
   OrganizationDistribution,
 } from './donation.types'
 
-export function resetDistributionsHelper(causesData: Cause[]) {
-  let totalCauseShareLeft = 100
+export function resetDistributionsHelper(causesData: Cause[], sum: number) {
+  let totalCauseShareLeft = sum
 
   return causesData.map((cause) => {
+    const standardShareInKronor = (cause.standardShare / 100) * (sum ?? 0)
     const share = Math.max(
-      totalCauseShareLeft - cause.standardShare,
-      cause.standardShare
+      totalCauseShareLeft - standardShareInKronor,
+      standardShareInKronor
     )
 
     totalCauseShareLeft -= share
 
-    let totalOrganizationShareLeft = 100
+    let totalOrganizationShareLeft = share
     const nbrOfOrganizations = cause.organizations.length
 
     const causeDistribution: CauseDistribution = {
@@ -39,7 +43,7 @@ export function resetDistributionsHelper(causesData: Cause[]) {
             ? totalOrganizationShareLeft
             : Math.min(
                 totalOrganizationShareLeft,
-                Math.round(100 / nbrOfOrganizations)
+                Math.round(share / nbrOfOrganizations)
               )
 
           totalOrganizationShareLeft -= startShare
@@ -59,11 +63,50 @@ export function resetDistributionsHelper(causesData: Cause[]) {
   })
 }
 
+/**
+ * Update cause distributions, and their organizations distributions accordingly
+ */
+export function updateCauseDistributionsHelper(
+  distributions: CauseDistribution[],
+  updatedId: BaseDistribution['id'],
+  updatedValue: number,
+  lastRoundRobinIndex: number,
+  sum: number
+) {
+  const itemIndex = distributions.findIndex((item) => item.id === updatedId)
+
+  if (itemIndex === -1) {
+    return null
+  }
+  const oldDistributionShares = distributions.map((d) => d.share)
+
+  const roundrobinIndex = mutableRoundRobinUpdateShareAtIndex(
+    distributions,
+    itemIndex,
+    updatedValue,
+    lastRoundRobinIndex,
+    sum
+  )
+
+  distributions.forEach((d, i) => {
+    const { roundRobinEndIndex } = mutableRoundRobinUpdateAllShares(
+      d.organizationsDistribution,
+      oldDistributionShares[i],
+      d.share,
+      d.lastOrganizationRoundRobinIndex
+    )
+    d.lastOrganizationRoundRobinIndex = roundRobinEndIndex
+  })
+
+  return roundrobinIndex
+}
+
 export function updateDistributionsHelper(
   distributions: BaseDistribution[],
   updatedId: BaseDistribution['id'],
   updatedValue: number,
-  lastRoundRobinIndex: number
+  lastRoundRobinIndex: number,
+  sum: number
 ) {
   const itemIndex = distributions.findIndex((item) => item.id === updatedId)
 
@@ -75,7 +118,8 @@ export function updateDistributionsHelper(
     distributions,
     itemIndex,
     updatedValue,
-    lastRoundRobinIndex
+    lastRoundRobinIndex,
+    sum
   )
 }
 

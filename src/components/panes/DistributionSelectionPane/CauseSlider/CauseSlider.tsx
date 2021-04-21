@@ -16,6 +16,7 @@ interface CauseSliderProps {
   isLocked: boolean
   disabled?: boolean
   share: number
+  sum: number | null
 }
 
 const CauseSlider = ({
@@ -25,12 +26,14 @@ const CauseSlider = ({
   isLocked,
   disabled = false,
   share,
+  sum,
 }: CauseSliderProps) => {
   return (
     <>
       <AccordionContainer>
         {children}
         <FlexContainer>
+          <span>{share} kr</span>
           <LockButton
             disabled={disabled}
             title="Lås"
@@ -39,14 +42,13 @@ const CauseSlider = ({
           >
             <Lock isLocked={isLocked} disabled={disabled} />
           </LockButton>
-          <span>{share}%</span>
         </FlexContainer>
       </AccordionContainer>
       <div>
         <Slider
           min={0}
-          max={100}
-          step={5}
+          max={sum ?? 0}
+          step={1}
           value={share}
           disabled={disabled || isLocked}
           onChange={onSliderChange}

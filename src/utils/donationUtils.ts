@@ -7,11 +7,35 @@ type ShareEntry = BaseDistribution
 /**
  * @warn Will mutate entries.
  */
+export function mutableRoundRobinUpdateAllShares(
+  entries: ShareEntry[],
+  oldSum: number,
+  sum: number,
+  lastRoundRobinIndex: number
+) {
+  const minValue = 0
+  const maxValue = sum
+  const updateDelta = sum - oldSum
+
+  return updateValues(
+    entries,
+    updateDelta,
+    lastRoundRobinIndex,
+    minValue,
+    maxValue,
+    undefined
+  )
+}
+
+/**
+ * @warn Will mutate entries.
+ */
 export function mutableRoundRobinUpdateShareAtIndex(
   entries: ShareEntry[],
   updatedIndex: number,
   updatedShare: number,
-  lastRoundRobinIndex: number
+  lastRoundRobinIndex: number,
+  sum: number
 ): { roundRobinEndIndex: number } {
   if (entries[updatedIndex].isLocked) {
     return { roundRobinEndIndex: lastRoundRobinIndex }
@@ -35,17 +59,40 @@ export function mutableRoundRobinUpdateShareAtIndex(
   )
 
   const minValue = 0
-  const maxValue = Math.min(totalSumAvailable, 100)
-  const stepLength = 5
+  const maxValue = Math.min(totalSumAvailable, sum)
 
   const clampedUpdatedValue = clamp(minValue, maxValue, updatedShare)
-
   const currentValue = entries[updatedIndex].share
-  const updateDelta = currentValue - clampedUpdatedValue
-  let updateAbsDiff = Math.abs(updateDelta)
-  const deltaPerStep = (updateDelta / updateAbsDiff) * stepLength
-
   entries[updatedIndex].share = clampedUpdatedValue
+  const updateDelta = currentValue - clampedUpdatedValue
+
+  return updateValues(
+    entries,
+    updateDelta,
+    lastRoundRobinIndex,
+    minValue,
+    maxValue,
+    updatedIndex
+  )
+}
+
+/**
+ * updatedIndex = undefined means that the total available sum (maxValue) for the distributions changed,
+ * so all entries should be updated even if they are locked
+ */
+export function updateValues(
+  entries: BaseDistribution[],
+  updateDelta: number,
+  lastRoundRobinIndex: number,
+  minValue: number,
+  maxValue: number,
+  updatedIndex?: number
+) {
+  const stepLength = 1
+  let updateAbsDiff = Math.abs(updateDelta)
+  const nbrOfValues = entries.length
+
+  const deltaPerStep = (updateDelta / updateAbsDiff) * stepLength
 
   let roundRobinIndex = lastRoundRobinIndex
   while (updateAbsDiff > 0) {
@@ -63,16 +110,16 @@ export function mutableRoundRobinUpdateShareAtIndex(
       entries
         .filter((_, i) => i !== updatedIndex)
         .filter((e) => e.share === 0 || e.isLocked).length === 1
-    if (entry.isLocked || shouldStickToZero()) {
+    if (updatedIndex !== undefined && (entry.isLocked || shouldStickToZero())) {
       continue
     }
 
     const currentStepValue = entry.share
-    const nextValue = clamp(minValue, maxValue, currentStepValue + deltaPerStep)
+    const nextValue = Math.max(minValue, currentStepValue + deltaPerStep) // clamp(minValue, maxValue, currentStepValue + deltaPerStep)
     const rounded = Math.round(nextValue / stepLength) * stepLength
     if (currentStepValue !== rounded) {
-      entries[roundRobinIndex].share = rounded
-      updateAbsDiff -= stepLength
+      entry.share = rounded
+      updateAbsDiff -= Math.abs(currentStepValue - rounded)
     }
   }
 

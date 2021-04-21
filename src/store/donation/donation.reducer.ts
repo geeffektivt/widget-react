@@ -113,7 +113,7 @@ export const donationReducer: Reducer<Donation, DonationActionTypes> = (
    */
   if (
     state.shareType === ShareType.Custom &&
-    state.shares.reduce((acc, curr) => acc + curr.share, 0) !== 100
+    state.shares.reduce((acc, curr) => acc + curr.share, 0) !== state.sum
   )
     return { ...state, isValid: false }
 

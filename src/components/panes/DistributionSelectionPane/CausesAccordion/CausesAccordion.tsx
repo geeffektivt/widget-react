@@ -30,7 +30,7 @@ export const CausesAccordionChevron = styled(Header, {
   display: 'inherit',
 
   '&[data-state="open"]': {
-    transform: 'rotate(90deg)',
+    transform: 'rotate(180deg)',
   },
 })
 
