@@ -10,6 +10,8 @@ import { donationActions } from '../../../../store/donation/donation.slice'
 import { OrganizationDistribution as OrganizationDistributionType } from '../../../../store/donation/donation.types'
 import CauseSlider from '../CauseSlider/CauseSlider'
 
+import { Container } from './OrganizationDistribution.style'
+
 interface OrganizationDistributionProps {
   cause: Cause
   organization: Organization
@@ -55,7 +57,7 @@ export default function OrganizationDistribution({
   }
 
   return (
-    <div>
+    <Container>
       <CauseSlider
         sum={sum}
         isLocked={organizationDistribution.isLocked}
@@ -66,6 +68,6 @@ export default function OrganizationDistribution({
       >
         <span>{organization.name}</span>
       </CauseSlider>
-    </div>
+    </Container>
   )
 }
