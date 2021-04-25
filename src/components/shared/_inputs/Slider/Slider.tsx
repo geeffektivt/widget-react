@@ -22,7 +22,10 @@ export default function Slider({
 
   useEffect(() => {
     const rootEl = rootRef.current
-    rootEl?.style.setProperty('--value', String(value))
+    rootEl?.style.setProperty(
+      '--value',
+      String((Number(value) / Number(max)) * 100)
+    )
   })
 
   return (

@@ -3,6 +3,7 @@ import React from 'react'
 import { Cause } from '../../../../@types/import/content/organizations.types'
 import { ShareType } from '../../../../constants/enums/ShareType'
 import useTypedDispatch from '../../../../hooks/store/useTypedDispatch'
+import useTypedSelector from '../../../../hooks/store/useTypedSelector'
 import useRequestAnimationFrame from '../../../../hooks/utils/useRequestAnimationFrame'
 import { donationActions } from '../../../../store/donation/donation.slice'
 import { CauseDistribution as CauseDistributionType } from '../../../../store/donation/donation.types'
@@ -30,6 +31,7 @@ export default function CauseDistribution({
 }: CauseDistributionProps) {
   const dispatch = useTypedDispatch()
   const safeRequestAnimationFrame = useRequestAnimationFrame()
+  const sum = useTypedSelector((state) => state.donation.sum)
 
   const causeId = cause.id
 
@@ -72,6 +74,7 @@ export default function CauseDistribution({
         <CauseSlider
           isLocked={causeDistribution.isLocked}
           share={causeDistribution.share}
+          sum={sum}
           onLockButtonChange={onLockButtonChange}
           onSliderChange={onSliderChange}
         >
@@ -99,6 +102,7 @@ export default function CauseDistribution({
         {cause.organizations.map((organization, index) => (
           <OrganizationDistribution
             key={organization.id}
+            sum={causeDistribution.share}
             cause={cause}
             organization={organization}
             organizationDistribution={

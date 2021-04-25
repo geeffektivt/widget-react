@@ -1,5 +1,6 @@
 import React, { ChangeEvent, ReactNode } from 'react'
 
+import { getStepLength } from '../../../../utils/donationUtils'
 import Slider from '../../../shared/_inputs/Slider'
 import Lock from '../../../shared/_svg/Lock'
 
@@ -16,6 +17,7 @@ interface CauseSliderProps {
   isLocked: boolean
   disabled?: boolean
   share: number
+  sum: number | null
 }
 
 const CauseSlider = ({
@@ -25,12 +27,14 @@ const CauseSlider = ({
   isLocked,
   disabled = false,
   share,
+  sum,
 }: CauseSliderProps) => {
   return (
     <>
       <AccordionContainer>
         {children}
         <FlexContainer>
+          <span>{share} kr</span>
           <LockButton
             disabled={disabled}
             title="Lås"
@@ -39,14 +43,13 @@ const CauseSlider = ({
           >
             <Lock isLocked={isLocked} disabled={disabled} />
           </LockButton>
-          <span>{share}%</span>
         </FlexContainer>
       </AccordionContainer>
       <div>
         <Slider
           min={0}
-          max={100}
-          step={5}
+          max={sum ?? 0}
+          step={share % 5 === 0 ? getStepLength(sum ?? 0) : 1}
           value={share}
           disabled={disabled || isLocked}
           onChange={onSliderChange}
