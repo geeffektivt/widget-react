@@ -23,6 +23,7 @@ export default function DistributionSelectionPane() {
 
   return (
     <Pane>
+      <DonationSumPanel />
       <CausesAccordion type="multiple">
         {allCauses.map((cause, causeIndex) => {
           const causeDistribution = causesDistribution[causeIndex]
@@ -36,8 +37,6 @@ export default function DistributionSelectionPane() {
           )
         })}
       </CausesAccordion>
-
-      <DonationSumPanel />
 
       <NextButton onClick={onNextClick}>Next</NextButton>
     </Pane>

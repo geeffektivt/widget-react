@@ -5,9 +5,7 @@ import { styled } from '../../../../styles/stitches.config'
 export const CausesAccordion = styled(Root, {})
 
 export const CausesAccordionItem = styled(Item, {
-  '&:not(:first-child)': {
-    marginTop: '$s150',
-  },
+  marginTop: '$s150',
 
   '&:last-child': {
     marginBottom: '$s150',
