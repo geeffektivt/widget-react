@@ -8,6 +8,7 @@ import useRequestAnimationFrame from '../../../../hooks/utils/useRequestAnimatio
 import { donationActions } from '../../../../store/donation/donation.slice'
 import { CauseDistribution as CauseDistributionType } from '../../../../store/donation/donation.types'
 import Chevron from '../../../shared/_svg/Chevron'
+import Info from '../../../shared/_svg/Info'
 import CauseSlider from '../CauseSlider/CauseSlider'
 import {
   CausesAccordionButton,
@@ -18,7 +19,11 @@ import {
 } from '../CausesAccordion'
 import OrganizationDistribution from '../OrganizationDistribution'
 
-import { CauseTitle, ShareTypeContainer } from './CauseDistribution.style'
+import {
+  CauseTitle,
+  Overlay,
+  ShareTypeContainer,
+} from './CauseDistribution.style'
 
 interface CauseDistributionProps {
   cause: Cause
@@ -98,6 +103,12 @@ export default function CauseDistribution({
             {cause.standardOrganizationShareText}
           </label>
         </ShareTypeContainer>
+        {causeDistribution.shareType === ShareType.Standard && (
+          <Overlay>
+            <Info />
+            {cause.standardOrganizationShareExplanation}
+          </Overlay>
+        )}
 
         {cause.organizations.map((organization, index) => (
           <OrganizationDistribution

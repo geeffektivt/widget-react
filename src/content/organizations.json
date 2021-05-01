@@ -4,6 +4,7 @@
     "name": "Global hälsa",
     "standardShare": 50,
     "standardOrganizationShareText": "Låt GiveWell välja",
+    "standardOrganizationShareExplanation": "Hela summan går till GiveWell Maximum Impact Fund.",
     "organizations": [
       {
         "id": "1",
@@ -30,6 +31,7 @@
     "name": "Klimat",
     "standardShare": 25,
     "standardOrganizationShareText": "Låt Klimat välja",
+    "standardOrganizationShareExplanation": "Vi rådgör med givinggreen.earth om hur dina pengar gör störst skillnad för klimatet.",
     "organizations": [
       {
         "id": "4",
@@ -56,6 +58,7 @@
     "name": "Djurhälsa",
     "standardShare": 25,
     "standardOrganizationShareText": "Låt Djuren välja",
+    "standardOrganizationShareExplanation": "Hela summan går till Animal Charity Evaluators Recommended Charity Fund.",
     "organizations": [
       {
         "id": "7",

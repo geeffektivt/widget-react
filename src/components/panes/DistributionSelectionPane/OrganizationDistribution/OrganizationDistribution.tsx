@@ -57,7 +57,7 @@ export default function OrganizationDistribution({
   }
 
   return (
-    <Container>
+    <Container isEnabled={isEnabled}>
       <CauseSlider
         sum={sum}
         isLocked={organizationDistribution.isLocked}

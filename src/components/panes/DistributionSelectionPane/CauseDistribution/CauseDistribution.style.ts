@@ -7,3 +7,15 @@ export const CauseTitle = styled('h3', {
 export const ShareTypeContainer = styled('div', {
   paddingBottom: '$s50',
 })
+
+export const Overlay = styled('div', {
+  position: 'absolute',
+  padding: '$s200',
+  margin: '$s200',
+  background: '$primary100',
+  borderRadius: '5px',
+  zIndex: 2,
+  color: 'white',
+  display: 'flex',
+  alignItems: 'center',
+})

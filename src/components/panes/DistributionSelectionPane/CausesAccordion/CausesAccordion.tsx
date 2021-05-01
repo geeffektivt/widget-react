@@ -35,4 +35,5 @@ export const CausesAccordionChevron = styled(Header, {
 export const CausesAccordionPanel = styled(Panel, {
   padding: '$s100',
   paddingRight: 0,
+  position: 'relative',
 })
