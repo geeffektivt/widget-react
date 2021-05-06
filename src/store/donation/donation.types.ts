@@ -9,13 +9,20 @@ export interface DonationState {
   method: PaymentMethod | null
 
   donorType: DonorType
-  // donorInformation: DonorInformation | null
-  // donorId: DonorId | null
+  donor?: Donor
 
   sum: number | null
 
   lastCauseRoundRobinIndex: number
   causesDistribution: CauseDistribution[]
+}
+
+export interface Donor {
+  name: string
+  email: string
+  taxDeduction: boolean
+  ssn: number
+  newsletter: boolean
 }
 
 export interface BaseDistribution {

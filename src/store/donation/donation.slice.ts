@@ -15,7 +15,7 @@ import {
   updateCauseDistributionsHelper,
   updateDistributionsHelper,
 } from './donation.reducerHelpers'
-import { DonationState } from './donation.types'
+import { DonationState, Donor } from './donation.types'
 
 const initialState: DonationState = {
   recurring: DonationFrequency.Monthly,
@@ -49,6 +49,10 @@ export const donationSlice = createSlice({
 
     setDonorType(state, action: PayloadAction<DonorType>) {
       state.donorType = action.payload
+    },
+
+    setDonorInformation(state, action: PayloadAction<Donor>) {
+      state.donor = action.payload
     },
 
     setDonationSum(state, action: PayloadAction<number | null>) {

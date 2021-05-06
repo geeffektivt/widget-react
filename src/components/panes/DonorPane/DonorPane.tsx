@@ -69,7 +69,7 @@ export function DonorPane() {
       }
     }
 
-    // dispatch(submitDonorInfo(donorInfo))
+    dispatch(donationActions.setDonorInformation(donorInfo))
     dispatch(uiActions.goToNextStep())
   }
 
