@@ -2,7 +2,7 @@ import { styled } from '../../../styles/stitches.config'
 
 export const NextButton = styled('button', {
   alignItems: 'center',
-  backgroundColor: '$black',
+  backgroundColor: '$primary100',
   border: 'none',
   borderRadius: '60px',
   color: '$white',
@@ -13,6 +13,14 @@ export const NextButton = styled('button', {
   justifyContent: 'center',
   marginTop: '$s200',
   width: '100%',
+  transition:
+    'background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out',
+
+  '&:hover': {
+    backgroundColor: '$white',
+    border: '3px solid $primary100',
+    color: '$primary100',
+  },
 
   '&:disabled': {
     backgroundColor: '$grey20',
