@@ -18,8 +18,17 @@ export const ReferralButton = styled('button', {
   fontSize: '$14',
   padding: '$s100',
 
-  ':hover': {
+  '&:hover': {
     backgroundColor: '$primary100',
     color: '$white',
+  },
+
+  variants: {
+    selected: {
+      true: {
+        backgroundColor: '$primary100',
+        color: '$white',
+      },
+    },
   },
 })

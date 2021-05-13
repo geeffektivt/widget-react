@@ -40,7 +40,8 @@
 
     "referral": {
       "title": "Hur hörde du talas om oss?",
-      "skipLabel": "Hoppa över"
+      "skipLabel": "Hoppa över",
+      "nextLabel": "Nästa"
     },
 
     "payment": {
