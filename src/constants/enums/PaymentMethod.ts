@@ -1,4 +1,4 @@
 export enum PaymentMethod {
-  Bank,
-  Swish,
+  Bank = 'Bank',
+  Swish = 'Swish',
 }

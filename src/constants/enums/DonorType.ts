@@ -1,4 +1,4 @@
 export enum DonorType {
-  Anonymous,
-  Donor,
+  Anonymous = 'Anonym',
+  Donor = '',
 }

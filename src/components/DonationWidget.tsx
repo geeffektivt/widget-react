@@ -3,6 +3,7 @@ import useTypedDispatch from '../hooks/store/useTypedDispatch'
 import useOnMount from '../hooks/utils/useOnMount'
 import { donationActions } from '../store/donation/donation.slice'
 
+import BreadcrumbsComponent from './Breadcrumbs'
 import Carousel from './Carousel'
 import { DonationWidgetWrapper } from './DonationWidget.style'
 import FlowProgress from './FlowProgress'
@@ -23,6 +24,7 @@ export default function DonationWidget() {
 
   return (
     <DonationWidgetWrapper>
+      <BreadcrumbsComponent />
       <Carousel>
         <MethodPane />
         <DonorPane />
