@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import AppError from '../../utils/api/appError'
 
@@ -9,6 +9,8 @@ import {
 import { SwishState } from './swish.types'
 
 const initialState: SwishState = {
+  number: null,
+
   createPaymentResponse: null,
   paymentStatus: null,
 
@@ -23,7 +25,11 @@ export const swishSlice = createSlice({
   name: 'swish',
   initialState,
 
-  reducers: {},
+  reducers: {
+    setNumber(state, action: PayloadAction<string>) {
+      state.number = action.payload
+    },
+  },
 
   extraReducers: (builder) => {
     builder
@@ -56,4 +62,5 @@ export const swishSlice = createSlice({
 })
 
 export const swishReducer = swishSlice.reducer
+export const swishActions = swishSlice.actions
 export const swishAsyncActions = { createSwishPayment, pollSwishPaymentStatus }

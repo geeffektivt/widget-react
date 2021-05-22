@@ -5,6 +5,8 @@ import {
 import AppError from '../../utils/api/appError'
 
 export interface SwishState {
+  readonly number: string | null
+
   readonly createPaymentResponse: SwishPaymentResponse | null
   readonly paymentStatus: SwishPaymentStatus | null
 

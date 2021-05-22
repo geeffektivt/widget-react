@@ -27,6 +27,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.11.2",
+    "react-phone-input-2": "^2.14.0",
     "react-query": "^2.26.2",
     "react-redux": "^7.2.1",
     "react-scripts": "^4.0.1",
