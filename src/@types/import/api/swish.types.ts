@@ -7,7 +7,7 @@ export interface SwishPaymentRequest {
 }
 
 export interface SwishPaymentResponse {
-  status: unknown
+  status: SwishPaymentStatus
   paymentId: string
   paymentRequestToken: string
 }

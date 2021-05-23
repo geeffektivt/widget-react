@@ -1,24 +1,27 @@
 import React from 'react'
 
-import { PaymentStatus } from '../../constants/enums/PaymentStatus'
+import { SwishPaymentStatus } from '../../@types/import/api/swish.types'
 
 import PaymentFailed from './components/PaymentFailed'
 import PaymentStarted from './components/PaymentStarted'
 import PaymentSuccess from './components/PaymentSuccess'
 
 interface PaymentProps {
-  status: PaymentStatus
+  status: SwishPaymentStatus
 }
 
 export default function Payment({ status }: PaymentProps) {
   switch (status) {
-    case PaymentStatus.Started:
+    case 'CREATED':
       return <PaymentStarted />
 
-    case PaymentStatus.Failed:
+    case 'ERROR':
       return <PaymentFailed />
 
-    case PaymentStatus.Success:
+    case 'DECLINED':
+      return <PaymentFailed />
+
+    case 'PAID':
       return <PaymentSuccess />
 
     default:

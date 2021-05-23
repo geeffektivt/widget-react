@@ -12,14 +12,14 @@ import { joinUrlPaths } from '../../utils/urlUtils'
 export async function createSwishPaymentRequest(
   requestArgs: SwishPaymentRequest
 ): Promise<ApiResponse<SwishPaymentResponse>> {
-  if (process.env.USE_DEV_DATA === 'true') {
+  if (process.env.REACT_APP_USE_DEV_DATA === 'true') {
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
     return new ApiResponse(undefined, {
       body: {
         paymentId: 'fake-id',
         paymentRequestToken: 'fake-token',
-        status: null,
+        status: 'CREATED',
       },
     })
   }
@@ -31,7 +31,7 @@ export async function createSwishPaymentRequest(
 export async function pollSwishPaymentStatusRequest(
   requestArgs: SwishPaymentStatusRequest
 ): Promise<ApiResponse<SwishPaymentStatusResponse>> {
-  if (process.env.USE_DEV_DATA === 'true') {
+  if (process.env.REACT_APP_USE_DEV_DATA === 'true') {
     await new Promise((resolve) => setTimeout(resolve, 500))
 
     if (Math.random() > 0.5) {

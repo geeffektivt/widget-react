@@ -9,7 +9,7 @@ import {
 import { SwishState } from './swish.types'
 
 const initialState: SwishState = {
-  number: null,
+  phoneNumber: null,
 
   createPaymentResponse: null,
   paymentStatus: null,
@@ -26,8 +26,8 @@ export const swishSlice = createSlice({
   initialState,
 
   reducers: {
-    setNumber(state, action: PayloadAction<string>) {
-      state.number = action.payload
+    setPhoneNumber(state, action: PayloadAction<string>) {
+      state.phoneNumber = action.payload
     },
   },
 
@@ -40,6 +40,7 @@ export const swishSlice = createSlice({
       .addCase(createSwishPayment.fulfilled, (state, action) => {
         state.isCreatingPayment = false
         state.createPaymentResponse = action.payload
+        state.paymentStatus = action.payload.status
       })
       .addCase(createSwishPayment.rejected, (state, action) => {
         state.isCreatingPayment = false

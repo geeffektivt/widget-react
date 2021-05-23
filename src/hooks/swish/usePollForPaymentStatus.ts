@@ -31,16 +31,11 @@ export default function usePollForPaymentStatus(pollingIntervalMs = 2000) {
       return
     }
 
-    if (
-      paymentStatus === null ||
-      paymentStatus === 'PAID' ||
-      paymentStatus === 'ERROR' ||
-      paymentStatus === 'DECLINED'
-    ) {
+    if (paymentStatus !== 'CREATED') {
       return
     }
 
-    const isFirstFrame = wasPollingPreviousFrame === undefined
+    const isFirstFrame = !isPolling && !wasPollingPreviousFrame
     if (isFirstFrame) {
       dispatch(swishAsyncActions.pollSwishPaymentStatus({ id: paymentId }))
       return
