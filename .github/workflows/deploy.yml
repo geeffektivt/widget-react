@@ -4,9 +4,9 @@ name: Deploy to google cloud storage
 
 on:
   push:
-    branches: [feature-deploy]
+    branches: [main]
   pull_request:
-    branches: [feature-deploy]
+    branches: [main]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
