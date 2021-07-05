@@ -1,0 +1,37 @@
+# This workflow will run the unit tests and upload the build artifact to google cloud storage
+
+name: Deploy to google cloud storage
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install dependencies
+        run: yarn install
+      - name: Test
+        run: yarn test
+      - name: Build
+        run: yarn build
+      - name: Run gulp task to inline css/js
+        run: npx gulp
+      - name: Upload index.html to Google Cloud Storage bucket
+        uses: google-github-actions/upload-cloud-storage@main
+        with:
+          credentials: ${{ secrets.gcp_credentials }}
+          path: build/index.html
+          destination: widget-react
