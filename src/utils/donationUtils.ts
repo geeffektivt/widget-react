@@ -2,15 +2,13 @@
 
 import { BaseDistribution } from '../store/donation/donation.types'
 
-type ShareEntry = BaseDistribution
-
 export const getStepLength = (sum: number) => (sum < 5 ? 1 : 5)
 
 /**
  * @warn Will mutate entries.
  */
 export function mutableRoundRobinUpdateAllShares(
-  entries: ShareEntry[],
+  entries: BaseDistribution[],
   oldSum: number,
   sum: number,
   lastRoundRobinIndex: number
@@ -33,7 +31,7 @@ export function mutableRoundRobinUpdateAllShares(
  * @warn Will mutate entries.
  */
 export function mutableRoundRobinUpdateShareAtIndex(
-  entries: ShareEntry[],
+  entries: BaseDistribution[],
   updatedIndex: number,
   updatedShare: number,
   lastRoundRobinIndex: number,
@@ -78,6 +76,9 @@ export function mutableRoundRobinUpdateShareAtIndex(
 /**
  * updatedIndex = undefined means that the total available sum (maxValue) for the distributions changed,
  * so all entries should be updated even if they are locked
+ * entries: orgs or cause proportion
+  updateDelta: 
+  updatedIndex?: number
  */
 export function updateValues(
   entries: BaseDistribution[],
@@ -87,29 +88,30 @@ export function updateValues(
   maxValue: number,
   updatedIndex?: number
 ) {
+  const minPercentage = 0
+  const maxPercentage = 100
   if (updateDelta === 0) {
     console.log('Zero!!!!')
     return { roundRobinEndIndex: lastRoundRobinIndex }
   }
   let updateAbsDiff = Math.abs(updateDelta)
   const nbrOfValues = entries.length
-  // const deltaPerStep = updateDelta / updateAbsDiff
-  let stepLength = 1
-
-  let deltaPerStep = (updateDelta / updateAbsDiff) * stepLength
+  const stepLength = 1
+  const deltaPerStep = (updateDelta / updateAbsDiff) * stepLength
   console.log('deltaPerStep', deltaPerStep)
+
   let roundRobinIndex = lastRoundRobinIndex
   let tries = 0
   while (updateAbsDiff > 0 && tries < 1000) {
     tries += 1
     if (tries >= 999) {
-      console.log('OHNO')
+      console.log('SLIDER ERROR')
     }
     console.log('updateAbsDiff', updateAbsDiff)
-    if (updateAbsDiff < deltaPerStep) {
-      stepLength = 1
-      deltaPerStep = (updateDelta / Math.abs(updateDelta)) * stepLength
-    }
+    // if (updateAbsDiff < deltaPerStep) {
+    //   stepLength = 1
+    //   deltaPerStep = (updateDelta / Math.abs(updateDelta)) * stepLength
+    // }
     roundRobinIndex = (roundRobinIndex + 1) % nbrOfValues
 
     if (roundRobinIndex === updatedIndex) {
@@ -120,7 +122,7 @@ export function updateValues(
     const entry = entries[roundRobinIndex]
     // If a cause was set to 0, then it should be kept at 0 unless the remaining causes also are 0 or locked
     // ie only update a 0-cause when there is no other option
-    const shouldStickToZero = () => false
+    const shouldStickToZero = () => false // TODO: FIX
     // () =>
     //   entry.share === 0 &&
     //   entries

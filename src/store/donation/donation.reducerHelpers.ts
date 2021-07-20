@@ -1,4 +1,9 @@
-import { Cause } from '../../@types/import/content/organizations.types'
+import { getSourceMapRange } from 'typescript'
+
+import {
+  Cause,
+  Organization,
+} from '../../@types/import/content/organizations.types'
 import { ShareType } from '../../constants/enums/ShareType'
 import {
   mutableRoundRobinUpdateAllShares,
@@ -11,54 +16,72 @@ import {
   OrganizationDistribution,
 } from './donation.types'
 
-export function resetDistributionsHelper(causesData: Cause[], sum: number) {
-  let totalCauseShareLeft = sum
+function resetOrgDistribution(organizations: Organization[], causeSum: number) {
+  const nbrOfOrgs = organizations.length
+  const totalShares = 100
+  let remainingSumOrgs = causeSum
+  let remainingSharesOrgs = totalShares
 
-  return causesData.map((cause) => {
-    const standardShareInKronor = (cause.standardShare / 100) * (sum ?? 0)
-    const share = Math.max(
-      totalCauseShareLeft - standardShareInKronor,
-      standardShareInKronor
+  return organizations.map((organization) => {
+    const orgSum = Math.min(remainingSumOrgs, Math.round(causeSum / nbrOfOrgs))
+    const orgShare = Math.min(
+      remainingSharesOrgs,
+      Math.round(totalShares / nbrOfOrgs)
     )
 
-    totalCauseShareLeft -= share
+    remainingSumOrgs -= orgSum
+    remainingSharesOrgs -= orgShare
 
-    let totalOrganizationShareLeft = share
-    const nbrOfOrganizations = cause.organizations.length
+    const organizationDistribution: OrganizationDistribution = {
+      id: organization.id,
+      isLocked: false,
+      name: organization.name,
+      share: orgShare,
+      sum: orgSum,
+    }
+
+    return organizationDistribution
+  })
+}
+
+export function resetDistributionsHelper(
+  causesData: Cause[],
+  donationSum: number
+) {
+  let remainingSumCauses = donationSum
+  let remainingShares = 100
+
+  return causesData.map((cause) => {
+    // per cause
+    // make sure last share has no more than is left
+    const causeShare = Math.max(
+      remainingShares - cause.standardShare,
+      cause.standardShare
+    )
+    // calculate sum from share
+    const initialCauseSum = (causeShare / 100) * (donationSum ?? 0)
+    // make sure last sum has no more than is left
+    const causeSum = Math.max(
+      remainingSumCauses - initialCauseSum,
+      initialCauseSum
+    )
+
+    // deduct sum from total amount
+    remainingShares -= causeShare
+    remainingSumCauses -= causeSum
 
     const causeDistribution: CauseDistribution = {
       id: cause.id,
-      name: cause.name,
-
-      share,
       isLocked: false,
-      shareType: ShareType.Standard,
-
+      name: cause.name,
       lastOrganizationRoundRobinIndex: 0,
-
-      organizationsDistribution: cause.organizations.map(
-        (organization, index) => {
-          const isLast = index === nbrOfOrganizations - 1
-
-          const startShare = isLast
-            ? totalOrganizationShareLeft
-            : Math.min(
-                totalOrganizationShareLeft,
-                Math.round(share / nbrOfOrganizations)
-              )
-
-          totalOrganizationShareLeft -= startShare
-
-          const organizationDistribution: OrganizationDistribution = {
-            id: organization.id,
-            name: organization.name,
-            share: startShare,
-            isLocked: false,
-          }
-
-          return organizationDistribution
-        }
+      organizationsDistribution: resetOrgDistribution(
+        cause.organizations,
+        causeSum
       ),
+      share: causeShare,
+      shareType: ShareType.Standard,
+      sum: causeSum,
     }
 
     return causeDistribution
