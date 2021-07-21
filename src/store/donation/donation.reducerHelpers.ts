@@ -1,14 +1,6 @@
-import { getSourceMapRange } from 'typescript'
-
-import {
-  Cause,
-  Organization,
-} from '../../@types/import/content/organizations.types'
+import { Cause } from '../../@types/import/content/organizations.types'
 import { ShareType } from '../../constants/enums/ShareType'
-import {
-  // mutableRoundRobinUpdateAllShares,
-  mutableRoundRobinUpdateShareAtIndex,
-} from '../../utils/donationUtils'
+import { mutableRoundRobinUpdateShareAtIndex } from '../../utils/donationUtils'
 
 import {
   BaseDistribution,
@@ -16,13 +8,13 @@ import {
   OrganizationDistribution,
 } from './donation.types'
 
-function resetOrgDistribution(organizations: Organization[], causeSum: number) {
-  const nbrOfOrgs = organizations.length
+function setOrgDistribution(organizationIds: string[], causeSum: number) {
+  const nbrOfOrgs = organizationIds.length
   const totalShares = 100
   let remainingSumOrgs = causeSum
   let remainingSharesOrgs = totalShares
 
-  return organizations.map((organization) => {
+  return organizationIds.map((id) => {
     const orgSum = Math.min(remainingSumOrgs, Math.round(causeSum / nbrOfOrgs))
     const orgShare = Math.min(
       remainingSharesOrgs,
@@ -33,7 +25,7 @@ function resetOrgDistribution(organizations: Organization[], causeSum: number) {
     remainingSharesOrgs -= orgShare
 
     const organizationDistribution: OrganizationDistribution = {
-      id: organization.id,
+      id,
       isLocked: false,
       name: organization.name,
       share: orgShare,
@@ -41,6 +33,45 @@ function resetOrgDistribution(organizations: Organization[], causeSum: number) {
     }
 
     return organizationDistribution
+  })
+}
+
+export function updateAllSumsHelper(
+  distributions: CauseDistribution[],
+  totalSum: number
+) {
+  let remainingSumCauses = totalSum
+  let remainingShares = 100
+
+  return distributions.map((cause) => {
+    // per cause
+    // make sure last share has no more than is left
+    const causeShare = Math.max(remainingShares - cause.share, cause.share)
+    // calculate sum from share
+    const initialCauseSum = (causeShare / 100) * (totalSum ?? 0)
+    // make sure last sum has no more than is left
+    const causeSum = Math.max(
+      remainingSumCauses - initialCauseSum,
+      initialCauseSum
+    )
+    // deduct sum from total amount
+    remainingShares -= causeShare
+    remainingSumCauses -= causeSum
+
+    const causeDistribution: CauseDistribution = {
+      id: cause.id,
+      isLocked: false,
+      lastOrganizationRoundRobinIndex: 0,
+      organizationsDistribution: setOrgDistribution(
+        cause.organizationsDistribution.map((org) => org.id),
+        causeSum
+      ),
+      share: causeShare,
+      shareType: ShareType.Standard,
+      sum: causeSum,
+    }
+
+    return causeDistribution
   })
 }
 
@@ -75,8 +106,8 @@ export function resetDistributionsHelper(
       isLocked: false,
       name: cause.name,
       lastOrganizationRoundRobinIndex: 0,
-      organizationsDistribution: resetOrgDistribution(
-        cause.organizations,
+      organizationsDistribution: setOrgDistribution(
+        cause.organizations.map((org) => org.id),
         causeSum
       ),
       share: causeShare,
@@ -95,15 +126,14 @@ export function updateCauseDistributionsHelper(
   distributions: CauseDistribution[],
   updatedId: BaseDistribution['id'],
   updatedValue: number,
-  lastRoundRobinIndex: number,
-  sum: number
+  lastRoundRobinIndex: number
 ) {
   const itemIndex = distributions.findIndex((item) => item.id === updatedId)
 
   if (itemIndex === -1) {
     return null
   }
-  const oldDistributionShares = distributions.map((d) => d.share)
+  // const oldDistributionShares = distributions.map((d) => d.share)
 
   const roundrobinIndex = mutableRoundRobinUpdateShareAtIndex(
     distributions,
@@ -129,8 +159,7 @@ export function updateDistributionsHelper(
   distributions: BaseDistribution[],
   updatedId: BaseDistribution['id'],
   updatedValue: number,
-  lastRoundRobinIndex: number,
-  sum: number
+  lastRoundRobinIndex: number
 ) {
   const itemIndex = distributions.findIndex((item) => item.id === updatedId)
 

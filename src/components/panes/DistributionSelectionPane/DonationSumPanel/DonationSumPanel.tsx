@@ -1,4 +1,3 @@
-import useAllCauses from '../../../../hooks/content/useAllCauses'
 import useTypedDispatch from '../../../../hooks/store/useTypedDispatch'
 import useTypedSelector from '../../../../hooks/store/useTypedSelector'
 import { donationActions } from '../../../../store/donation/donation.slice'
@@ -8,14 +7,16 @@ import { TextInput } from '../../../shared/Input/TextInput'
 export default function DonationSumPanel() {
   const dispatch = useTypedDispatch()
   const sum = useTypedSelector((state) => state.donation.sum)
-  const causes = useAllCauses()
+  const causesDistribution = useTypedSelector(
+    (state) => state.donation.causesDistribution
+  )
 
   const handleSumChange = (value: number) => {
     dispatch(
       donationActions.setDonationSum(isValidNumber(value) ? value : null)
     )
 
-    dispatch(donationActions.resetDistribution(causes))
+    dispatch(donationActions.updateAllDistributionSums(causesDistribution))
   }
   return (
     <div>
