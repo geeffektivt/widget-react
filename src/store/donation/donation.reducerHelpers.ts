@@ -109,8 +109,7 @@ export function updateCauseDistributionsHelper(
     distributions,
     itemIndex,
     updatedValue,
-    lastRoundRobinIndex,
-    sum
+    lastRoundRobinIndex
   )
 
   // distributions.forEach((d, i) => {
@@ -143,7 +142,6 @@ export function updateDistributionsHelper(
     distributions,
     itemIndex,
     updatedValue,
-    lastRoundRobinIndex,
-    sum
+    lastRoundRobinIndex
   )
 }

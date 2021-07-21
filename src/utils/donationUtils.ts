@@ -34,8 +34,7 @@ export function mutableRoundRobinUpdateShareAtIndex(
   entries: BaseDistribution[],
   updatedIndex: number,
   updatedShare: number,
-  lastRoundRobinIndex: number,
-  sum: number
+  lastRoundRobinIndex: number
 ): { roundRobinEndIndex: number } {
   const nbrOfValues = entries.length
   if (nbrOfValues === 1) {
