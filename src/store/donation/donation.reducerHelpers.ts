@@ -28,6 +28,7 @@ export function resetDistributionsHelper(causesData: Cause[], sum: number) {
 
     const causeDistribution: CauseDistribution = {
       id: cause.id,
+      name: cause.name,
 
       share,
       isLocked: false,
@@ -50,6 +51,7 @@ export function resetDistributionsHelper(causesData: Cause[], sum: number) {
 
           const organizationDistribution: OrganizationDistribution = {
             id: organization.id,
+            name: organization.name,
             share: startShare,
             isLocked: false,
           }

@@ -31,7 +31,7 @@ export default function usePollForPaymentStatus(pollingIntervalMs = 2000) {
       return
     }
 
-    if (paymentStatus !== 'CREATED') {
+    if (paymentStatus !== 'CREATED' && paymentStatus !== 'STARTED') {
       return
     }
 

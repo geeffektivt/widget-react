@@ -1,4 +1,4 @@
-import { caseInsensitiveEquals } from '../stringUtils'
+import { caseInsensitiveContains } from '../stringUtils'
 
 export const ContentTypeHeader = 'Content-Type'
 
@@ -7,7 +7,7 @@ export const ContentTypes = {
 }
 
 export function isResponseContentType(response: Response, contentType: string) {
-  return caseInsensitiveEquals(
+  return caseInsensitiveContains(
     response.headers.get(ContentTypeHeader),
     contentType
   )

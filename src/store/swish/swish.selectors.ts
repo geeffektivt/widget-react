@@ -20,5 +20,5 @@ export const getSwishPaymentStatus = createSelector(
 
 export const getSwishPaymentId = createSelector(
   getSwishState,
-  (state) => state.createPaymentResponse?.paymentId ?? null
+  (state) => state.createPaymentResponse?.id ?? null
 )

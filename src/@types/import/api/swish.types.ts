@@ -1,25 +1,39 @@
 export interface SwishPaymentRequest {
-  amount: number
-  isOnMobile: boolean
-  mobilePhoneNumber?: string
-  /** Internal payment reference */
-  reference: string
+  isAnonymous: boolean
+  phone: string
+  name?: string
+  email?: string
+  doTaxDeduction?: boolean
+  approvesPrivacyPolicy?: boolean
+  doNewsletter?: boolean
+  charities: Charity[]
+}
+
+interface Charity {
+  name: string
+  sum: number
 }
 
 export interface SwishPaymentResponse {
-  status: SwishPaymentStatus
-  paymentId: string
-  paymentRequestToken: string
+  id: string
 }
 
 export interface SwishPaymentStatusRequest {
-  id: SwishPaymentResponse['paymentId']
+  id: SwishPaymentResponse['id']
 }
 
-export type SwishPaymentStatus = 'CREATED' | 'PAID' | 'DECLINED' | 'ERROR'
+export type SwishPaymentStatus =
+  | 'CREATED'
+  | 'STARTED'
+  | 'PAID'
+  | 'DECLINED'
+  | 'ERROR'
+  | 'CANCELLED'
 
 export interface SwishPaymentStatusResponse {
+  id: SwishPaymentResponse['id']
   status: SwishPaymentStatus
+  paymentType: string
 }
 
 export interface SwishPaymentRedirectQueries {

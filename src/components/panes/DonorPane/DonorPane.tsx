@@ -66,6 +66,7 @@ export function DonorPane() {
         taxDeduction: formValues.taxDeduction ?? false,
         ssn: formValues.ssn ?? -1,
         newsletter: formValues.newsletter ?? false,
+        approvesPrivacyPolicy: formValues.privacyPolicy,
       }
     }
 

@@ -1,10 +1,13 @@
 import PhoneInput from 'react-phone-input-2'
 
 import 'react-phone-input-2/lib/style.css'
+import { DonorType } from '../../../../constants/enums/DonorType'
+import { ShareType } from '../../../../constants/enums/ShareType'
 import useAllTexts from '../../../../hooks/content/useAllTexts'
 import useTypedDispatch from '../../../../hooks/store/useTypedDispatch'
 import useTypedSelector from '../../../../hooks/store/useTypedSelector'
 import usePollForPaymentStatus from '../../../../hooks/swish/usePollForPaymentStatus'
+import { CauseDistribution } from '../../../../store/donation/donation.types'
 import {
   swishActions,
   swishAsyncActions,
@@ -21,21 +24,38 @@ export default function Swish() {
   const { phoneNumber, paymentStatus } = useTypedSelector(
     (state) => state.swish
   )
-  const sum = useTypedSelector((state) => state.donation.sum)
+  const { donorType, donor, causesDistribution } = useTypedSelector(
+    (state) => state.donation
+  )
   const texts = useAllTexts()
   const paneTexts = texts.donations.swish
 
   const onPhoneNumberChange = (n: string) =>
     dispatch(swishActions.setPhoneNumber(n))
   const onNextClick = () => {
-    // TODO: set correct data
     const paymentRequest = {
-      amount: sum ?? 0,
-      isOnMobile: false,
-      mobilePhoneNumber: phoneNumber ?? '',
-      reference: '',
+      isAnonymous: donorType === DonorType.Anonymous,
+      phone: phoneNumber ?? '',
+      name: donor?.name,
+      email: donor?.email,
+      doTaxDeduction: donor?.taxDeduction,
+      approvesPrivacyPolicy: donor?.approvesPrivacyPolicy,
+      doNewsletter: donor?.newsletter,
+      charities: getCharitiesWithNames(causesDistribution),
     }
     dispatch(swishAsyncActions.createSwishPayment(paymentRequest))
+  }
+
+  const getCharitiesWithNames = (charities: CauseDistribution[]) => {
+    return charities.flatMap((c) => {
+      if (c.shareType === ShareType.Standard) {
+        return { name: c.name, sum: c.share }
+      }
+      return c.organizationsDistribution.map((o) => ({
+        name: o.name,
+        sum: o.share,
+      }))
+    })
   }
 
   usePollForPaymentStatus()

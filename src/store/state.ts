@@ -32,6 +32,7 @@ export interface DonorInput {
   name?: string
   email?: string
   taxDeduction?: boolean
+  approvesPrivacyPolicy?: boolean
   ssn?: number
   newsletter?: boolean
 }

@@ -21,12 +21,14 @@ export interface Donor {
   name: string
   email: string
   taxDeduction: boolean
+  approvesPrivacyPolicy: boolean
   ssn: number
   newsletter: boolean
 }
 
 export interface BaseDistribution {
   id: string
+  name: string
   share: number
   isLocked: boolean
 }

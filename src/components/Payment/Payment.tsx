@@ -15,7 +15,13 @@ export default function Payment({ status }: PaymentProps) {
     case 'CREATED':
       return <PaymentStarted />
 
+    case 'STARTED':
+      return <PaymentStarted />
+
     case 'ERROR':
+      return <PaymentFailed />
+
+    case 'CANCELLED':
       return <PaymentFailed />
 
     case 'DECLINED':

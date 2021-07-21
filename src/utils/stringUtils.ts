@@ -1,4 +1,4 @@
-export function caseInsensitiveEquals(
+export function caseInsensitiveContains(
   a: string | undefined | null,
   b: string | undefined | null
 ) {
@@ -6,5 +6,5 @@ export function caseInsensitiveEquals(
     return false
   }
 
-  return a.toLowerCase() === b.toLowerCase()
+  return a.toLowerCase().includes(b.toLowerCase())
 }

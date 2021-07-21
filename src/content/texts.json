@@ -34,7 +34,7 @@
         "taxDeduction": false,
         "ssn": 12345678910,
         "newsletter": false,
-        "privacyPolicy": true
+        "approvesPrivacyPolicy": true
       }
     },
 

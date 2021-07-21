@@ -40,7 +40,7 @@ export const swishSlice = createSlice({
       .addCase(createSwishPayment.fulfilled, (state, action) => {
         state.isCreatingPayment = false
         state.createPaymentResponse = action.payload
-        state.paymentStatus = action.payload.status
+        state.paymentStatus = 'CREATED'
       })
       .addCase(createSwishPayment.rejected, (state, action) => {
         state.isCreatingPayment = false

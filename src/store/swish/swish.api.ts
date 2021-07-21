@@ -17,14 +17,12 @@ export async function createSwishPaymentRequest(
 
     return new ApiResponse(undefined, {
       body: {
-        paymentId: 'fake-id',
-        paymentRequestToken: 'fake-token',
-        status: 'CREATED',
+        id: 'fake-id',
       },
     })
   }
 
-  const url = joinUrlPaths(API_URL, '/payment/swish')
+  const url = joinUrlPaths(API_URL, '/paymentSwishTest')
   return post<SwishPaymentResponse>(url, { body: requestArgs })
 }
 
@@ -38,6 +36,8 @@ export async function pollSwishPaymentStatusRequest(
       return new ApiResponse<SwishPaymentStatusResponse>(undefined, {
         body: {
           status: 'CREATED',
+          id: 'fake-id',
+          paymentType: 'swish',
         },
       })
     }
@@ -46,6 +46,8 @@ export async function pollSwishPaymentStatusRequest(
       return new ApiResponse<SwishPaymentStatusResponse>(undefined, {
         body: {
           status: 'ERROR',
+          id: 'fake-id',
+          paymentType: 'swish',
         },
       })
     }
@@ -54,6 +56,8 @@ export async function pollSwishPaymentStatusRequest(
       return new ApiResponse<SwishPaymentStatusResponse>(undefined, {
         body: {
           status: 'DECLINED',
+          id: 'fake-id',
+          paymentType: 'swish',
         },
       })
     }
@@ -61,10 +65,12 @@ export async function pollSwishPaymentStatusRequest(
     return new ApiResponse<SwishPaymentStatusResponse>(undefined, {
       body: {
         status: 'PAID',
+        id: 'fake-id',
+        paymentType: 'swish',
       },
     })
   }
 
-  const url = joinUrlPaths(API_URL, '/payment/swish', requestArgs.id)
+  const url = joinUrlPaths(API_URL, `/paymentStatus?id=${requestArgs.id}`)
   return get<SwishPaymentStatusResponse>(url)
 }
