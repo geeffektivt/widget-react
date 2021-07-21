@@ -91,61 +91,46 @@ export function updateValues(
   const minPercentage = 0
   const maxPercentage = 100
   if (updateDelta === 0) {
-    console.log('Zero!!!!')
     return { roundRobinEndIndex: lastRoundRobinIndex }
   }
   let updateAbsDiff = Math.abs(updateDelta)
   const nbrOfValues = entries.length
   const stepLength = 1
   const deltaPerStep = (updateDelta / updateAbsDiff) * stepLength
-  console.log('deltaPerStep', deltaPerStep)
 
   let roundRobinIndex = lastRoundRobinIndex
   let tries = 0
   while (updateAbsDiff > 0 && tries < 1000) {
     tries += 1
-    if (tries >= 999) {
-      console.log('SLIDER ERROR')
-    }
-    console.log('updateAbsDiff', updateAbsDiff)
-    // if (updateAbsDiff < deltaPerStep) {
-    //   stepLength = 1
-    //   deltaPerStep = (updateDelta / Math.abs(updateDelta)) * stepLength
-    // }
     roundRobinIndex = (roundRobinIndex + 1) % nbrOfValues
 
     if (roundRobinIndex === updatedIndex) {
-      console.log('roundRobinIndex === updatedIndex')
+      // don't update the slider that was dragged
       continue
     }
 
     const entry = entries[roundRobinIndex]
+
     // If a cause was set to 0, then it should be kept at 0 unless the remaining causes also are 0 or locked
     // ie only update a 0-cause when there is no other option
-    const shouldStickToZero = () => false // TODO: FIX
-    // () =>
+    const shouldStickToZero = false
     //   entry.share === 0 &&
     //   entries
     //     .filter((_, i) => i !== updatedIndex)
     //     .filter((e) => e.share === 0 || e.isLocked).length === 1
-    if (updatedIndex !== undefined && (entry.isLocked || shouldStickToZero())) {
-      console.log(
-        'updatedIndex !== undefined && (entry.isLocked || shouldStickToZero())'
-      )
+
+    if (updatedIndex !== undefined && (entry.isLocked || shouldStickToZero)) {
+      // don't update this slider
       continue
     }
 
     const currentStepValue = entry.share
-    const nextValue = currentStepValue + deltaPerStep // clamp(minValue, maxValue, currentStepValue + deltaPerStep)
-    console.log('nextValue', nextValue)
-    console.log('currentStepValue', currentStepValue)
+    const nextValue = clamp(minValue, maxValue, currentStepValue + deltaPerStep) // currentStepValue + deltaPerStep
+
     if (currentStepValue !== nextValue) {
       entries[roundRobinIndex].share = nextValue
       updateAbsDiff -= 1
     }
-    // else {
-    //   updateAbsDiff = 0
-    // }
   }
 
   return { roundRobinEndIndex: roundRobinIndex }
