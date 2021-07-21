@@ -7,25 +7,25 @@ export const getStepLength = (sum: number) => (sum < 5 ? 1 : 5)
 /**
  * @warn Will mutate entries.
  */
-export function mutableRoundRobinUpdateAllShares(
-  entries: BaseDistribution[],
-  oldSum: number,
-  sum: number,
-  lastRoundRobinIndex: number
-) {
-  const minValue = 0
-  const maxValue = sum
-  const updateDelta = sum - oldSum
+// export function mutableRoundRobinUpdateAllShares(
+//   entries: BaseDistribution[],
+//   oldSum: number,
+//   sum: number,
+//   lastRoundRobinIndex: number
+// ) {
+//   const minValue = 0
+//   const maxValue = sum
+//   const updateDelta = sum - oldSum
 
-  return updateValues(
-    entries,
-    updateDelta,
-    lastRoundRobinIndex,
-    minValue,
-    maxValue,
-    undefined
-  )
-}
+//   return updateValues(
+//     entries,
+//     updateDelta,
+//     lastRoundRobinIndex,
+//     minValue,
+//     maxValue,
+//     undefined
+//   )
+// }
 
 /**
  * @warn Will mutate entries.
@@ -85,7 +85,7 @@ export function updateValues(
   lastRoundRobinIndex: number,
   minValue: number,
   maxValue: number,
-  updatedIndex?: number
+  updatedIndex: number
 ) {
   const minPercentage = 0
   const maxPercentage = 100
@@ -118,7 +118,7 @@ export function updateValues(
     //     .filter((_, i) => i !== updatedIndex)
     //     .filter((e) => e.share === 0 || e.isLocked).length === 1
 
-    if (updatedIndex !== undefined && (entry.isLocked || shouldStickToZero)) {
+    if (entry.isLocked || shouldStickToZero) {
       // don't update this slider
       continue
     }

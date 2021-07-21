@@ -6,7 +6,7 @@ import {
 } from '../../@types/import/content/organizations.types'
 import { ShareType } from '../../constants/enums/ShareType'
 import {
-  mutableRoundRobinUpdateAllShares,
+  // mutableRoundRobinUpdateAllShares,
   mutableRoundRobinUpdateShareAtIndex,
 } from '../../utils/donationUtils'
 
