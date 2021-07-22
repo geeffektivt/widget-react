@@ -1,4 +1,7 @@
-import { Cause } from '../../@types/import/content/organizations.types'
+import {
+  Cause,
+  Organization,
+} from '../../@types/import/content/organizations.types'
 import { ShareType } from '../../constants/enums/ShareType'
 import { mutableRoundRobinUpdateShareAtIndex } from '../../utils/donationUtils'
 
@@ -8,32 +11,65 @@ import {
   OrganizationDistribution,
 } from './donation.types'
 
-function setOrgDistribution(organizationIds: string[], causeSum: number) {
-  const nbrOfOrgs = organizationIds.length
+function resetOrgDistribution(organizations: Organization[], causeSum: number) {
+  const nbrOfOrgs = organizations.length
   const totalShares = 100
   let remainingSumOrgs = causeSum
   let remainingSharesOrgs = totalShares
 
-  return organizationIds.map((id) => {
-    const orgSum = Math.min(remainingSumOrgs, Math.round(causeSum / nbrOfOrgs))
-    const orgShare = Math.min(
-      remainingSharesOrgs,
-      Math.round(totalShares / nbrOfOrgs)
-    )
+  return organizations.map(
+    (organization): OrganizationDistribution => {
+      // orgShare as equal shar could be replaced with standard values
+      // if they are added as a standardValue to the Organization type
+      const orgShare = Math.min(
+        remainingSharesOrgs,
+        Math.ceil(totalShares / nbrOfOrgs)
+      )
+      const orgSum = Math.min(
+        (orgShare / 100) * (causeSum ?? 0),
+        remainingSumOrgs
+      )
 
-    remainingSumOrgs -= orgSum
-    remainingSharesOrgs -= orgShare
+      remainingSumOrgs -= orgSum
+      remainingSharesOrgs -= orgShare
 
-    const organizationDistribution: OrganizationDistribution = {
-      id,
-      isLocked: false,
-      name: organization.name,
-      share: orgShare,
-      sum: orgSum,
+      return {
+        id: organization.id,
+        isLocked: false,
+        name: organization.name,
+        share: orgShare,
+        sum: orgSum,
+      }
     }
+  )
+}
 
-    return organizationDistribution
-  })
+function setOrgDistribution(
+  organizations: OrganizationDistribution[],
+  causeSum: number
+) {
+  let remainingSumOrgs = causeSum
+
+  return organizations.map(
+    (organization): OrganizationDistribution => {
+      const initialOrganizationSum =
+        (organization.share / 100) * (causeSum ?? 0)
+
+      const organizationSum = Math.max(
+        remainingSumOrgs - initialOrganizationSum,
+        initialOrganizationSum
+      )
+      remainingSumOrgs -= organizationSum
+
+      return {
+        id: organization.id,
+        isLocked: organization.isLocked,
+        name: organization.name,
+        share: organization.share,
+        sum: organizationSum,
+      }
+    }
+  )
 }
 
 export function updateAllSumsHelper(
@@ -41,33 +77,32 @@ export function updateAllSumsHelper(
   totalSum: number
 ) {
   let remainingSumCauses = totalSum
-  let remainingShares = 100
+  // let remainingShares = 100
 
   return distributions.map((cause) => {
     // per cause
     // make sure last share has no more than is left
-    const causeShare = Math.max(remainingShares - cause.share, cause.share)
     // calculate sum from share
-    const initialCauseSum = (causeShare / 100) * (totalSum ?? 0)
+    const initialCauseSum = (cause.share / 100) * (totalSum ?? 0)
     // make sure last sum has no more than is left
     const causeSum = Math.max(
       remainingSumCauses - initialCauseSum,
       initialCauseSum
     )
     // deduct sum from total amount
-    remainingShares -= causeShare
     remainingSumCauses -= causeSum
 
     const causeDistribution: CauseDistribution = {
       id: cause.id,
-      isLocked: false,
+      isLocked: cause.isLocked,
+      name: cause.name,
       lastOrganizationRoundRobinIndex: 0,
       organizationsDistribution: setOrgDistribution(
-        cause.organizationsDistribution.map((org) => org.id),
+        cause.organizationsDistribution,
         causeSum
       ),
-      share: causeShare,
-      shareType: ShareType.Standard,
+      share: cause.share,
+      shareType: cause.shareType,
       sum: causeSum,
     }
 
@@ -106,8 +141,8 @@ export function resetDistributionsHelper(
       isLocked: false,
       name: cause.name,
       lastOrganizationRoundRobinIndex: 0,
-      organizationsDistribution: setOrgDistribution(
-        cause.organizations.map((org) => org.id),
+      organizationsDistribution: resetOrgDistribution(
+        cause.organizations,
         causeSum
       ),
       share: causeShare,
@@ -133,7 +168,6 @@ export function updateCauseDistributionsHelper(
   if (itemIndex === -1) {
     return null
   }
-  // const oldDistributionShares = distributions.map((d) => d.share)
 
   const roundrobinIndex = mutableRoundRobinUpdateShareAtIndex(
     distributions,
@@ -141,16 +175,6 @@ export function updateCauseDistributionsHelper(
     updatedValue,
     lastRoundRobinIndex
   )
-
-  // distributions.forEach((d, i) => {
-  //   const { roundRobinEndIndex } = mutableRoundRobinUpdateAllShares(
-  //     d.organizationsDistribution,
-  //     oldDistributionShares[i],
-  //     d.share,
-  //     d.lastOrganizationRoundRobinIndex
-  //   )
-  //   d.lastOrganizationRoundRobinIndex = roundRobinEndIndex
-  // })
 
   return roundrobinIndex
 }
