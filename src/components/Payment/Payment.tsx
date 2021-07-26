@@ -1,9 +1,11 @@
 import React from 'react'
 
-import { SwishPaymentStatus } from '../../@types/import/api/swish.types'
+import { SwishPaymentStatus } from '../../@types/import/api/payment.types'
+import { PaymentMethod } from '../../constants/enums/PaymentMethod'
+import useTypedSelector from '../../hooks/store/useTypedSelector'
 
+import PaymentCreated from './components/PaymentCreated'
 import PaymentFailed from './components/PaymentFailed'
-import PaymentStarted from './components/PaymentStarted'
 import PaymentSuccess from './components/PaymentSuccess'
 
 interface PaymentProps {
@@ -11,19 +13,17 @@ interface PaymentProps {
 }
 
 export default function Payment({ status }: PaymentProps) {
+  const { method } = useTypedSelector((state) => state.donation)
+  if (method === PaymentMethod.Bank) {
+    return <PaymentSuccess />
+  }
   switch (status) {
-    case 'CREATED':
-      return <PaymentStarted />
-
     case 'STARTED':
-      return <PaymentStarted />
+    case 'CREATED':
+      return <PaymentCreated />
 
     case 'ERROR':
-      return <PaymentFailed />
-
     case 'CANCELLED':
-      return <PaymentFailed />
-
     case 'DECLINED':
       return <PaymentFailed />
 

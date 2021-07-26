@@ -8,7 +8,7 @@ import useTypedSelector from '../../../hooks/store/useTypedSelector'
 import { referralsActions } from '../../../store/referrals/referrals.slice'
 import { uiActions } from '../../../store/ui/ui.slice'
 import { NextButton } from '../../shared/Buttons/NavigationButtons.style'
-import { Pane, PaneContainer, PaneTitle } from '../Panes.style'
+import { Pane, PaneTitle } from '../Panes.style'
 
 import {
   ReferralButton,
@@ -40,29 +40,27 @@ export function ReferralPane() {
 
   return (
     <Pane>
-      <PaneContainer>
-        <PaneTitle>{paneTexts.title}</PaneTitle>
+      <PaneTitle>{paneTexts.title}</PaneTitle>
 
-        <ReferralsWrapper>
-          <ReferralButtonsWrapper>
-            {referralOptions?.map((referral) => (
-              <ReferralButton
-                key={referral.id}
-                onClick={() => onReferralSelect(referral)}
-                selected={referral.id === selectedReferral?.id}
-              >
-                {referral.name}
-              </ReferralButton>
-            ))}
-          </ReferralButtonsWrapper>
-        </ReferralsWrapper>
+      <ReferralsWrapper>
+        <ReferralButtonsWrapper>
+          {referralOptions?.map((referral) => (
+            <ReferralButton
+              key={referral.id}
+              onClick={() => onReferralSelect(referral)}
+              selected={referral.id === selectedReferral?.id}
+            >
+              {referral.name}
+            </ReferralButton>
+          ))}
+        </ReferralButtonsWrapper>
+      </ReferralsWrapper>
 
-        <NextButton onClick={onSkipClick}>
-          {selectedReferral === undefined
-            ? paneTexts.skipLabel
-            : paneTexts.nextLabel}
-        </NextButton>
-      </PaneContainer>
+      <NextButton onClick={onSkipClick}>
+        {selectedReferral === undefined
+          ? paneTexts.skipLabel
+          : paneTexts.nextLabel}
+      </NextButton>
     </Pane>
   )
 }

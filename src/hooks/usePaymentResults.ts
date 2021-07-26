@@ -1,4 +1,4 @@
-import { SwishPaymentRedirectQueries } from '../@types/import/api/swish.types'
+import { SwishPaymentRedirectQueries } from '../@types/import/api/payment.types'
 
 export default function usePaymentResults(): SwishPaymentRedirectQueries | null {
   return null

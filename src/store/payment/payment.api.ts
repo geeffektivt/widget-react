@@ -1,17 +1,20 @@
 import {
-  SwishPaymentRequest,
-  SwishPaymentResponse,
+  PaymentResponse,
+  PaymentRequest,
   SwishPaymentStatusRequest,
   SwishPaymentStatusResponse,
-} from '../../@types/import/api/swish.types'
+} from '../../@types/import/api/payment.types'
 import { API_URL } from '../../config/api'
+import { ShareType } from '../../constants/enums/ShareType'
 import { get, post } from '../../services/apiService'
 import { ApiResponse } from '../../utils/api/apiHelpers'
 import { joinUrlPaths } from '../../utils/urlUtils'
+import { CauseDistribution } from '../donation/donation.types'
 
-export async function createSwishPaymentRequest(
-  requestArgs: SwishPaymentRequest
-): Promise<ApiResponse<SwishPaymentResponse>> {
+export async function createPaymentRequest(
+  path: string,
+  requestArgs: PaymentRequest
+): Promise<ApiResponse<PaymentResponse>> {
   if (process.env.REACT_APP_USE_DEV_DATA === 'true') {
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
@@ -22,8 +25,20 @@ export async function createSwishPaymentRequest(
     })
   }
 
-  const url = joinUrlPaths(API_URL, '/paymentSwishTest')
-  return post<SwishPaymentResponse>(url, { body: requestArgs })
+  const url = joinUrlPaths(API_URL, path)
+  return post<PaymentResponse>(url, { body: requestArgs })
+}
+
+export const getCharitiesWithNames = (charities: CauseDistribution[]) => {
+  return charities.flatMap((c) => {
+    if (c.shareType === ShareType.Standard) {
+      return { name: c.name, sum: c.share }
+    }
+    return c.organizationsDistribution.map((o) => ({
+      name: o.name,
+      sum: o.share,
+    }))
+  })
 }
 
 export async function pollSwishPaymentStatusRequest(

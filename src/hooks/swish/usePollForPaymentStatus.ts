@@ -1,13 +1,8 @@
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
 
-import {
-  getSwishPaymentStatus,
-  getIsPollingSwishPaymentStatus,
-  getSwishPaymentId,
-} from '../../store/swish/swish.selectors'
-import { swishAsyncActions } from '../../store/swish/swish.slice'
+import { paymentAsyncActions } from '../../store/payment/payment.slice'
 import useTypedDispatch from '../store/useTypedDispatch'
+import useTypedSelector from '../store/useTypedSelector'
 import usePrevious from '../utils/usePrevious'
 import useTimeout from '../utils/useTimeout'
 
@@ -16,11 +11,14 @@ export default function usePollForPaymentStatus(pollingIntervalMs = 2000) {
 
   const safeSetTimeout = useTimeout()
 
-  const paymentStatus = useSelector(getSwishPaymentStatus)
-  const isPolling = useSelector(getIsPollingSwishPaymentStatus)
-  const wasPollingPreviousFrame = usePrevious(isPolling)
+  const { paymentStatus, isPollingStatus: isPolling } = useTypedSelector(
+    (state) => state.payment
+  )
+  const paymentId = useTypedSelector(
+    (state) => state.payment.createPaymentResponse?.id ?? null
+  )
 
-  const paymentId = useSelector(getSwishPaymentId)
+  const wasPollingPreviousFrame = usePrevious(isPolling)
 
   useEffect(() => {
     if (!paymentId) {
@@ -37,13 +35,13 @@ export default function usePollForPaymentStatus(pollingIntervalMs = 2000) {
 
     const isFirstFrame = !isPolling && !wasPollingPreviousFrame
     if (isFirstFrame) {
-      dispatch(swishAsyncActions.pollSwishPaymentStatus({ id: paymentId }))
+      dispatch(paymentAsyncActions.pollSwishPaymentStatus({ id: paymentId }))
       return
     }
 
     if (wasPollingPreviousFrame) {
       safeSetTimeout(() => {
-        dispatch(swishAsyncActions.pollSwishPaymentStatus({ id: paymentId }))
+        dispatch(paymentAsyncActions.pollSwishPaymentStatus({ id: paymentId }))
       }, pollingIntervalMs)
     }
   }, [dispatch, paymentId, paymentStatus, isPolling, wasPollingPreviousFrame])

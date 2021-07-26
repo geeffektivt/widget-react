@@ -61,8 +61,8 @@
     "swish": {
       "title": "Ange ditt telefonnummer:",
       "payTitle": "Betala",
-      "paymentStartedTitle": "Betalning påbörjad",
-      "paymentStartedDescription": "Öppna din Swish app och följ instruktionerna.",
+      "paymentCreatedTitle": "Betalning påbörjad",
+      "paymentCreatedDescription": "Öppna din Swish app och följ instruktionerna.",
       "paymentFailedTitle": "Betalningen misslyckades",
       "paymentFailedDescription": "Var vänlig försök igen",
       "paymentSuccessTitle": "Betalning mottagen",

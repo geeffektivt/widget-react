@@ -1,17 +1,17 @@
 import PhoneInput from 'react-phone-input-2'
 
 import 'react-phone-input-2/lib/style.css'
+import { SwishPaymentRequest } from '../../../../@types/import/api/payment.types'
 import { DonorType } from '../../../../constants/enums/DonorType'
-import { ShareType } from '../../../../constants/enums/ShareType'
 import useAllTexts from '../../../../hooks/content/useAllTexts'
 import useTypedDispatch from '../../../../hooks/store/useTypedDispatch'
 import useTypedSelector from '../../../../hooks/store/useTypedSelector'
 import usePollForPaymentStatus from '../../../../hooks/swish/usePollForPaymentStatus'
-import { CauseDistribution } from '../../../../store/donation/donation.types'
+import { getCharitiesWithNames } from '../../../../store/payment/payment.api'
 import {
-  swishActions,
-  swishAsyncActions,
-} from '../../../../store/swish/swish.slice'
+  paymentAsyncActions,
+  paymentActions,
+} from '../../../../store/payment/payment.slice'
 import Payment from '../../../Payment'
 import { NextButton } from '../../../shared/Buttons/NavigationButtons.style'
 import SwishLogoPrimary from '../../../shared/_svg/SwishLogo/SwishLogoPrimary'
@@ -21,8 +21,8 @@ import { Container, PhoneInputContainer, LogoContainer } from './Swish.style'
 
 export default function Swish() {
   const dispatch = useTypedDispatch()
-  const { phoneNumber, paymentStatus } = useTypedSelector(
-    (state) => state.swish
+  const { paymentStatus, phoneNumber } = useTypedSelector(
+    (state) => state.payment
   )
   const { donorType, donor, causesDistribution } = useTypedSelector(
     (state) => state.donation
@@ -31,31 +31,20 @@ export default function Swish() {
   const paneTexts = texts.donations.swish
 
   const onPhoneNumberChange = (n: string) =>
-    dispatch(swishActions.setPhoneNumber(n))
+    dispatch(paymentActions.setPhoneNumber(n))
   const onNextClick = () => {
-    const paymentRequest = {
+    const paymentRequest: SwishPaymentRequest = {
       isAnonymous: donorType === DonorType.Anonymous,
       phone: phoneNumber ?? '',
       name: donor?.name,
       email: donor?.email,
       doTaxDeduction: donor?.taxDeduction,
+      personalNumber: donor?.ssn.toString(),
       approvesPrivacyPolicy: donor?.approvesPrivacyPolicy,
       doNewsletter: donor?.newsletter,
       charities: getCharitiesWithNames(causesDistribution),
     }
-    dispatch(swishAsyncActions.createSwishPayment(paymentRequest))
-  }
-
-  const getCharitiesWithNames = (charities: CauseDistribution[]) => {
-    return charities.flatMap((c) => {
-      if (c.shareType === ShareType.Standard) {
-        return { name: c.name, sum: c.share }
-      }
-      return c.organizationsDistribution.map((o) => ({
-        name: o.name,
-        sum: o.share,
-      }))
-    })
+    dispatch(paymentAsyncActions.createSwishPayment(paymentRequest))
   }
 
   usePollForPaymentStatus()

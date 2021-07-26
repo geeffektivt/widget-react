@@ -1,12 +1,19 @@
-export interface SwishPaymentRequest {
+export interface PaymentRequest {
   isAnonymous: boolean
-  phone: string
   name?: string
   email?: string
   doTaxDeduction?: boolean
+  personalNumber?: string
   approvesPrivacyPolicy?: boolean
   doNewsletter?: boolean
   charities: Charity[]
+}
+export interface BankPaymentRequest extends PaymentRequest {
+  reoccursMonthly: boolean
+}
+
+export interface SwishPaymentRequest extends PaymentRequest {
+  phone?: string
 }
 
 interface Charity {
@@ -14,12 +21,12 @@ interface Charity {
   sum: number
 }
 
-export interface SwishPaymentResponse {
+export interface PaymentResponse {
   id: string
 }
 
 export interface SwishPaymentStatusRequest {
-  id: SwishPaymentResponse['id']
+  id: PaymentResponse['id']
 }
 
 export type SwishPaymentStatus =
@@ -31,7 +38,7 @@ export type SwishPaymentStatus =
   | 'CANCELLED'
 
 export interface SwishPaymentStatusResponse {
-  id: SwishPaymentResponse['id']
+  id: PaymentResponse['id']
   status: SwishPaymentStatus
   paymentType: string
 }

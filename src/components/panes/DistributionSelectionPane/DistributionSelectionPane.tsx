@@ -38,7 +38,7 @@ export default function DistributionSelectionPane() {
         })}
       </CausesAccordion>
 
-      <NextButton onClick={onNextClick}>Next</NextButton>
+      <NextButton onClick={onNextClick}>Nästa</NextButton>
     </Pane>
   )
 }

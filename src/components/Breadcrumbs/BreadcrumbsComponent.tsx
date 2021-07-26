@@ -1,6 +1,7 @@
 import { Breadcrumbs, Button } from '@material-ui/core'
 import React from 'react'
 
+import { DonationStep } from '../../constants/enums/DonationStep'
 import { DonorType } from '../../constants/enums/DonorType'
 import useTypedDispatch from '../../hooks/store/useTypedDispatch'
 import useTypedSelector from '../../hooks/store/useTypedSelector'
@@ -19,6 +20,7 @@ const BreadcrumbsComponent = () => {
   const { method, recurring, donorType, donor } = useTypedSelector(
     (state) => state.donation
   )
+  const { activeStep } = useTypedSelector((state) => state.ui)
 
   const donorName = donor?.name ?? ''
 
@@ -28,7 +30,10 @@ const BreadcrumbsComponent = () => {
     donorType === DonorType.Donor ? donorName : donorType,
   ]
 
-  if (breadcrumbItems.some((b) => b === null)) {
+  if (
+    breadcrumbItems.some((b) => b === null) ||
+    activeStep === DonationStep.Payment
+  ) {
     return <></>
   }
 
@@ -45,6 +50,7 @@ const BreadcrumbsComponent = () => {
               }}
               size="medium"
               onClick={() => handleClick(i)}
+              key={step}
             >
               {step}
             </Button>
