@@ -17,6 +17,7 @@ export function TextInput({
   selectOnClick,
   onChange,
   value,
+  inputMode,
 }: TextInputProps) {
   return (
     <TextInputWrapper label={label} denomination={denomination}>
@@ -24,6 +25,7 @@ export function TextInput({
         label={label}
         name={name}
         type={type}
+        inputMode={inputMode}
         placeholder={placeholder}
         defaultValue={defaultValue}
         denomination={denomination}

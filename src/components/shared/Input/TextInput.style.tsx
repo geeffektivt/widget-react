@@ -12,6 +12,7 @@ export interface TextInputProps extends TextInputWrapperProps {
   innerRef?: React.Ref<HTMLInputElement>
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   value?: string | number | readonly string[]
+  inputMode?: 'tel' | 'decimal' | 'text' | 'numeric' | 'email'
 }
 
 export interface TextInputWrapperProps {
@@ -22,7 +23,7 @@ export interface TextInputWrapperProps {
 export const TextInputWrapper = styled.div`
   display: block;
   margin-bottom: 5px;
-  font-size: 15px;
+  font-size: 1em;
   border: 1px solid ${gray18};
   border-radius: 5px;
   box-sizing: border-box;
@@ -69,7 +70,7 @@ export const TextInputWrapper = styled.div`
 
 export const TextInputField = styled.input`
   font-size: inherit;
-  padding: 20px;
+  padding: 1.3em;
   ${(props: TextInputProps) => {
     if (props.denomination) {
       return `

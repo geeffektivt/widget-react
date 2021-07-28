@@ -124,12 +124,3 @@ export function updateDistributionsHelper(
     sum
   )
 }
-
-// export function updateDistributionValuesHelper(
-//   distributions: WritableDraft<BaseDistribution>[],
-//   values: BaseDistribution[]
-// ) {
-//   distributions.forEach((item, index) => {
-//     item.share = values[index]
-//   })
-// }

@@ -17,7 +17,8 @@ import { ToolTip } from '../../shared/ToolTip/ToolTip'
 import ActionString from '../../shared/_functional/ActionString'
 import {
   InputFieldWrapper,
-  TextField,
+  SmallInputFieldWrapper,
+  Container,
   CheckboxLabel,
   CheckBox,
   CheckboxWrapper,
@@ -97,6 +98,7 @@ export function DonorPane() {
 
               <TextInput
                 name="email"
+                inputMode="email"
                 type="text"
                 placeholder={paneTexts.emailPlaceholder}
                 innerRef={register({
@@ -107,7 +109,7 @@ export function DonorPane() {
               {isEmailInvalid && <ErrorField text={paneTexts.emailError} />}
             </InputFieldWrapper>
 
-            <div>
+            <Container>
               <CheckboxWrapper>
                 <CheckBox name="taxDeduction" type="checkbox" ref={register} />
 
@@ -120,13 +122,13 @@ export function DonorPane() {
               </CheckboxWrapper>
 
               {watch('taxDeduction') && (
-                <InputFieldWrapper>
-                  <TextField
+                <SmallInputFieldWrapper>
+                  <TextInput
                     name="ssn"
                     type="number"
-                    inputMode="tel"
+                    inputMode="numeric"
                     placeholder={paneTexts.ssnPlaceholder}
-                    ref={register({
+                    innerRef={register({
                       required: false,
                       validate: (val) =>
                         !watchAllFields.taxDeduction ||
@@ -136,7 +138,7 @@ export function DonorPane() {
                   />
 
                   {isSsnInvalid && <ErrorField text={paneTexts.ssnError} />}
-                </InputFieldWrapper>
+                </SmallInputFieldWrapper>
               )}
 
               <CheckboxWrapper>
@@ -169,7 +171,7 @@ export function DonorPane() {
                 <CheckBox name="newsletter" type="checkbox" ref={register} />
                 <CheckboxLabel>{paneTexts.newsletterLabel}</CheckboxLabel>
               </CheckboxWrapper>
-            </div>
+            </Container>
           </RichSelectOption>
 
           <RichSelectOption

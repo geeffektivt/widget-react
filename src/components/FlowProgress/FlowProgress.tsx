@@ -13,7 +13,7 @@ const StyledIndicator = styled(Indicator, {
   backgroundColor: '$primary100',
   height: '100%',
   position: 'absolute',
-  // transition: 'width 0.1s',
+  transition: 'width 0.1s',
 })
 
 export default function FlowProgress() {

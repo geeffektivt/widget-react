@@ -3,8 +3,6 @@ import { useEffect, useRef } from 'react'
 
 import { sliderInput, sliderRoot, sliderProgress } from './Slider.style'
 
-// interface ISliderProps {}
-
 export type SliderProps = Omit<JSX.IntrinsicElements['input'], 'type'>
 
 export default function Slider({
