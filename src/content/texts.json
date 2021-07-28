@@ -44,6 +44,18 @@
       "nextLabel": "Nästa"
     },
 
+    "summary": {
+      "title": "Sammanfattning",
+      "paymentMethodTitle": "Betalningsmetod",
+      "recurringTitle": "Donationstyp",
+      "recurringYes": "Månadsbetalning",
+      "recurringNo": "Engångsbetalning",
+      "yesLabel": "Ja",
+      "noLabel": "Nej",
+      "sumTitle": "Belopp",
+      "submitLabel": "Skicka in"
+    },
+
     "payment": {
       "title": "Tack!",
       "description": "Du kan nu överföra till oss",

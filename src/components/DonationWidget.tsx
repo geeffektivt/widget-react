@@ -12,6 +12,7 @@ import { DonorPane } from './panes/DonorPane/DonorPane'
 import { MethodPane } from './panes/MethodPane/MethodPane'
 import { PaymentPane } from './panes/PaymentPane/PaymentPane'
 import { ReferralPane } from './panes/ReferralPane/ReferralPane'
+import SummaryPane from './panes/SummaryPane/SummaryPane'
 
 export default function DonationWidget() {
   const dispatch = useTypedDispatch()
@@ -30,6 +31,7 @@ export default function DonationWidget() {
         <DonorPane />
         <DistributionSelectionPane />
         <ReferralPane />
+        <SummaryPane />
         <PaymentPane />
       </Carousel>
 

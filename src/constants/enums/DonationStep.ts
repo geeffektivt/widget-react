@@ -3,5 +3,6 @@ export enum DonationStep {
   DonorInfo,
   Donation,
   Referral,
+  Summary,
   Payment,
 }

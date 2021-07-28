@@ -14,9 +14,13 @@ import { getCharitiesWithNames } from '../../../../store/payment/payment.api'
 import { paymentAsyncActions } from '../../../../store/payment/payment.slice'
 import { uiActions } from '../../../../store/ui/ui.slice'
 import { NextButton } from '../../../shared/Buttons/NavigationButtons.style'
-import { Pane, PaneTitle } from '../../Panes.style'
-
-import { PaymentDetailsWrapper, DetailsRow, BoldText } from './ResultPane.style'
+import {
+  Pane,
+  PaneTitle,
+  DetailsWrapper,
+  DetailsRow,
+  BoldText,
+} from '../../Panes.style'
 
 export default function Bank() {
   const {
@@ -56,7 +60,7 @@ export default function Bank() {
     <Pane>
       <PaneTitle>{paymentTexts.title}</PaneTitle>
       {paymentTexts.description}
-      <PaymentDetailsWrapper>
+      <DetailsWrapper>
         <DetailsRow>
           <BoldText>{paymentTexts.sumTitle}</BoldText>
           <p>{sum}</p>
@@ -69,7 +73,7 @@ export default function Bank() {
           <BoldText>{paymentTexts.ocrTitle}</BoldText>
           <p>{paymentTexts.ocr}</p>
         </DetailsRow>
-      </PaymentDetailsWrapper>
+      </DetailsWrapper>
       {paymentTexts.ocrDescription}
       <NextButton onClick={handleGoToStart}>
         {paymentTexts.goBackTitle}

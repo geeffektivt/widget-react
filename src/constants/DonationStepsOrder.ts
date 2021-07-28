@@ -5,5 +5,6 @@ export const DonationStepsOrder = [
   DonationStep.DonorInfo,
   DonationStep.Donation,
   DonationStep.Referral,
+  DonationStep.Summary,
   DonationStep.Payment,
 ]
