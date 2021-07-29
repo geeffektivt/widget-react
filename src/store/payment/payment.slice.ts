@@ -12,6 +12,7 @@ import { PaymentState } from './payment.types'
 const initialState: PaymentState = {
   paymentStatus: null,
   createPaymentResponse: null,
+  isCreatingPayment: null,
   isPollingStatus: null,
   pollStatusError: null,
   phoneNumber: null,
@@ -23,6 +24,9 @@ export const paymentSlice = createSlice({
   reducers: {
     setPhoneNumber(state, action: PayloadAction<string>) {
       state.phoneNumber = action.payload
+    },
+    resetState() {
+      return initialState
     },
   },
   extraReducers: (builder) => {
@@ -39,10 +43,24 @@ export const paymentSlice = createSlice({
         state.pollStatusError = action.payload as AppError
       })
       .addMatcher(
+        isAnyOf(createSwishPayment.pending, createBankPayment.pending),
+        (state) => {
+          state.isCreatingPayment = true
+        }
+      )
+      .addMatcher(
         isAnyOf(createSwishPayment.fulfilled, createBankPayment.fulfilled),
         (state, action) => {
+          state.isCreatingPayment = false
           state.createPaymentResponse = action.payload
           state.paymentStatus = 'CREATED'
+        }
+      )
+      .addMatcher(
+        isAnyOf(createSwishPayment.rejected, createBankPayment.rejected),
+        (state) => {
+          state.isCreatingPayment = false
+          state.paymentStatus = 'ERROR'
         }
       )
   },

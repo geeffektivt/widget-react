@@ -42,7 +42,3 @@ export interface SwishPaymentStatusResponse {
   status: SwishPaymentStatus
   paymentType: string
 }
-
-export interface SwishPaymentRedirectQueries {
-  _: unknown
-}

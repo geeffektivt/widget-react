@@ -16,6 +16,9 @@ export const referralsSlice = createSlice({
     setReferral(state, action: PayloadAction<ReferralOption | undefined>) {
       state.referral = action.payload
     },
+    resetState() {
+      return initialState
+    },
   },
 })
 

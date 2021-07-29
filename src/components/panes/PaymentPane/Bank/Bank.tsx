@@ -11,11 +11,19 @@ import useTypedSelector from '../../../../hooks/store/useTypedSelector'
 import useOnMount from '../../../../hooks/utils/useOnMount'
 import { donationActions } from '../../../../store/donation/donation.slice'
 import { getCharitiesWithNames } from '../../../../store/payment/payment.api'
-import { paymentAsyncActions } from '../../../../store/payment/payment.slice'
+import {
+  paymentActions,
+  paymentAsyncActions,
+} from '../../../../store/payment/payment.slice'
+import { referralsActions } from '../../../../store/referrals/referrals.slice'
 import { uiActions } from '../../../../store/ui/ui.slice'
 import { NextButton } from '../../../shared/Buttons/NavigationButtons.style'
+import Spinner from '../../../shared/Spinner'
+import CloseCircle from '../../../shared/_svg/CloseCircle'
+import Heading from '../../../shared/_typography/Heading'
 import {
   Pane,
+  CenteredContainer,
   PaneTitle,
   DetailsWrapper,
   DetailsRow,
@@ -30,6 +38,10 @@ export default function Bank() {
     donor,
     causesDistribution,
   } = useTypedSelector((state) => state.donation)
+
+  const { paymentStatus, isCreatingPayment } = useTypedSelector(
+    (state) => state.payment
+  )
   const dispatch = useTypedDispatch()
   const texts = useAllTexts()
   const causes = useAllCauses()
@@ -53,31 +65,58 @@ export default function Bank() {
   const handleGoToStart = () => {
     dispatch(donationActions.resetState())
     dispatch(donationActions.resetDistribution(causes))
+    dispatch(paymentActions.resetState())
+    dispatch(referralsActions.resetState())
     dispatch(uiActions.setActiveStep(DonationStep.PaymentMethod))
   }
 
-  return (
-    <Pane>
-      <PaneTitle>{paymentTexts.title}</PaneTitle>
-      {paymentTexts.description}
-      <DetailsWrapper>
-        <DetailsRow>
-          <BoldText>{paymentTexts.sumTitle}</BoldText>
-          <p>{sum}</p>
-        </DetailsRow>
-        <DetailsRow>
-          <BoldText>{paymentTexts.kontonummerTitle}</BoldText>
-          <p>{paymentTexts.kontonummer}</p>
-        </DetailsRow>
-        <DetailsRow>
-          <BoldText>{paymentTexts.ocrTitle}</BoldText>
-          <p>{paymentTexts.ocr}</p>
-        </DetailsRow>
-      </DetailsWrapper>
-      {paymentTexts.ocrDescription}
-      <NextButton onClick={handleGoToStart}>
-        {paymentTexts.goBackTitle}
-      </NextButton>
-    </Pane>
-  )
+  if (isCreatingPayment) {
+    return <Spinner />
+  }
+
+  switch (paymentStatus) {
+    case 'STARTED':
+    case 'CREATED':
+    case 'PAID':
+      return (
+        <Pane>
+          <PaneTitle>{paymentTexts.title}</PaneTitle>
+          {paymentTexts.description}
+          <DetailsWrapper>
+            <DetailsRow>
+              <BoldText>{paymentTexts.sumTitle}</BoldText>
+              <p>{sum}</p>
+            </DetailsRow>
+            <DetailsRow>
+              <BoldText>{paymentTexts.kontonummerTitle}</BoldText>
+              <p>{paymentTexts.kontonummer}</p>
+            </DetailsRow>
+            <DetailsRow>
+              <BoldText>{paymentTexts.ocrTitle}</BoldText>
+              <p>{paymentTexts.ocr}</p>
+            </DetailsRow>
+          </DetailsWrapper>
+          {paymentTexts.ocrDescription}
+          <NextButton onClick={handleGoToStart}>
+            {paymentTexts.goBackTitle}
+          </NextButton>
+        </Pane>
+      )
+
+    case 'ERROR':
+    case 'CANCELLED':
+    case 'DECLINED':
+      return (
+        <Pane>
+          <CenteredContainer>
+            <Heading>{paymentTexts.errorTitle}</Heading>
+            {paymentTexts.errorDescription}
+            <CloseCircle />
+          </CenteredContainer>
+        </Pane>
+      )
+
+    default:
+      return null
+  }
 }

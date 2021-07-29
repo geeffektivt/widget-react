@@ -4,6 +4,15 @@ export const Pane = styled('div', {
   padding: '$s150',
 })
 
+export const CenteredContainer = styled('div', {
+  marginTop: '$s150',
+  marginRight: '$s150',
+  marginLeft: '$s150',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+})
+
 export const PaneTitle = styled('h3', {
   fontSize: '$25',
   margin: '$s25 0 $s50',

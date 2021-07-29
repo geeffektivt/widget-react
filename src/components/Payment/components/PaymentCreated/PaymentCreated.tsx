@@ -18,7 +18,7 @@ export default function PaymentCreated() {
       </Heading>
 
       <Text className={styles.description()}>
-        {swishTexts.paymentCreatedTitle}
+        {swishTexts.paymentCreatedDescription}
       </Text>
 
       <Spinner />

@@ -66,10 +66,12 @@ const SummaryPane = () => {
                   : summaryTexts.noLabel}
               </p>
             </DetailsRow>
-            <DetailsRow>
-              <BoldText>{donorTexts.ssnPlaceholder}</BoldText>
-              <p>{donor.ssn}</p>
-            </DetailsRow>
+            {donor.taxDeduction && (
+              <DetailsRow>
+                <BoldText>{donorTexts.ssnPlaceholder}</BoldText>
+                <p>{donor.ssn}</p>
+              </DetailsRow>
+            )}
             <DetailsRow>
               <BoldText>{donorTexts.newsletterLabel}</BoldText>
               <p>

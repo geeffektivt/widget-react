@@ -15,9 +15,9 @@ import {
 import Payment from '../../../Payment'
 import { NextButton } from '../../../shared/Buttons/NavigationButtons.style'
 import SwishLogoPrimary from '../../../shared/_svg/SwishLogo/SwishLogoPrimary'
-import { Pane } from '../../Panes.style'
+import { Pane, CenteredContainer } from '../../Panes.style'
 
-import { Container, PhoneInputContainer, LogoContainer } from './Swish.style'
+import { PhoneInputContainer, LogoContainer } from './Swish.style'
 
 export default function Swish() {
   const dispatch = useTypedDispatch()
@@ -52,16 +52,16 @@ export default function Swish() {
   if (paymentStatus !== null) {
     return (
       <Pane>
-        <Container>
+        <CenteredContainer>
           <Payment status={paymentStatus} />
-        </Container>
+        </CenteredContainer>
       </Pane>
     )
   }
 
   return (
     <Pane>
-      <Container>
+      <CenteredContainer>
         <LogoContainer>
           <SwishLogoPrimary />
         </LogoContainer>
@@ -79,7 +79,7 @@ export default function Swish() {
             alwaysDefaultMask
           />
         </PhoneInputContainer>
-      </Container>
+      </CenteredContainer>
       <NextButton onClick={onNextClick}>{paneTexts.payTitle}</NextButton>
     </Pane>
   )

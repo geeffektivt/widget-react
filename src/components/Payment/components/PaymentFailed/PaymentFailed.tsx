@@ -20,7 +20,7 @@ export default function PaymentFailed() {
         {swishTexts.paymentFailedDescription}
       </Text>
 
-      <CloseCircle className={styles.icon()} />
+      <CloseCircle />
     </>
   )
 }

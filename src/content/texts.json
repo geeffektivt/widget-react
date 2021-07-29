@@ -52,7 +52,7 @@
       "recurringNo": "Engångsbetalning",
       "yesLabel": "Ja",
       "noLabel": "Nej",
-      "sumTitle": "Belopp",
+      "sumTitle": "Totalt belopp",
       "submitLabel": "Skicka in"
     },
 
@@ -67,7 +67,9 @@
       "ocrTitle": "OCR",
       "ocr": "0000000",
       "ocrDescription": "Om du vill donera med samma fördelning senare kan du använda samma OCR-nummer igen. Du kan även sätta upp gåvan som automatiskt återkommande varje månad i din bank om du skulle vilja. Om du har några frågor kan du höra av dig till oss på donationer@geeffektivt.se.",
-      "goBackTitle": "Gå tillbaka till startsidan"
+      "goBackTitle": "Gå tillbaka till startsidan",
+      "errorTitle": "Tekniskt fel",
+      "errorDescription": "Något gick tyvärr fel, vänligen försök igen senare"
     },
 
     "swish": {
