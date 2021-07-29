@@ -45,7 +45,7 @@ export const createSwishPayment: AsyncThunk<
   PaymentResponse,
   SwishPaymentRequest,
   Record<string, unknown>
-> = createPayment('/paymentSwishTest') // TODO change to correct endpoint
+> = createPayment('/paymentSwish')
 export const createBankPayment: AsyncThunk<
   PaymentResponse,
   BankPaymentRequest,
