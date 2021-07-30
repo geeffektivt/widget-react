@@ -26,9 +26,27 @@
       },
       {
         "id": "4",
-        "name": "New incentives",
+        "name": "Helen Keller International",
         "infoUrl": "https://example.com",
         "shortDesc": "Short description."
+      },
+      {
+        "id": "5",
+        "name": "Helen Keller International",
+        "infoUrl": "https://example.com",
+        "shortDesc": "Short description."
+      },
+      {
+        "id": "6",
+        "name": "Malaria Consortium",
+        "infoUrl": "https://example.com",
+        "shortDesc": "Short description."
+      },
+      {
+        "id": "7",
+        "name": "GiveDirectly",
+        "infoUrl": "https://givedirectly.org/",
+        "shortDesc": "Direkta kontantöverföringar ger fattiga hushåll möjligheten att köpa det de allra mest behöver."
       }
     ]
   },
