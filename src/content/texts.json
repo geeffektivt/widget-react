@@ -16,14 +16,14 @@
 
       "namePlaceholder": "Namn",
       "nameError": "Du måste skriva in ett namn eller välja anonym donation",
-      "emailPlaceholder": "Email",
-      "emailError": "Den här mail-adressen ser inte korrekt ut",
-      "taxDeductionLabel": "Jag önskar skatteavdrag",
-      "taxDeductionTooltip": "Vi behöver personnummer",
-      "taxDeductionLink": "https://geeffektivt.se/skatteavdraf",
+      "emailPlaceholder": "Mejladress",
+      "emailError": "Den här mejladressen ser inte korrekt ut",
+      "taxDeductionLabel": "Jag önskar skatteavdrag.",
+      "taxDeductionTooltip": "Vi rapporterar ditt personnummer till Skatteverket. Endast möjligt för organisationer inom Global hälsa",
+      "taxDeductionLink": "https://geeffektivt.se/faq",
       "ssnPlaceholder": "Personnummer",
       "ssnError": "Personnumret ser inte korrekt ut",
-      "privacyPolicyLabel": "Jag godkänner [detta](https://geeffektivt.se/) med glädje.",
+      "privacyPolicyLabel": "Jag godkänner [villkoren](https://geeffektivt.se/villkor) med glädje.",
       "privacyPolicyError": "Du måste godkänna",
       "newsletterLabel": "Jag vill gärna få nyhetsbrev.",
       "nextLabel": "Nästa",
@@ -53,7 +53,7 @@
       "yesLabel": "Ja",
       "noLabel": "Nej",
       "sumTitle": "Totalt belopp",
-      "submitLabel": "Skicka in"
+      "submitLabel": "Till betalning"
     },
 
     "payment": {
@@ -64,9 +64,9 @@
       "kontonummer": "8327-9,704 665 512-7",
       "bankTitle": "Bank",
       "bank": "Swedbank",
-      "ocrTitle": "OCR",
+      "ocrTitle": "Betalarnummer",
       "ocr": "0000000",
-      "ocrDescription": "Om du vill donera med samma fördelning senare kan du använda samma OCR-nummer igen. Du kan även sätta upp gåvan som automatiskt återkommande varje månad i din bank om du skulle vilja. Om du har några frågor kan du höra av dig till oss på donationer@geeffektivt.se.",
+      "ocrDescription": "Om du vill donera med samma fördelning senare kan du använda samma betalarnummer igen. Du kan även sätta upp gåvan som automatiskt återkommande varje månad i din bank om du skulle vilja. Om du har några frågor kan du höra av dig till oss på donationer@geeffektivt.se.",
       "goBackTitle": "Gå tillbaka till startsidan",
       "errorTitle": "Tekniskt fel",
       "errorDescription": "Något gick tyvärr fel, vänligen försök igen senare"
@@ -74,13 +74,13 @@
 
     "swish": {
       "title": "Ange ditt telefonnummer:",
-      "payTitle": "Betala",
+      "payTitle": "Gör Swish-betalning",
       "paymentCreatedTitle": "Betalning påbörjad",
-      "paymentCreatedDescription": "Öppna din Swish app och följ instruktionerna.",
+      "paymentCreatedDescription": "Öppna din Swish-app och följ instruktionerna.",
       "paymentFailedTitle": "Betalningen misslyckades",
       "paymentFailedDescription": "Var vänlig försök igen",
       "paymentSuccessTitle": "Betalning mottagen",
-      "paymentSuccessDescription": "Tack!"
+      "paymentSuccessDescription": "Tack för din gåva!"
     }
   }
 }
