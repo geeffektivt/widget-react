@@ -1,18 +1,38 @@
 [
   {
     "id": "1",
-    "name": "Facebook"
+    "name": "Google"
   },
   {
     "id": "2",
-    "name": "Friend"
+    "name": "Från en vän"
   },
   {
     "id": "3",
-    "name": "Effective Altruism"
+    "name": "Effektiv Altruism Sverige"
   },
   {
     "id": "4",
+    "name": "Facebook"
+  },
+    {
+    "id": "5",
     "name": "Twitter"
+  },
+  {
+    "id": "6",
+    "name": "LinkedIn"
+  },
+  {
+    "id": "7",
+    "name": "Presentation av Ge Effektivt"
+  },
+  {
+    "id": "8",
+    "name": "Podcast"
+  },
+  {
+     "id": "9",
+    "name": "Annat"
   }
 ]
