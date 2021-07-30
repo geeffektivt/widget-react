@@ -77,6 +77,7 @@
 
     "swish": {
       "title": "Ange ditt telefonnummer:",
+      "phoneNumberValidationError": "Du måste ange minst 9 siffror.",
       "payTitle": "Gör Swish-betalning",
       "paymentCreatedTitle": "Betalning påbörjad",
       "paymentCreatedDescription": "Öppna din Swish-app och följ instruktionerna.",
