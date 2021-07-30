@@ -32,21 +32,21 @@
       },
       {
         "id": "5",
-        "name": "Helen Keller International",
-        "infoUrl": "https://example.com",
-        "shortDesc": "Short description."
-      },
-      {
-        "id": "6",
         "name": "Malaria Consortium",
         "infoUrl": "https://example.com",
         "shortDesc": "Short description."
       },
       {
-        "id": "7",
+        "id": "6",
         "name": "GiveDirectly",
         "infoUrl": "https://givedirectly.org/",
         "shortDesc": "Direkta kontantöverföringar ger fattiga hushåll möjligheten att köpa det de allra mest behöver."
+      },
+      {
+        "id": "7",
+        "name": "GiveWell Maximum Impact Fund",
+        "infoUrl": "https://example.com",
+        "shortDesc": "Short description."
       }
     ]
   },
@@ -58,20 +58,26 @@
     "standardOrganizationShareExplanation": "Vi rådgör med givinggreen.earth och Founders Pledge om hur dina pengar gör störst skillnad för klimatet.",
     "organizations": [
       {
-        "id": "4",
-        "name": "Klimat 1",
+        "id": "20",
+        "name": "Clean Air Task Force",
         "infoUrl": "https://example.com",
         "shortDesc": "Short description."
       },
       {
-        "id": "5",
-        "name": "Klimat 2",
+        "id": "21",
+        "name": "BURN",
         "infoUrl": "https://example.com",
         "shortDesc": "Short description."
       },
       {
-        "id": "6",
-        "name": "Klimat 3",
+        "id": "22",
+        "name": "Climeworks",
+        "infoUrl": "https://example.com",
+        "shortDesc": "Short description."
+      },
+      {
+        "id": "23",
+        "name": "Tradewater",
         "infoUrl": "https://example.com",
         "shortDesc": "Short description."
       }
@@ -85,20 +91,32 @@
     "standardOrganizationShareExplanation": "90% av summan går till Animal Charity Evaluators Recommended Charity Fund, och 10% till deras egna arbete.",
     "organizations": [
       {
-        "id": "7",
-        "name": "Djurhälsa 1",
+        "id": "30",
+        "name": "The Albert Schweitzer Foundation",
         "infoUrl": "https://example.com",
         "shortDesc": "Short description."
       },
       {
-        "id": "8",
-        "name": "Djurhälsa 2",
+        "id": "31",
+        "name": "The Humane League",
         "infoUrl": "https://example.com",
         "shortDesc": "Short description."
       },
       {
-        "id": "9",
-        "name": "Djurhälsa 3",
+        "id": "32",
+        "name": "The Good Food Institute",
+        "infoUrl": "https://example.com",
+        "shortDesc": "Short description."
+      },
+      {
+        "id": "33",
+        "name": "Wild Animal Initiative",
+        "infoUrl": "https://example.com",
+        "shortDesc": "Short description."
+      },
+      {
+        "id": "34",
+        "name": "Animal Charity Evaluators Recommended Charity Fund",
         "infoUrl": "https://example.com",
         "shortDesc": "Short description."
       }
