@@ -39,9 +39,11 @@ export default function Bank() {
     causesDistribution,
   } = useTypedSelector((state) => state.donation)
 
-  const { paymentStatus, isCreatingPayment } = useTypedSelector(
-    (state) => state.payment
-  )
+  const {
+    paymentStatus,
+    isCreatingPayment,
+    createPaymentResponse,
+  } = useTypedSelector((state) => state.payment)
   const dispatch = useTypedDispatch()
   const texts = useAllTexts()
   const causes = useAllCauses()
@@ -92,11 +94,17 @@ export default function Bank() {
               <p>{paymentTexts.kontonummer}</p>
             </DetailsRow>
             <DetailsRow>
-              <BoldText>{paymentTexts.ocrTitle}</BoldText>
-              <p>{paymentTexts.ocr}</p>
+              <BoldText>
+                {recurring === DonationFrequency.Monthly
+                  ? paymentTexts.referenceTitleRecurring
+                  : paymentTexts.referenceTitleSingle}
+              </BoldText>
+              <p>{createPaymentResponse?.reference}</p>
             </DetailsRow>
           </DetailsWrapper>
-          {paymentTexts.ocrDescription}
+          {recurring === DonationFrequency.Monthly
+            ? paymentTexts.referenceTitleRecurringDescription
+            : paymentTexts.referenceTitleSingleDescription}
           <NavigationButtons
             nextButtonTitle={paymentTexts.goBackTitle}
             nextButtonOnClick={handleGoToStart}

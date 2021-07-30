@@ -23,6 +23,7 @@ interface Charity {
 
 export interface PaymentResponse {
   id: string
+  reference: string
 }
 
 export interface SwishPaymentStatusRequest {

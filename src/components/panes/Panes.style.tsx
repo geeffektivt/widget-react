@@ -42,7 +42,7 @@ export const DetailsRow = styled('div', {
   justifyContent: 'space-between',
   padding: '$s100',
 
-  ':last-child': {
+  '&:last-child': {
     borderBottom: 'none',
   },
 })

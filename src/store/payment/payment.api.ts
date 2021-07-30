@@ -21,6 +21,7 @@ export async function createPaymentRequest(
     return new ApiResponse(undefined, {
       body: {
         id: 'fake-id',
+        reference: '202107301111',
       },
     })
   }
