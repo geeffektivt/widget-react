@@ -8,19 +8,25 @@
     "organizations": [
       {
         "id": "1",
-        "name": "New incentives",
+        "name": "Against Malaria Foundation",
         "infoUrl": "https://example.com",
-        "shortDesc": "Short description."
+        "shortDesc": "Test description of Against Malaria Foundation."
       },
       {
         "id": "2",
-        "name": "Against Malaria Foundation",
+        "name": "SCI Foundation",
         "infoUrl": "https://example.com",
-        "shortDesc": "Short description."
+        "shortDesc": "An slightly longer description of SCI Foundation to see what happens."
       },
       {
         "id": "3",
-        "name": "SCI Foundation",
+        "name": "New Incentives",
+        "infoUrl": "https://example.com",
+        "shortDesc": "An absurdly long description of New Incentives to see what happens when it's like a lot of like information to be conveyed and we didn't have the time to do it briefly."
+      },
+      {
+        "id": "4",
+        "name": "New incentives",
         "infoUrl": "https://example.com",
         "shortDesc": "Short description."
       }
@@ -30,8 +36,8 @@
     "id": "2",
     "name": "Klimat",
     "standardShare": 25,
-    "standardOrganizationShareText": "Låt Klimat välja",
-    "standardOrganizationShareExplanation": "Vi rådgör med givinggreen.earth om hur dina pengar gör störst skillnad för klimatet.",
+    "standardOrganizationShareText": "Låt klimatexperter välja",
+    "standardOrganizationShareExplanation": "Vi rådgör med givinggreen.earth och Founders Pledge om hur dina pengar gör störst skillnad för klimatet.",
     "organizations": [
       {
         "id": "4",
@@ -57,8 +63,8 @@
     "id": "3",
     "name": "Djurhälsa",
     "standardShare": 25,
-    "standardOrganizationShareText": "Låt Djuren välja",
-    "standardOrganizationShareExplanation": "Hela summan går till Animal Charity Evaluators Recommended Charity Fund.",
+    "standardOrganizationShareText": "Låt Animal Charity Evaluators välja",
+    "standardOrganizationShareExplanation": "90% av summan går till Animal Charity Evaluators Recommended Charity Fund, och 10% till deras egna arbete.",
     "organizations": [
       {
         "id": "7",
