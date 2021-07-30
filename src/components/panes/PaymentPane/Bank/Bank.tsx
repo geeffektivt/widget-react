@@ -17,7 +17,7 @@ import {
 } from '../../../../store/payment/payment.slice'
 import { referralsActions } from '../../../../store/referrals/referrals.slice'
 import { uiActions } from '../../../../store/ui/ui.slice'
-import { NextButton } from '../../../shared/Buttons/NavigationButtons.style'
+import { NavigationButtons } from '../../../shared/Buttons/NavigationButtons'
 import Spinner from '../../../shared/Spinner'
 import CloseCircle from '../../../shared/_svg/CloseCircle'
 import Heading from '../../../shared/_typography/Heading'
@@ -97,9 +97,11 @@ export default function Bank() {
             </DetailsRow>
           </DetailsWrapper>
           {paymentTexts.ocrDescription}
-          <NextButton onClick={handleGoToStart}>
-            {paymentTexts.goBackTitle}
-          </NextButton>
+          <NavigationButtons
+            nextButtonTitle={paymentTexts.goBackTitle}
+            nextButtonOnClick={handleGoToStart}
+            showBackButton={false}
+          />
         </Pane>
       )
 

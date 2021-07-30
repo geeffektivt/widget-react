@@ -6,8 +6,7 @@ import useAllReferralOptions from '../../../hooks/content/useAllReferralOptions'
 import useAllTexts from '../../../hooks/content/useAllTexts'
 import useTypedSelector from '../../../hooks/store/useTypedSelector'
 import { referralsActions } from '../../../store/referrals/referrals.slice'
-import { uiActions } from '../../../store/ui/ui.slice'
-import { NextButton } from '../../shared/Buttons/NavigationButtons.style'
+import { NavigationButtons } from '../../shared/Buttons/NavigationButtons'
 import { Pane, PaneTitle } from '../Panes.style'
 
 import {
@@ -34,10 +33,6 @@ export function ReferralPane() {
     }
   }
 
-  function onSkipClick() {
-    dispatch(uiActions.goToNextStep())
-  }
-
   return (
     <Pane>
       <PaneTitle>{paneTexts.title}</PaneTitle>
@@ -55,12 +50,11 @@ export function ReferralPane() {
           ))}
         </ReferralButtonsWrapper>
       </ReferralsWrapper>
-
-      <NextButton onClick={onSkipClick}>
-        {selectedReferral === undefined
-          ? paneTexts.skipLabel
-          : paneTexts.nextLabel}
-      </NextButton>
+      <NavigationButtons
+        nextButtonTitle={
+          selectedReferral === undefined ? paneTexts.skipLabel : undefined
+        }
+      />
     </Pane>
   )
 }

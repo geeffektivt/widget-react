@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Validate from 'validator'
 
@@ -8,7 +9,7 @@ import useTypedSelector from '../../../hooks/store/useTypedSelector'
 import { donationActions } from '../../../store/donation/donation.slice'
 import { DonorInput } from '../../../store/state'
 import { uiActions } from '../../../store/ui/ui.slice'
-import { NextButton } from '../../shared/Buttons/NavigationButtons.style'
+import { NavigationButtons } from '../../shared/Buttons/NavigationButtons'
 import ErrorField from '../../shared/Error/ErrorField'
 import { TextInput } from '../../shared/Input/TextInput'
 import { RichSelect } from '../../shared/RichSelect/RichSelect'
@@ -31,15 +32,28 @@ interface DonorFormValues extends DonorInput {
 
 export function DonorPane() {
   const dispatch = useTypedDispatch()
-
-  const selectedDonorType = useTypedSelector(
-    (state) => state.donation.donorType
+  const initialDonorType = useTypedSelector((state) => state.donation.donorType)
+  const [selectedDonorType, setDonorType] = useState<DonorType>(
+    initialDonorType
   )
+  const donor = useTypedSelector((state) => state.donation.donor)
 
   const texts = useAllTexts()
   const paneTexts = texts.donations.donor
+  const isAnonymous = selectedDonorType === DonorType.Anonymous
 
-  const { register, watch, errors, handleSubmit } = useForm<DonorFormValues>()
+  const { register, watch, errors, handleSubmit } = useForm<DonorFormValues>({
+    defaultValues: isAnonymous
+      ? {}
+      : {
+          name: donor?.name,
+          email: donor?.email,
+          taxDeduction: donor?.taxDeduction,
+          ssn: donor?.taxDeduction ? donor?.ssn : undefined,
+          newsletter: donor?.newsletter,
+          approvesPrivacyPolicy: donor?.approvesPrivacyPolicy,
+        },
+  })
 
   const watchAllFields = watch()
 
@@ -48,17 +62,11 @@ export function DonorPane() {
   const isSsnInvalid = Boolean(errors.ssn)
   const isPrivacyPolicyInvalid = Boolean(errors.privacyPolicy)
 
-  const isAnonymous = selectedDonorType === DonorType.Anonymous
-
   const isNextDisabled = !isAnonymous && Object.keys(errors).length > 0
-
-  function onDonorTypeChange(donorType: DonorType) {
-    dispatch(donationActions.setDonorType(donorType))
-  }
 
   function onFormSubmit(formValues: DonorFormValues) {
     let donorInfo: Required<DonorInput>
-    if (selectedDonorType === DonorType.Anonymous) {
+    if (isAnonymous) {
       donorInfo = { ...paneTexts.anonymousDonor }
     } else {
       donorInfo = {
@@ -70,18 +78,19 @@ export function DonorPane() {
         approvesPrivacyPolicy: formValues.privacyPolicy,
       }
     }
-
+    dispatch(donationActions.setDonorType(selectedDonorType))
     dispatch(donationActions.setDonorInformation(donorInfo))
     dispatch(uiActions.goToNextStep())
   }
 
+  const formId = 'donorForm'
   return (
     <Pane>
-      <form onSubmit={handleSubmit(onFormSubmit)}>
+      <form id={formId} onSubmit={handleSubmit(onFormSubmit)}>
         <RichSelect
           name="donorType"
           selected={selectedDonorType}
-          onChange={onDonorTypeChange}
+          onChange={setDonorType}
         >
           <RichSelectOption
             label={paneTexts.personalInfoLabel}
@@ -179,10 +188,11 @@ export function DonorPane() {
             value={DonorType.Anonymous}
           />
         </RichSelect>
-
-        <NextButton type="submit" disabled={isNextDisabled}>
-          {paneTexts.nextLabel}
-        </NextButton>
+        <NavigationButtons
+          isNextDisabled={isNextDisabled}
+          formId={formId}
+          nextButtonOnClick={() => {}}
+        />
       </form>
     </Pane>
   )

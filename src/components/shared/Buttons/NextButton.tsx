@@ -11,8 +11,8 @@ export const NextButton = styled('button', {
   fontWeight: '$600',
   height: 60,
   justifyContent: 'center',
-  marginTop: '$s200',
   width: '100%',
+  maxWidth: '230px',
   transition:
     'background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out',
 

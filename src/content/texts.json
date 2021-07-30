@@ -1,5 +1,8 @@
 {
   "donations": {
+    "shared": {
+      "defaultNextButtonTitle": "Nästa"
+    },
     "method": {
       "info": "Kostnaderna täcks av oss så att 100% av din donation kommer fram.",
       "monthlyPaymentLabel": "Ge en fast månadssumma",
@@ -26,7 +29,6 @@
       "privacyPolicyLabel": "Jag godkänner [villkoren](https://geeffektivt.se/villkor) med glädje.",
       "privacyPolicyError": "Du måste godkänna",
       "newsletterLabel": "Jag vill gärna få nyhetsbrev.",
-      "nextLabel": "Nästa",
 
       "anonymousDonor": {
         "name": "Anonym givare",
@@ -40,8 +42,7 @@
 
     "referral": {
       "title": "Hur hörde du talas om oss?",
-      "skipLabel": "Hoppa över",
-      "nextLabel": "Nästa"
+      "skipLabel": "Hoppa över"
     },
 
     "summary": {

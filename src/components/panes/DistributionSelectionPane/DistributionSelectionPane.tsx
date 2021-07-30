@@ -1,8 +1,6 @@
 import useAllCauses from '../../../hooks/content/useAllCauses'
-import useTypedDispatch from '../../../hooks/store/useTypedDispatch'
 import useTypedSelector from '../../../hooks/store/useTypedSelector'
-import { uiActions } from '../../../store/ui/ui.slice'
-import { NextButton } from '../../shared/Buttons/NavigationButtons.style'
+import { NavigationButtons } from '../../shared/Buttons/NavigationButtons'
 import { Pane } from '../Panes.style'
 
 import CauseDistribution from './CauseDistribution'
@@ -10,16 +8,10 @@ import { CausesAccordion } from './CausesAccordion'
 import DonationSumPanel from './DonationSumPanel'
 
 export default function DistributionSelectionPane() {
-  const dispatch = useTypedDispatch()
-
   const allCauses = useAllCauses()
   const causesDistribution = useTypedSelector(
     (state) => state.donation.causesDistribution
   )
-
-  function onNextClick() {
-    dispatch(uiActions.goToNextStep())
-  }
 
   return (
     <Pane>
@@ -37,8 +29,7 @@ export default function DistributionSelectionPane() {
           )
         })}
       </CausesAccordion>
-
-      <NextButton onClick={onNextClick}>Nästa</NextButton>
+      <NavigationButtons />
     </Pane>
   )
 }

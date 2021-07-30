@@ -13,7 +13,7 @@ import {
   paymentActions,
 } from '../../../../store/payment/payment.slice'
 import Payment from '../../../Payment'
-import { NextButton } from '../../../shared/Buttons/NavigationButtons.style'
+import { NavigationButtons } from '../../../shared/Buttons/NavigationButtons'
 import SwishLogoPrimary from '../../../shared/_svg/SwishLogo/SwishLogoPrimary'
 import { Pane, CenteredContainer } from '../../Panes.style'
 
@@ -80,7 +80,11 @@ export default function Swish() {
           />
         </PhoneInputContainer>
       </CenteredContainer>
-      <NextButton onClick={onNextClick}>{paneTexts.payTitle}</NextButton>
+      <NavigationButtons
+        nextButtonTitle={paneTexts.payTitle}
+        nextButtonOnClick={onNextClick}
+        showBackButton={false}
+      />
     </Pane>
   )
 }
