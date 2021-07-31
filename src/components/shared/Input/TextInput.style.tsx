@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react'
 import styled from 'styled-components'
 
-import { gray18, orange15 } from '../../../config/colors'
+import { gray18, orange15, red } from '../../../config/colors'
 
 export interface TextInputProps extends TextInputWrapperProps {
   type: string
@@ -13,18 +13,22 @@ export interface TextInputProps extends TextInputWrapperProps {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   value?: string | number | readonly string[]
   inputMode?: 'tel' | 'decimal' | 'text' | 'numeric' | 'email'
+  valid?: boolean
 }
 
 export interface TextInputWrapperProps {
   label?: string
   denomination?: string
+  valid?: boolean
 }
 
 export const TextInputWrapper = styled.div`
   display: block;
   margin-bottom: 5px;
   font-size: 1em;
-  border: 1px solid ${gray18};
+  border: 1px solid
+    ${({ valid = true }: TextInputWrapperProps) => (valid ? gray18 : red)};
+
   border-radius: 5px;
   box-sizing: border-box;
   position: relative;
@@ -95,4 +99,11 @@ export const TextInputField = styled.input`
     outline: none;
     box-shadow: 0px 0px 0px 1.5px ${orange15};
   }
+`
+
+export const WarningContainer = styled.div`
+  padding: 1.3em;
+  position: absolute;
+  right: 0;
+  top: 0;
 `

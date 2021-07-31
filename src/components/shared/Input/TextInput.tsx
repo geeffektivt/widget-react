@@ -1,9 +1,12 @@
 import React from 'react'
 
+import Warning from '../_svg/Warning/Warning'
+
 import {
   TextInputField,
   TextInputProps,
   TextInputWrapper,
+  WarningContainer,
 } from './TextInput.style'
 
 export function TextInput({
@@ -18,9 +21,15 @@ export function TextInput({
   onChange,
   value,
   inputMode,
+  valid = true,
 }: TextInputProps) {
   return (
-    <TextInputWrapper label={label} denomination={denomination}>
+    <TextInputWrapper label={label} denomination={denomination} valid={valid}>
+      {!valid && (
+        <WarningContainer>
+          <Warning />
+        </WarningContainer>
+      )}
       <TextInputField
         label={label}
         name={name}

@@ -25,8 +25,7 @@ export const PrimaryLink = styled('a', {
 
 export const ErrorMessage = styled('span', {
   color: '$error100',
-  fontSize: '$12',
-  paddingLeft: '$s25',
+  fontSize: '$14',
 })
 
 export const DetailsWrapper = styled('div', {

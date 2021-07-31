@@ -102,6 +102,7 @@ export function DonorPane() {
                 type="text"
                 placeholder={paneTexts.namePlaceholder}
                 innerRef={register({ required: !isAnonymous, minLength: 1 })}
+                valid={!isNameInvalid}
               />
               {isNameInvalid && <ErrorField text={paneTexts.nameError} />}
 
@@ -114,6 +115,7 @@ export function DonorPane() {
                   required: !isAnonymous,
                   validate: (val) => Validate.isEmail(val),
                 })}
+                valid={!isEmailInvalid}
               />
               {isEmailInvalid && <ErrorField text={paneTexts.emailError} />}
             </InputFieldWrapper>
@@ -144,6 +146,7 @@ export function DonorPane() {
                         (Validate.isInt(val) &&
                           Validate.isLength(val, { min: 9, max: 11 })),
                     })}
+                    valid={!isSsnInvalid}
                   />
 
                   {isSsnInvalid && <ErrorField text={paneTexts.ssnError} />}
