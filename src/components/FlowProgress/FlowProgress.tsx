@@ -18,7 +18,7 @@ const StyledIndicator = styled(Indicator, {
 
 export default function FlowProgress() {
   const currentStepIndex = useCurrentStepIndex()
-  const totalPanes = DonationStepsOrder.length
+  const totalPanes = DonationStepsOrder.length - 1
 
   const progressPercentage = (currentStepIndex / totalPanes) * 100
 
