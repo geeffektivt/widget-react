@@ -21,6 +21,7 @@ export const ReferralButton = styled('button', {
   '&:hover': {
     backgroundColor: '$primary100',
     color: '$white',
+    opacity: '0.4',
   },
 
   variants: {

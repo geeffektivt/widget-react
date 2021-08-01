@@ -26,6 +26,7 @@ export default function DonationSumPanel() {
         placeholder="0"
         onChange={(e) => handleSumChange(e.target.valueAsNumber)}
         value={String(sum) || ''}
+        inputMode="numeric"
       />
     </div>
   )
