@@ -1,6 +1,5 @@
 import React, { ChangeEvent, ReactNode } from 'react'
 
-import { PercentageToKronor } from '../../../../utils/donationUtils'
 import Slider from '../../../shared/_inputs/Slider'
 import Lock from '../../../shared/_svg/Lock'
 
@@ -17,7 +16,7 @@ interface CauseSliderProps {
   isLocked: boolean
   disabled?: boolean
   share: number
-  sum: number | null
+  sum: number
 }
 
 const CauseSlider = ({
@@ -43,8 +42,7 @@ const CauseSlider = ({
           >
             <Lock isLocked={isLocked} disabled={disabled} />
           </LockButton>
-          {/* <span>{share}%</span> */}
-          <span>{PercentageToKronor(share, sum)} kr</span>
+          <span>{sum} kr</span>
         </FlexContainer>
       </AccordionContainer>
       <div>

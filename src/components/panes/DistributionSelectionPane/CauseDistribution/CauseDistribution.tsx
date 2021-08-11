@@ -3,11 +3,9 @@ import React from 'react'
 import { Cause } from '../../../../@types/import/content/organizations.types'
 import { ShareType } from '../../../../constants/enums/ShareType'
 import useTypedDispatch from '../../../../hooks/store/useTypedDispatch'
-import useTypedSelector from '../../../../hooks/store/useTypedSelector'
 import useRequestAnimationFrame from '../../../../hooks/utils/useRequestAnimationFrame'
 import { donationActions } from '../../../../store/donation/donation.slice'
 import { CauseDistribution as CauseDistributionType } from '../../../../store/donation/donation.types'
-import { PercentageToKronor } from '../../../../utils/donationUtils'
 import Chevron from '../../../shared/_svg/Chevron'
 import Info from '../../../shared/_svg/Info'
 import CauseSlider from '../CauseSlider/CauseSlider'
@@ -37,7 +35,6 @@ export default function CauseDistribution({
 }: CauseDistributionProps) {
   const dispatch = useTypedDispatch()
   const safeRequestAnimationFrame = useRequestAnimationFrame()
-  const sum = useTypedSelector((state) => state.donation.sum)
 
   const causeId = cause.id
 
@@ -78,9 +75,9 @@ export default function CauseDistribution({
     <CausesAccordionItem value={cause.id}>
       <CausesAccordionHeader>
         <CauseSlider
-          sum={sum}
           isLocked={causeDistribution.isLocked}
           share={causeDistribution.share}
+          sum={causeDistribution.sum}
           onLockButtonChange={onLockButtonChange}
           onSliderChange={onSliderChange}
         >
@@ -113,7 +110,6 @@ export default function CauseDistribution({
 
         {cause.organizations.map((organization, index) => (
           <OrganizationDistribution
-            sum={PercentageToKronor(causeDistribution.share, sum)}
             key={organization.id}
             cause={cause}
             organization={organization}

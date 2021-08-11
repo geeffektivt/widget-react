@@ -3,7 +3,10 @@ import {
   Organization,
 } from '../../@types/import/content/organizations.types'
 import { ShareType } from '../../constants/enums/ShareType'
-import { mutableRoundRobinUpdateShareAtIndex } from '../../utils/donationUtils'
+import {
+  mutableRoundRobinUpdateShareAtIndex,
+  clamp,
+} from '../../utils/donationUtils'
 
 import {
   BaseDistribution,
@@ -44,70 +47,41 @@ function resetOrgDistribution(organizations: Organization[], causeSum: number) {
   )
 }
 
-function setOrgDistribution(
-  organizations: OrganizationDistribution[],
-  causeSum: number
-) {
-  let remainingSumOrgs = causeSum
-
-  return organizations.map(
-    (organization): OrganizationDistribution => {
-      const initialOrganizationSum =
-        (organization.share / 100) * (causeSum ?? 0)
-
-      const organizationSum = Math.max(
-        remainingSumOrgs - initialOrganizationSum,
-        initialOrganizationSum
-      )
-      remainingSumOrgs -= organizationSum
-
-      return {
-        id: organization.id,
-        isLocked: organization.isLocked,
-        name: organization.name,
-        share: organization.share,
-        sum: organizationSum,
-      }
-    }
-  )
+const PercentageToKronor = (percentage: number, max: number | null) => {
+  const stepLength = 5
+  const value = max ? (percentage / 100) * max : 0
+  const rounded = Math.ceil(Math.round(value) / stepLength) * stepLength
+  return rounded
 }
 
-export function updateAllSumsHelper(
-  distributions: CauseDistribution[],
+export const updateAllSums = <T extends BaseDistribution>(
+  distributions: T[],
   totalSum: number
-) {
-  let remainingSumCauses = totalSum
-  // let remainingShares = 100
+): T[] => {
+  let remainingSum = totalSum
 
-  return distributions.map((cause) => {
-    // per cause
-    // make sure last share has no more than is left
-    // calculate sum from share
-    const initialCauseSum = (cause.share / 100) * (totalSum ?? 0)
-    // make sure last sum has no more than is left
-    const causeSum = Math.max(
-      remainingSumCauses - initialCauseSum,
-      initialCauseSum
-    )
-    // deduct sum from total amount
-    remainingSumCauses -= causeSum
-
-    const causeDistribution: CauseDistribution = {
-      id: cause.id,
-      isLocked: cause.isLocked,
-      name: cause.name,
-      lastOrganizationRoundRobinIndex: 0,
-      organizationsDistribution: setOrgDistribution(
-        cause.organizationsDistribution,
-        causeSum
-      ),
-      share: cause.share,
-      shareType: cause.shareType,
-      sum: causeSum,
-    }
-
-    return causeDistribution
+  return distributions.map((distribution) => {
+    const sumInKronor = PercentageToKronor(distribution.share, totalSum)
+    const clampedSum = clamp(0, remainingSum, sumInKronor)
+    remainingSum -= clampedSum
+    return { ...distribution, sum: clampedSum }
   })
+}
+
+export const updateAllSumsForCauses = (
+  causes: CauseDistribution[],
+  totalSum: number
+) => {
+  const remainingSumCauses = totalSum
+
+  return updateAllSums(causes, remainingSumCauses).map((c) => ({
+    ...c,
+    lastOrganizationRoundRobinIndex: 0,
+    organizationsDistribution: updateAllSums(
+      c.organizationsDistribution,
+      c.sum
+    ),
+  }))
 }
 
 export function resetDistributionsHelper(
@@ -158,6 +132,7 @@ export function resetDistributionsHelper(
  * Update cause distributions, and their organizations distributions accordingly
  */
 export function updateCauseDistributionsHelper(
+  totalSum: number,
   distributions: CauseDistribution[],
   updatedId: BaseDistribution['id'],
   updatedValue: number,
@@ -176,10 +151,13 @@ export function updateCauseDistributionsHelper(
     lastRoundRobinIndex
   )
 
-  return roundrobinIndex
+  distributions = updateAllSumsForCauses(distributions, totalSum)
+
+  return { roundrobinIndex, distributions }
 }
 
 export function updateDistributionsHelper(
+  totalSum: number,
   distributions: BaseDistribution[],
   updatedId: BaseDistribution['id'],
   updatedValue: number,
@@ -191,10 +169,14 @@ export function updateDistributionsHelper(
     return null
   }
 
-  return mutableRoundRobinUpdateShareAtIndex(
+  const roundrobinIndex = mutableRoundRobinUpdateShareAtIndex(
     distributions,
     itemIndex,
     updatedValue,
     lastRoundRobinIndex
   )
+
+  distributions = updateAllSums(distributions, totalSum)
+
+  return { roundrobinIndex, distributions }
 }

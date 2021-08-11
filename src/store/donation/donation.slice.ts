@@ -12,7 +12,7 @@ import { ShareType } from '../../constants/enums/ShareType'
 
 import {
   resetDistributionsHelper,
-  updateAllSumsHelper,
+  updateAllSumsForCauses,
   updateCauseDistributionsHelper,
   updateDistributionsHelper,
 } from './donation.reducerHelpers'
@@ -72,9 +72,8 @@ export const donationSlice = createSlice({
       state,
       action: PayloadAction<CauseDistribution[]>
     ) {
-      state.causesDistribution = updateAllSumsHelper(
+      state.causesDistribution = updateAllSumsForCauses(
         action.payload,
-        // state.causesDistribution,
         state.sum ?? 0
       )
       state.lastCauseRoundRobinIndex = 0
@@ -88,6 +87,7 @@ export const donationSlice = createSlice({
 
       if (state.sum) {
         const updatedDistribution = updateCauseDistributionsHelper(
+          state.sum,
           state.causesDistribution,
           causeId,
           causeShare,
@@ -95,7 +95,8 @@ export const donationSlice = createSlice({
         )
         if (updatedDistribution) {
           state.lastCauseRoundRobinIndex =
-            updatedDistribution.roundRobinEndIndex
+            updatedDistribution.roundrobinIndex.roundRobinEndIndex
+          state.causesDistribution = updatedDistribution.distributions
         }
       }
     },
@@ -146,6 +147,7 @@ export const donationSlice = createSlice({
 
       if (cause) {
         const updatedDistribution = updateDistributionsHelper(
+          cause.sum,
           cause.organizationsDistribution,
           organizationId,
           organizationShare,
@@ -154,7 +156,8 @@ export const donationSlice = createSlice({
 
         if (updatedDistribution) {
           cause.lastOrganizationRoundRobinIndex =
-            updatedDistribution.roundRobinEndIndex
+            updatedDistribution.roundrobinIndex.roundRobinEndIndex
+          cause.organizationsDistribution = updatedDistribution.distributions
         }
       }
     },

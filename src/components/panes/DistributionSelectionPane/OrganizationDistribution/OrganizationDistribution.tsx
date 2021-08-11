@@ -17,7 +17,6 @@ interface OrganizationDistributionProps {
   organization: Organization
   organizationDistribution: OrganizationDistributionType
   isEnabled: boolean
-  sum: number | null
 }
 
 export default function OrganizationDistribution({
@@ -25,7 +24,6 @@ export default function OrganizationDistribution({
   organization,
   organizationDistribution,
   isEnabled,
-  sum,
 }: OrganizationDistributionProps) {
   const dispatch = useTypedDispatch()
   const safeRequestAnimationFrame = useRequestAnimationFrame()
@@ -59,8 +57,8 @@ export default function OrganizationDistribution({
   return (
     <Container isEnabled={isEnabled}>
       <CauseSlider
-        sum={sum}
         isLocked={organizationDistribution.isLocked}
+        sum={organizationDistribution.sum}
         disabled={!isEnabled}
         share={organizationDistribution.share}
         onLockButtonChange={onLockButtonChange}

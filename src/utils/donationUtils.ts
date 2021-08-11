@@ -76,7 +76,7 @@ export function mutableRoundRobinUpdateShareAtIndex(
  * updatedIndex = undefined means that the total available sum (maxValue) for the distributions changed,
  * so all entries should be updated even if they are locked
  * entries: orgs or cause proportion
-  updateDelta: 
+  updateDelta:
   updatedIndex?: number
  */
 export function updateValues(
@@ -87,8 +87,6 @@ export function updateValues(
   maxValue: number,
   updatedIndex: number
 ) {
-  const minPercentage = 0
-  const maxPercentage = 100
   if (updateDelta === 0) {
     return { roundRobinEndIndex: lastRoundRobinIndex }
   }
@@ -112,11 +110,11 @@ export function updateValues(
 
     // If a cause was set to 0, then it should be kept at 0 unless the remaining causes also are 0 or locked
     // ie only update a 0-cause when there is no other option
-    const shouldStickToZero = false
-    //   entry.share === 0 &&
-    //   entries
-    //     .filter((_, i) => i !== updatedIndex)
-    //     .filter((e) => e.share === 0 || e.isLocked).length === 1
+    const shouldStickToZero =
+      entry.share === 0 &&
+      entries
+        .filter((_, i) => i !== updatedIndex)
+        .filter((e) => e.share === 0 || e.isLocked).length === 1
 
     if (entry.isLocked || shouldStickToZero) {
       // don't update this slider
@@ -135,13 +133,6 @@ export function updateValues(
   return { roundRobinEndIndex: roundRobinIndex }
 }
 
-function clamp(min: number, max: number, value: number) {
+export function clamp(min: number, max: number, value: number) {
   return Math.min(max, Math.max(min, value))
-}
-
-export const PercentageToKronor = (percentage: number, max: number | null) => {
-  const stepLength = 5
-  const value = max ? (percentage / 100) * max : 0
-  const rounded = Math.round(value / stepLength) * stepLength
-  return rounded
 }
