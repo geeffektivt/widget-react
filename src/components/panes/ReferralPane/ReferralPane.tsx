@@ -75,7 +75,6 @@ export function ReferralPane() {
                 onClick={() => {
                   onReferralSelect(otherReferral)
                   otherReferralRef.current?.focus()
-                  otherReferralRef.current?.select()
                 }}
                 selected={otherReferral.id === selectedReferral?.id}
               >
