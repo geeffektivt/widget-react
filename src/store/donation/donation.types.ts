@@ -29,8 +29,9 @@ export interface Donor {
 export interface BaseDistribution {
   id: string
   name: string
-  share: number
   isLocked: boolean
+  share: number
+  sum: number
 }
 
 export interface CauseDistribution extends BaseDistribution {

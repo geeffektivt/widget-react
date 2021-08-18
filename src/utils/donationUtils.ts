@@ -2,46 +2,40 @@
 
 import { BaseDistribution } from '../store/donation/donation.types'
 
-type ShareEntry = BaseDistribution
-
 export const getStepLength = (sum: number) => (sum < 5 ? 1 : 5)
 
 /**
  * @warn Will mutate entries.
  */
-export function mutableRoundRobinUpdateAllShares(
-  entries: ShareEntry[],
-  oldSum: number,
-  sum: number,
-  lastRoundRobinIndex: number
-) {
-  const minValue = 0
-  const maxValue = sum
-  const updateDelta = sum - oldSum
+// export function mutableRoundRobinUpdateAllShares(
+//   entries: BaseDistribution[],
+//   oldSum: number,
+//   sum: number,
+//   lastRoundRobinIndex: number
+// ) {
+//   const minValue = 0
+//   const maxValue = sum
+//   const updateDelta = sum - oldSum
 
-  return updateValues(
-    entries,
-    updateDelta,
-    lastRoundRobinIndex,
-    minValue,
-    maxValue,
-    undefined
-  )
-}
+//   return updateValues(
+//     entries,
+//     updateDelta,
+//     lastRoundRobinIndex,
+//     minValue,
+//     maxValue,
+//     undefined
+//   )
+// }
 
 /**
  * @warn Will mutate entries.
  */
 export function mutableRoundRobinUpdateShareAtIndex(
-  entries: ShareEntry[],
+  entries: BaseDistribution[],
   updatedIndex: number,
   updatedShare: number,
-  lastRoundRobinIndex: number,
-  sum: number
+  lastRoundRobinIndex: number
 ): { roundRobinEndIndex: number } {
-  if (entries[updatedIndex].isLocked) {
-    return { roundRobinEndIndex: lastRoundRobinIndex }
-  }
   const nbrOfValues = entries.length
   if (nbrOfValues === 1) {
     entries[updatedIndex].share = updatedShare
@@ -61,7 +55,7 @@ export function mutableRoundRobinUpdateShareAtIndex(
   )
 
   const minValue = 0
-  const maxValue = Math.min(totalSumAvailable, sum)
+  const maxValue = Math.min(totalSumAvailable, 100)
 
   const clampedUpdatedValue = clamp(minValue, maxValue, updatedShare)
   const currentValue = entries[updatedIndex].share
@@ -81,6 +75,9 @@ export function mutableRoundRobinUpdateShareAtIndex(
 /**
  * updatedIndex = undefined means that the total available sum (maxValue) for the distributions changed,
  * so all entries should be updated even if they are locked
+ * entries: orgs or cause proportion
+  updateDelta:
+  updatedIndex?: number
  */
 export function updateValues(
   entries: BaseDistribution[],
@@ -88,50 +85,54 @@ export function updateValues(
   lastRoundRobinIndex: number,
   minValue: number,
   maxValue: number,
-  updatedIndex?: number
+  updatedIndex: number
 ) {
+  if (updateDelta === 0) {
+    return { roundRobinEndIndex: lastRoundRobinIndex }
+  }
   let updateAbsDiff = Math.abs(updateDelta)
   const nbrOfValues = entries.length
-  let stepLength = getStepLength(Math.round(updateDelta / nbrOfValues))
-
-  let deltaPerStep = (updateDelta / updateAbsDiff) * stepLength
+  const stepLength = 1
+  const deltaPerStep = (updateDelta / updateAbsDiff) * stepLength
 
   let roundRobinIndex = lastRoundRobinIndex
-  while (updateAbsDiff > 0) {
-    if (updateAbsDiff < deltaPerStep) {
-      stepLength = 1
-      deltaPerStep = (updateDelta / Math.abs(updateDelta)) * stepLength
-    }
+  let tries = 0
+  while (updateAbsDiff > 0 && tries < 1000) {
+    tries += 1
     roundRobinIndex = (roundRobinIndex + 1) % nbrOfValues
 
     if (roundRobinIndex === updatedIndex) {
+      // don't update the slider that was dragged
       continue
     }
 
     const entry = entries[roundRobinIndex]
+
     // If a cause was set to 0, then it should be kept at 0 unless the remaining causes also are 0 or locked
     // ie only update a 0-cause when there is no other option
-    const shouldStickToZero = () =>
+    const shouldStickToZero =
       entry.share === 0 &&
       entries
         .filter((_, i) => i !== updatedIndex)
         .filter((e) => e.share === 0 || e.isLocked).length === 1
-    if (updatedIndex !== undefined && (entry.isLocked || shouldStickToZero())) {
+
+    if (entry.isLocked || shouldStickToZero) {
+      // don't update this slider
       continue
     }
 
     const currentStepValue = entry.share
-    const nextValue = Math.max(minValue, currentStepValue + deltaPerStep) // clamp(minValue, maxValue, currentStepValue + deltaPerStep)
-    const rounded = Math.round(nextValue / stepLength) * stepLength
-    if (currentStepValue !== rounded) {
-      entry.share = rounded
-      updateAbsDiff -= Math.abs(currentStepValue - rounded)
+    const nextValue = clamp(minValue, maxValue, currentStepValue + deltaPerStep) // currentStepValue + deltaPerStep
+
+    if (currentStepValue !== nextValue) {
+      entries[roundRobinIndex].share = nextValue
+      updateAbsDiff -= 1
     }
   }
 
   return { roundRobinEndIndex: roundRobinIndex }
 }
 
-function clamp(min: number, max: number, value: number) {
+export function clamp(min: number, max: number, value: number) {
   return Math.min(max, Math.max(min, value))
 }

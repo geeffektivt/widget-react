@@ -12,10 +12,11 @@ import { ShareType } from '../../constants/enums/ShareType'
 
 import {
   resetDistributionsHelper,
+  updateAllSumsForCauses,
   updateCauseDistributionsHelper,
   updateDistributionsHelper,
 } from './donation.reducerHelpers'
-import { DonationState, Donor } from './donation.types'
+import { CauseDistribution, DonationState, Donor } from './donation.types'
 
 const initialState: DonationState = {
   recurring: DonationFrequency.Monthly,
@@ -67,6 +68,17 @@ export const donationSlice = createSlice({
       state.lastCauseRoundRobinIndex = 0
     },
 
+    updateAllDistributionSums(
+      state,
+      action: PayloadAction<CauseDistribution[]>
+    ) {
+      state.causesDistribution = updateAllSumsForCauses(
+        action.payload,
+        state.sum ?? 0
+      )
+      state.lastCauseRoundRobinIndex = 0
+    },
+
     updateCauseShare(
       state,
       action: PayloadAction<{ causeId: CauseId; causeShare: number }>
@@ -75,15 +87,16 @@ export const donationSlice = createSlice({
 
       if (state.sum) {
         const updatedDistribution = updateCauseDistributionsHelper(
+          state.sum,
           state.causesDistribution,
           causeId,
           causeShare,
-          state.lastCauseRoundRobinIndex,
-          state.sum
+          state.lastCauseRoundRobinIndex
         )
         if (updatedDistribution) {
           state.lastCauseRoundRobinIndex =
-            updatedDistribution.roundRobinEndIndex
+            updatedDistribution.roundrobinIndex.roundRobinEndIndex
+          state.causesDistribution = updatedDistribution.distributions
         }
       }
     },
@@ -134,16 +147,17 @@ export const donationSlice = createSlice({
 
       if (cause) {
         const updatedDistribution = updateDistributionsHelper(
+          cause.sum,
           cause.organizationsDistribution,
           organizationId,
           organizationShare,
-          cause.lastOrganizationRoundRobinIndex,
-          cause.share
+          cause.lastOrganizationRoundRobinIndex
         )
 
         if (updatedDistribution) {
           cause.lastOrganizationRoundRobinIndex =
-            updatedDistribution.roundRobinEndIndex
+            updatedDistribution.roundrobinIndex.roundRobinEndIndex
+          cause.organizationsDistribution = updatedDistribution.distributions
         }
       }
     },
