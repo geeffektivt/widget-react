@@ -40,14 +40,19 @@ export function ReferralPane() {
     )
   }
 
-  const otherReferralRef = useCallback((inputElement: HTMLInputElement) => {
-    setTimeout(() => {
-      inputElement?.focus()
-      if (selectedReferral?.name === '') {
-        inputElement?.select()
-      }
-    }, 150)
-  }, [])
+  const otherReferralRef = useCallback(
+    (inputElement: HTMLInputElement) => {
+      setTimeout(() => {
+        if (selectedReferral?.id === otherReferral.id) {
+          inputElement?.focus()
+          if (selectedReferral?.name === '') {
+            inputElement?.select()
+          }
+        }
+      }, 150)
+    },
+    [selectedReferral]
+  )
 
   const otherReferral = { id: '0', name: '' }
 
@@ -66,18 +71,18 @@ export function ReferralPane() {
               {referral.name}
             </ReferralButton>
           ))}
-          {otherReferral.id !== selectedReferral?.id && (
-            <ReferralButton
-              key={otherReferral.id}
-              onClick={() => {
-                onReferralSelect(otherReferral)
-              }}
-              selected={otherReferral.id === selectedReferral?.id}
-            >
-              {paneTexts.otherLabel}
-            </ReferralButton>
-          )}
-          {otherReferral.id === selectedReferral?.id && (
+          <div>
+            {otherReferral.id !== selectedReferral?.id && (
+              <ReferralButton
+                key={otherReferral.id}
+                onClick={() => {
+                  onReferralSelect(otherReferral)
+                }}
+                selected={otherReferral.id === selectedReferral?.id}
+              >
+                {paneTexts.otherLabel}
+              </ReferralButton>
+            )}
             <TextInput
               name="other"
               type="text"
@@ -86,8 +91,9 @@ export function ReferralPane() {
               value={selectedReferral?.name}
               selected={otherReferral.id === selectedReferral?.id}
               ref={otherReferralRef}
+              hidden={otherReferral.id !== selectedReferral?.id}
             />
-          )}
+          </div>
         </ReferralButtonsWrapper>
       </ReferralsWrapper>
       <NavigationButtons

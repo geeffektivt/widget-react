@@ -17,6 +17,7 @@ export const TextInput = styled('input', {
   borderColor: '$primary100',
   fontSize: '$14',
   padding: '$s100',
+  width: '100%',
 
   variants: {
     selected: {
@@ -30,10 +31,21 @@ export const TextInput = styled('input', {
         },
       },
     },
+
+    hidden: {
+      true: {
+        left: 0,
+        opacity: '0.5',
+        position: 'absolute',
+        top: 0,
+        width: '100%',
+      },
+    },
   },
 })
 
 export const ReferralButton = styled('button', {
+  width: '100%',
   textAlign: 'left',
   borderRadius: '5px',
   backgroundColor: '$white',
