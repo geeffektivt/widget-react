@@ -40,10 +40,11 @@ export function ReferralPane() {
     )
   }
 
-  const otherReferralRef = useCallback((inputElement) => {
+  const otherReferralRef = useCallback((inputElement: HTMLInputElement) => {
     setTimeout(() => {
-      if (inputElement) {
-        inputElement.focus()
+      inputElement?.focus()
+      if (selectedReferral?.name === '') {
+        inputElement?.select()
       }
     }, 150)
   }, [])
