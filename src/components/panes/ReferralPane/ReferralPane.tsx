@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { ReferralOption } from '../../../@types/import/content/referrals.types'
@@ -40,20 +40,7 @@ export function ReferralPane() {
     )
   }
 
-  const otherReferralRef = useCallback(
-    (inputElement: HTMLInputElement) => {
-      setTimeout(() => {
-        if (selectedReferral?.id === otherReferral.id) {
-          inputElement?.focus()
-          if (selectedReferral?.name === '') {
-            inputElement?.select()
-          }
-        }
-      }, 150)
-    },
-    [selectedReferral]
-  )
-
+  const otherReferralRef = useRef<HTMLInputElement>(null)
   const otherReferral = { id: '0', name: '' }
 
   return (
@@ -77,6 +64,8 @@ export function ReferralPane() {
                 key={otherReferral.id}
                 onClick={() => {
                   onReferralSelect(otherReferral)
+                  otherReferralRef.current?.focus()
+                  otherReferralRef.current?.select()
                 }}
                 selected={otherReferral.id === selectedReferral?.id}
               >
