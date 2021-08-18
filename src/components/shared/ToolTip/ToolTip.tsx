@@ -7,14 +7,15 @@ import styled from 'styled-components'
 
 const useStyles = makeStyles(() => ({
   tooltip: {
-    maxWidth: 180,
-    top: 10,
+    backgroundColor: '#FFAA2B',
+    borderRadius: 0,
+    color: 'black',
     fontSize: 12,
     left: 20,
-    backgroundColor: '#FFAA2B',
-    color: 'black',
-    borderRadius: 0,
+    maxWidth: 180,
+    top: 10,
   },
+
   positionArrow: {
     left: 3,
   },
@@ -27,6 +28,7 @@ const Link = styled.a`
 
 const StyledSVG = styled.svg`
   margin-left: 5px;
+
   &:hover {
     cursor: pointer;
     opacity: 0.5;

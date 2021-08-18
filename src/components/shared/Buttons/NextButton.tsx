@@ -16,10 +16,12 @@ export const NextButton = styled('button', {
   transition:
     'background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out',
 
-  '&:hover': {
-    backgroundColor: '$white',
-    border: '3px solid $primary100',
-    color: '$primary100',
+  '@media(hover: hover) and (pointer: fine)': {
+    '&:hover': {
+      backgroundColor: '$white',
+      border: '3px solid $primary100',
+      color: '$primary100',
+    },
   },
 
   '&:disabled': {

@@ -9,9 +9,11 @@ export const StyledSvg = styled('svg', {
   cursor: 'pointer',
   opacity: 0.5,
 
-  '&:hover': {
-    opacity: 1,
-    transform: 'scale(0.9)',
+  '@media(hover: hover) and (pointer: fine)': {
+    '&:hover': {
+      opacity: 1,
+      transform: 'scale(0.9)',
+    },
   },
 })
 

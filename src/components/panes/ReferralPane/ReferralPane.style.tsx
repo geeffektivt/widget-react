@@ -43,10 +43,12 @@ export const ReferralButton = styled('button', {
   fontSize: '$14',
   padding: '$s100',
 
-  '&:hover': {
-    backgroundColor: '$primary100',
-    color: '$white',
-    opacity: '0.4',
+  '@media(hover: hover) and (pointer: fine)': {
+    '&:hover': {
+      backgroundColor: '$primary100',
+      color: '$white',
+      opacity: '0.4',
+    },
   },
 
   variants: {

@@ -28,17 +28,21 @@ export const CheckboxWrapper = styled('label', {
   display: 'flex',
   paddingTop: '$s50',
 
-  '&:hover': {
-    cursor: 'pointer',
+  '@media(hover: hover) and (pointer: fine)': {
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
 })
 
 export const CheckBox = styled('input', {
   marginLeft: '$s50',
 
-  '&:hover': {
-    cursor: 'pointer',
-    opacity: '0.5',
+  '@media(hover: hover) and (pointer: fine)': {
+    '&:hover': {
+      cursor: 'pointer',
+      opacity: '0.5',
+    },
   },
 })
 

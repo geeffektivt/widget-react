@@ -6,7 +6,12 @@ export const locked = css({
 
 export const unLocked = css({
   opacity: 0.5,
-  '&:hover': { opacity: 1 },
+
+  '@media(hover: hover) and (pointer: fine)': {
+    '&:hover': {
+      opacity: 1,
+    },
+  },
 })
 
 export const disabled = css({
