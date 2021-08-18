@@ -1,7 +1,7 @@
 import { styled } from '../../styles/stitches.config'
 
 export const Pane = styled('div', {
-  padding: '$s150',
+  padding: '$s100',
 })
 
 export const CenteredContainer = styled('div', {
