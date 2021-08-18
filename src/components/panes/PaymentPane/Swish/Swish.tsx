@@ -30,6 +30,7 @@ export default function Swish() {
   const { donorType, donor, causesDistribution } = useTypedSelector(
     (state) => state.donation
   )
+  const { referral } = useTypedSelector((state) => state.referrals)
   const texts = useAllTexts()
   const paneTexts = texts.donations.swish
 
@@ -49,6 +50,7 @@ export default function Swish() {
         approvesPrivacyPolicy: donor?.approvesPrivacyPolicy,
         doNewsletter: donor?.newsletter,
         charities: getCharitiesWithNames(causesDistribution),
+        referral: referral?.name,
       }
       dispatch(paymentAsyncActions.createSwishPayment(paymentRequest))
     }

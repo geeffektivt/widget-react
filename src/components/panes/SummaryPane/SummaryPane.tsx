@@ -24,6 +24,7 @@ const SummaryPane = () => {
     method,
     recurring,
   } = useTypedSelector((state) => state.donation)
+  const { referral } = useTypedSelector((state) => state.referrals)
   const texts = useAllTexts()
   const summaryTexts = texts.donations.summary
   const donorTexts = texts.donations.donor
@@ -88,6 +89,12 @@ const SummaryPane = () => {
             <p>{`${c.sum} kr`}</p>
           </DetailsSubRow>
         ))}
+        {referral && referral.name !== '' && (
+          <DetailsRow>
+            <BoldText>{summaryTexts.referralTitle}</BoldText>
+            <p>{referral?.name}</p>
+          </DetailsRow>
+        )}
       </DetailsWrapper>
       <NavigationButtons nextButtonTitle={summaryTexts.submitLabel} />
     </Pane>

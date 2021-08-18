@@ -44,6 +44,7 @@ export default function Bank() {
     isCreatingPayment,
     createPaymentResponse,
   } = useTypedSelector((state) => state.payment)
+  const { referral } = useTypedSelector((state) => state.referrals)
   const dispatch = useTypedDispatch()
   const texts = useAllTexts()
   const causes = useAllCauses()
@@ -60,6 +61,7 @@ export default function Bank() {
       doNewsletter: donor?.newsletter,
       charities: getCharitiesWithNames(causesDistribution),
       reoccursMonthly: recurring === DonationFrequency.Monthly,
+      referral: referral?.name,
     }
     dispatch(paymentAsyncActions.createBankPayment(paymentRequest))
   })
