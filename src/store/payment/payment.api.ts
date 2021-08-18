@@ -31,15 +31,17 @@ export async function createPaymentRequest(
 }
 
 export const getCharitiesWithNames = (charities: CauseDistribution[]) => {
-  return charities.flatMap((c) => {
-    if (c.shareType === ShareType.Standard) {
-      return { name: c.name, sum: c.share }
-    }
-    return c.organizationsDistribution.map((o) => ({
-      name: o.name,
-      sum: o.share,
-    }))
-  })
+  return charities
+    .flatMap((c) => {
+      if (c.shareType === ShareType.Standard) {
+        return { name: c.name, sum: c.sum }
+      }
+      return c.organizationsDistribution.map((o) => ({
+        name: o.name,
+        sum: o.sum,
+      }))
+    })
+    .filter((c) => c.sum !== 0)
 }
 
 export async function pollSwishPaymentStatusRequest(
