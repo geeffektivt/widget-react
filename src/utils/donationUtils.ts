@@ -108,15 +108,7 @@ export function updateValues(
 
     const entry = entries[roundRobinIndex]
 
-    // If a cause was set to 0, then it should be kept at 0 unless the remaining causes also are 0 or locked
-    // ie only update a 0-cause when there is no other option
-    const shouldStickToZero =
-      entry.share === 0 &&
-      entries
-        .filter((_, i) => i !== updatedIndex)
-        .filter((e) => e.share === 0 || e.isLocked).length === 1
-
-    if (entry.isLocked || shouldStickToZero) {
+    if (entry.isLocked) {
       // don't update this slider
       continue
     }
