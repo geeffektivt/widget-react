@@ -33,7 +33,6 @@ const CauseSlider = ({
       <AccordionContainer>
         {children}
         <FlexContainer>
-          <span>{share} %</span>
           <LockButton
             disabled={disabled}
             title="Lås"
