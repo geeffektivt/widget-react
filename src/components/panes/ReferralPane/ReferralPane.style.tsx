@@ -10,7 +10,32 @@ export const ReferralButtonsWrapper = styled('div', {
   gap: '$s75',
 })
 
+export const TextInput = styled('input', {
+  borderRadius: '5px',
+  backgroundColor: '$white',
+  border: '1px solid',
+  borderColor: '$primary100',
+  fontSize: '$14',
+  padding: '$s100',
+
+  variants: {
+    selected: {
+      true: {
+        backgroundColor: '$primary100',
+        color: '$white',
+
+        '&::placeholder': {
+          color: '$white',
+          opacity: '0.7',
+        },
+      },
+    },
+  },
+})
+
 export const ReferralButton = styled('button', {
+  textAlign: 'left',
+  borderRadius: '5px',
   backgroundColor: '$white',
   border: '1px solid',
   borderColor: '$primary100',

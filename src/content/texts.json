@@ -42,7 +42,8 @@
 
     "referral": {
       "title": "Hur hörde du talas om oss?",
-      "skipLabel": "Hoppa över"
+      "skipLabel": "Hoppa över",
+      "otherLabel": "Annat"
     },
 
     "summary": {

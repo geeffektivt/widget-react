@@ -38,7 +38,7 @@ export default function Carousel({ children }: ICarouselProps) {
       const newRenderedPanes2 = [...renderedPanesRef.current]
       newRenderedPanes2[currentPaneNumberRef.current - offset] = false
       setRenderedPanes(newRenderedPanes2)
-    }, 200)
+    }, 100)
   }
 
   return (
