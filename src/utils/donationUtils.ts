@@ -7,29 +7,6 @@ export const getStepLength = (sum: number) => (sum < 5 ? 1 : 5)
 /**
  * @warn Will mutate entries.
  */
-// export function mutableRoundRobinUpdateAllShares(
-//   entries: BaseDistribution[],
-//   oldSum: number,
-//   sum: number,
-//   lastRoundRobinIndex: number
-// ) {
-//   const minValue = 0
-//   const maxValue = sum
-//   const updateDelta = sum - oldSum
-
-//   return updateValues(
-//     entries,
-//     updateDelta,
-//     lastRoundRobinIndex,
-//     minValue,
-//     maxValue,
-//     undefined
-//   )
-// }
-
-/**
- * @warn Will mutate entries.
- */
 export function mutableRoundRobinUpdateShareAtIndex(
   entries: BaseDistribution[],
   updatedIndex: number,
@@ -96,9 +73,7 @@ export function updateValues(
   const deltaPerStep = (updateDelta / updateAbsDiff) * stepLength
 
   let roundRobinIndex = lastRoundRobinIndex
-  let tries = 0
-  while (updateAbsDiff > 0 && tries < 1000) {
-    tries += 1
+  while (updateAbsDiff > 0) {
     roundRobinIndex = (roundRobinIndex + 1) % nbrOfValues
 
     if (roundRobinIndex === updatedIndex) {

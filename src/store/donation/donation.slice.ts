@@ -94,8 +94,16 @@ export const donationSlice = createSlice({
           state.lastCauseRoundRobinIndex
         )
         if (updatedDistribution) {
-          state.lastCauseRoundRobinIndex =
-            updatedDistribution.roundrobinIndex.roundRobinEndIndex
+          // When one distribution has been maxed out, one of the siblings will be the last to be updated
+          // and then it will fulfill the shouldStickToZero requirement
+          // This if statement makes sure we dont pick a random distribution to get stuck but instead
+          // it will always be the same one
+          if (updatedDistribution.distributions.some((o) => o.share === 100)) {
+            state.lastCauseRoundRobinIndex = 0
+          } else {
+            state.lastCauseRoundRobinIndex =
+              updatedDistribution.roundrobinIndex.roundRobinEndIndex
+          }
           state.causesDistribution = updatedDistribution.distributions
         }
       }
@@ -155,8 +163,16 @@ export const donationSlice = createSlice({
         )
 
         if (updatedDistribution) {
-          cause.lastOrganizationRoundRobinIndex =
-            updatedDistribution.roundrobinIndex.roundRobinEndIndex
+          // When one distribution has been maxed out, one of the siblings will be the last to be updated
+          // and then it will fulfill the shouldStickToZero requirement
+          // This if statement makes sure we dont pick a random distribution to get stuck but instead
+          // it will always be the same one
+          if (updatedDistribution.distributions.some((o) => o.share === 100)) {
+            cause.lastOrganizationRoundRobinIndex = 0
+          } else {
+            cause.lastOrganizationRoundRobinIndex =
+              updatedDistribution.roundrobinIndex.roundRobinEndIndex
+          }
           cause.organizationsDistribution = updatedDistribution.distributions
         }
       }
