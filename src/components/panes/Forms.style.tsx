@@ -9,9 +9,6 @@ export const InputFieldWrapper = styled('div', {
   display: 'flex',
   flexDirection: 'column',
 })
-export const SmallInputFieldWrapper = styled(InputFieldWrapper, {
-  fontSize: '$12',
-})
 
 export const TextField = styled('input', {
   padding: '$s25',

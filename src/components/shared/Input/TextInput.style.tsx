@@ -25,6 +25,7 @@ export interface TextInputWrapperProps {
 export const TextInputWrapper = styled.div`
   display: block;
   margin-bottom: 5px;
+  margin-top: 5px;
   font-size: 1em;
   border: 1px solid
     ${({ valid = true }: TextInputWrapperProps) => (valid ? gray18 : red)};

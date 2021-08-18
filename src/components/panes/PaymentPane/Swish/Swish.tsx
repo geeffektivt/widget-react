@@ -96,6 +96,8 @@ export default function Swish() {
             autoFormat
             defaultMask="..-... .. ..."
             alwaysDefaultMask
+            inputStyle={{ fontSize: '16px', width: '100%' }}
+            containerStyle={{ fontSize: '16px' }}
           />
         </PhoneInputContainer>
       </CenteredContainer>

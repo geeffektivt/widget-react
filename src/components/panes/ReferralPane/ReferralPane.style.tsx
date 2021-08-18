@@ -15,7 +15,7 @@ export const TextInput = styled('input', {
   backgroundColor: '$white',
   border: '1px solid',
   borderColor: '$primary100',
-  fontSize: '$14',
+  fontSize: '$16',
   padding: '$s100',
   width: '100%',
   zIndex: 5,
@@ -53,7 +53,7 @@ export const ReferralButton = styled('button', {
   border: '1px solid',
   borderColor: '$primary100',
   cursor: 'pointer',
-  fontSize: '$14',
+  fontSize: '$16',
   padding: '$s100',
 
   '@media(hover: hover) and (pointer: fine)': {

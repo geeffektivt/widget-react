@@ -18,7 +18,6 @@ import { ToolTip } from '../../shared/ToolTip/ToolTip'
 import ActionString from '../../shared/_functional/ActionString'
 import {
   InputFieldWrapper,
-  SmallInputFieldWrapper,
   Container,
   CheckboxLabel,
   CheckBox,
@@ -133,7 +132,7 @@ export function DonorPane() {
               </CheckboxWrapper>
 
               {watch('taxDeduction') && (
-                <SmallInputFieldWrapper>
+                <InputFieldWrapper>
                   <TextInput
                     name="ssn"
                     type="number"
@@ -150,7 +149,7 @@ export function DonorPane() {
                   />
 
                   {isSsnInvalid && <ErrorField text={paneTexts.ssnError} />}
-                </SmallInputFieldWrapper>
+                </InputFieldWrapper>
               )}
 
               <CheckboxWrapper>
