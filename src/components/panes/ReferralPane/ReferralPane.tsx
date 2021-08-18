@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { ReferralOption } from '../../../@types/import/content/referrals.types'
@@ -59,6 +59,16 @@ export function ReferralPane() {
             </ReferralButton>
           ))}
           <div>
+            <TextInput
+              name="other"
+              type="text"
+              placeholder={paneTexts.otherLabel}
+              onChange={(e) => onOtherReferralInput(e.target.value)}
+              value={selectedReferral?.name ?? ''}
+              selected={otherReferral.id === selectedReferral?.id}
+              ref={otherReferralRef}
+              hidden={otherReferral.id !== selectedReferral?.id}
+            />
             {otherReferral.id !== selectedReferral?.id && (
               <ReferralButton
                 key={otherReferral.id}
@@ -72,16 +82,6 @@ export function ReferralPane() {
                 {paneTexts.otherLabel}
               </ReferralButton>
             )}
-            <TextInput
-              name="other"
-              type="text"
-              placeholder={paneTexts.otherLabel}
-              onChange={(e) => onOtherReferralInput(e.target.value)}
-              value={selectedReferral?.name}
-              selected={otherReferral.id === selectedReferral?.id}
-              ref={otherReferralRef}
-              hidden={otherReferral.id !== selectedReferral?.id}
-            />
           </div>
         </ReferralButtonsWrapper>
       </ReferralsWrapper>

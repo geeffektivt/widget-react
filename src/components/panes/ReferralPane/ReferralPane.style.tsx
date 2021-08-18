@@ -18,6 +18,7 @@ export const TextInput = styled('input', {
   fontSize: '$14',
   padding: '$s100',
   width: '100%',
+  zIndex: 5,
 
   variants: {
     selected: {
