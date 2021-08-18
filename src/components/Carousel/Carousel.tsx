@@ -50,7 +50,7 @@ export default function Carousel({ children }: ICarouselProps) {
   }
 
   return (
-    <div className={styles.carousel()} ref={containerRef}>
+    <div className={styles.carousel()}>
       <div
         className={styles.carouselInner()}
         style={{
@@ -59,8 +59,12 @@ export default function Carousel({ children }: ICarouselProps) {
       >
         {children.filter(Boolean).map((child, index) => {
           return (
-            // eslint-disable-next-line react/no-array-index-key
-            <div className={styles.carouselItem()} key={index}>
+            <div
+              className={styles.carouselItem()}
+              // eslint-disable-next-line react/no-array-index-key
+              key={index}
+              ref={containerRef}
+            >
               {renderedPanes[index] && child}
             </div>
           )
