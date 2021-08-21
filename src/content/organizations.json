@@ -8,45 +8,45 @@
     "organizations": [
       {
         "id": "1",
-        "name": "Against Malaria Foundation",
+        "name": "GiveWell Maximum Impact Fund",
         "infoUrl": "https://example.com",
         "shortDesc": "Test description of Against Malaria Foundation."
       },
       {
         "id": "2",
+        "name": "Against Malaria Foundation",
+        "infoUrl": "https://example.com",
+        "shortDesc": "Test description of Against Malaria Foundation."
+      },
+      {
+        "id": "3",
         "name": "SCI Foundation",
         "infoUrl": "https://example.com",
         "shortDesc": "An slightly longer description of SCI Foundation to see what happens."
       },
       {
-        "id": "3",
+        "id": "4",
         "name": "New Incentives",
         "infoUrl": "https://example.com",
         "shortDesc": "An absurdly long description of New Incentives to see what happens when it's like a lot of like information to be conveyed and we didn't have the time to do it briefly."
       },
       {
-        "id": "4",
+        "id": "5",
         "name": "Helen Keller International",
         "infoUrl": "https://example.com",
         "shortDesc": "Short description."
       },
       {
-        "id": "5",
+        "id": "6",
         "name": "Malaria Consortium",
         "infoUrl": "https://example.com",
         "shortDesc": "Short description."
       },
       {
-        "id": "6",
+        "id": "7",
         "name": "GiveDirectly",
         "infoUrl": "https://givedirectly.org/",
         "shortDesc": "Direkta kontantöverföringar ger fattiga hushåll möjligheten att köpa det de allra mest behöver."
-      },
-      {
-        "id": "7",
-        "name": "GiveWell Maximum Impact Fund",
-        "infoUrl": "https://example.com",
-        "shortDesc": "Short description."
       }
     ]
   },
@@ -54,7 +54,7 @@
     "id": "2",
     "name": "Klimat",
     "standardShare": 0,
-    "standardOrganizationShareText": "Låt klimatexperter välja",
+    "standardOrganizationShareText": "Låt experter inom klimatvälgörenhet välja",
     "standardOrganizationShareExplanation": "Vi rådgör med givinggreen.earth och Founders Pledge om hur dina pengar gör störst skillnad för klimatet.",
     "organizations": [
       {
