@@ -2,7 +2,7 @@
   {
     "id": "1",
     "name": "Global hälsa",
-    "standardShare": 50,
+    "standardShare": 100,
     "standardOrganizationShareText": "Låt GiveWell välja",
     "standardOrganizationShareExplanation": "Hela summan går till GiveWell Maximum Impact Fund.",
     "organizations": [
@@ -53,46 +53,51 @@
   {
     "id": "2",
     "name": "Klimat",
-    "standardShare": 25,
+    "standardShare": 0,
     "standardOrganizationShareText": "Låt klimatexperter välja",
     "standardOrganizationShareExplanation": "Vi rådgör med givinggreen.earth och Founders Pledge om hur dina pengar gör störst skillnad för klimatet.",
     "organizations": [
       {
         "id": "20",
-        "name": "Clean Air Task Force",
+        "name": "Founders Pledge Climate Change Fund",
         "infoUrl": "https://example.com",
         "shortDesc": "Short description."
       },
       {
         "id": "21",
-        "name": "BURN",
+        "name": "Clean Air Task Force",
         "infoUrl": "https://example.com",
         "shortDesc": "Short description."
       },
       {
         "id": "22",
-        "name": "Climeworks",
+        "name": "BURN",
         "infoUrl": "https://example.com",
         "shortDesc": "Short description."
       },
       {
         "id": "23",
-        "name": "Tradewater",
+        "name": "Climeworks",
         "infoUrl": "https://example.com",
         "shortDesc": "Short description."
-      }
+      },
+      {
+          "id": "24",
+          "name": "Tradewater",
+          "infoUrl": "https://example.com",
+          "shortDesc": "Short description."
     ]
   },
   {
     "id": "3",
     "name": "Djurhälsa",
-    "standardShare": 25,
+    "standardShare": 0,
     "standardOrganizationShareText": "Låt Animal Charity Evaluators välja",
     "standardOrganizationShareExplanation": "90% av summan går till Animal Charity Evaluators Recommended Charity Fund, och 10% till deras egna arbete.",
     "organizations": [
       {
-        "id": "30",
-        "name": "The Albert Schweitzer Foundation",
+        "id": "34",
+        "name": "Animal Charity Evaluators Recommended Charity Fund",
         "infoUrl": "https://example.com",
         "shortDesc": "Short description."
       },
@@ -116,7 +121,7 @@
       },
       {
         "id": "34",
-        "name": "Animal Charity Evaluators Recommended Charity Fund",
+        "name": "The Albert Schweitzer Foundation",
         "infoUrl": "https://example.com",
         "shortDesc": "Short description."
       }
