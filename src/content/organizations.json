@@ -82,10 +82,11 @@
         "shortDesc": "Short description."
       },
       {
-          "id": "24",
-          "name": "Tradewater",
-          "infoUrl": "https://example.com",
-          "shortDesc": "Short description."
+        "id": "24",
+        "name": "Tradewater",
+        "infoUrl": "https://example.com",
+        "shortDesc": "Short description."
+      }
     ]
   },
   {
