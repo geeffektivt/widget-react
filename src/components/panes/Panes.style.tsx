@@ -20,7 +20,6 @@ export const PaneTitle = styled('h3', {
 
 export const PrimaryLink = styled('a', {
   color: '$primary100',
-  fontSize: '$12',
 })
 
 export const ErrorMessage = styled('span', {
@@ -49,7 +48,7 @@ export const DetailsSubRow = styled(DetailsRow, {
   paddingLeft: '$s200',
 })
 
-export const BoldText = styled('p', {
+export const BoldText = styled('span', {
   fontWeight: 'bold',
 })
 

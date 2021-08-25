@@ -61,20 +61,28 @@
 
     "payment": {
       "title": "Tack!",
-      "description": "Du kan nu överföra till oss",
+      "descriptionSingle": "Du kan nu överföra till oss",
+      "descriptionMonthly": "Du kan nu överföra till oss med en av tre nedan metoder",
       "sumTitle": "Belopp",
-      "kontonummerTitle": "Kontonr",
+      "kontonummerTitle": "Kontonr Swedbank",
       "kontonummer": "8327-9,704 665 512-7",
       "bankTitle": "Bank",
       "bank": "Swedbank",
-      "referenceTitleRecurring": "Betalarnummer",
+      "referenceTitleRecurring": "Ditt betalarnummer (använd som meddelande)",
       "referenceTitleSingle": "Meddelande",
       "ocr": "0000000",
-      "referenceTitleRecurringDescription": "Om du vill donera med samma fördelning senare kan du använda samma betalarnummer igen. Du kan även sätta upp gåvan som automatiskt återkommande varje månad i din bank om du skulle vilja. Om du har några frågor kan du höra av dig till oss på donationer@geeffektivt.se.",
-      "referenceTitleSingleDescription": "Om du vill donera med samma fördelning senare kan du använda samma meddelande igen. Du kan även sätta upp gåvan som automatiskt återkommande varje månad i din bank om du skulle vilja. Om du har några frågor kan du höra av dig till oss på donationer@geeffektivt.se.",
+      "recurringSuggestion": "Om du vill donera med samma fördelning senare kan du använda samma meddelande igen. Du kan även sätta upp gåvan som automatiskt återkommande varje månad i din bank om du skulle vilja. Om du har några frågor kan du höra av dig till oss på donationer@geeffektivt.se.",
       "goBackTitle": "Gå tillbaka till startsidan",
       "errorTitle": "Tekniskt fel",
-      "errorDescription": "Något gick tyvärr fel, vänligen försök igen senare"
+      "errorDescription": "Något gick tyvärr fel, vänligen försök igen senare",
+      "altATitle": "A - stående överföring",
+      "altBTitle": "B - Autogiro upprättat via Bankgirots externa formulär",
+      "altBDescription": "Du kan skapa ett nytt bankgiro genom att fylla i ett formulär på Bankgirocentralens hemsida, och signera med BankID",
+      "altBLink": "https://www.mvh.bgonline.se/Public.Web/Templates/MandateApplications/FillInMandateApplication.aspx?formRef=fca9dd8e-056a-44a5-8bfc-0a296b5f6ba5",
+      "altBLinkText": "Till bankgirocentralen",
+      "altCTitle": "C – Autogiro upprättat via din bank",
+      "altCDescription": "I din nätbank kan du upprätta ett eget Autogiro. När du ska hitta vår organisation kan du söka på geeffektivt.se eller bara geeffektivt, så dyker vi upp som alternativ.",
+      "altCWarning": "OBS: Välj inte Effektiv Altruism Sverige, som gäller andra insättningar."
     },
 
     "swish": {
