@@ -16,6 +16,8 @@ const initialState: PaymentState = {
   isPollingStatus: null,
   pollStatusError: null,
   phoneNumber: null,
+  preferredTransferDate: '',
+  monthlyPaymentMethod: '',
 }
 
 export const paymentSlice = createSlice({
@@ -24,6 +26,12 @@ export const paymentSlice = createSlice({
   reducers: {
     setPhoneNumber(state, action: PayloadAction<string>) {
       state.phoneNumber = action.payload
+    },
+    setPreferredTransferDate(state, action: PayloadAction<string>) {
+      state.preferredTransferDate = action.payload
+    },
+    setMonthlyPaymentMethod(state, action: PayloadAction<string>) {
+      state.monthlyPaymentMethod = action.payload
     },
     resetState() {
       return initialState

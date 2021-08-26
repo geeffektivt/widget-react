@@ -11,4 +11,6 @@ export interface PaymentState {
   readonly isPollingStatus: boolean | null
   readonly pollStatusError: AppError | null
   readonly phoneNumber: string | null
+  readonly preferredTransferDate: string
+  readonly monthlyPaymentMethod: string
 }

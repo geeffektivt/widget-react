@@ -59,7 +59,7 @@ export default function BankSingle() {
       </DetailsWrapper>
       {paymentTexts.recurringSuggestion}
       <NavigationButtons
-        nextButtonTitle={paymentTexts.goBackTitle}
+        nextButtonTitle={paymentTexts.goBackButtonTitle}
         nextButtonOnClick={handleGoToStart}
         showBackButton={false}
       />
