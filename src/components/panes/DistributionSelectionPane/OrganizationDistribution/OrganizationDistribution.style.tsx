@@ -11,3 +11,8 @@ export const Container = styled('div', {
     },
   },
 })
+
+export const LeftAlignedContainer = styled('div', {
+  display: 'flex',
+  justifyContent: 'start',
+})

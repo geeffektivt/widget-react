@@ -10,43 +10,43 @@
         "id": "1",
         "name": "GiveWell Maximum Impact Fund",
         "infoUrl": "https://example.com",
-        "shortDesc": "Test description of Against Malaria Foundation."
+        "shortDescription": "Test description of Against Malaria Foundation."
       },
       {
         "id": "2",
         "name": "Against Malaria Foundation",
         "infoUrl": "https://example.com",
-        "shortDesc": "Test description of Against Malaria Foundation."
+        "shortDescription": "Test description of Against Malaria Foundation."
       },
       {
         "id": "3",
         "name": "SCI Foundation",
         "infoUrl": "https://example.com",
-        "shortDesc": "An slightly longer description of SCI Foundation to see what happens."
+        "shortDescription": "An slightly longer description of SCI Foundation to see what happens."
       },
       {
         "id": "4",
         "name": "New Incentives",
         "infoUrl": "https://example.com",
-        "shortDesc": "An absurdly long description of New Incentives to see what happens when it's like a lot of like information to be conveyed and we didn't have the time to do it briefly."
+        "shortDescription": "An absurdly long description of New Incentives to see what happens when it's like a lot of like information to be conveyed and we didn't have the time to do it briefly."
       },
       {
         "id": "5",
         "name": "Helen Keller International",
         "infoUrl": "https://example.com",
-        "shortDesc": "Short description."
+        "shortDescription": "Short description."
       },
       {
         "id": "6",
         "name": "Malaria Consortium",
         "infoUrl": "https://example.com",
-        "shortDesc": "Short description."
+        "shortDescription": "Short description."
       },
       {
         "id": "7",
         "name": "GiveDirectly",
         "infoUrl": "https://givedirectly.org/",
-        "shortDesc": "Direkta kontantöverföringar ger fattiga hushåll möjligheten att köpa det de allra mest behöver."
+        "shortDescription": "Direkta kontantöverföringar ger fattiga hushåll möjligheten att köpa det de allra mest behöver."
       }
     ]
   },
@@ -61,31 +61,31 @@
         "id": "20",
         "name": "Founders Pledge Climate Change Fund",
         "infoUrl": "https://example.com",
-        "shortDesc": "Short description."
+        "shortDescription": "Short description."
       },
       {
         "id": "21",
         "name": "Clean Air Task Force",
         "infoUrl": "https://example.com",
-        "shortDesc": "Short description."
+        "shortDescription": "Short description."
       },
       {
         "id": "22",
         "name": "BURN",
         "infoUrl": "https://example.com",
-        "shortDesc": "Short description."
+        "shortDescription": "Short description."
       },
       {
         "id": "23",
         "name": "Climeworks",
         "infoUrl": "https://example.com",
-        "shortDesc": "Short description."
+        "shortDescription": "Short description."
       },
       {
         "id": "24",
         "name": "Tradewater",
         "infoUrl": "https://example.com",
-        "shortDesc": "Short description."
+        "shortDescription": "Short description."
       }
     ]
   },
@@ -100,31 +100,31 @@
         "id": "34",
         "name": "Animal Charity Evaluators Recommended Charity Fund",
         "infoUrl": "https://example.com",
-        "shortDesc": "Short description."
+        "shortDescription": "Short description."
       },
       {
         "id": "31",
         "name": "The Humane League",
         "infoUrl": "https://example.com",
-        "shortDesc": "Short description."
+        "shortDescription": "Short description."
       },
       {
         "id": "32",
         "name": "The Good Food Institute",
         "infoUrl": "https://example.com",
-        "shortDesc": "Short description."
+        "shortDescription": "Short description."
       },
       {
         "id": "33",
         "name": "Wild Animal Initiative",
         "infoUrl": "https://example.com",
-        "shortDesc": "Short description."
+        "shortDescription": "Short description."
       },
       {
         "id": "34",
         "name": "The Albert Schweitzer Foundation",
         "infoUrl": "https://example.com",
-        "shortDesc": "Short description."
+        "shortDescription": "Short description."
       }
     ]
   }

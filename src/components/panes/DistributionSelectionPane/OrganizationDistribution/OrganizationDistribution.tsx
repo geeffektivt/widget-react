@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-wrap-multilines */
 import React from 'react'
 
 import {
@@ -8,9 +9,16 @@ import useTypedDispatch from '../../../../hooks/store/useTypedDispatch'
 import useRequestAnimationFrame from '../../../../hooks/utils/useRequestAnimationFrame'
 import { donationActions } from '../../../../store/donation/donation.slice'
 import { OrganizationDistribution as OrganizationDistributionType } from '../../../../store/donation/donation.types'
+import { Link } from '../../../shared/Link/Link'
+import { ToolTip } from '../../../shared/ToolTip/ToolTip'
+import ToolTipIcon from '../../../shared/ToolTip/ToolTipIcon'
+import { Paragraph } from '../../Panes.style'
 import CauseSlider from '../CauseSlider/CauseSlider'
 
-import { Container } from './OrganizationDistribution.style'
+import {
+  Container,
+  LeftAlignedContainer,
+} from './OrganizationDistribution.style'
 
 interface OrganizationDistributionProps {
   cause: Cause
@@ -64,7 +72,27 @@ export default function OrganizationDistribution({
         onLockButtonChange={onLockButtonChange}
         onSliderChange={onSliderChange}
       >
-        <span>{organization.name}</span>
+        <LeftAlignedContainer>
+          <span>{organization.name}</span>
+          <ToolTip
+            text={
+              <>
+                <Paragraph>{organization.shortDescription}</Paragraph>
+                <Paragraph>
+                  <Link
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={organization.infoUrl}
+                  >
+                    Läs mer
+                  </Link>
+                </Paragraph>
+              </>
+            }
+          >
+            <ToolTipIcon />
+          </ToolTip>
+        </LeftAlignedContainer>
       </CauseSlider>
     </Container>
   )

@@ -52,3 +52,7 @@ export const DetailsSubRow = styled(DetailsRow, {
 export const BoldText = styled('p', {
   fontWeight: 'bold',
 })
+
+export const Paragraph = styled('p', {
+  paddingBottom: '$s100',
+})

@@ -14,7 +14,7 @@ import ErrorField from '../../shared/Error/ErrorField'
 import { TextInput } from '../../shared/Input/TextInput'
 import { RichSelect } from '../../shared/RichSelect/RichSelect'
 import { RichSelectOption } from '../../shared/RichSelect/RichSelectOption'
-import { ToolTip } from '../../shared/ToolTip/ToolTip'
+import { ToolTipLink } from '../../shared/ToolTip/ToolTipLink'
 import ActionString from '../../shared/_functional/ActionString'
 import {
   InputFieldWrapper,
@@ -125,7 +125,7 @@ export function DonorPane() {
 
                 <CheckboxLabel>{paneTexts.taxDeductionLabel}</CheckboxLabel>
 
-                <ToolTip
+                <ToolTipLink
                   text={paneTexts.taxDeductionTooltip}
                   link={paneTexts.taxDeductionLink}
                 />
