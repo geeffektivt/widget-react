@@ -43,6 +43,7 @@ export function ToolTip({ text, children }: ToolTipProps) {
       TransitionComponent={Zoom}
       arrow
       interactive
+      enterTouchDelay={0}
     >
       {children}
     </Tooltip>
