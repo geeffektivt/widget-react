@@ -4,6 +4,8 @@ import styled from 'styled-components'
 
 const StyledSVG = styled.svg`
   margin-left: 5px;
+  min-height: 16px;
+  min-width: 16px;
 
   &:hover {
     cursor: pointer;

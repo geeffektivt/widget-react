@@ -15,10 +15,7 @@ import ToolTipIcon from '../../../shared/ToolTip/ToolTipIcon'
 import { Paragraph } from '../../Panes.style'
 import CauseSlider from '../CauseSlider/CauseSlider'
 
-import {
-  Container,
-  LeftAlignedContainer,
-} from './OrganizationDistribution.style'
+import { Container } from './OrganizationDistribution.style'
 
 interface OrganizationDistributionProps {
   cause: Cause
@@ -72,7 +69,7 @@ export default function OrganizationDistribution({
         onLockButtonChange={onLockButtonChange}
         onSliderChange={onSliderChange}
       >
-        <LeftAlignedContainer>
+        <div>
           <span>{organization.name}</span>
           <ToolTip
             text={
@@ -92,7 +89,7 @@ export default function OrganizationDistribution({
           >
             <ToolTipIcon />
           </ToolTip>
-        </LeftAlignedContainer>
+        </div>
       </CauseSlider>
     </Container>
   )
