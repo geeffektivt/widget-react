@@ -29,8 +29,24 @@ export default function Carousel({ children }: ICarouselProps) {
   }, [reduxPaneNumber])
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-    containerRef.current?.scrollTo(0, 0)
+    try {
+      containerRef.current?.scrollIntoView()
+      // trying to use new API - https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollTo
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      })
+      containerRef.current?.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      })
+    } catch (error) {
+      // just a fallback for older browsers
+      window.scrollTo(0, 0)
+      containerRef.current?.scrollTo(0, 0)
+    }
   }, [currentPaneNumber])
 
   function changePaneByOffset(offset: number) {
@@ -44,8 +60,24 @@ export default function Carousel({ children }: ICarouselProps) {
       const newRenderedPanes2 = [...renderedPanesRef.current]
       newRenderedPanes2[currentPaneNumberRef.current - offset] = false
       setRenderedPanes(newRenderedPanes2)
-      window.scrollTo(0, 0)
-      containerRef.current?.scrollTo(0, 0)
+      try {
+        containerRef.current?.scrollIntoView()
+        // trying to use new API - https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollTo
+        window.scroll({
+          top: 0,
+          left: 0,
+          behavior: 'smooth',
+        })
+        containerRef.current?.scroll({
+          top: 0,
+          left: 0,
+          behavior: 'smooth',
+        })
+      } catch (error) {
+        // just a fallback for older browsers
+        window.scrollTo(0, 0)
+        containerRef.current?.scrollTo(0, 0)
+      }
     }, 100)
   }
 
