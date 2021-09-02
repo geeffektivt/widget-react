@@ -136,8 +136,8 @@
       "standardOrganizationShareExplanation": "Vi använder pengarna efter bästa förmåga för att kunna fortätta bedriva och expandera vår insamling",
       "organizations":  [
         {
-          "id": "40"
-          "name": "Drift av Ge Effektivt"
+          "id": "40",
+          "name": "Drift av Ge Effektivt",
           "infoUrl": "https://geeffektivt.se/om",
           "shortDescription": "Läs mer om vårt arbete på vår sida Om oss."
         }
