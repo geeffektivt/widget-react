@@ -94,7 +94,7 @@
     "name": "Djurhälsa",
     "standardShare": 0,
     "standardOrganizationShareText": "Låt Animal Charity Evaluators välja",
-    "standardOrganizationShareExplanation": "90% av summan går till Animal Charity Evaluators Recommended Charity Fund, och 10% till deras egna arbete.",
+    "standardOrganizationShareExplanation": "90% av summan går till Animal Charity Evaluators Recommended Charity Fund, och resten till deras egna förbättringar.",
     "organizations": [
       {
         "id": "30",
@@ -127,5 +127,22 @@
         "shortDescription": "Short description."
       }
     ]
+  },
+  {
+      "id": "4",
+      "name": "Drift av Ge Effektivt",
+      "standardShare": 0,
+      "standardOrganizationShareText": "Låt din gåva hjälpa oss samla in mer pengar",
+      "standardOrganizationShareExplanation": "Vi använder pengarna efter bästa förmåga för att kunna fortätta bedriva och expandera vår insamling",
+      "organizations":  [
+        {
+          "id": "40"
+          "name": "Drift av Ge Effektivt"
+          "infoUrl": "https://geeffektivt.se/om",
+          "shortDescription": "Läs mer om vårt arbete på vår sida Om oss."
+        }
+     ]
   }
+
+
 ]
