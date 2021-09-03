@@ -12,7 +12,6 @@ export default function Carousel({ children }: ICarouselProps) {
   const [currentPaneNumber, setCurrentPaneNumber] = useState(0) // get from redux global state
   const [renderedPanes, setRenderedPanes] = useState([true])
 
-  const containerRef = useRef<HTMLDivElement>(null)
   const renderedPanesRef = useRef(renderedPanes)
   renderedPanesRef.current = renderedPanes
 
@@ -27,10 +26,6 @@ export default function Carousel({ children }: ICarouselProps) {
       changePaneByOffset(reduxPaneNumber - currentPaneNumber)
     }
   }, [reduxPaneNumber])
-
-  useEffect(() => {
-    containerRef.current?.scrollIntoView()
-  }, [currentPaneNumber])
 
   function changePaneByOffset(offset: number) {
     const newRenderedPanes = [...renderedPanes]
@@ -47,7 +42,7 @@ export default function Carousel({ children }: ICarouselProps) {
   }
 
   return (
-    <div className={styles.carousel()} ref={containerRef}>
+    <div className={styles.carousel()}>
       <div
         className={styles.carouselInner()}
         style={{
