@@ -80,13 +80,18 @@ export default function CauseDistribution({
           sum={causeDistribution.sum}
           onLockButtonChange={onLockButtonChange}
           onSliderChange={onSliderChange}
+          hasOrganizations={cause.organizations.length > 0}
         >
-          <CausesAccordionButton>
-            <CausesAccordionChevron>
-              <Chevron />
-            </CausesAccordionChevron>
+          {cause.organizations.length > 0 ? (
+            <CausesAccordionButton>
+              <CausesAccordionChevron>
+                <Chevron />
+              </CausesAccordionChevron>
+              <CauseTitle>{cause.name}</CauseTitle>
+            </CausesAccordionButton>
+          ) : (
             <CauseTitle>{cause.name}</CauseTitle>
-          </CausesAccordionButton>
+          )}
         </CauseSlider>
       </CausesAccordionHeader>
 

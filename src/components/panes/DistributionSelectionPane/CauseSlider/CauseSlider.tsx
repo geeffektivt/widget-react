@@ -17,6 +17,7 @@ interface CauseSliderProps {
   disabled?: boolean
   share: number
   sum: number
+  hasOrganizations?: boolean
 }
 
 const CauseSlider = ({
@@ -27,10 +28,11 @@ const CauseSlider = ({
   disabled = false,
   share,
   sum,
+  hasOrganizations = true,
 }: CauseSliderProps) => {
   return (
     <>
-      <AccordionContainer>
+      <AccordionContainer hasOrganizations={hasOrganizations}>
         {children}
         <FlexContainer>
           <LockButton

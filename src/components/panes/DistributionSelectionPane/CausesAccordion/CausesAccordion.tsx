@@ -17,7 +17,6 @@ export const CausesAccordionHeader = styled(Header, {})
 export const CausesAccordionButton = styled(Button, {
   backgroundColor: 'transparent',
   border: 'none',
-  padding: 10,
   display: 'flex',
   alignItems: 'center',
   cursor: 'pointer',
