@@ -9,43 +9,43 @@
       {
         "id": "1",
         "name": "GiveWell Maximum Impact Fund",
-        "infoUrl": "https://example.com",
-        "shortDescription": "Test description of Against Malaria Foundation."
+        "infoUrl": "https://www.givewell.org/maximum-impact-fund",
+        "shortDescription": "En fond där du låter GiveWell välja det ändamål som de tror att människor hjälps av allra mest just nu. Det kan vara organisationer de redan rekommenderar, eller mindre projekt som för tillfället skulle få mycket uträttat med pengarna."
       },
       {
         "id": "2",
         "name": "Against Malaria Foundation",
-        "infoUrl": "https://example.com",
-        "shortDescription": "Test description of Against Malaria Foundation."
+        "infoUrl": "http://www.givewell.org/international/top-charities/amf",
+        "shortDescription": "Against Malaria Foundation distribuerar impregnerade myggnät i områden med malaria. Varje nät kan skydda två personer från malaria i över fyra år."
       },
       {
         "id": "3",
         "name": "SCI Foundation",
-        "infoUrl": "https://example.com",
-        "shortDescription": "An slightly longer description of SCI Foundation to see what happens."
+        "infoUrl": "https://www.givewell.org/charities/sci-foundation",
+        "shortDescription": "SCI Foundation hjälper myndigheter i Afrika söder om Sahara med att starta och utveckla behandlingsprogram för schistosomiasis (snäckfeber) och andra försummade sjukdomar."
       },
       {
         "id": "4",
         "name": "New Incentives",
-        "infoUrl": "https://example.com",
-        "shortDescription": "An absurdly long description of New Incentives to see what happens when it's like a lot of like information to be conveyed and we didn't have the time to do it briefly."
+        "infoUrl": "https://www.givewell.org/charities/new-incentives",
+        "shortDescription": "Med kontantöverföringar motsvarande $11 över fem besök höjs vaccinationsgraden för exempelvis tuberkulos, polio och hepatit B i Nigeria."
       },
       {
         "id": "5",
         "name": "Helen Keller International",
-        "infoUrl": "https://example.com",
-        "shortDescription": "Short description."
+        "infoUrl": "https://www.givewell.org/charities/helen-keller-international",
+        "shortDescription": "Forskning visar att vitamin A-tillskott kan reducera barndödlighet. HKI bistår myndigheter med att planera och implementera sådana projekt i flera afrikanska länder."
       },
       {
         "id": "6",
         "name": "Malaria Consortium",
-        "infoUrl": "https://example.com",
-        "shortDescription": "Short description."
+        "infoUrl": "http://www.givewell.org/charities/malaria-consortium",
+        "shortDescription": "Delar ut malariadämpande preparat till barn under fem år under högsäsongen för malariasmitta, för att förebygga insjuknande. Detta kallas seasonal malaria chemoprevention (SMC)."
       },
       {
         "id": "7",
         "name": "GiveDirectly",
-        "infoUrl": "https://givedirectly.org/",
+        "infoUrl": "http://www.givewell.org/International/top-charities/give-directly",
         "shortDescription": "Direkta kontantöverföringar ger fattiga hushåll möjligheten att köpa det de allra mest behöver."
       }
     ]
@@ -60,32 +60,32 @@
       {
         "id": "20",
         "name": "Founders Pledge Climate Change Fund",
-        "infoUrl": "https://example.com",
-        "shortDescription": "Short description."
+        "infoUrl": "https://founderspledge.com/funds/climate-change-fund",
+        "shortDescription": "En fond där du låter klimatforskarna på organisationen Founders Pledge välja det ändamål som de tror att klimatet hjälps av allra mest just nu.."
       },
       {
         "id": "21",
         "name": "Clean Air Task Force",
-        "infoUrl": "https://example.com",
-        "shortDescription": "Short description."
+        "infoUrl": "https://www.givinggreen.earth/post/clean-air-task-force",
+        "shortDescription": "Med ett vetenskapsbaserat tillvägagångssätt satsar Clean Air Task Force på viktiga och negligerade regelverk för att få till stora utsläppsminskningar på kostnadseffektivt sätt."
       },
       {
         "id": "22",
         "name": "BURN",
-        "infoUrl": "https://example.com",
-        "shortDescription": "Short description."
+        "infoUrl": "https://www.givinggreen.earth/post/burnstoves",
+        "shortDescription": "Producerar bränsleeffektiva spisar i Kenya som ger bättre hälsa och ekonomi. Spisarna tillverkas i Kenya och ger 39% minskning i träkolsanvändning, som bekräftas kvarstå 18 månader senare. Organisationen arbetar i östafrika och sparar omkring $119 åt familjerna i bränslekostnader."
       },
       {
         "id": "23",
         "name": "Climeworks",
-        "infoUrl": "https://example.com",
-        "shortDescription": "Short description."
+        "infoUrl": "https://www.givinggreen.earth/post/climeworks",
+        "shortDescription": "Climeworks har utvecklat teknologi för att fånga in CO2 direkt från luften, som sedan kan tas bort genom säker förvaring. Av den koldioxid som fångas upp blir minst 90% permanent begraven, ett resultat av den naturliga mineralisering som omvandlar koldioxiden till sten."
       },
       {
         "id": "24",
         "name": "Tradewater",
-        "infoUrl": "https://example.com",
-        "shortDescription": "Short description."
+        "infoUrl": "https://www.givinggreen.earth/post/tradewater",
+        "shortDescription": "Tradewater bygger nätverk världen över för att hitta kostnadseffektiva möjligheter till att förstöra växthusgaser. Så kallade köldmedium används i bland annat kylskåp, frysar, värmepumpar och luftkonditioneringar, och kan vara 10 000 gånger mer skadliga för klimatet än koldioxid om de tillåts läcka ut."
       }
     ]
   },
@@ -99,32 +99,32 @@
       {
         "id": "30",
         "name": "Animal Charity Evaluators Recommended Charity Fund",
-        "infoUrl": "https://example.com",
-        "shortDescription": "Short description."
+        "infoUrl": "https://animalcharityevaluators.org/donation-advice/recommended-charity-fund/",
+        "shortDescription": "En fond där du låter Animal Charity Evaluators välja det ändamål som de tror att djuren hjälps av allra mest just nu."
       },
       {
         "id": "31",
         "name": "The Humane League",
-        "infoUrl": "https://example.com",
-        "shortDescription": "Short description."
+        "infoUrl": "https://animalcharityevaluators.org/charity-review/the-humane-league/",
+        "shortDescription": "The Humane League arbetar för närvarande från USA, Mexiko, Storbritannien och Japan, där de både arbetar med att stärka djurrättsrörelsen, och att utföra välorganiserade påverkanskampanjer mot livsmedelsföretag i syfte att förbättra välfärden för djur i djurindustrin."
       },
       {
         "id": "32",
         "name": "The Good Food Institute",
-        "infoUrl": "https://example.com",
-        "shortDescription": "Short description."
+        "infoUrl": "https://animalcharityevaluators.org/charity-review/the-good-food-institute/",
+        "shortDescription": "The Good Food Institute (GFI) arbetar med att långsiktigt förändra djurindustrin genom att främja utvecklingen av alternativa proteinkällor. De är en av få icke-vinstdrivande organisationer som arbetar med clean meat (även kallat odlat kött)."
       },
       {
         "id": "33",
         "name": "Wild Animal Initiative",
-        "infoUrl": "https://example.com",
-        "shortDescription": "Short description."
+        "infoUrl": "https://animalcharityevaluators.org/charity-review/wild-animal-initiative/",
+        "shortDescription": "Wild Animal Initiative är en organisation som arbetar inom ett hittills förbisett område: att främja och utföra forskning för att hjälpa vilda djur på stor skala. Deras mål, att bygga grunden till ett akademiskt forskningsfält som studerar vilda djurs välfärd, har möjligheten att leda till en långsiktig förbättring för vilda djur."
       },
       {
         "id": "34",
         "name": "The Albert Schweitzer Foundation",
-        "infoUrl": "https://example.com",
-        "shortDescription": "Short description."
+        "infoUrl": "https://animalcharityevaluators.org/charity-review/albert-schweitzer-foundation/",
+        "shortDescription": "The Albert Schweitzer Foundation arbetar med att förbättra välfärden för djur i djurindustrin genom påverkanskampanjer riktade mot livsmedelsföretag och genom att driva rättsprocesser å djurens vägnar. De är verksamma i Tyskland och Polen."
       }
     ]
   },
