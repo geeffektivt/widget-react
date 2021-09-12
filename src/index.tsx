@@ -11,7 +11,10 @@ import store from './store/store'
 
 ReactGA.initialize('UA-193196713-1', {
   debug: true,
-  gaOptions: { cookieDomain: 'https://geeffektivt.se' },
+  gaOptions: {
+    cookieDomain: 'https://geeffektivt.se',
+    cookieFlags: 'SameSite=None; Secure',
+  },
 })
 
 ReactDOM.render(
