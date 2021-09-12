@@ -16,6 +16,7 @@
     "immer": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-ga": "^3.3.0",
     "react-hook-form": "^6.11.2",
     "react-phone-input-2": "^2.14.0",
     "react-query": "^2.26.2",
