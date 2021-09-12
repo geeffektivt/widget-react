@@ -9,7 +9,10 @@ import './index.css'
 import DonationWidget from './components/DonationWidget'
 import store from './store/store'
 
-ReactGA.initialize('UA-193196713-1', { debug: true })
+ReactGA.initialize('UA-193196713-1', {
+  debug: true,
+  gaOptions: { cookieDomain: 'https://geeffektivt.se' },
+})
 
 ReactDOM.render(
   <React.StrictMode>
