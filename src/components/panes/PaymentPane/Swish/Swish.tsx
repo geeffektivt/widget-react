@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import PhoneInput from 'react-phone-input-2'
 
 import 'react-phone-input-2/lib/style.css'
@@ -13,7 +13,7 @@ import {
   paymentAsyncActions,
   paymentActions,
 } from '../../../../store/payment/payment.slice'
-import Payment from '../../../Payment'
+import PaymentSwish from '../../../Payment/PaymentSwish'
 import { NavigationButtons } from '../../../shared/Buttons/NavigationButtons'
 import ErrorField from '../../../shared/Error/ErrorField'
 import SwishLogoPrimary from '../../../shared/_svg/SwishLogo/SwishLogoPrimary'
@@ -24,9 +24,8 @@ import { PhoneInputContainer, LogoContainer } from './Swish.style'
 export default function Swish() {
   const [isDirty, setIsDirty] = useState(false)
   const dispatch = useTypedDispatch()
-  const { paymentStatus, phoneNumber } = useTypedSelector(
-    (state) => state.payment
-  )
+  const { paymentStatus, swish } = useTypedSelector((state) => state.payment)
+  const { phoneNumber } = swish
   const { donorType, donor, causesDistribution } = useTypedSelector(
     (state) => state.donation
   )
@@ -68,13 +67,7 @@ export default function Swish() {
   usePollForPaymentStatus()
 
   if (paymentStatus !== null) {
-    return (
-      <Pane>
-        <CenteredContainer>
-          <Payment status={paymentStatus} />
-        </CenteredContainer>
-      </Pane>
-    )
+    return <PaymentSwish status={paymentStatus} />
   }
 
   return (

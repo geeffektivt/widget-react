@@ -3,6 +3,7 @@ import {
   PaymentRequest,
   SwishPaymentStatusRequest,
   SwishPaymentStatusResponse,
+  UpdatePaymentRequest,
 } from '../../@types/import/api/payment.types'
 import { API_URL } from '../../config/api'
 import { ShareType } from '../../constants/enums/ShareType'
@@ -10,6 +11,19 @@ import { get, post } from '../../services/apiService'
 import { ApiResponse } from '../../utils/api/apiHelpers'
 import { joinUrlPaths } from '../../utils/urlUtils'
 import { CauseDistribution } from '../donation/donation.types'
+
+export async function updatePaymentRequest(
+  requestArgs: UpdatePaymentRequest
+): Promise<ApiResponse> {
+  if (process.env.REACT_APP_USE_DEV_DATA === 'true') {
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+
+    return new ApiResponse(undefined, {})
+  }
+
+  const url = joinUrlPaths(API_URL, '/updatePaymentBank')
+  return post(url, { body: requestArgs })
+}
 
 export async function createPaymentRequest(
   path: string,

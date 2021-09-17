@@ -38,7 +38,7 @@ export const RadioBall = styled('span', {
     position: 'absolute',
     top: 0,
     transition: 'border 100ms',
-    width: '100%',
+    width: 24,
   },
 
   [`${HiddenInput}:focus + &`]: {
