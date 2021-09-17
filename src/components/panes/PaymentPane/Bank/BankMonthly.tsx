@@ -1,13 +1,22 @@
 import { MenuItem, InputLabel } from '@material-ui/core'
+import React from 'react'
 
+import { UpdatePaymentRequest } from '../../../../@types/import/api/payment.types'
 import { DonationFrequency } from '../../../../constants/enums/RecurringDonation'
 import useAllTexts from '../../../../hooks/content/useAllTexts'
 import useTypedDispatch from '../../../../hooks/store/useTypedDispatch'
 import useTypedSelector from '../../../../hooks/store/useTypedSelector'
-import { paymentActions } from '../../../../store/payment/payment.slice'
+import {
+  paymentActions,
+  paymentAsyncActions,
+} from '../../../../store/payment/payment.slice'
+import Payment from '../../../Payment'
 import { NavigationButtons } from '../../../shared/Buttons/NavigationButtons'
 import { RichSelect } from '../../../shared/RichSelect/RichSelect'
 import { RichSelectOption } from '../../../shared/RichSelect/RichSelectOption'
+import Spinner from '../../../shared/Spinner'
+import CheckCircle from '../../../shared/_svg/CheckCircle'
+import CloseCircle from '../../../shared/_svg/CloseCircle'
 import {
   Pane,
   Paragraph,
@@ -24,15 +33,27 @@ export default function BankMonthly() {
   const { sum, recurring } = useTypedSelector((state) => state.donation)
   const dispatch = useTypedDispatch()
 
+  const { createPaymentResponse, bank } = useTypedSelector(
+    (state) => state.payment
+  )
   const {
-    createPaymentResponse,
     preferredTransferDate,
     monthlyPaymentMethod,
-  } = useTypedSelector((state) => state.payment)
+    isUpdatingPayment,
+    hasUpdatedPayment,
+    updatePaymentError,
+  } = bank
   const texts = useAllTexts()
   const paymentTexts = texts.donations.payment
 
-  const handleConfirm = () => {}
+  const handleConfirm = () => {
+    const paymentRequest: UpdatePaymentRequest = {
+      id: createPaymentResponse?.id ?? '', // TODO: handle if somehow id is null
+      monthlyPaymentMethod,
+      preferredTransferDate,
+    }
+    dispatch(paymentAsyncActions.updateBankPayment(paymentRequest))
+  }
   const handleChange = (value: string) =>
     dispatch(paymentActions.setPreferredTransferDate(value))
   const handlePaymentAlternativeChange = (value: string) =>
@@ -72,6 +93,29 @@ export default function BankMonthly() {
     '30',
     '31',
   ]
+  if (isUpdatingPayment) {
+    return <Spinner />
+  }
+  if (hasUpdatedPayment) {
+    return (
+      <Payment
+        title={paymentTexts.paymentRegistredTitle}
+        description={paymentTexts.paymentRegistredDescription}
+      >
+        <CheckCircle />
+      </Payment>
+    )
+  }
+  if (updatePaymentError) {
+    return (
+      <Payment
+        title={paymentTexts.paymentRegistrationFailedTitle}
+        description={paymentTexts.paymentRegistrationFailedDescription}
+      >
+        <CloseCircle />
+      </Payment>
+    )
+  }
   return (
     <Pane>
       <PaneTitle>{paymentTexts.title}</PaneTitle>

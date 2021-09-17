@@ -6,18 +6,26 @@ import {
   createSwishPayment,
   createBankPayment,
   pollSwishPaymentStatus,
+  updateBankPayment,
 } from './payment.asyncActions'
 import { PaymentState } from './payment.types'
 
 const initialState: PaymentState = {
+  isCreatingPayment: null,
   paymentStatus: null,
   createPaymentResponse: null,
-  isCreatingPayment: null,
-  isPollingStatus: null,
-  pollStatusError: null,
-  phoneNumber: null,
-  preferredTransferDate: '',
-  monthlyPaymentMethod: '',
+  swish: {
+    isPollingStatus: null,
+    pollStatusError: null,
+    phoneNumber: null,
+  },
+  bank: {
+    isUpdatingPayment: false,
+    hasUpdatedPayment: false,
+    updatePaymentError: null,
+    preferredTransferDate: '',
+    monthlyPaymentMethod: '',
+  },
 }
 
 export const paymentSlice = createSlice({
@@ -25,13 +33,14 @@ export const paymentSlice = createSlice({
   initialState,
   reducers: {
     setPhoneNumber(state, action: PayloadAction<string>) {
-      state.phoneNumber = action.payload
+      state.swish.phoneNumber = action.payload
     },
     setPreferredTransferDate(state, action: PayloadAction<string>) {
-      state.preferredTransferDate = action.payload
+      state.bank.preferredTransferDate = action.payload
     },
     setMonthlyPaymentMethod(state, action: PayloadAction<string>) {
-      state.monthlyPaymentMethod = action.payload
+      state.bank.preferredTransferDate = ''
+      state.bank.monthlyPaymentMethod = action.payload
     },
     resetState() {
       return initialState
@@ -40,20 +49,32 @@ export const paymentSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(pollSwishPaymentStatus.pending, (state) => {
-        state.isPollingStatus = true
+        state.swish.isPollingStatus = true
       })
       .addCase(pollSwishPaymentStatus.fulfilled, (state, action) => {
-        state.isPollingStatus = false
+        state.swish.isPollingStatus = false
         state.paymentStatus = action.payload.status
       })
       .addCase(pollSwishPaymentStatus.rejected, (state, action) => {
-        state.isPollingStatus = false
-        state.pollStatusError = action.payload as AppError
+        state.swish.isPollingStatus = false
+        state.swish.pollStatusError = action.payload as AppError
+      })
+      .addCase(updateBankPayment.pending, (state) => {
+        state.bank.isUpdatingPayment = true
+      })
+      .addCase(updateBankPayment.fulfilled, (state) => {
+        state.bank.isUpdatingPayment = false
+        state.bank.hasUpdatedPayment = true
+      })
+      .addCase(updateBankPayment.rejected, (state, action) => {
+        state.bank.isUpdatingPayment = false
+        state.bank.updatePaymentError = action.payload as AppError
       })
       .addMatcher(
         isAnyOf(createSwishPayment.pending, createBankPayment.pending),
         (state) => {
           state.isCreatingPayment = true
+          state.paymentStatus = 'STARTED'
         }
       )
       .addMatcher(
@@ -79,5 +100,6 @@ export const paymentActions = paymentSlice.actions
 export const paymentAsyncActions = {
   createSwishPayment,
   createBankPayment,
+  updateBankPayment,
   pollSwishPaymentStatus,
 }

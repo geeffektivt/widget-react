@@ -52,6 +52,7 @@ export default function Bank() {
 
   switch (paymentStatus) {
     case 'STARTED':
+      return <Spinner />
     case 'CREATED':
     case 'PAID':
       return recurring === DonationFrequency.Monthly ? (

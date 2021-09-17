@@ -7,12 +7,14 @@ import {
   BankPaymentRequest,
   SwishPaymentRequest,
   SwishPaymentStatusRequest,
+  UpdatePaymentRequest,
 } from '../../@types/import/api/payment.types'
 import AppError from '../../utils/api/appError'
 
 import {
   createPaymentRequest,
   pollSwishPaymentStatusRequest,
+  updatePaymentRequest,
 } from './payment.api'
 
 const createPayment = <T extends PaymentRequest>(path: string) =>
@@ -51,6 +53,22 @@ export const createBankPayment: AsyncThunk<
   BankPaymentRequest,
   Record<string, unknown>
 > = createPayment('/paymentBank')
+
+export const updateBankPayment = createAsyncThunk(
+  'payment/updatePayment',
+  async (paymentArgs: UpdatePaymentRequest, { rejectWithValue }) => {
+    const request = updatePaymentRequest(paymentArgs)
+    const apiResponse = await attempt(request)
+
+    if (hasFailed(apiResponse)) {
+      return rejectWithValue(
+        AppError.fromError('Failed to update payment', apiResponse.error)
+      )
+    }
+
+    return apiResponse.body
+  }
+)
 
 export const pollSwishPaymentStatus = createAsyncThunk(
   'swish/pollSwishPaymentStatus',

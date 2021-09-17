@@ -17,6 +17,12 @@ export interface SwishPaymentRequest extends PaymentRequest {
   phone?: string
 }
 
+export interface UpdatePaymentRequest {
+  id: PaymentResponse['id']
+  monthlyPaymentMethod: string
+  preferredTransferDate?: string
+}
+
 interface Charity {
   name: string
   sum: number

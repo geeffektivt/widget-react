@@ -11,9 +11,8 @@ export default function usePollForPaymentStatus(pollingIntervalMs = 2000) {
 
   const safeSetTimeout = useTimeout()
 
-  const { paymentStatus, isPollingStatus: isPolling } = useTypedSelector(
-    (state) => state.payment
-  )
+  const { paymentStatus, swish } = useTypedSelector((state) => state.payment)
+  const { isPollingStatus: isPolling } = swish
   const paymentId = useTypedSelector(
     (state) => state.payment.createPaymentResponse?.id ?? null
   )
