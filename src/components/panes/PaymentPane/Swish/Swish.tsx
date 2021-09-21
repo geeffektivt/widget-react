@@ -54,8 +54,8 @@ export default function Swish() {
       dispatch(paymentAsyncActions.createSwishPayment(paymentRequest))
     }
   }
-  const validPhoneNumber = (value: string | null) => {
-    if (value === null || value === '') {
+  const validPhoneNumber = (value: string | undefined) => {
+    if (value === undefined || value === '') {
       return false
     }
     if (value.match(/\d{11,13}/)) {
@@ -66,7 +66,7 @@ export default function Swish() {
 
   usePollForPaymentStatus()
 
-  if (paymentStatus !== null) {
+  if (paymentStatus !== undefined) {
     return <PaymentSwish status={paymentStatus} />
   }
 

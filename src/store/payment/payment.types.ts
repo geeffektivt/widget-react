@@ -7,15 +7,15 @@ import AppError from '../../utils/api/appError'
 export interface PaymentState {
   readonly swish: SwishPaymentState
   readonly bank: BankPaymentState
-  readonly paymentStatus: SwishPaymentStatus | null
-  readonly isCreatingPayment: boolean | null
-  readonly createPaymentResponse: PaymentResponse | null
+  readonly paymentStatus: SwishPaymentStatus | undefined
+  readonly isCreatingPayment: boolean
+  readonly createPaymentResponse: PaymentResponse | undefined
 }
 
 interface SwishPaymentState {
-  readonly isPollingStatus: boolean | null
-  readonly pollStatusError: AppError | null
-  readonly phoneNumber: string | null
+  readonly isPollingStatus: boolean
+  readonly pollStatusError: AppError | undefined
+  readonly phoneNumber: string | undefined
 }
 interface BankPaymentState {
   readonly isUpdatingPayment: boolean

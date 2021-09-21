@@ -11,13 +11,13 @@ import {
 import { PaymentState } from './payment.types'
 
 const initialState: PaymentState = {
-  isCreatingPayment: null,
-  paymentStatus: null,
-  createPaymentResponse: null,
+  isCreatingPayment: false,
+  paymentStatus: undefined,
+  createPaymentResponse: undefined,
   swish: {
-    isPollingStatus: null,
-    pollStatusError: null,
-    phoneNumber: null,
+    isPollingStatus: false,
+    pollStatusError: undefined,
+    phoneNumber: undefined,
   },
   bank: {
     isUpdatingPayment: false,
@@ -49,13 +49,13 @@ export const paymentSlice = createSlice({
       state.bank.updatePaymentError = undefined
     },
     resetPaymentStatus(state) {
-      state.paymentStatus = null
-      state.createPaymentResponse = null
-      state.isCreatingPayment = null
+      state.paymentStatus = undefined
+      state.createPaymentResponse = undefined
+      state.isCreatingPayment = false
     },
     resetSwishPayment(state) {
-      state.swish.isPollingStatus = null
-      state.swish.pollStatusError = null
+      state.swish.isPollingStatus = false
+      state.swish.pollStatusError = undefined
     },
   },
   extraReducers: (builder) => {
