@@ -20,7 +20,7 @@ interface SwishPaymentState {
 interface BankPaymentState {
   readonly isUpdatingPayment: boolean
   readonly hasUpdatedPayment: boolean
-  readonly updatePaymentError: AppError | null
-  readonly preferredTransferDate: string
-  readonly monthlyPaymentMethod: string
+  readonly updatePaymentError: AppError | undefined
+  readonly preferredTransferDate: string | undefined
+  readonly monthlyPaymentMethod: string | undefined
 }

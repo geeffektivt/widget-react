@@ -22,9 +22,9 @@ const initialState: PaymentState = {
   bank: {
     isUpdatingPayment: false,
     hasUpdatedPayment: false,
-    updatePaymentError: null,
-    preferredTransferDate: '',
-    monthlyPaymentMethod: '',
+    updatePaymentError: undefined,
+    preferredTransferDate: undefined,
+    monthlyPaymentMethod: undefined,
   },
 }
 
@@ -39,11 +39,23 @@ export const paymentSlice = createSlice({
       state.bank.preferredTransferDate = action.payload
     },
     setMonthlyPaymentMethod(state, action: PayloadAction<string>) {
-      state.bank.preferredTransferDate = ''
+      state.bank.preferredTransferDate = undefined
       state.bank.monthlyPaymentMethod = action.payload
     },
     resetState() {
       return initialState
+    },
+    resetupdatePaymentError(state) {
+      state.bank.updatePaymentError = undefined
+    },
+    resetPaymentStatus(state) {
+      state.paymentStatus = null
+      state.createPaymentResponse = null
+      state.isCreatingPayment = null
+    },
+    resetSwishPayment(state) {
+      state.swish.isPollingStatus = null
+      state.swish.pollStatusError = null
     },
   },
   extraReducers: (builder) => {

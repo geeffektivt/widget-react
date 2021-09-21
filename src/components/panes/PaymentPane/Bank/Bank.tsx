@@ -8,7 +8,13 @@ import useTypedDispatch from '../../../../hooks/store/useTypedDispatch'
 import useTypedSelector from '../../../../hooks/store/useTypedSelector'
 import useOnMount from '../../../../hooks/utils/useOnMount'
 import { getCharitiesWithNames } from '../../../../store/payment/payment.api'
-import { paymentAsyncActions } from '../../../../store/payment/payment.slice'
+import {
+  paymentActions,
+  paymentAsyncActions,
+} from '../../../../store/payment/payment.slice'
+import { uiActions } from '../../../../store/ui/ui.slice'
+import { BackButton } from '../../../shared/Buttons/BackButton'
+import { LeftButtonContainer } from '../../../shared/Buttons/ButtonsContainer'
 import Spinner from '../../../shared/Spinner'
 import CloseCircle from '../../../shared/_svg/CloseCircle'
 import Heading from '../../../shared/_typography/Heading'
@@ -45,6 +51,10 @@ export default function Bank() {
     }
     dispatch(paymentAsyncActions.createBankPayment(paymentRequest))
   })
+  const onBackClick = () => {
+    dispatch(paymentActions.resetPaymentStatus())
+    dispatch(uiActions.goToPreviousStep())
+  }
 
   if (isCreatingPayment) {
     return <Spinner />
@@ -69,6 +79,9 @@ export default function Bank() {
             <Heading>{paymentTexts.errorTitle}</Heading>
             {paymentTexts.errorDescription}
             <CloseCircle />
+            <LeftButtonContainer>
+              <BackButton onClick={onBackClick} />
+            </LeftButtonContainer>
           </CenteredContainer>
         </Pane>
       )

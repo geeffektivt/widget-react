@@ -2,8 +2,12 @@ import React from 'react'
 
 import { SwishPaymentStatus } from '../../@types/import/api/payment.types'
 import useAllTexts from '../../hooks/content/useAllTexts'
+import useTypedDispatch from '../../hooks/store/useTypedDispatch'
 import useTypedSelector from '../../hooks/store/useTypedSelector'
+import { paymentActions } from '../../store/payment/payment.slice'
 import { styled } from '../../styles/stitches.config'
+import { BackButton } from '../shared/Buttons/BackButton'
+import { LeftButtonContainer } from '../shared/Buttons/ButtonsContainer'
 import Spinner from '../shared/Spinner'
 import CheckCircle from '../shared/_svg/CheckCircle'
 import CloseCircle from '../shared/_svg/CloseCircle'
@@ -31,8 +35,12 @@ const StyledLogo = styled(SwishLogo, {
 export default function PaymentSwish({ status }: PaymentProps) {
   const { isPollingStatus } = useTypedSelector((state) => state.payment.swish)
   const texts = useAllTexts()
+  const dispatch = useTypedDispatch()
   const swishTexts = texts.donations.swish
-
+  const onBackClick = () => {
+    dispatch(paymentActions.resetPaymentStatus())
+    dispatch(paymentActions.resetSwishPayment())
+  }
   if (isPollingStatus) {
     return (
       <Payment
@@ -70,6 +78,9 @@ export default function PaymentSwish({ status }: PaymentProps) {
           description={swishTexts.paymentFailedDescription}
         >
           <CloseCircle />
+          <LeftButtonContainer>
+            <BackButton onClick={onBackClick} />
+          </LeftButtonContainer>
         </Payment>
       )
 

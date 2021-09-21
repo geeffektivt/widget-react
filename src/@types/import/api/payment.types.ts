@@ -23,7 +23,7 @@ export interface UpdatePaymentRequest {
   preferredTransferDate?: string
 }
 
-interface Charity {
+export interface Charity {
   name: string
   sum: number
 }

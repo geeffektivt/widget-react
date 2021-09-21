@@ -24,7 +24,7 @@
       "taxDeductionLabel": "Jag önskar skatteavdrag.",
       "taxDeductionTooltip": "Vi behöver då rapportera ditt personnummer till Skatteverket. Endast möjligt för organisationer inom Global hälsa.",
       "taxDeductionLink": "https://geeffektivt.se/faq",
-      "ssnPlaceholder": "Personnummer: ååmmdd-xxxx",
+      "ssnPlaceholder": "Personnummer: ååmmddxxxx",
       "ssnError": "Personnumret ser inte korrekt ut",
       "privacyPolicyLabel": "Jag godkänner [villkoren](https://geeffektivt.se/villkor) med glädje.",
       "privacyPolicyError": "Du måste godkänna",

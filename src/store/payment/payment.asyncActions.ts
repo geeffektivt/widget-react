@@ -10,6 +10,11 @@ import {
   UpdatePaymentRequest,
 } from '../../@types/import/api/payment.types'
 import AppError from '../../utils/api/appError'
+import {
+  validateBank,
+  validateSwish,
+  validateUpdate,
+} from '../../utils/validation'
 
 import {
   createPaymentRequest,
@@ -17,10 +22,27 @@ import {
   updatePaymentRequest,
 } from './payment.api'
 
+const isBank = (
+  paymentArgs: SwishPaymentRequest | BankPaymentRequest
+): paymentArgs is BankPaymentRequest =>
+  (paymentArgs as BankPaymentRequest).reoccursMonthly !== undefined
+
 const createPayment = <T extends PaymentRequest>(path: string) =>
   createAsyncThunk(
     'payment/createPayment',
     async (paymentArgs: T, { rejectWithValue }) => {
+      const bank = isBank(paymentArgs)
+      const valid = bank
+        ? validateBank((paymentArgs as unknown) as BankPaymentRequest)
+        : validateSwish(paymentArgs)
+      if (!valid) {
+        return rejectWithValue(
+          AppError.fromError(
+            'Failed to create payment',
+            'Request arguments were not valid'
+          )
+        )
+      }
       const request = createPaymentRequest(path, paymentArgs)
       const apiResponse = await attempt(request)
 
@@ -57,6 +79,15 @@ export const createBankPayment: AsyncThunk<
 export const updateBankPayment = createAsyncThunk(
   'payment/updatePayment',
   async (paymentArgs: UpdatePaymentRequest, { rejectWithValue }) => {
+    const valid = validateUpdate(paymentArgs)
+    if (!valid) {
+      return rejectWithValue(
+        AppError.fromError(
+          'Failed to update payment',
+          'Request arguments were not valid'
+        )
+      )
+    }
     const request = updatePaymentRequest(paymentArgs)
     const apiResponse = await attempt(request)
 

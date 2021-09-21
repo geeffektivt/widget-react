@@ -2,6 +2,7 @@ import { MenuItem, InputLabel } from '@material-ui/core'
 import React from 'react'
 
 import { UpdatePaymentRequest } from '../../../../@types/import/api/payment.types'
+import TransferDateOptions from '../../../../constants/TransferDateOptions'
 import { DonationFrequency } from '../../../../constants/enums/RecurringDonation'
 import useAllTexts from '../../../../hooks/content/useAllTexts'
 import useTypedDispatch from '../../../../hooks/store/useTypedDispatch'
@@ -11,6 +12,8 @@ import {
   paymentAsyncActions,
 } from '../../../../store/payment/payment.slice'
 import Payment from '../../../Payment'
+import { BackButton } from '../../../shared/Buttons/BackButton'
+import { LeftButtonContainer } from '../../../shared/Buttons/ButtonsContainer'
 import { NavigationButtons } from '../../../shared/Buttons/NavigationButtons'
 import { RichSelect } from '../../../shared/RichSelect/RichSelect'
 import { RichSelectOption } from '../../../shared/RichSelect/RichSelectOption'
@@ -48,8 +51,8 @@ export default function BankMonthly() {
 
   const handleConfirm = () => {
     const paymentRequest: UpdatePaymentRequest = {
-      id: createPaymentResponse?.id ?? '', // TODO: handle if somehow id is null
-      monthlyPaymentMethod,
+      id: createPaymentResponse?.id ?? '',
+      monthlyPaymentMethod: monthlyPaymentMethod ?? '',
       preferredTransferDate,
     }
     dispatch(paymentAsyncActions.updateBankPayment(paymentRequest))
@@ -58,41 +61,7 @@ export default function BankMonthly() {
     dispatch(paymentActions.setPreferredTransferDate(value))
   const handlePaymentAlternativeChange = (value: string) =>
     dispatch(paymentActions.setMonthlyPaymentMethod(value))
-
-  const transferDateOptions = [
-    'Snarast möjligt',
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    '11',
-    '12',
-    '13',
-    '14',
-    '15',
-    '16',
-    '17',
-    '18',
-    '19',
-    '20',
-    '21',
-    '22',
-    '23',
-    '24',
-    '25',
-    '26',
-    '27',
-    '28',
-    '29',
-    '30',
-    '31',
-  ]
+  const onBackClick = () => dispatch(paymentActions.resetupdatePaymentError())
   if (isUpdatingPayment) {
     return <Spinner />
   }
@@ -113,6 +82,9 @@ export default function BankMonthly() {
         description={paymentTexts.paymentRegistrationFailedDescription}
       >
         <CloseCircle />
+        <LeftButtonContainer>
+          <BackButton onClick={onBackClick} />
+        </LeftButtonContainer>
       </Payment>
     )
   }
@@ -123,9 +95,12 @@ export default function BankMonthly() {
       <RichSelect
         name="monthlyPaymentMethod"
         selected={monthlyPaymentMethod}
-        onChange={(value) => handlePaymentAlternativeChange(value)}
+        onChange={(value) => value && handlePaymentAlternativeChange(value)}
       >
-        <RichSelectOption label={paymentTexts.altATitle} value="A">
+        <RichSelectOption
+          label={paymentTexts.altATitle}
+          value={paymentTexts.altATitle}
+        >
           <DetailsWrapper>
             <DetailsRow>
               <BoldText>{paymentTexts.sumTitle}</BoldText>
@@ -146,7 +121,10 @@ export default function BankMonthly() {
           </DetailsWrapper>
           <Pane>{paymentTexts.altADescription}</Pane>
         </RichSelectOption>
-        <RichSelectOption label={paymentTexts.altBTitle} value="B">
+        <RichSelectOption
+          label={paymentTexts.altBTitle}
+          value={paymentTexts.altBTitle}
+        >
           <Pane>
             <Paragraph>{paymentTexts.altBDescription}</Paragraph>
             <Paragraph>{paymentTexts.altBWarning}</Paragraph>
@@ -170,7 +148,7 @@ export default function BankMonthly() {
                 }>
               ) => handleChange((e.target.value as string) ?? '')}
             >
-              {transferDateOptions.map((o) => (
+              {TransferDateOptions.map((o) => (
                 <MenuItem key={o} value={o}>
                   {o}
                 </MenuItem>
@@ -178,7 +156,10 @@ export default function BankMonthly() {
             </StyledSelect>
           </Pane>
         </RichSelectOption>
-        <RichSelectOption label={paymentTexts.altCTitle} value="C">
+        <RichSelectOption
+          label={paymentTexts.altCTitle}
+          value={paymentTexts.altCTitle}
+        >
           <Pane>
             <Paragraph>{paymentTexts.altCDescription}</Paragraph>
             <Paragraph>
