@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactGA from 'react-ga'
 
 import { DonorType } from '../../../constants/enums/DonorType'
 import { DonationFrequency } from '../../../constants/enums/RecurringDonation'
@@ -34,11 +33,6 @@ const SummaryPane = () => {
   const dispatch = useTypedDispatch()
 
   const onNextClick = () => {
-    ReactGA.event({
-      category: 'ecommerce',
-      action: 'purchase',
-      value: sum ?? undefined,
-    })
     dispatch(uiActions.goToNextStep())
   }
 
