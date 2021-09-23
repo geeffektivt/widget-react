@@ -16,12 +16,16 @@ export const validateUpdate = (requestArgs: UpdatePaymentRequest) => {
   const texts = useAllTexts()
   const { altATitle, altBTitle, altCTitle } = texts.donations.payment
   if (!requestArgs.id) {
+    console.error('validateUpdate: id not valid', [requestArgs])
     return false
   }
   if (
     requestArgs.preferredTransferDate &&
     !Validate.isIn(requestArgs.preferredTransferDate, TransferDateOptions)
   ) {
+    console.error('validateUpdate: preferredTransferDate not valid', [
+      requestArgs,
+    ])
     return false
   }
   if (
@@ -31,6 +35,9 @@ export const validateUpdate = (requestArgs: UpdatePaymentRequest) => {
       altCTitle,
     ])
   ) {
+    console.error('validateUpdate: monthlyPaymentMethod not valid', [
+      requestArgs,
+    ])
     return false
   }
   return true
@@ -43,6 +50,7 @@ export const validateSwish = (requestArgs: SwishPaymentRequest) => {
     requestArgs.phone === undefined ||
     !Validate.matches(requestArgs.phone, /^46\d{9,10}$/)
   ) {
+    console.error('validateSwish: phone not valid', [requestArgs])
     return false
   }
 
@@ -54,6 +62,7 @@ export const validateBank = (requestArgs: BankPaymentRequest) => {
     requestArgs.reoccursMonthly === undefined ||
     !isBoolean(requestArgs.reoccursMonthly)
   ) {
+    console.error('validateBank: reoccursMonthly not valid', [requestArgs])
     return false
   }
 
@@ -63,15 +72,22 @@ export const validateBank = (requestArgs: BankPaymentRequest) => {
 export const validateCreatePayment = (requestArgs: PaymentRequest) => {
   const referralNames = useAllReferralOptions().map((r) => r.name)
   if (!requestArgs.approvesPrivacyPolicy) {
+    console.error('validateCreatePayment: approvesPrivacyPolicy not valid', [
+      requestArgs,
+    ])
     return false
   }
   if (
     requestArgs.doTaxDeduction !== undefined &&
     !isBoolean(requestArgs.doTaxDeduction)
   ) {
+    console.error('validateCreatePayment: doTaxDeduction not valid', [
+      requestArgs,
+    ])
     return false
   }
   if (!isBoolean(requestArgs.isAnonymous)) {
+    console.error('validateCreatePayment: isAnonymous not valid', [requestArgs])
     return false
   }
   if (
@@ -79,12 +95,16 @@ export const validateCreatePayment = (requestArgs: PaymentRequest) => {
     (!requestArgs.personalNumber ||
       !Validate.matches(requestArgs.personalNumber, /^\d{10}$/))
   ) {
+    console.error('validateCreatePayment: personalNumber not valid', [
+      requestArgs,
+    ])
     return false
   }
   if (
     requestArgs.referral !== undefined &&
     !Validate.isIn(requestArgs.referral, referralNames)
   ) {
+    console.error('validateCreatePayment: referral not valid', [requestArgs])
     return false
   }
   if (
@@ -95,9 +115,13 @@ export const validateCreatePayment = (requestArgs: PaymentRequest) => {
       Validate.isEmpty(requestArgs.email) ||
       !Validate.isEmail(requestArgs.email))
   ) {
+    console.error('validateCreatePayment: name or email not valid', [
+      requestArgs,
+    ])
     return false
   }
   if (!validateCharities(requestArgs.charities)) {
+    console.error('validateCreatePayment: charities not valid', [requestArgs])
     return false
   }
 
