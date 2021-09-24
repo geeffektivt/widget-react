@@ -5,6 +5,8 @@ import { configureStore } from '@reduxjs/toolkit'
 import { createMiddleware } from 'redux-beacon'
 import createSagaMiddleware from 'redux-saga'
 
+import { DonationStep } from '../constants/enums/DonationStep'
+
 import { donationReducer } from './donation/donation.slice'
 import { paymentReducer } from './payment/payment.slice'
 import { referralsReducer } from './referrals/referrals.slice'
@@ -19,8 +21,7 @@ const goToPreviousStep = trackEvent(
   ) => {
     return {
       category: 'stepChange',
-      action: 'goToPreviousStep',
-      value: nextState.ui.activeStep,
+      action: `Went back to ${DonationStep[nextState.ui.activeStep]}`,
     }
   }
 )
@@ -31,10 +32,16 @@ const goToNextStep = trackEvent(
     _prevState: WidgetStoreState,
     nextState: WidgetStoreState
   ) => {
+    if (nextState.ui.activeStep === DonationStep.Payment) {
+      return {
+        category: 'stepChange',
+        action: `Proceeded to ${DonationStep[nextState.ui.activeStep]}`,
+        value: nextState.donation.sum ?? undefined,
+      }
+    }
     return {
       category: 'stepChange',
-      action: 'goToNextStep',
-      value: nextState.ui.activeStep,
+      action: `Proceeded to ${DonationStep[nextState.ui.activeStep]}`,
     }
   }
 )
