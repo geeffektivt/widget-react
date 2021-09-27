@@ -22,13 +22,12 @@ export default function DonationSumPanel() {
     <div>
       <TextInput
         type="number"
-        denomination="kr"
+        inputMode="numeric"
         label="Summa"
         placeholder="0"
         onChange={(e) => handleSumChange(e.target.valueAsNumber)}
         value={String(sum) || ''}
-        inputMode="numeric"
-        selectOnClick
+        denomination="kr"
       />
     </div>
   )
