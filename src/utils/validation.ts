@@ -16,7 +16,7 @@ export const validateUpdate = (requestArgs: UpdatePaymentRequest) => {
   const texts = useAllTexts()
   const { altATitle, altBTitle, altCTitle } = texts.donations.payment
   if (!requestArgs.id) {
-    console.error('validateUpdate: id not valid', [requestArgs])
+    console.error('validateUpdate: id not valid', [JSON.stringify(requestArgs)])
     return false
   }
   if (
@@ -24,7 +24,7 @@ export const validateUpdate = (requestArgs: UpdatePaymentRequest) => {
     !Validate.isIn(requestArgs.preferredTransferDate, TransferDateOptions)
   ) {
     console.error('validateUpdate: preferredTransferDate not valid', [
-      requestArgs,
+      JSON.stringify(requestArgs),
     ])
     return false
   }
@@ -36,7 +36,7 @@ export const validateUpdate = (requestArgs: UpdatePaymentRequest) => {
     ])
   ) {
     console.error('validateUpdate: monthlyPaymentMethod not valid', [
-      requestArgs,
+      JSON.stringify(requestArgs),
     ])
     return false
   }
@@ -50,7 +50,9 @@ export const validateSwish = (requestArgs: SwishPaymentRequest) => {
     requestArgs.phone === undefined ||
     !Validate.matches(requestArgs.phone, /^46\d{9,10}$/)
   ) {
-    console.error('validateSwish: phone not valid', [requestArgs])
+    console.error('validateSwish: phone not valid', [
+      JSON.stringify(requestArgs),
+    ])
     return false
   }
 
@@ -62,7 +64,9 @@ export const validateBank = (requestArgs: BankPaymentRequest) => {
     requestArgs.reoccursMonthly === undefined ||
     !isBoolean(requestArgs.reoccursMonthly)
   ) {
-    console.error('validateBank: reoccursMonthly not valid', [requestArgs])
+    console.error('validateBank: reoccursMonthly not valid', [
+      JSON.stringify(requestArgs),
+    ])
     return false
   }
 
@@ -73,7 +77,7 @@ export const validateCreatePayment = (requestArgs: PaymentRequest) => {
   const referralNames = useAllReferralOptions().map((r) => r.name)
   if (!requestArgs.approvesPrivacyPolicy) {
     console.error('validateCreatePayment: approvesPrivacyPolicy not valid', [
-      requestArgs,
+      JSON.stringify(requestArgs),
     ])
     return false
   }
@@ -82,12 +86,14 @@ export const validateCreatePayment = (requestArgs: PaymentRequest) => {
     !isBoolean(requestArgs.doTaxDeduction)
   ) {
     console.error('validateCreatePayment: doTaxDeduction not valid', [
-      requestArgs,
+      JSON.stringify(requestArgs),
     ])
     return false
   }
   if (!isBoolean(requestArgs.isAnonymous)) {
-    console.error('validateCreatePayment: isAnonymous not valid', [requestArgs])
+    console.error('validateCreatePayment: isAnonymous not valid', [
+      JSON.stringify(requestArgs),
+    ])
     return false
   }
   if (
@@ -96,7 +102,7 @@ export const validateCreatePayment = (requestArgs: PaymentRequest) => {
       !Validate.matches(requestArgs.personalNumber, /^\d{10}$/))
   ) {
     console.error('validateCreatePayment: personalNumber not valid', [
-      requestArgs,
+      JSON.stringify(requestArgs),
     ])
     return false
   }
@@ -104,7 +110,9 @@ export const validateCreatePayment = (requestArgs: PaymentRequest) => {
     requestArgs.referral !== undefined &&
     !Validate.isIn(requestArgs.referral, referralNames)
   ) {
-    console.error('validateCreatePayment: referral not valid', [requestArgs])
+    console.error('validateCreatePayment: referral not valid', [
+      JSON.stringify(requestArgs),
+    ])
     return false
   }
   if (
@@ -116,12 +124,14 @@ export const validateCreatePayment = (requestArgs: PaymentRequest) => {
       !Validate.isEmail(requestArgs.email))
   ) {
     console.error('validateCreatePayment: name or email not valid', [
-      requestArgs,
+      JSON.stringify(requestArgs),
     ])
     return false
   }
   if (!validateCharities(requestArgs.charities)) {
-    console.error('validateCreatePayment: charities not valid', [requestArgs])
+    console.error('validateCreatePayment: charities not valid', [
+      JSON.stringify(requestArgs),
+    ])
     return false
   }
 
