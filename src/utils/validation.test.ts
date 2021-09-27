@@ -5,7 +5,6 @@ import {
 } from '../@types/import/api/payment.types'
 import TransferDateOptions from '../constants/TransferDateOptions'
 import useAllCauses from '../hooks/content/useAllCauses'
-import useAllReferralOptions from '../hooks/content/useAllReferralOptions'
 import useAllTexts from '../hooks/content/useAllTexts'
 
 import { validateUpdate, validateSwish, validateBank } from './validation'
@@ -16,7 +15,6 @@ describe('Validate', () => {
       const charityNames = useAllCauses().flatMap((c) => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
-      const referralNames = useAllReferralOptions().map((r) => r.name)
       const args: BankPaymentRequest = {
         reoccursMonthly: true,
         isAnonymous: false,
@@ -26,7 +24,7 @@ describe('Validate', () => {
         approvesPrivacyPolicy: true,
         doNewsletter: false,
         charities: [{ name: charityNames[0], sum: 8 }],
-        referral: referralNames[0],
+        referral: 'Referral',
       }
       const valid = validateBank(args)
       expect(valid).toBeTruthy()
@@ -35,7 +33,6 @@ describe('Validate', () => {
       const charityNames = useAllCauses().flatMap((c) => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
-      const referralNames = useAllReferralOptions().map((r) => r.name)
       const args: BankPaymentRequest = {
         reoccursMonthly: false,
         isAnonymous: false,
@@ -46,7 +43,7 @@ describe('Validate', () => {
         approvesPrivacyPolicy: true,
         doNewsletter: false,
         charities: [{ name: charityNames[0], sum: 8 }],
-        referral: referralNames[0],
+        referral: 'Referral',
       }
       const valid = validateBank(args)
       expect(valid).toBeTruthy()
@@ -55,7 +52,6 @@ describe('Validate', () => {
       const charityNames = useAllCauses().flatMap((c) => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
-      const referralNames = useAllReferralOptions().map((r) => r.name)
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       const args: BankPaymentRequest = {
@@ -67,7 +63,7 @@ describe('Validate', () => {
         approvesPrivacyPolicy: true,
         doNewsletter: false,
         charities: [{ name: charityNames[0], sum: 8 }],
-        referral: referralNames[0],
+        referral: 'Referral',
       }
       const valid = validateBank(args)
       expect(valid).toBeFalsy()
@@ -78,7 +74,6 @@ describe('Validate', () => {
       const charityNames = useAllCauses().flatMap((c) => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
-      const referralNames = useAllReferralOptions().map((r) => r.name)
       const args: SwishPaymentRequest = {
         phone: '46706662345',
         isAnonymous: false,
@@ -88,7 +83,7 @@ describe('Validate', () => {
         approvesPrivacyPolicy: true,
         doNewsletter: false,
         charities: [{ name: charityNames[0], sum: 8 }],
-        referral: referralNames[0],
+        referral: 'Referral',
       }
       const valid = validateSwish(args)
       expect(valid).toBeTruthy()
@@ -97,7 +92,6 @@ describe('Validate', () => {
       const charityNames = useAllCauses().flatMap((c) => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
-      const referralNames = useAllReferralOptions().map((r) => r.name)
       const args: SwishPaymentRequest = {
         phone: '46706662345',
         isAnonymous: false,
@@ -108,7 +102,7 @@ describe('Validate', () => {
         approvesPrivacyPolicy: true,
         doNewsletter: false,
         charities: [{ name: charityNames[0], sum: 8 }],
-        referral: referralNames[0],
+        referral: 'Referral',
       }
       const valid = validateSwish(args)
       expect(valid).toBeTruthy()
@@ -117,14 +111,13 @@ describe('Validate', () => {
       const charityNames = useAllCauses().flatMap((c) => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
-      const referralNames = useAllReferralOptions().map((r) => r.name)
       const args: SwishPaymentRequest = {
         phone: '46706662345',
         isAnonymous: true,
         approvesPrivacyPolicy: true,
         doNewsletter: false,
         charities: [{ name: charityNames[0], sum: 8 }],
-        referral: referralNames[0],
+        referral: 'Referral',
       }
       const valid = validateSwish(args)
       expect(valid).toBeTruthy()
@@ -133,7 +126,6 @@ describe('Validate', () => {
       const charityNames = useAllCauses().flatMap((c) => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
-      const referralNames = useAllReferralOptions().map((r) => r.name)
       const args: SwishPaymentRequest = {
         phone: '46706662345',
         isAnonymous: false,
@@ -144,7 +136,7 @@ describe('Validate', () => {
         approvesPrivacyPolicy: false,
         doNewsletter: false,
         charities: [{ name: charityNames[0], sum: 8 }],
-        referral: referralNames[0],
+        referral: 'Referral',
       }
       const valid = validateSwish(args)
       expect(valid).toBeFalsy()
@@ -153,7 +145,6 @@ describe('Validate', () => {
       const charityNames = useAllCauses().flatMap((c) => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
-      const referralNames = useAllReferralOptions().map((r) => r.name)
       const args: SwishPaymentRequest = {
         phone: '46706662345',
         isAnonymous: false,
@@ -163,7 +154,7 @@ describe('Validate', () => {
         approvesPrivacyPolicy: false,
         doNewsletter: false,
         charities: [{ name: charityNames[0], sum: 8 }],
-        referral: referralNames[0],
+        referral: 'Referral',
       }
       expect(validateSwish(args)).toBeFalsy()
       expect(validateSwish({ ...args, name: '' })).toBeFalsy()
@@ -172,7 +163,6 @@ describe('Validate', () => {
       const charityNames = useAllCauses().flatMap((c) => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
-      const referralNames = useAllReferralOptions().map((r) => r.name)
       const args: SwishPaymentRequest = {
         phone: '46706662345',
         isAnonymous: false,
@@ -182,7 +172,7 @@ describe('Validate', () => {
         approvesPrivacyPolicy: false,
         doNewsletter: false,
         charities: [{ name: charityNames[0], sum: 8 }],
-        referral: referralNames[0],
+        referral: 'Referral',
       }
       expect(validateSwish(args)).toBeFalsy()
       expect(validateSwish({ ...args, email: '' })).toBeFalsy()
@@ -191,7 +181,6 @@ describe('Validate', () => {
       const charityNames = useAllCauses().flatMap((c) => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
-      const referralNames = useAllReferralOptions().map((r) => r.name)
       const args: SwishPaymentRequest = {
         phone: '46706662345',
         isAnonymous: false,
@@ -202,7 +191,7 @@ describe('Validate', () => {
         approvesPrivacyPolicy: false,
         doNewsletter: false,
         charities: [{ name: charityNames[0], sum: 8 }],
-        referral: referralNames[0],
+        referral: 'Referral',
       }
       const valid = validateSwish(args)
       expect(valid).toBeFalsy()
@@ -211,7 +200,6 @@ describe('Validate', () => {
       const charityNames = useAllCauses().flatMap((c) => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
-      const referralNames = useAllReferralOptions().map((r) => r.name)
       const args: SwishPaymentRequest = {
         isAnonymous: false,
         name: 'namn',
@@ -220,7 +208,7 @@ describe('Validate', () => {
         approvesPrivacyPolicy: false,
         doNewsletter: false,
         charities: [{ name: charityNames[0], sum: 8 }],
-        referral: referralNames[0],
+        referral: 'Referral',
       }
       expect(validateSwish(args)).toBeFalsy()
       expect(validateSwish({ ...args, phone: '' })).toBeFalsy()
@@ -229,7 +217,6 @@ describe('Validate', () => {
       const charityNames = useAllCauses().flatMap((c) => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
-      const referralNames = useAllReferralOptions().map((r) => r.name)
       const args: SwishPaymentRequest = {
         phone: '47706662345',
         isAnonymous: false,
@@ -240,7 +227,7 @@ describe('Validate', () => {
         approvesPrivacyPolicy: false,
         doNewsletter: false,
         charities: [{ name: charityNames[0], sum: 8 }],
-        referral: referralNames[0],
+        referral: 'Referral',
       }
       const valid = validateSwish(args)
       expect(valid).toBeFalsy()
@@ -249,7 +236,6 @@ describe('Validate', () => {
       const charityNames = useAllCauses().flatMap((c) => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
-      const referralNames = useAllReferralOptions().map((r) => r.name)
       const args: SwishPaymentRequest = {
         phone: '46706662345',
         isAnonymous: false,
@@ -260,7 +246,7 @@ describe('Validate', () => {
         approvesPrivacyPolicy: false,
         doNewsletter: false,
         charities: [{ name: charityNames[0], sum: 8 }],
-        referral: referralNames[0],
+        referral: 'Referral',
       }
       const valid = validateSwish(args)
       expect(valid).toBeFalsy()

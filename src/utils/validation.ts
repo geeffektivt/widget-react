@@ -9,7 +9,6 @@ import {
 } from '../@types/import/api/payment.types'
 import TransferDateOptions from '../constants/TransferDateOptions'
 import useAllCauses from '../hooks/content/useAllCauses'
-import useAllReferralOptions from '../hooks/content/useAllReferralOptions'
 import useAllTexts from '../hooks/content/useAllTexts'
 
 export const validateUpdate = (requestArgs: UpdatePaymentRequest) => {
@@ -74,7 +73,6 @@ export const validateBank = (requestArgs: BankPaymentRequest) => {
 }
 
 export const validateCreatePayment = (requestArgs: PaymentRequest) => {
-  const referralNames = useAllReferralOptions().map((r) => r.name)
   if (!requestArgs.approvesPrivacyPolicy) {
     console.error('validateCreatePayment: approvesPrivacyPolicy not valid', [
       JSON.stringify(requestArgs),
@@ -102,15 +100,6 @@ export const validateCreatePayment = (requestArgs: PaymentRequest) => {
       !Validate.matches(requestArgs.personalNumber, /^\d{10}$/))
   ) {
     console.error('validateCreatePayment: personalNumber not valid', [
-      JSON.stringify(requestArgs),
-    ])
-    return false
-  }
-  if (
-    requestArgs.referral !== undefined &&
-    !Validate.isIn(requestArgs.referral, referralNames)
-  ) {
-    console.error('validateCreatePayment: referral not valid', [
       JSON.stringify(requestArgs),
     ])
     return false
