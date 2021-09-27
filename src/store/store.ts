@@ -22,6 +22,7 @@ const goToPreviousStep = trackEvent(
     return {
       category: 'stepChange',
       action: `Went back to ${DonationStep[nextState.ui.activeStep]}`,
+      label: nextState.donation.recurring,
     }
   }
 )
@@ -38,11 +39,13 @@ const goToNextStep = trackEvent(
         category: 'stepChange',
         action: `Proceeded to ${DonationStep[nextState.ui.activeStep]}`,
         value: nextState.donation.sum ?? undefined,
+        label: nextState.donation.recurring,
       }
     }
     return {
       category: 'stepChange',
       action: `Proceeded to ${DonationStep[nextState.ui.activeStep]}`,
+      label: nextState.donation.recurring,
     }
   }
 )
