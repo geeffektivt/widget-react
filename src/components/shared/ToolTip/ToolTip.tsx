@@ -44,6 +44,7 @@ export function ToolTip({ text, children }: ToolTipProps) {
       arrow
       interactive
       enterTouchDelay={0}
+      leaveDelay={500}
     >
       {children}
     </Tooltip>
