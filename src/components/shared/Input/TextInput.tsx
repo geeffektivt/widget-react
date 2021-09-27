@@ -40,7 +40,10 @@ export function TextInput({
         denomination={denomination}
         ref={innerRef}
         onClick={(e) => {
-          if (selectOnClick) e.currentTarget.select()
+          if (selectOnClick) {
+            e.preventDefault()
+            e.currentTarget.select()
+          }
         }}
         onChange={onChange}
         value={value}

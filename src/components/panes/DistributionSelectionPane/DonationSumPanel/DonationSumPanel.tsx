@@ -28,6 +28,7 @@ export default function DonationSumPanel() {
         onChange={(e) => handleSumChange(e.target.valueAsNumber)}
         value={String(sum) || ''}
         denomination="kr"
+        selectOnClick
       />
     </div>
   )
