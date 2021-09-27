@@ -1,5 +1,5 @@
 import { MenuItem, InputLabel } from '@material-ui/core'
-import React from 'react'
+import React, { useState } from 'react'
 
 import { UpdatePaymentRequest } from '../../../../@types/import/api/payment.types'
 import TransferDateOptions from '../../../../constants/TransferDateOptions'
@@ -28,11 +28,14 @@ import {
   DetailsWrapper,
   DetailsRow,
   BoldText,
+  CenteredContainer,
+  ErrorMessage,
 } from '../../Panes.style'
 
 import { StyledSelect } from './BankMonthly.style'
 
 export default function BankMonthly() {
+  const [isDirty, setIsDirty] = useState(false)
   const { sum, recurring } = useTypedSelector((state) => state.donation)
   const dispatch = useTypedDispatch()
 
@@ -50,12 +53,15 @@ export default function BankMonthly() {
   const paymentTexts = texts.donations.payment
 
   const handleConfirm = () => {
-    const paymentRequest: UpdatePaymentRequest = {
-      id: createPaymentResponse?.id ?? '',
-      monthlyPaymentMethod: monthlyPaymentMethod ?? '',
-      preferredTransferDate,
+    setIsDirty(true)
+    if (monthlyPaymentMethod) {
+      const paymentRequest: UpdatePaymentRequest = {
+        id: createPaymentResponse?.id ?? '',
+        monthlyPaymentMethod: monthlyPaymentMethod ?? '',
+        preferredTransferDate,
+      }
+      dispatch(paymentAsyncActions.updateBankPayment(paymentRequest))
     }
-    dispatch(paymentAsyncActions.updateBankPayment(paymentRequest))
   }
   const handleChange = (value: string) =>
     dispatch(paymentActions.setPreferredTransferDate(value))
@@ -172,10 +178,18 @@ export default function BankMonthly() {
           </Pane>
         </RichSelectOption>
       </RichSelect>
+      {isDirty && monthlyPaymentMethod === undefined && (
+        <CenteredContainer>
+          <ErrorMessage>
+            {paymentTexts.monthlyPaymentMethodValidationError}
+          </ErrorMessage>
+        </CenteredContainer>
+      )}
       <NavigationButtons
         nextButtonTitle={paymentTexts.confirmButtonTitle}
         nextButtonOnClick={handleConfirm}
         showBackButton={false}
+        isNextDisabled={isDirty && monthlyPaymentMethod === undefined}
       />
     </Pane>
   )
