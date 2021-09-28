@@ -41,7 +41,6 @@ export function TextInput({
         ref={innerRef}
         onClick={(e) => {
           if (selectOnClick) {
-            e.preventDefault()
             e.currentTarget.select()
           }
         }}
