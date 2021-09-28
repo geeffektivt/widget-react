@@ -3,10 +3,8 @@ import React from 'react'
 import { DonorType } from '../../../constants/enums/DonorType'
 import { DonationFrequency } from '../../../constants/enums/RecurringDonation'
 import useAllTexts from '../../../hooks/content/useAllTexts'
-import useTypedDispatch from '../../../hooks/store/useTypedDispatch'
 import useTypedSelector from '../../../hooks/store/useTypedSelector'
 import { getCharitiesWithNames } from '../../../store/payment/payment.api'
-import { uiActions } from '../../../store/ui/ui.slice'
 import { NavigationButtons } from '../../shared/Buttons/NavigationButtons'
 import {
   Pane,
@@ -30,11 +28,6 @@ const SummaryPane = () => {
   const texts = useAllTexts()
   const summaryTexts = texts.donations.summary
   const donorTexts = texts.donations.donor
-  const dispatch = useTypedDispatch()
-
-  const onNextClick = () => {
-    dispatch(uiActions.goToNextStep())
-  }
 
   return (
     <Pane>
@@ -103,10 +96,7 @@ const SummaryPane = () => {
           </DetailsRow>
         )}
       </DetailsWrapper>
-      <NavigationButtons
-        nextButtonTitle={summaryTexts.submitLabel}
-        nextButtonOnClick={onNextClick}
-      />
+      <NavigationButtons nextButtonTitle={summaryTexts.submitLabel} />
     </Pane>
   )
 }

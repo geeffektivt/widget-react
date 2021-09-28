@@ -29,9 +29,11 @@ export const NavigationButtons = ({
 
   const onBackClick = () => {
     dispatch(uiActions.goToPreviousStep())
+    window.parent.postMessage('ScrollToTop', 'https://geeffektivt.se/')
   }
   const onNextClick = () => {
     dispatch(uiActions.goToNextStep())
+    window.parent.postMessage('ScrollToTop', 'https://geeffektivt.se/')
   }
   return (
     <ButtonsContainer showBackButton={showBackButton}>
