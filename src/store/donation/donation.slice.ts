@@ -25,7 +25,7 @@ const initialState: DonationState = {
 
   donorType: DonorType.Donor,
 
-  sum: 200,
+  sum: 500,
 
   lastCauseRoundRobinIndex: 0,
   causesDistribution: [],
