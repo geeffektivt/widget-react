@@ -80,7 +80,6 @@ export function DonorPane() {
     dispatch(donationActions.setDonorType(selectedDonorType))
     dispatch(donationActions.setDonorInformation(donorInfo))
     dispatch(uiActions.goToNextStep())
-    window.parent.postMessage('ScrollToTop', 'https://geeffektivt.se/')
   }
 
   const formId = 'donorForm'

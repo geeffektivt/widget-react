@@ -1,8 +1,4 @@
-import GoogleAnalyticsGtag, {
-  trackEvent,
-} from '@redux-beacon/google-analytics-gtag'
-import { configureStore } from '@reduxjs/toolkit'
-import { createMiddleware } from 'redux-beacon'
+import { configureStore, Middleware } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
 
 import { DonationStep } from '../constants/enums/DonationStep'
@@ -12,53 +8,36 @@ import { paymentReducer } from './payment/payment.slice'
 import { referralsReducer } from './referrals/referrals.slice'
 import { uiReducer } from './ui/ui.slice'
 
-const goToPreviousStep = trackEvent(
-  (
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    _action: { [key: string]: any },
-    _prevState: WidgetStoreState,
-    nextState: WidgetStoreState
-  ) => {
-    return {
+const postMessageMiddleware: Middleware = ({ getState }) => (next) => (
+  action
+) => {
+  const { donation, ui } = getState()
+  if (action.type === 'ui/goToNextStep') {
+    const nextStep = ui.activeStep + 1
+    const eventData = {
+      action: `Proceeded to ${DonationStep[nextStep]}`,
       category: 'stepChange',
-      action: `Went back to ${DonationStep[nextState.ui.activeStep]}`,
-      label: nextState.donation.recurring,
+      label: donation.recurring,
+      value:
+        nextStep === DonationStep.Payment
+          ? donation.sum ?? undefined
+          : undefined,
     }
+    window.parent.postMessage(eventData, 'https://geeffektivt.se/')
+    window.parent.postMessage('scrollToTop', 'https://geeffektivt.se/')
   }
-)
-
-const goToNextStep = trackEvent(
-  (
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    _action: { [key: string]: any },
-    _prevState: WidgetStoreState,
-    nextState: WidgetStoreState
-  ) => {
-    if (nextState.ui.activeStep === DonationStep.Payment) {
-      return {
-        category: 'stepChange',
-        action: `Proceeded to ${DonationStep[nextState.ui.activeStep]}`,
-        value: nextState.donation.sum ?? undefined,
-        label: nextState.donation.recurring,
-      }
-    }
-    return {
+  if (action.type === 'ui/goToPreviousStep') {
+    const eventData = {
+      action: `Went back to ${DonationStep[ui.activeStep - 1]}`,
       category: 'stepChange',
-      action: `Proceeded to ${DonationStep[nextState.ui.activeStep]}`,
-      label: nextState.donation.recurring,
+      label: donation.recurring,
     }
+    window.parent.postMessage(eventData, 'https://geeffektivt.se/')
+    window.parent.postMessage('scrollToTop', 'https://geeffektivt.se/')
   }
-)
 
-const eventsMap = {
-  'ui/goToNextStep': goToNextStep,
-  'ui/goToPreviousStep': goToPreviousStep,
+  return next(action)
 }
-
-const trackingId = 'UA-193196713-1'
-const ga = GoogleAnalyticsGtag(trackingId)
-
-const gaMiddleware = createMiddleware(eventsMap, ga)
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -71,7 +50,7 @@ const store = configureStore({
   },
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(gaMiddleware).concat(sagaMiddleware),
+    getDefaultMiddleware().concat(postMessageMiddleware).concat(sagaMiddleware),
 })
 
 export type WidgetStoreState = ReturnType<typeof store.getState>

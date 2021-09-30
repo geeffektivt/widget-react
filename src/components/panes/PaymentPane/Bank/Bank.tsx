@@ -54,7 +54,6 @@ export default function Bank() {
   const onBackClick = () => {
     dispatch(paymentActions.resetPaymentStatus())
     dispatch(uiActions.goToPreviousStep())
-    window.parent.postMessage('ScrollToTop', 'https://geeffektivt.se/')
   }
 
   if (isCreatingPayment) {

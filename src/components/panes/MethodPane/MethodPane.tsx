@@ -38,7 +38,6 @@ export function MethodPane() {
   function onPaymentMethodSelect(method: PaymentMethod) {
     dispatch(donationActions.setPaymentMethod(method))
     dispatch(uiActions.goToNextStep())
-    window.parent.postMessage('ScrollToTop', 'https://geeffektivt.se/')
   }
 
   return (

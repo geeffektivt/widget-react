@@ -1822,11 +1822,6 @@
   resolved "https://registry.yarnpkg.com/@radix-ui/utils/-/utils-0.0.3.tgz#f20dfa8a5681d778a579ad695fe68fe6a2c0ee88"
   integrity sha512-ruWffd3JjN8r+j8+LOIzTNEHzJsFcHOiSnQfl8KeBs+sCHGQgaI9IaRWxsaNXgrOYgPdBlZCbYG3qsLww2WR+w==
 
-"@redux-beacon/google-analytics-gtag@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@redux-beacon/google-analytics-gtag/-/google-analytics-gtag-1.1.0.tgz#14b77bb6373d63cac27c1f542a54432cf573d78b"
-  integrity sha512-FtJ/Ddv3DQVCB/N/1NNJLiNcik9DTfNoB6kIS+BFRMWoPZ+eDXTNvczd0BYFcc3tq2GGy3vAKisPJGYCkejuqQ==
-
 "@redux-saga/core@^1.1.3":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@redux-saga/core/-/core-1.1.3.tgz#3085097b57a4ea8db5528d58673f20ce0950f6a4"
@@ -3159,11 +3154,6 @@ array-flatten@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
   integrity sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=
-
-array-flatten@2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-2.1.1.tgz#426bb9da84090c1838d812c8150af20a8331e296"
-  integrity sha1-Qmu52oQJDBg42BLIFQryCoMx4pY=
 
 array-flatten@^2.1.0:
   version "2.1.2"
@@ -11547,13 +11537,6 @@ redent@^3.0.0:
   dependencies:
     indent-string "^4.0.0"
     strip-indent "^3.0.0"
-
-redux-beacon@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/redux-beacon/-/redux-beacon-2.1.0.tgz#a88ab3c2861f10ebafa0e5e94b78ca3209b537b9"
-  integrity sha512-KMbopAM7YLnQdospn5ClG3o8c4uhYkLBDEWSmxNbvQb4MGAJJh3sbbPKoEB00qU5rTXbwKuaaqZlWdgrY1Twxw==
-  dependencies:
-    array-flatten "2.1.1"
 
 redux-devtools-extension@^2.13.8:
   version "2.13.8"
