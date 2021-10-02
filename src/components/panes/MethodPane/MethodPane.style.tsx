@@ -78,14 +78,14 @@ export const MethodButton = styled('button', {
   variants: {
     paymentType: {
       bank: {
-        backgroundImage: `url('https://storage.googleapis.com/widget-react/bank.png')`,
+        backgroundImage: `url('https://storage.googleapis.com/geeffektivt-se-frontend-ec5e8b5/bank.png')`,
         backgroundPosition: '16px center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: '120px 60px',
       },
 
       swish: {
-        backgroundImage: `url('https://storage.googleapis.com/widget-react/swish-logotype.svg')`,
+        backgroundImage: `url('https://storage.googleapis.com/geeffektivt-se-frontend-ec5e8b5/swish-logotype.svg')`,
         backgroundPosition: '16px center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: '120px 36.5px',
