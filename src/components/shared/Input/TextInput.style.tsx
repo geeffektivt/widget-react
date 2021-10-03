@@ -74,7 +74,6 @@ export const TextInputWrapper = styled.div`
 `
 
 export const TextInputField = styled.input`
-  touch-action: manipulation;
   font-size: inherit;
   padding: 1.3em;
   ${(props: TextInputProps) => {
