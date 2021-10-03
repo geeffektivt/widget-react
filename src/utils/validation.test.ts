@@ -84,6 +84,7 @@ describe('Validate', () => {
         doNewsletter: false,
         charities: [{ name: charityNames[0], sum: 8 }],
         referral: 'Referral',
+        tip: 100,
       }
       const valid = validateSwish(args)
       expect(valid).toBeTruthy()
@@ -228,6 +229,26 @@ describe('Validate', () => {
         doNewsletter: false,
         charities: [{ name: charityNames[0], sum: 8 }],
         referral: 'Referral',
+      }
+      const valid = validateSwish(args)
+      expect(valid).toBeFalsy()
+    })
+    it('should have correct tip', () => {
+      const charityNames = useAllCauses().flatMap((c) => {
+        return [c.name, ...c.organizations.map((o) => o.name)]
+      })
+      const args: SwishPaymentRequest = {
+        phone: '47706662345',
+        isAnonymous: false,
+        name: 'namn',
+        email: 'not an email',
+        doTaxDeduction: true,
+        personalNumber: '9001013456',
+        approvesPrivacyPolicy: false,
+        doNewsletter: false,
+        charities: [{ name: charityNames[0], sum: 8 }],
+        referral: 'Referral',
+        tip: 4.3,
       }
       const valid = validateSwish(args)
       expect(valid).toBeFalsy()

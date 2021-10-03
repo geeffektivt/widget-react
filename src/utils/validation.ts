@@ -117,6 +117,12 @@ export const validateCreatePayment = (requestArgs: PaymentRequest) => {
     ])
     return false
   }
+  if (requestArgs.tip && !Number.isInteger(requestArgs.tip)) {
+    console.error('validateCreatePayment: tip not valid', [
+      JSON.stringify(requestArgs),
+    ])
+    return false
+  }
   if (!validateCharities(requestArgs.charities)) {
     console.error('validateCreatePayment: charities not valid', [
       JSON.stringify(requestArgs),
