@@ -32,6 +32,7 @@ export default function Swish() {
   const { referral } = useTypedSelector((state) => state.referrals)
   const texts = useAllTexts()
   const paneTexts = texts.donations.swish
+  const tipId = texts.donations.tip.id
 
   const onPhoneNumberChange = (n: string) =>
     dispatch(paymentActions.setPhoneNumber(n))
@@ -39,6 +40,7 @@ export default function Swish() {
   const onNextClick = () => {
     setIsDirty(true)
     if (validPhoneNumber(phoneNumber)) {
+      const tip = causesDistribution.find((c) => c.id === tipId)?.sum
       const paymentRequest: SwishPaymentRequest = {
         isAnonymous: donorType === DonorType.Anonymous,
         phone: phoneNumber ?? '',
@@ -48,8 +50,9 @@ export default function Swish() {
         personalNumber: donor?.ssn.toString(),
         approvesPrivacyPolicy: donor?.approvesPrivacyPolicy,
         doNewsletter: donor?.newsletter,
-        charities: getCharitiesWithNames(causesDistribution),
+        charities: getCharitiesWithNames(causesDistribution, tipId),
         referral: referral?.name,
+        tip,
       }
       dispatch(paymentAsyncActions.createSwishPayment(paymentRequest))
     }

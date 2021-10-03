@@ -7,43 +7,43 @@
     "standardOrganizationShareExplanation": "Hela summan går till GiveWell Maximum Impact Fund.",
     "organizations": [
       {
-        "id": "1",
+        "id": "10",
         "name": "GiveWell Maximum Impact Fund",
         "infoUrl": "https://www.givewell.org/maximum-impact-fund",
         "shortDescription": "En fond där du låter GiveWell välja det ändamål som de tror att människor hjälps av allra mest just nu. Det kan vara organisationer de redan rekommenderar, eller mindre projekt som för tillfället skulle få mycket uträttat med pengarna."
       },
       {
-        "id": "2",
+        "id": "11",
         "name": "Against Malaria Foundation",
         "infoUrl": "http://www.givewell.org/international/top-charities/amf",
         "shortDescription": "Against Malaria Foundation distribuerar impregnerade myggnät i områden med malaria. Varje nät kan skydda två personer från malaria i över fyra år."
       },
       {
-        "id": "3",
+        "id": "12",
         "name": "SCI Foundation",
         "infoUrl": "https://www.givewell.org/charities/sci-foundation",
         "shortDescription": "SCI Foundation hjälper myndigheter i Afrika söder om Sahara med att starta och utveckla behandlingsprogram för schistosomiasis (snäckfeber) och andra försummade sjukdomar."
       },
       {
-        "id": "4",
+        "id": "13",
         "name": "New Incentives",
         "infoUrl": "https://www.givewell.org/charities/new-incentives",
         "shortDescription": "Med kontantöverföringar motsvarande $11 över fem besök höjs vaccinationsgraden för exempelvis tuberkulos, polio och hepatit B i Nigeria."
       },
       {
-        "id": "5",
+        "id": "14",
         "name": "Helen Keller International",
         "infoUrl": "https://www.givewell.org/charities/helen-keller-international",
         "shortDescription": "Forskning visar att vitamin A-tillskott kan reducera barndödlighet. HKI bistår myndigheter med att planera och implementera sådana projekt i flera afrikanska länder."
       },
       {
-        "id": "6",
+        "id": "15",
         "name": "Malaria Consortium",
         "infoUrl": "http://www.givewell.org/charities/malaria-consortium",
         "shortDescription": "Delar ut malariadämpande preparat till barn under fem år under högsäsongen för malariasmitta, för att förebygga insjuknande. Detta kallas seasonal malaria chemoprevention (SMC)."
       },
       {
-        "id": "7",
+        "id": "16",
         "name": "GiveDirectly",
         "infoUrl": "http://www.givewell.org/International/top-charities/give-directly",
         "shortDescription": "Direkta kontantöverföringar ger fattiga hushåll möjligheten att köpa det de allra mest behöver."
@@ -127,16 +127,6 @@
         "shortDescription": "The Albert Schweitzer Foundation arbetar med att förbättra välfärden för djur i djurindustrin genom påverkanskampanjer riktade mot livsmedelsföretag och genom att driva rättsprocesser å djurens vägnar. De är verksamma i Tyskland och Polen."
       }
     ]
-  },
-  {
-      "id": "4",
-      "name": "Hjälp Ge Effektivt samla in mer pengar",
-      "standardShare": 0,
-      "standardOrganizationShareText": "Låt din gåva hjälpa oss samla in mer pengar",
-      "standardOrganizationShareExplanation": "Vi använder pengarna efter bästa förmåga för att kunna fortätta bedriva och expandera vår insamling",
-      "organizations":  [
-     ]
   }
-
 
 ]

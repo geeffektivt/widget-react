@@ -1,5 +1,12 @@
 {
   "donations": {
+    "tip": {
+      "id": "0",
+      "name": "Hjälp Ge Effektivt samla in mer pengar",
+      "standardShare": 0,
+      "standardOrganizationShareText": "Låt din gåva hjälpa oss samla in mer pengar",
+      "standardOrganizationShareExplanation": "Vi använder pengarna efter bästa förmåga för att kunna fortätta bedriva och expandera vår insamling"
+    },
     "shared": {
       "defaultNextButtonTitle": "Nästa"
     },

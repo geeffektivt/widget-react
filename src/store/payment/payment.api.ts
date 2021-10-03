@@ -44,8 +44,12 @@ export async function createPaymentRequest(
   return post<PaymentResponse>(url, { body: requestArgs })
 }
 
-export const getCharitiesWithNames = (charities: CauseDistribution[]) => {
+export const getCharitiesWithNames = (
+  charities: CauseDistribution[],
+  excludeId?: string
+) => {
   return charities
+    .filter((c) => (excludeId ? c.id !== excludeId : true))
     .flatMap((c) => {
       if (c.shareType === ShareType.Standard) {
         return { name: c.name, sum: c.sum }

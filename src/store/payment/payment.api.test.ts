@@ -139,4 +139,38 @@ describe('getCharitiesWithNames', () => {
       { name: 'Cause 3', sum: 25 },
     ])
   })
+  it('should filter out provided excludeId', () => {
+    const charities: CauseDistribution[] = [
+      {
+        ...baseDistribution,
+        id: 'Id1',
+        name: 'Cause 1',
+        sum: 100,
+      },
+      {
+        ...baseDistribution,
+        id: 'Id2',
+        name: 'Cause 2',
+        sum: 50,
+      },
+      {
+        ...baseDistribution,
+        id: 'Id3',
+        name: 'Cause 3',
+        sum: 25,
+      },
+      {
+        ...baseDistribution,
+        id: 'tipId',
+        name: 'Tip',
+        sum: 400,
+      },
+    ]
+    const result = getCharitiesWithNames(charities, 'tipId')
+    expect(result).toEqual([
+      { name: 'Cause 1', sum: 100 },
+      { name: 'Cause 2', sum: 50 },
+      { name: 'Cause 3', sum: 25 },
+    ])
+  })
 })

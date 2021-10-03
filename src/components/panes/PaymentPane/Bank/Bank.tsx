@@ -35,8 +35,10 @@ export default function Bank() {
   const dispatch = useTypedDispatch()
   const texts = useAllTexts()
   const paymentTexts = texts.donations.payment
+  const tipId = texts.donations.tip.id
 
   useOnMount(() => {
+    const tip = causesDistribution.find((c) => c.id === tipId)?.sum
     const paymentRequest: BankPaymentRequest = {
       isAnonymous: donorType === DonorType.Anonymous,
       name: donor?.name,
@@ -45,9 +47,10 @@ export default function Bank() {
       personalNumber: donor?.ssn.toString(),
       approvesPrivacyPolicy: donor?.approvesPrivacyPolicy,
       doNewsletter: donor?.newsletter,
-      charities: getCharitiesWithNames(causesDistribution),
+      charities: getCharitiesWithNames(causesDistribution, tipId),
       reoccursMonthly: recurring === DonationFrequency.Monthly,
       referral: referral?.name,
+      tip,
     }
     dispatch(paymentAsyncActions.createBankPayment(paymentRequest))
   })

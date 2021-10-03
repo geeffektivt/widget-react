@@ -7,6 +7,7 @@ export interface PaymentRequest {
   approvesPrivacyPolicy?: boolean
   doNewsletter?: boolean
   charities: Charity[]
+  tip?: number
   referral?: string
 }
 export interface BankPaymentRequest extends PaymentRequest {
