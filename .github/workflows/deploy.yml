@@ -25,11 +25,10 @@ jobs:
         run: yarn test
       - name: Build
         run: yarn build
-      - name: Run gulp task to inline css/js
-        run: npx gulp
       - name: Upload index.html to Google Cloud Storage bucket
         uses: google-github-actions/upload-cloud-storage@main
         with:
           credentials: ${{ secrets.GCP_CREDENTIALS_LIVE }}
-          path: build/index.html
+          path: build
           destination: geeffektivt-se-frontend-ec5e8b5
+          parent: false
