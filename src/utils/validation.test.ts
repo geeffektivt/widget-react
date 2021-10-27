@@ -222,7 +222,7 @@ describe('Validate', () => {
         phone: '47706662345',
         isAnonymous: false,
         name: 'namn',
-        email: 'not an email',
+        email: 'fdfa.fdg@sdfd.se',
         doTaxDeduction: true,
         personalNumber: '9001013456',
         approvesPrivacyPolicy: false,
@@ -241,7 +241,7 @@ describe('Validate', () => {
         phone: '47706662345',
         isAnonymous: false,
         name: 'namn',
-        email: 'not an email',
+        email: 'fdfa.fdg@sdfd.se',
         doTaxDeduction: true,
         personalNumber: '9001013456',
         approvesPrivacyPolicy: false,
@@ -253,6 +253,24 @@ describe('Validate', () => {
       const valid = validateSwish(args)
       expect(valid).toBeFalsy()
     })
+    it('should not allow empty charities unless there is tip', () => {
+      const args: SwishPaymentRequest = {
+        phone: '46706662345',
+        isAnonymous: false,
+        name: 'namn',
+        email: 'fdfa.fdg@sdfd.se',
+        doTaxDeduction: true,
+        personalNumber: '9001013456',
+        approvesPrivacyPolicy: true,
+        doNewsletter: false,
+        charities: [],
+        referral: 'Referral',
+      }
+      const invalid = validateSwish(args)
+      expect(invalid).toBeFalsy()
+      const valid = validateSwish({ ...args, tip: 5 })
+      expect(valid).toBeTruthy()
+    })
     it('should have personalNumber if doTaxDeduction', () => {
       const charityNames = useAllCauses().flatMap((c) => {
         return [c.name, ...c.organizations.map((o) => o.name)]
@@ -261,7 +279,7 @@ describe('Validate', () => {
         phone: '46706662345',
         isAnonymous: false,
         name: 'namn',
-        email: 'not an email',
+        email: 'fdfa.fdg@sdfd.se',
         doTaxDeduction: true,
         personalNumber: '',
         approvesPrivacyPolicy: false,

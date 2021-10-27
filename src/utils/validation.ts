@@ -123,7 +123,7 @@ export const validateCreatePayment = (requestArgs: PaymentRequest) => {
     ])
     return false
   }
-  if (!validateCharities(requestArgs.charities)) {
+  if (!validateCharities(requestArgs.charities, requestArgs.tip)) {
     console.error('validateCreatePayment: charities not valid', [
       JSON.stringify(requestArgs),
     ])
@@ -133,13 +133,12 @@ export const validateCreatePayment = (requestArgs: PaymentRequest) => {
   return true
 }
 
-const validateCharities = (charities: Charity[]) => {
+const validateCharities = (charities: Charity[], tip: number | undefined) => {
   const names = useAllCauses().flatMap((c) => {
     return [c.name, ...c.organizations.map((o) => o.name)]
   })
   return (
-    charities &&
-    charities.length > 0 &&
+    ((charities && charities.length > 0) || (tip ?? 0) > 0) &&
     charities.every(
       (c) => Validate.isIn(c.name, names) && Number.isInteger(c.sum)
     )
