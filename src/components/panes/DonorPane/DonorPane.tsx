@@ -125,10 +125,7 @@ export function DonorPane() {
 
                 <CheckboxLabel>{paneTexts.taxDeductionLabel}</CheckboxLabel>
 
-                <ToolTipLink
-                  text={paneTexts.taxDeductionTooltip}
-                  link={paneTexts.taxDeductionLink}
-                />
+                <ToolTipLink text={paneTexts.taxDeductionTooltip} />
               </CheckboxWrapper>
 
               {watch('taxDeduction') && (

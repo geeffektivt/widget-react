@@ -22,6 +22,10 @@ export const PrimaryLink = styled('a', {
   color: '$primary100',
 })
 
+export const SecondaryLink = styled('a', {
+  color: '$white',
+})
+
 export const ErrorMessage = styled('span', {
   color: '$error100',
   fontSize: '$14',

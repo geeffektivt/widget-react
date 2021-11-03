@@ -1,21 +1,29 @@
 import React from 'react'
 
-import { Link } from '../Link/Link'
+import { SecondaryLink } from '../../panes/Panes.style'
+import ActionString from '../_functional/ActionString'
 
 import { ToolTip } from './ToolTip'
 import ToolTipIcon from './ToolTipIcon'
 
 interface ToolTipLinkProps {
   text: string
-  link: string
 }
 
-export function ToolTipLink({ text, link }: ToolTipLinkProps) {
+export function ToolTipLink({ text }: ToolTipLinkProps) {
   return (
-    <ToolTip text={text}>
-      <Link target="_blank" rel="noopener noreferrer" href={link}>
-        <ToolTipIcon />
-      </Link>
+    <ToolTip
+      text={
+        <ActionString value={text}>
+          {(t, l) => (
+            <SecondaryLink target="_blank" rel="noopener noreferrer" href={l}>
+              {t}
+            </SecondaryLink>
+          )}
+        </ActionString>
+      }
+    >
+      <ToolTipIcon />
     </ToolTip>
   )
 }
