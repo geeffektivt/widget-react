@@ -1,15 +1,18 @@
 import useTypedDispatch from '../../../../hooks/store/useTypedDispatch'
-import useTypedSelector from '../../../../hooks/store/useTypedSelector'
 import { donationActions } from '../../../../store/donation/donation.slice'
+import { CauseDistribution } from '../../../../store/donation/donation.types'
 import { isValidNumber } from '../../../../utils/typeUtils'
 import { TextInput } from '../../../shared/Input/TextInput'
 
-export default function DonationSumPanel() {
+interface DonationSumPanelProps {
+  sum: number | null
+  causesDistribution: CauseDistribution[]
+}
+const DonationSumPanel = ({
+  sum,
+  causesDistribution,
+}: DonationSumPanelProps) => {
   const dispatch = useTypedDispatch()
-  const sum = useTypedSelector((state) => state.donation.sum)
-  const causesDistribution = useTypedSelector(
-    (state) => state.donation.causesDistribution
-  )
 
   const handleSumChange = (value: number) => {
     dispatch(
@@ -28,7 +31,11 @@ export default function DonationSumPanel() {
         onChange={(e) => handleSumChange(e.target.valueAsNumber)}
         value={String(sum) || ''}
         denomination="kr"
+        valid={isValidNumber(sum)}
+        showWarning={false}
       />
     </div>
   )
 }
+
+export default DonationSumPanel

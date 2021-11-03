@@ -22,10 +22,11 @@ export function TextInput({
   value,
   inputMode,
   valid = true,
+  showWarning = true,
 }: TextInputProps) {
   return (
     <TextInputWrapper label={label} denomination={denomination} valid={valid}>
-      {!valid && (
+      {!valid && showWarning && (
         <WarningContainer>
           <Warning />
         </WarningContainer>

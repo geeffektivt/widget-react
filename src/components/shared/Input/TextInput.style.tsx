@@ -14,6 +14,7 @@ export interface TextInputProps extends TextInputWrapperProps {
   value?: string | number | readonly string[]
   inputMode?: 'tel' | 'decimal' | 'text' | 'numeric' | 'email'
   valid?: boolean
+  showWarning?: boolean
 }
 
 export interface TextInputWrapperProps {

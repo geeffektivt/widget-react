@@ -1,5 +1,6 @@
 import useAllCauses from '../../../hooks/content/useAllCauses'
 import useTypedSelector from '../../../hooks/store/useTypedSelector'
+import { isValidNumber } from '../../../utils/typeUtils'
 import { NavigationButtons } from '../../shared/Buttons/NavigationButtons'
 import { Pane } from '../Panes.style'
 
@@ -12,10 +13,11 @@ export default function DistributionSelectionPane() {
   const causesDistribution = useTypedSelector(
     (state) => state.donation.causesDistribution
   )
+  const sum = useTypedSelector((state) => state.donation.sum)
 
   return (
     <Pane>
-      <DonationSumPanel />
+      <DonationSumPanel sum={sum} causesDistribution={causesDistribution} />
       <CausesAccordion type="multiple">
         {allCauses.map((cause, causeIndex) => {
           const causeDistribution = causesDistribution[causeIndex]
@@ -29,7 +31,7 @@ export default function DistributionSelectionPane() {
           )
         })}
       </CausesAccordion>
-      <NavigationButtons />
+      <NavigationButtons isNextDisabled={!isValidNumber(sum)} />
     </Pane>
   )
 }
