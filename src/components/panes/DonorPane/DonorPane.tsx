@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Validate from 'validator'
 
@@ -12,6 +12,7 @@ import { uiActions } from '../../../store/ui/ui.slice'
 import { NavigationButtons } from '../../shared/Buttons/NavigationButtons'
 import ErrorField from '../../shared/Error/ErrorField'
 import { TextInput } from '../../shared/Input/TextInput'
+import { PrimaryLink } from '../../shared/Link/PrimaryLink'
 import { RichSelect } from '../../shared/RichSelect/RichSelect'
 import { RichSelectOption } from '../../shared/RichSelect/RichSelectOption'
 import { ToolTipLink } from '../../shared/ToolTip/ToolTipLink'
@@ -23,7 +24,7 @@ import {
   CheckBox,
   CheckboxWrapper,
 } from '../Forms.style'
-import { PrimaryLink, Pane } from '../Panes.style'
+import { Pane } from '../Panes.style'
 
 interface DonorFormValues extends DonorInput {
   privacyPolicy: boolean

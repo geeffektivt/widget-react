@@ -15,6 +15,7 @@ import Payment from '../../../Payment'
 import { BackButton } from '../../../shared/Buttons/BackButton'
 import { LeftButtonContainer } from '../../../shared/Buttons/ButtonsContainer'
 import { NavigationButtons } from '../../../shared/Buttons/NavigationButtons'
+import { PrimaryLink } from '../../../shared/Link/PrimaryLink'
 import { RichSelect } from '../../../shared/RichSelect/RichSelect'
 import { RichSelectOption } from '../../../shared/RichSelect/RichSelectOption'
 import Spinner from '../../../shared/Spinner'
@@ -23,7 +24,6 @@ import CloseCircle from '../../../shared/_svg/CloseCircle'
 import {
   Pane,
   Paragraph,
-  PrimaryLink,
   PaneTitle,
   DetailsWrapper,
   DetailsRow,
