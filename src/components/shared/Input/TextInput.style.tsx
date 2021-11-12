@@ -75,6 +75,16 @@ export const TextInputWrapper = styled.div`
 `
 
 export const TextInputField = styled.input`
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+
+  &[type='number'] {
+    appearance: textfield;
+  }
+
   font-size: inherit;
   padding: 1.3em;
   ${(props: TextInputProps) => {
