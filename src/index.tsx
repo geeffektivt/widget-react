@@ -1,3 +1,4 @@
+import 'react-phone-input-2/lib/style.css'
 import { CaptureConsole } from '@sentry/integrations'
 import * as Sentry from '@sentry/react'
 import { Integrations } from '@sentry/tracing'
