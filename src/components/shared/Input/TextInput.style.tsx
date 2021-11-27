@@ -1,7 +1,6 @@
 import { ChangeEvent } from 'react'
-import styled from 'styled-components'
 
-import { gray18, orange15, red } from '../../../config/colors'
+import { styled } from '../../../styles/stitches.config'
 
 export interface TextInputProps extends TextInputWrapperProps {
   type: string
@@ -15,107 +14,108 @@ export interface TextInputProps extends TextInputWrapperProps {
   inputMode?: 'tel' | 'decimal' | 'text' | 'numeric' | 'email'
   valid?: boolean
   showWarning?: boolean
+  label?: string
+  denomination?: string
 }
 
 export interface TextInputWrapperProps {
-  label?: string
-  denomination?: string
   valid?: boolean
 }
 
-export const TextInputWrapper = styled.div`
-  display: block;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  font-size: 1em;
-  border: 1px solid
-    ${({ valid = true }: TextInputWrapperProps) => (valid ? gray18 : red)};
+export const Label = styled('span', {
+  height: '100%',
+  position: 'absolute',
+  left: '12px',
+  top: '0',
+  color: 'black',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontWeight: 'normal',
+})
 
-  border-radius: 5px;
-  box-sizing: border-box;
-  position: relative;
+export const TextInputWrapper = styled('div', {
+  display: 'block',
+  marginBottom: '5px',
+  marginTop: '5px',
+  fontSize: '1em',
+  borderRadius: '5px',
+  boxSizing: 'border-box',
+  position: 'relative',
 
-  &:before {
-    content: '${(props: TextInputWrapperProps) => props.label}';
-    height: 100%;
-    position: absolute;
-    left: 12px;
-    top: 0;
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: normal;
-  }
+  transition: 'box-shadow 180ms',
+  '&::focus-within': {
+    boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.3)',
+  },
+  variants: {
+    valid: {
+      true: {
+        border: '1px solid $grey18',
+      },
+      false: {
+        border: '1px solid red',
+      },
+    },
+  },
+})
 
-  ${(props: TextInputWrapperProps) => {
-    if (props.denomination) {
-      return `
-        &:after {
-          content: "${props.denomination}";
-          height: 100%;
-          position: absolute;
-          right: 12px;
-          top: 0;
-          color: ${gray18};
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-weight: normal;
-        }
-      `
-    }
-    return ''
-  }}
+export const Denomination = styled('span', {
+  height: '100%',
+  position: 'absolute',
+  right: '12px',
+  top: '0',
+  color: '$grey18',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontWeight: 'normal',
+})
 
-  transition: box-shadow 180ms;
-  &:focus-within {
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
-  }
-`
+export const TextInputField = styled('input', {
+  '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+    appearance: 'none',
+    margin: '0',
+  },
+  '&[type="number"]': {
+    appearance: 'textfield',
+  },
+  fontSize: 'inherit',
+  padding: '1.3em',
+  border: 'none',
+  boxSizing: 'border-box',
+  width: '100%',
+  background: 'transparent',
+  boxShadow: 'none',
+  position: 'relative',
+  zIndex: '2',
+  borderRadius: '5px',
+  display: 'block',
+  transition: 'box-shadow 180ms',
+  '&:focus': {
+    outline: 'none',
+    boxShadow: '0px 0px 0px 1.5px $secondary200',
+  },
 
-export const TextInputField = styled.input`
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    appearance: none;
-    margin: 0;
-  }
+  variants: {
+    denomination: {
+      true: {
+        paddingRight: '30px',
+      },
+    },
+    label: {
+      true: {
+        textAlign: 'right',
+      },
+      false: {
+        textAlign: 'left',
+      },
+    },
+  },
+})
 
-  &[type='number'] {
-    appearance: textfield;
-  }
-
-  font-size: inherit;
-  padding: 1.3em;
-  ${(props: TextInputProps) => {
-    if (props.denomination) {
-      return `
-        padding-right: 30px;
-      `
-    }
-    return ''
-  }}
-  text-align: ${(props: TextInputProps) => (props.label ? 'right' : 'left')};
-  border: none;
-  box-sizing: border-box;
-  width: 100%;
-  background: transparent;
-  box-shadow: none;
-  position: relative;
-  z-index: 2;
-  border-radius: 5px;
-  display: block;
-
-  transition: box-shadow 180ms;
-  &:focus {
-    outline: none;
-    box-shadow: 0px 0px 0px 1.5px ${orange15};
-  }
-`
-
-export const WarningContainer = styled.div`
-  padding: 1.3em;
-  position: absolute;
-  right: 0;
-  top: 0;
-`
+export const WarningContainer = styled('div', {
+  padding: '1.3em',
+  position: 'absolute',
+  right: '0',
+  top: '0',
+})
