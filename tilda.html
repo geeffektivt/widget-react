@@ -1,0 +1,61 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
+</style>
+<div id="widget-wrapper">
+  <div
+    id="root"
+    style="border: none; padding-top: 100px; width: 100%; margin: 0 auto"
+  ></div>
+</div>
+<script>
+  const storageBucketUrl = 'https://storage.googleapis.com/widget-react/'
+  function addChild(bundle_name) {
+    if (bundle_name.endsWith('.js')) {
+      var bundle = document.createElement('script')
+      bundle.setAttribute('type', 'text/javascript')
+      bundle.setAttribute(
+        'src',
+        storageBucketUrl + bundle_name + '?t=1.0'
+      )
+      document.body.appendChild(bundle)
+    }
+    if (bundle_name.endsWith('.css')) {
+      var bundle = document.createElement('link')
+      bundle.setAttribute('rel', 'stylesheet')
+      bundle.setAttribute('type', 'text/css')
+      bundle.setAttribute(
+        'href',
+        storageBucketUrl + bundle_name
+      )
+      document.head.appendChild(bundle)
+    }
+  }
+  const url =
+  storageBucketUrl + 'asset-manifest.json?t=1.0'
+  fetch(url)
+    .then((res) => res.json())
+    .then((json) => {
+      json.entrypoints.forEach((e) => addChild(e))
+    })
+
+  window.onmessage = function (e) {
+    if (event.origin !== 'https://geeffektivt.se') {
+      return
+    }
+    if (event.data && event.data.action) {
+      var data = event.data
+      gtag('event', data.action, {
+        event_category: data.category,
+        event_label: data.label,
+        value: data.value,
+      })
+      if (event.data.value) {
+        // Proceed to payment
+        fbq('track', 'Purchase', { currency: 'SEK', value: event.data.value })
+      }
+    }
+    if (event.data === 'scrollToTop') {
+      document.getElementById('widget-wrapper').scrollIntoView()
+    }
+  }
+</script>

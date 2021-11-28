@@ -33,6 +33,7 @@ const DonationSumPanel = ({
         denomination="kr"
         valid={isValidNumber(sum)}
         showWarning={false}
+        selectOnClick
       />
     </div>
   )

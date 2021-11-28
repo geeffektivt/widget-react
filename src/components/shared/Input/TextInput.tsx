@@ -3,6 +3,8 @@ import React from 'react'
 import Warning from '../_svg/Warning/Warning'
 
 import {
+  Denomination,
+  Label,
   TextInputField,
   TextInputProps,
   TextInputWrapper,
@@ -25,20 +27,21 @@ export function TextInput({
   showWarning = true,
 }: TextInputProps) {
   return (
-    <TextInputWrapper label={label} denomination={denomination} valid={valid}>
+    <TextInputWrapper valid={valid}>
+      <Label>{label}</Label>
       {!valid && showWarning && (
         <WarningContainer>
           <Warning />
         </WarningContainer>
       )}
       <TextInputField
-        label={label}
+        label={!!label}
+        denomination={!!denomination}
         name={name}
         type={type}
         inputMode={inputMode}
         placeholder={placeholder}
         defaultValue={defaultValue}
-        denomination={denomination}
         ref={innerRef}
         onClick={(e) => {
           if (selectOnClick) {
@@ -48,6 +51,7 @@ export function TextInput({
         onChange={onChange}
         value={value}
       />
+      {denomination && <Denomination>{denomination}</Denomination>}
     </TextInputWrapper>
   )
 }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import PhoneInput from 'react-phone-input-2'
 
-import 'react-phone-input-2/lib/style.css'
 import { SwishPaymentRequest } from '../../../../@types/import/api/payment.types'
 import { DonorType } from '../../../../constants/enums/DonorType'
 import useAllTexts from '../../../../hooks/content/useAllTexts'

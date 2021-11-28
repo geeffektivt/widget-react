@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Tooltip, Zoom } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import React, { ReactElement } from 'react'

@@ -18,10 +18,6 @@ export const PaneTitle = styled('h3', {
   margin: '$s25 0 $s50',
 })
 
-export const PrimaryLink = styled('a', {
-  color: '$primary100',
-})
-
 export const SecondaryLink = styled('a', {
   color: '$white',
 })

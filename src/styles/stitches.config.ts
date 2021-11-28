@@ -1,9 +1,12 @@
-import { createCss, StitchesCss } from '@stitches/react'
+import { createStitches, CSS as StitchesCss } from '@stitches/react'
 
-const stitchesConfig = createCss({
+const stitchesConfig = createStitches({
   prefix: '',
 
   theme: {
+    shadows: {
+      secondary200: 'hsl(36deg 100% 67%)', // orange 15
+    },
     colors: {
       black: '#000',
 
@@ -66,9 +69,6 @@ const stitchesConfig = createCss({
       contentMaxWidth: '600px',
     },
   },
-
-  conditions: {},
-  utils: {},
 })
 
 export const { styled, css, theme, keyframes } = stitchesConfig

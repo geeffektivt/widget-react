@@ -1,12 +1,10 @@
+import 'react-phone-input-2/lib/style.css'
 import { CaptureConsole } from '@sentry/integrations'
 import * as Sentry from '@sentry/react'
 import { Integrations } from '@sentry/tracing'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-
-// This file defines base styles and should be imported before all components
-import './index.css'
 
 import DonationWidget from './components/DonationWidget'
 import store from './store/store'
