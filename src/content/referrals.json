@@ -32,7 +32,15 @@
     "name": "Podcast"
   },
   {
-     "id": "8",
+     "id": "9",
      "name": "Podcasten Fundamentalt"
+  },
+  {
+    "id": "10",
+    "name": "Molodi"
+  },
+  {
+      "id": "11",
+      "name": "Podcast Smarta Cash"
   }
 ]
