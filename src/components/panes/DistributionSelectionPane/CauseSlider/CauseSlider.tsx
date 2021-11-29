@@ -43,7 +43,7 @@ const CauseSlider = ({
           >
             <Lock isLocked={isLocked} disabled={disabled} />
           </LockButton>
-          <span>{sum} kr</span>
+          <span>{sum.toLocaleString('sv-SE')} kr</span>
         </FlexContainer>
       </AccordionContainer>
       <div>

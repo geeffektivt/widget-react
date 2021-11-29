@@ -81,12 +81,12 @@ const SummaryPane = () => {
         )}
         <DetailsRow>
           <BoldText>{summaryTexts.sumTitle}</BoldText>
-          <p>{sum}</p>
+          <p>{sum?.toLocaleString('sv-SE')}</p>
         </DetailsRow>
         {getCharitiesWithNames(causesDistribution).map((c) => (
           <DetailsSubRow key={c.name}>
             <p>{c.name}</p>
-            <p>{`${c.sum} kr`}</p>
+            <p>{`${c.sum.toLocaleString('sv-SE')} kr`}</p>
           </DetailsSubRow>
         ))}
         {referral && referral.name !== '' && (
