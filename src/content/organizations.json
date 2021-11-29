@@ -94,7 +94,7 @@
     "name": "Djurhälsa",
     "standardShare": 0,
     "standardOrganizationShareText": "Låt Animal Charity Evaluators välja",
-    "standardOrganizationShareExplanation": "90% av summan går till Animal Charity Evaluators Recommended Charity Fund, och resten till deras egna förbättringar.",
+    "standardOrganizationShareExplanation": "90% av summan går till Animal Charity Evaluators Recommended Charity Fund, och resten till deras goda arbete.",
     "organizations": [
       {
         "id": "30",
@@ -121,10 +121,10 @@
         "shortDescription": "Wild Animal Initiative är en organisation som arbetar inom ett hittills förbisett område: att främja och utföra forskning för att hjälpa vilda djur på stor skala. Deras mål, att bygga grunden till ett akademiskt forskningsfält som studerar vilda djurs välfärd, har möjligheten att leda till en långsiktig förbättring för vilda djur."
       },
       {
-        "id": "34",
-        "name": "The Albert Schweitzer Foundation",
-        "infoUrl": "https://animalcharityevaluators.org/charity-review/albert-schweitzer-foundation/",
-        "shortDescription": "The Albert Schweitzer Foundation arbetar med att förbättra välfärden för djur i djurindustrin genom påverkanskampanjer riktade mot livsmedelsföretag och genom att driva rättsprocesser å djurens vägnar. De är verksamma i Tyskland och Polen."
+        "id": "35",
+        "name": "Faunalytics",
+        "infoUrl": "https://animalcharityevaluators.org/charity-review/faunalytics/",
+        "shortDescription": "Faunalytics arbetar för att ge de som arbetar med djurfrågor tillgång till rätt information. Exempelvis genom egen forskning, arbeta direkt med partnerorganisationer och tillgängliggöra befintlig forskning och data genom sitt öppna digitala bibliotek."
       }
     ]
   }
