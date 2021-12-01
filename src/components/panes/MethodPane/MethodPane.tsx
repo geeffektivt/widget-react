@@ -9,12 +9,12 @@ import { donationActions } from '../../../store/donation/donation.slice'
 import { uiActions } from '../../../store/ui/ui.slice'
 import { RichSelect } from '../../shared/RichSelect/RichSelect'
 import { RichSelectOption } from '../../shared/RichSelect/RichSelectOption'
+import { InfoText } from '../../shared/_typography/Text/InfoText'
 import { Pane } from '../Panes.style'
 
 import {
   MethodWrapper,
   MethodButton,
-  InfoText,
   RecurringSelectWrapper,
 } from './MethodPane.style'
 

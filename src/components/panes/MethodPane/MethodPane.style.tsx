@@ -12,13 +12,6 @@ export const TextWrapper = styled('div', {
   marginTop: '$s100',
 })
 
-export const InfoText = styled('p', {
-  color: '$grey20',
-  fontSize: '$12',
-  lineHeight: '150%',
-  margin: 0,
-})
-
 export const MethodButton = styled('button', {
   alignItems: 'center',
   backgroundColor: '$white',

@@ -19,7 +19,9 @@
       "bankAriaLabel": "Banköverföring",
       "swishAriaLabel": "Swishbetalning"
     },
-
+    "distributionSelection": {
+      "info": "Tryck på pilarna för respektive område om du vill ge till en specifik organisation."
+    },
     "donor": {
       "personalInfoLabel": "Info om dig",
       "donateAnonymouslyLabel": "Donera anonymt",
