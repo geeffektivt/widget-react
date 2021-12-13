@@ -25,22 +25,26 @@
   },
   {
     "id": "7",
-    "name": "Molodi"
-  },
-  {
-    "id": "8",
-    "name": "Podcast"
-  },
-  {
-     "id": "9",
-     "name": "Podcasten Fundamentalt"
-  },
-  {
-    "id": "10",
     "name": "Twitter"
   },
   {
-      "id": "11",
-      "name": "Podcast Smarta Cash"
+    "id": "8",
+    "name": "Dumma Människor podcast"
+  },
+  {
+    "id": "9",
+    "name": "Podcast Smarta Cash"
+  },
+  {
+     "id": "10",
+     "name": "Podcasten Fundamentalt"
+  },
+  {
+    "id": "11",
+    "name": "Molodi"
+  },
+  {
+      "id": "12",
+      "name": "Annan podcast"
   }
 ]
