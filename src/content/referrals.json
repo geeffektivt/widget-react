@@ -16,24 +16,8 @@
     "name": "Facebook"
   },
   {
-    "id": "5",
-    "name": "Presentation av Ge Effektivt"
-  },
-  {
-    "id": "6",
-    "name": "LinkedIn"
-  },
-  {
-    "id": "7",
-    "name": "Twitter"
-  },
-  {
     "id": "8",
     "name": "Podcast Dumma Människor"
-  },
-  {
-    "id": "9",
-    "name": "Podcast Smarta Cash"
   },
   {
      "id": "10",
@@ -42,9 +26,5 @@
   {
     "id": "11",
     "name": "Molodi"
-  },
-  {
-      "id": "12",
-      "name": "Annan podcast"
   }
 ]
