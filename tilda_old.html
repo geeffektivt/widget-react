@@ -1,0 +1,38 @@
+<div
+  id="widget-wrapper"
+  style="
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  "
+>
+  <iframe
+    id="react-widget"
+    title="react-widget-prod"
+    style="border: none; width: 100%; height: 1000px; margin: 0 auto"
+    src="https://storage.googleapis.com/geeffektivt-se-frontend-ec5e8b5/index.html?v=1.7"
+  ></iframe>
+</div>
+<script>
+  window.onmessage = function (e) {
+    if (event.origin !== 'https://storage.googleapis.com') {
+      return
+    }
+    if (event.data && event.data.action) {
+      var data = event.data
+      gtag('event', data.action, {
+        event_category: data.category,
+        event_label: data.label,
+        value: data.value,
+      })
+      if (event.data.value) {
+        // Proceed to payment
+        fbq('track', 'Purchase', { currency: 'SEK', value: event.data.value })
+      }
+    }
+    if (event.data === 'scrollToTop') {
+      document.getElementById('widget-wrapper').scrollIntoView()
+    }
+  }
+</script>
