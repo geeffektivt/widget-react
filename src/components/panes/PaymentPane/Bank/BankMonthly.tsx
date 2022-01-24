@@ -135,6 +135,11 @@ export default function BankMonthly() {
             <Paragraph>{paymentTexts.altBDescription}</Paragraph>
             <Paragraph>{paymentTexts.altBWarning}</Paragraph>
             <Paragraph>
+              Ange
+              <BoldText>{` ditt betalarnummmer: ${createPaymentResponse?.reference} `}</BoldText>
+              som referenskod.
+            </Paragraph>
+            <Paragraph>
               <BoldText>
                 Önskar du att betalningen dras på ett särskilt datum varje
                 månad?
