@@ -15,6 +15,7 @@ Sentry.init({
   integrations: [
     new Integrations.BrowserTracing(),
     new CaptureConsole({
+      // defaults to ['log', 'info', 'warn', 'error', 'debug', 'assert']
       levels: ['error'],
     }),
   ],
