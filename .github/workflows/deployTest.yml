@@ -4,10 +4,10 @@ name: Deploy to google cloud storage
 
 on:
   push:
-    branches: [main]
+    branches: [dev]
 
 env:
-  REACT_APP_API_URL: https://europe-west2-geeffektivt-se-live.cloudfunctions.net/
+  REACT_APP_API_URL: https://europe-west2-geeffektivt-se-dev.cloudfunctions.net/
   REACT_APP_USE_DEV_DATA: false
 
   # Allows you to run this workflow manually from the Actions tab
@@ -32,7 +32,7 @@ jobs:
       - name: Upload index.html to Google Cloud Storage bucket
         uses: google-github-actions/upload-cloud-storage@main
         with:
-          credentials: ${{ secrets.GCP_CREDENTIALS_LIVE }}
+          credentials: ${{ secrets.gcp_credentials }}
           path: build
-          destination: geeffektivt-se-frontend-ec5e8b5
+          destination: geeffektivt-se-frontend-0e976eb
           parent: false

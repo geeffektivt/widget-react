@@ -2,8 +2,8 @@
   "name": "@geeffektivt-se/widget",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://europe-west2-geeffektivt-se-live.cloudfunctions.net",
-  "homepage": "https://storage.googleapis.com/geeffektivt-se-frontend-ec5e8b5",
+  "proxy": "https://europe-west2-geeffektivt-se-dev.cloudfunctions.net",
+  "homepage": ".",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@radix-ui/react-accordion": "^0.0.7",
