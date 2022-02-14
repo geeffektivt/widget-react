@@ -38,7 +38,7 @@ export default function CauseDistribution({
 
   const causeId = cause.id
 
-  function onSliderChange(event: React.ChangeEvent<HTMLInputElement>) {
+  const onSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const updatedShare = parseInt(event.currentTarget.value, 10)
 
     safeRequestAnimationFrame(() => {
