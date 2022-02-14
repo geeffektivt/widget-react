@@ -31,11 +31,11 @@ export function MethodPane() {
   const isMonthlySelected =
     selectedDonationFrequency === DonationFrequency.Monthly
 
-  function onDonationFrequencyChange(donationFrequency: DonationFrequency) {
+  const onDonationFrequencyChange = (donationFrequency: DonationFrequency) => {
     dispatch(donationActions.setDonationFrequency(donationFrequency))
   }
 
-  function onPaymentMethodSelect(method: PaymentMethod) {
+  const onPaymentMethodSelect = (method: PaymentMethod) => {
     dispatch(donationActions.setPaymentMethod(method))
     dispatch(uiActions.goToNextStep())
   }

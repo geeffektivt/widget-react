@@ -34,7 +34,7 @@ export default function OrganizationDistribution({
   const causeId = cause.id
   const organizationId = organization.id
 
-  function onSliderChange(event: React.ChangeEvent<HTMLInputElement>) {
+  const onSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const updatedShare = parseInt(event.currentTarget.value, 10)
 
     safeRequestAnimationFrame(() => {
@@ -48,7 +48,7 @@ export default function OrganizationDistribution({
     })
   }
 
-  function onLockButtonChange() {
+  const onLockButtonChange = () => {
     dispatch(
       donationActions.updateOrganizationShareLock({
         causeId,

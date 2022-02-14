@@ -36,7 +36,7 @@ export function RichSelectOption<T>({
 
   onSelect,
 }: OptionProps<T>) {
-  function onInputChange() {
+  const onInputChange = () => {
     onSelect?.(value)
   }
 
