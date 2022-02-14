@@ -5,7 +5,6 @@ import {
   SwishPaymentStatusResponse,
   UpdatePaymentRequest,
 } from '../../@types/import/api/payment.types'
-import { API_URL } from '../../config/api'
 import { ShareType } from '../../constants/enums/ShareType'
 import { get, post } from '../../services/apiService'
 import { ApiResponse } from '../../utils/api/apiHelpers'
@@ -21,7 +20,7 @@ export async function updatePaymentRequest(
     return new ApiResponse(undefined, {})
   }
 
-  const url = joinUrlPaths(API_URL, '/updatePaymentBank')
+  const url = joinUrlPaths(process.env.REACT_APP_API_URL, '/updatePaymentBank')
   return post(url, { body: requestArgs })
 }
 
@@ -40,7 +39,7 @@ export async function createPaymentRequest(
     })
   }
 
-  const url = joinUrlPaths(API_URL, path)
+  const url = joinUrlPaths(process.env.REACT_APP_API_URL, path)
   return post<PaymentResponse>(url, { body: requestArgs })
 }
 
@@ -107,6 +106,9 @@ export async function pollSwishPaymentStatusRequest(
     })
   }
 
-  const url = joinUrlPaths(API_URL, `/paymentStatus?id=${requestArgs.id}`)
+  const url = joinUrlPaths(
+    process.env.REACT_APP_API_URL,
+    `/paymentStatus?id=${requestArgs.id}`
+  )
   return get<SwishPaymentStatusResponse>(url)
 }
