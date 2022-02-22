@@ -15,16 +15,20 @@
     "id": "4",
     "name": "Facebook"
   },
+    {
+    "id": "5",
+    "name": "Twitter"
+  },
+    {
+    "id": "6",
+    "name": "LinkedIn"
+  },
   {
     "id": "8",
-    "name": "Podcast Dumma Människor"
+    "name": "Podcast"
   },
   {
      "id": "10",
-     "name": "Blogg Cornucopia"
-  },
-  {
-    "id": "11",
-    "name": "Molodi"
+     "name": "Blogg"
   }
 ]
