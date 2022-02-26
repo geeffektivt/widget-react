@@ -1,5 +1,7 @@
 # GeEffektivt.se - Donation Widget
 
+The Donation Widget is the payment user interface for donations via geeffektivt.se, the app is stored in a Google Cloud Storage bucket and is mounted into the website using tilda.cc. The widget is created with React and is written in TypeScript.
+
 ## Install
 
 Install dependencies with yarn by running the following command in the root of the project:
@@ -35,3 +37,21 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+## Build and deployment
+
+### Github actions
+
+Deployment is handled by a [github action](https://github.com/features/actions) specified in .github/workflows/deploy.yml.
+This action will checkout the code, run the tests, build the app and then upload the contents of the build-folder to a Google Cloud Storage bucket.
+
+### Environments
+
+| Environment | Google Cloud Bucket             | Backend API                                                                                                   | Tilda page | Deploy trigger          |
+| ----------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------- | ---------- | ----------------------- |
+| LIVE        | geeffektivt-se-frontend-ec5e8b5 | https://europe-west2-geeffektivt-se-live.cloudfunctions.net/                                                  | /ge        | Push to **main** branch |
+| DEV         | geeffektivt-se-frontend-0e976eb | https://europe-west2-geeffektivt-se-dev.cloudfunctions.net                                                    | /dummy     | Push to **dev** branch  |
+| LOCAL       | N/A                             | Mocked if REACT_APP_USE_DEV_DATA is true otherwise https://europe-west2-geeffektivt-se-dev.cloudfunctions.net | N/A        | N/A                     |
+
+## Google Analytics & Facebook Pixel
+
+There's a middleware responsible for posting messages in store.ts, and code in tilda that receives the messages and post it to GA/Facebook Pixel.
