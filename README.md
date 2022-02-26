@@ -48,7 +48,7 @@ This action will checkout the code, run the tests, build the app and then upload
 
 | Environment | Google Cloud Bucket             | Backend API                                                                                                   | Tilda page | Deploy trigger          |
 | ----------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------- | ---------- | ----------------------- |
-| LIVE        | geeffektivt-se-frontend-ec5e8b5 | https://europe-west2-geeffektivt-se-live.cloudfunctions.net/                                                  | /ge        | Push to **main** branch |
+| PROD        | geeffektivt-se-frontend-ec5e8b5 | https://europe-west2-geeffektivt-se-live.cloudfunctions.net/                                                  | /ge        | Push to **main** branch |
 | DEV         | geeffektivt-se-frontend-0e976eb | https://europe-west2-geeffektivt-se-dev.cloudfunctions.net                                                    | /dummy     | Push to **dev** branch  |
 | LOCAL       | N/A                             | Mocked if REACT_APP_USE_DEV_DATA is true otherwise https://europe-west2-geeffektivt-se-dev.cloudfunctions.net | N/A        | N/A                     |
 

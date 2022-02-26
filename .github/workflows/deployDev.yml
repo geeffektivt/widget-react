@@ -1,6 +1,6 @@
-# This workflow will run the unit tests and upload the build artifact to google cloud storage
+# This workflow will run the unit tests and upload the build artifact to google cloud storage DEV
 
-name: Deploy to google cloud storage
+name: Deploy to google cloud storage DEV
 
 on:
   push:
