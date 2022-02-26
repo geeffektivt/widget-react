@@ -32,7 +32,7 @@ jobs:
       - name: Upload index.html to Google Cloud Storage bucket
         uses: google-github-actions/upload-cloud-storage@main
         with:
-          credentials: ${{ secrets.gcp_credentials }}
+          credentials: ${{ secrets.GCP_CREDENTIALS_DEV }}
           path: build
           destination: geeffektivt-se-frontend-0e976eb
           parent: false
