@@ -30,7 +30,7 @@ jobs:
       - name: Build
         run: yarn build
       - name: Validate directory not empty
-        run: '[ "$(ls -A ./build)" ] && echo "Files exist - all good." || (echo "Directory is empty - aborting." && exit 1)'
+        run: '[ "$(ls -A ./build/static/js && ls -A ./build/static/css)" ] && echo "Files exist - all good." || (echo "Directory is empty - aborting." && exit 1)'
       - id: 'auth'
         name: Authenticate to Google Cloud
         uses: 'google-github-actions/auth@v0'
