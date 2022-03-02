@@ -3,9 +3,8 @@ import {
   Track,
   Thumb,
   Range,
-  SliderOwnProps,
+  SliderProps as SliderOwnProps,
 } from '@radix-ui/react-slider'
-import React from 'react'
 
 import * as styles from './Slider.styles'
 

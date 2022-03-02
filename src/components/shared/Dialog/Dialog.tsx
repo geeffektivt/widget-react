@@ -1,5 +1,5 @@
 import {
-  DialogOwnProps,
+  DialogProps as DialogOwnProps,
   Root,
   Trigger,
   Overlay,
