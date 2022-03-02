@@ -9,7 +9,7 @@ export default function useTimeout() {
 
   return useCallback((callback: () => void, timeout: number) => {
     clearTimeout(timeoutIdRef.current)
-    timeoutIdRef.current = (setTimeout(callback, timeout) as unknown) as number
+    timeoutIdRef.current = setTimeout(callback, timeout) as unknown as number
     return timeoutIdRef.current
   }, [])
 }

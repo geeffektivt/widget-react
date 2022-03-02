@@ -49,10 +49,10 @@ export function useJoinedActionString(
   actionCallback: (text?: string, argument?: string) => string | undefined
 ) {
   const actionList = useActionString(actionString)
-  return useMemo(() => joinActionString(actionList, actionCallback), [
-    actionList,
-    actionCallback,
-  ])
+  return useMemo(
+    () => joinActionString(actionList, actionCallback),
+    [actionList, actionCallback]
+  )
 }
 
 export function joinActionString(

@@ -20,31 +20,29 @@ function resetOrgDistribution(organizations: Organization[], causeSum: number) {
   let remainingSumOrgs = causeSum
   let remainingSharesOrgs = totalShares
 
-  return organizations.map(
-    (organization): OrganizationDistribution => {
-      // orgShare as equal shar could be replaced with standard values
-      // if they are added as a standardValue to the Organization type
-      const orgShare = Math.min(
-        remainingSharesOrgs,
-        Math.ceil(totalShares / nbrOfOrgs)
-      )
-      const orgSum = Math.min(
-        (orgShare / 100) * (causeSum ?? 0),
-        remainingSumOrgs
-      )
+  return organizations.map((organization): OrganizationDistribution => {
+    // orgShare as equal shar could be replaced with standard values
+    // if they are added as a standardValue to the Organization type
+    const orgShare = Math.min(
+      remainingSharesOrgs,
+      Math.ceil(totalShares / nbrOfOrgs)
+    )
+    const orgSum = Math.min(
+      (orgShare / 100) * (causeSum ?? 0),
+      remainingSumOrgs
+    )
 
-      remainingSumOrgs -= orgSum
-      remainingSharesOrgs -= orgShare
+    remainingSumOrgs -= orgSum
+    remainingSharesOrgs -= orgShare
 
-      return {
-        id: organization.id,
-        isLocked: false,
-        name: organization.name,
-        share: orgShare,
-        sum: orgSum,
-      }
+    return {
+      id: organization.id,
+      isLocked: false,
+      name: organization.name,
+      share: orgShare,
+      sum: orgSum,
     }
-  )
+  })
 }
 
 const PercentageToKronor = (percentage: number, max: number | null) => {

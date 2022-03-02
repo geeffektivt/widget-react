@@ -33,7 +33,7 @@ const createPayment = <T extends PaymentRequest>(path: string) =>
     async (paymentArgs: T, { rejectWithValue }) => {
       const bank = isBank(paymentArgs)
       const valid = bank
-        ? validateBank((paymentArgs as unknown) as BankPaymentRequest)
+        ? validateBank(paymentArgs as unknown as BankPaymentRequest)
         : validateSwish(paymentArgs)
       if (!valid) {
         console.error('Create payment not valid', paymentArgs)

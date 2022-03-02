@@ -10,8 +10,7 @@ import DonationWidget from './components/DonationWidget'
 import store from './store/store'
 
 Sentry.init({
-  dsn:
-    'https://1ec35029845c43c89858154e2134bc78@o1010645.ingest.sentry.io/5975237',
+  dsn: 'https://1ec35029845c43c89858154e2134bc78@o1010645.ingest.sentry.io/5975237',
   integrations: [
     new Integrations.BrowserTracing(),
     new CaptureConsole({

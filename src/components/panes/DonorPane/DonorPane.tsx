@@ -33,9 +33,8 @@ interface DonorFormValues extends DonorInput {
 export function DonorPane() {
   const dispatch = useTypedDispatch()
   const initialDonorType = useTypedSelector((state) => state.donation.donorType)
-  const [selectedDonorType, setDonorType] = useState<DonorType>(
-    initialDonorType
-  )
+  const [selectedDonorType, setDonorType] =
+    useState<DonorType>(initialDonorType)
   const donor = useTypedSelector((state) => state.donation.donor)
 
   const texts = useAllTexts()
