@@ -10,11 +10,11 @@ import Chevron from '../../../shared/_svg/Chevron'
 import Info from '../../../shared/_svg/Info'
 import CauseSlider from '../CauseSlider/CauseSlider'
 import {
-  CausesAccordionButton,
+  CausesAccordionTrigger,
   CausesAccordionChevron,
   CausesAccordionHeader,
   CausesAccordionItem,
-  CausesAccordionPanel,
+  CausesAccordionContent,
 } from '../CausesAccordion'
 import OrganizationDistribution from '../OrganizationDistribution'
 
@@ -83,19 +83,19 @@ export default function CauseDistribution({
           hasOrganizations={cause.organizations.length > 0}
         >
           {cause.organizations.length > 0 ? (
-            <CausesAccordionButton>
+            <CausesAccordionTrigger>
               <CausesAccordionChevron>
                 <Chevron />
               </CausesAccordionChevron>
               <CauseTitle>{cause.name}</CauseTitle>
-            </CausesAccordionButton>
+            </CausesAccordionTrigger>
           ) : (
             <CauseTitle>{cause.name}</CauseTitle>
           )}
         </CauseSlider>
       </CausesAccordionHeader>
 
-      <CausesAccordionPanel>
+      <CausesAccordionContent>
         <ShareTypeContainer>
           <label>
             <input
@@ -124,7 +124,7 @@ export default function CauseDistribution({
             isEnabled={causeDistribution.shareType === ShareType.Custom}
           />
         ))}
-      </CausesAccordionPanel>
+      </CausesAccordionContent>
     </CausesAccordionItem>
   )
 }
