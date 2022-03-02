@@ -14,7 +14,7 @@
     "@sentry/integrations": "^6.13.2",
     "@sentry/react": "^6.13.2",
     "@sentry/tracing": "^6.13.2",
-    "@stitches/react": "^1.2.5",
+    "@stitches/react": "^1.2.7",
     "classnames": "^2.2.6",
     "email-validator": "^2.0.4",
     "immer": "^8.0.1",
