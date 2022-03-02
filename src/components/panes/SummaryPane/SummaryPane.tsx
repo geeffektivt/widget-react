@@ -16,14 +16,8 @@ import {
 } from '../Panes.style'
 
 const SummaryPane = () => {
-  const {
-    donor,
-    sum,
-    causesDistribution,
-    donorType,
-    method,
-    recurring,
-  } = useTypedSelector((state) => state.donation)
+  const { donor, sum, causesDistribution, donorType, method, recurring } =
+    useTypedSelector((state) => state.donation)
   const { referral } = useTypedSelector((state) => state.referrals)
   const texts = useAllTexts()
   const summaryTexts = texts.donations.summary

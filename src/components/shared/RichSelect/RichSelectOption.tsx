@@ -46,7 +46,7 @@ export function RichSelectOption<T>({
         <HiddenInput
           name={name}
           type="radio"
-          value={(value as unknown) as string}
+          value={value as unknown as string}
           checked={selected}
           onChange={onInputChange}
         />

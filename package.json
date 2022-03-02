@@ -15,6 +15,7 @@
     "@sentry/react": "^6.18.1",
     "@sentry/tracing": "^6.18.1",
     "@stitches/react": "^1.2.7",
+    "@testing-library/jest-dom": "^4.2.4",
     "classnames": "^2.3.1",
     "email-validator": "^2.0.4",
     "immer": "^8.0.1",
@@ -37,7 +38,6 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "@types/classnames": "^2.3.1",

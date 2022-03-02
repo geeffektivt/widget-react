@@ -8,38 +8,39 @@ import { paymentReducer } from './payment/payment.slice'
 import { referralsReducer } from './referrals/referrals.slice'
 import { uiReducer } from './ui/ui.slice'
 
-const postMessageMiddleware: Middleware = ({ getState }) => (next) => (
-  action
-) => {
-  if (process.env.NODE_ENV === 'production') {
-    const { donation, ui } = getState()
-    if (action.type === 'ui/goToNextStep') {
-      const nextStep = ui.activeStep + 1
-      const eventData = {
-        action: `Proceeded to ${DonationStep[nextStep]}`,
-        category: 'stepChange',
-        label: donation.recurring,
-        value:
-          nextStep === DonationStep.Payment
-            ? donation.sum ?? undefined
-            : undefined,
+const postMessageMiddleware: Middleware =
+  ({ getState }) =>
+  (next) =>
+  (action) => {
+    if (process.env.NODE_ENV === 'production') {
+      const { donation, ui } = getState()
+      if (action.type === 'ui/goToNextStep') {
+        const nextStep = ui.activeStep + 1
+        const eventData = {
+          action: `Proceeded to ${DonationStep[nextStep]}`,
+          category: 'stepChange',
+          label: donation.recurring,
+          value:
+            nextStep === DonationStep.Payment
+              ? donation.sum ?? undefined
+              : undefined,
+        }
+        window.parent.postMessage(eventData, 'https://geeffektivt.se/')
+        window.parent.postMessage('scrollToTop', 'https://geeffektivt.se/')
       }
-      window.parent.postMessage(eventData, 'https://geeffektivt.se/')
-      window.parent.postMessage('scrollToTop', 'https://geeffektivt.se/')
-    }
-    if (action.type === 'ui/goToPreviousStep') {
-      const eventData = {
-        action: `Went back to ${DonationStep[ui.activeStep - 1]}`,
-        category: 'stepChange',
-        label: donation.recurring,
+      if (action.type === 'ui/goToPreviousStep') {
+        const eventData = {
+          action: `Went back to ${DonationStep[ui.activeStep - 1]}`,
+          category: 'stepChange',
+          label: donation.recurring,
+        }
+        window.parent.postMessage(eventData, 'https://geeffektivt.se/')
+        window.parent.postMessage('scrollToTop', 'https://geeffektivt.se/')
       }
-      window.parent.postMessage(eventData, 'https://geeffektivt.se/')
-      window.parent.postMessage('scrollToTop', 'https://geeffektivt.se/')
     }
-  }
 
-  return next(action)
-}
+    return next(action)
+  }
 
 const sagaMiddleware = createSagaMiddleware()
 
