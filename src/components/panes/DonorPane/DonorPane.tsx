@@ -9,6 +9,7 @@ import useTypedSelector from '../../../hooks/store/useTypedSelector'
 import { donationActions } from '../../../store/donation/donation.slice'
 import { DonorInput } from '../../../store/state'
 import { uiActions } from '../../../store/ui/ui.slice'
+import { isValidNumber } from '../../../utils/typeUtils'
 import { NavigationButtons } from '../../shared/Buttons/NavigationButtons'
 import ErrorField from '../../shared/Error/ErrorField'
 import { TextInput } from '../../shared/Input/TextInput'
@@ -41,7 +42,12 @@ export function DonorPane() {
   const paneTexts = texts.donations.donor
   const isAnonymous = selectedDonorType === DonorType.Anonymous
 
-  const { register, watch, errors, handleSubmit } = useForm<DonorFormValues>({
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<DonorFormValues>({
     defaultValues: isAnonymous
       ? {}
       : {
@@ -97,22 +103,20 @@ export function DonorPane() {
           >
             <InputFieldWrapper>
               <TextInput
-                name="name"
                 type="text"
                 placeholder={paneTexts.namePlaceholder}
-                innerRef={register({ required: !isAnonymous, minLength: 1 })}
+                {...register('name', { required: !isAnonymous, minLength: 1 })}
                 valid={!isNameInvalid}
               />
               {isNameInvalid && <ErrorField text={paneTexts.nameError} />}
 
               <TextInput
-                name="email"
                 inputMode="email"
                 type="text"
                 placeholder={paneTexts.emailPlaceholder}
-                innerRef={register({
+                {...register('email', {
                   required: !isAnonymous,
-                  validate: (val) => Validate.isEmail(val),
+                  validate: (val) => val && Validate.isEmail(val),
                 })}
                 valid={!isEmailInvalid}
               />
@@ -121,7 +125,7 @@ export function DonorPane() {
 
             <Container>
               <CheckboxWrapper>
-                <CheckBox name="taxDeduction" type="checkbox" ref={register} />
+                <CheckBox type="checkbox" {...register('taxDeduction')} />
 
                 <CheckboxLabel>{paneTexts.taxDeductionLabel}</CheckboxLabel>
 
@@ -131,16 +135,16 @@ export function DonorPane() {
               {watch('taxDeduction') && (
                 <InputFieldWrapper>
                   <TextInput
-                    name="ssn"
                     type="number"
                     inputMode="numeric"
                     placeholder={paneTexts.ssnPlaceholder}
-                    innerRef={register({
+                    {...register('ssn', {
                       required: false,
                       validate: (val) =>
                         !watchAllFields.taxDeduction ||
-                        (Validate.isInt(val) &&
-                          Validate.isLength(val, { min: 9, max: 11 })),
+                        (val !== undefined &&
+                          isValidNumber(val) &&
+                          Validate.matches(val.toString(), /^\d{10}$/)),
                     })}
                     valid={!isSsnInvalid}
                   />
@@ -151,9 +155,8 @@ export function DonorPane() {
 
               <CheckboxWrapper>
                 <CheckBox
-                  name="privacyPolicy"
                   type="checkbox"
-                  ref={register({ required: !isAnonymous })}
+                  {...register('privacyPolicy', { required: !isAnonymous })}
                 />
 
                 <CheckboxLabel>
@@ -176,7 +179,7 @@ export function DonorPane() {
               )}
 
               <CheckboxWrapper>
-                <CheckBox name="newsletter" type="checkbox" ref={register} />
+                <CheckBox type="checkbox" {...register('newsletter')} />
                 <CheckboxLabel>{paneTexts.newsletterLabel}</CheckboxLabel>
               </CheckboxWrapper>
             </Container>

@@ -1,6 +1,6 @@
 const { toString } = Object.prototype
 
-export function isValidNumber(value: unknown): value is number {
+export function isValidNumber(value: unknown) {
   return typeof value === 'number' && !Number.isNaN(value) && value !== 0
 }
 
