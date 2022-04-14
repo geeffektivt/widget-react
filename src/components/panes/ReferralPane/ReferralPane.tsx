@@ -1,4 +1,3 @@
-import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { ReferralOption } from '../../../@types/import/content/referrals.types'
@@ -9,17 +8,19 @@ import { referralsActions } from '../../../store/referrals/referrals.slice'
 import { NavigationButtons } from '../../shared/Buttons/NavigationButtons'
 import { Pane, PaneTitle } from '../Panes.style'
 
+import ReferralInput from './ReferralInput'
 import {
   ReferralButton,
   ReferralsWrapper,
   ReferralButtonsWrapper,
-  TextInput,
 } from './ReferralPane.style'
 
 export function ReferralPane() {
   const dispatch = useDispatch()
 
-  const selectedReferral = useTypedSelector((state) => state.referrals.referral)
+  const { referral: selectedReferral, textInput } = useTypedSelector(
+    (state) => state.referrals
+  )
 
   const referralOptions = useAllReferralOptions()
 
@@ -27,6 +28,7 @@ export function ReferralPane() {
   const paneTexts = allTexts.donations.referral
 
   const onReferralSelect = (referral: ReferralOption) => {
+    dispatch(referralsActions.setTextInput(''))
     if (referral.id === selectedReferral?.id) {
       dispatch(referralsActions.setReferral(undefined))
     } else {
@@ -34,14 +36,9 @@ export function ReferralPane() {
     }
   }
 
-  const onOtherReferralInput = (otherInput: string) => {
-    dispatch(
-      referralsActions.setReferral({ ...otherReferral, name: otherInput })
-    )
+  const onReferralInput = (value: string) => {
+    dispatch(referralsActions.setTextInput(value))
   }
-
-  const otherReferralRef = useRef<HTMLInputElement>(null)
-  const otherReferral = { id: '0', name: '' }
 
   return (
     <Pane>
@@ -49,39 +46,27 @@ export function ReferralPane() {
 
       <ReferralsWrapper>
         <ReferralButtonsWrapper>
-          {referralOptions?.map((referral) => (
-            <ReferralButton
-              key={referral.id}
-              onClick={() => onReferralSelect(referral)}
-              selected={referral.id === selectedReferral?.id}
-            >
-              {referral.name}
-            </ReferralButton>
-          ))}
-          <div>
-            <TextInput
-              name="other"
-              type="text"
-              placeholder={paneTexts.otherLabel}
-              onChange={(e) => onOtherReferralInput(e.target.value)}
-              value={selectedReferral?.name ?? ''}
-              selected={otherReferral.id === selectedReferral?.id}
-              ref={otherReferralRef}
-              hidden={otherReferral.id !== selectedReferral?.id}
-            />
-            {otherReferral.id !== selectedReferral?.id && (
+          {referralOptions?.map((referral) => {
+            const selected = referral.id === selectedReferral?.id
+            return referral.editable ? (
+              <ReferralInput
+                key={referral.id}
+                onChange={onReferralInput}
+                onReferralSelect={onReferralSelect}
+                referral={referral}
+                selected={selected}
+                value={selected ? textInput : referral.name}
+              ></ReferralInput>
+            ) : (
               <ReferralButton
-                key={otherReferral.id}
-                onClick={() => {
-                  onReferralSelect(otherReferral)
-                  otherReferralRef.current?.focus()
-                }}
-                selected={otherReferral.id === selectedReferral?.id}
+                key={referral.id}
+                onClick={() => onReferralSelect(referral)}
+                selected={referral.id === selectedReferral?.id}
               >
-                {paneTexts.otherLabel}
+                {referral.name}
               </ReferralButton>
-            )}
-          </div>
+            )
+          })}
         </ReferralButtonsWrapper>
       </ReferralsWrapper>
       <NavigationButtons

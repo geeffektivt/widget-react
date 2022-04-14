@@ -8,7 +8,7 @@ export interface TextInputProps extends TextInputWrapperProps {
   placeholder?: string
   defaultValue?: string | number
   selectOnClick?: boolean
-  innerRef?: React.Ref<HTMLInputElement>
+  ref?: React.Ref<HTMLInputElement>
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   value?: string | number | readonly string[]
   inputMode?: 'tel' | 'decimal' | 'text' | 'numeric' | 'email'

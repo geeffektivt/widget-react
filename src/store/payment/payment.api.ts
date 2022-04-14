@@ -5,6 +5,7 @@ import {
   SwishPaymentStatusResponse,
   UpdatePaymentRequest,
 } from '../../@types/import/api/payment.types'
+import { ReferralOption } from '../../@types/import/content/referrals.types'
 import { ShareType } from '../../constants/enums/ShareType'
 import { get, post } from '../../services/apiService'
 import { ApiResponse } from '../../utils/api/apiHelpers'
@@ -59,6 +60,16 @@ export const getCharitiesWithNames = (
       }))
     })
     .filter((c) => c.sum !== 0)
+}
+
+export const getReferralName = (
+  referral?: ReferralOption,
+  textInput?: string
+) => {
+  return referral
+    ? referral?.name +
+        (textInput && textInput.trim().length > 0 ? `: ${textInput}` : '')
+    : undefined
 }
 
 export async function pollSwishPaymentStatusRequest(

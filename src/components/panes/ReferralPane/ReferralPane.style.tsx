@@ -3,6 +3,9 @@ import { styled } from '../../../styles/stitches.config'
 export const ReferralsWrapper = styled('div', {
   margin: '$s200 0',
 })
+export const RelativeWrapper = styled('div', {
+  position: 'relative',
+})
 
 export const ReferralButtonsWrapper = styled('div', {
   display: 'grid',
@@ -18,7 +21,6 @@ export const TextInput = styled('input', {
   fontSize: '$16',
   padding: '$s100',
   width: '100%',
-  zIndex: 5,
 
   variants: {
     selected: {
@@ -40,6 +42,7 @@ export const TextInput = styled('input', {
         position: 'absolute',
         top: 0,
         width: '100%',
+        display: 'none',
       },
     },
   },

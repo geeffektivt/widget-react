@@ -11,22 +11,24 @@ import {
   WarningContainer,
 } from './TextInput.style'
 
-export function TextInput({
-  label,
-  denomination,
-  name,
-  type,
-  placeholder,
-  defaultValue,
-  innerRef,
-  selectOnClick,
-  onChange,
-  value,
-  inputMode,
-  valid = true,
-  showWarning = true,
-}: TextInputProps) {
-  return (
+const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
+  (
+    {
+      label,
+      denomination,
+      name,
+      type,
+      placeholder,
+      defaultValue,
+      selectOnClick,
+      onChange,
+      value,
+      inputMode,
+      valid = true,
+      showWarning = true,
+    },
+    ref
+  ) => (
     <TextInputWrapper valid={valid}>
       <Label>{label}</Label>
       {!valid && showWarning && (
@@ -42,7 +44,7 @@ export function TextInput({
         inputMode={inputMode}
         placeholder={placeholder}
         defaultValue={defaultValue}
-        ref={innerRef}
+        ref={ref}
         onClick={(e) => {
           if (selectOnClick) {
             e.currentTarget.select()
@@ -54,4 +56,6 @@ export function TextInput({
       {denomination && <Denomination>{denomination}</Denomination>}
     </TextInputWrapper>
   )
-}
+)
+
+export default TextInput

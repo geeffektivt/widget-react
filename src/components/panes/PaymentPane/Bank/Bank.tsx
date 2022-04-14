@@ -7,7 +7,10 @@ import useAllTexts from '../../../../hooks/content/useAllTexts'
 import useTypedDispatch from '../../../../hooks/store/useTypedDispatch'
 import useTypedSelector from '../../../../hooks/store/useTypedSelector'
 import useOnMount from '../../../../hooks/utils/useOnMount'
-import { getCharitiesWithNames } from '../../../../store/payment/payment.api'
+import {
+  getCharitiesWithNames,
+  getReferralName,
+} from '../../../../store/payment/payment.api'
 import {
   paymentActions,
   paymentAsyncActions,
@@ -31,7 +34,7 @@ export default function Bank() {
   const { paymentStatus, isCreatingPayment } = useTypedSelector(
     (state) => state.payment
   )
-  const { referral } = useTypedSelector((state) => state.referrals)
+  const { referral, textInput } = useTypedSelector((state) => state.referrals)
   const dispatch = useTypedDispatch()
   const texts = useAllTexts()
   const paymentTexts = texts.donations.payment
@@ -49,7 +52,7 @@ export default function Bank() {
       doNewsletter: donor?.newsletter,
       charities: getCharitiesWithNames(causesDistribution, tipId),
       reoccursMonthly: recurring === DonationFrequency.Monthly,
-      referral: referral?.name,
+      referral: getReferralName(referral, textInput),
       tip,
     }
     dispatch(paymentAsyncActions.createBankPayment(paymentRequest))

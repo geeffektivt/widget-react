@@ -2,7 +2,7 @@ import useTypedDispatch from '../../../../hooks/store/useTypedDispatch'
 import { donationActions } from '../../../../store/donation/donation.slice'
 import { CauseDistribution } from '../../../../store/donation/donation.types'
 import { isValidNumber } from '../../../../utils/typeUtils'
-import { TextInput } from '../../../shared/Input/TextInput'
+import TextInput from '../../../shared/Input/TextInput'
 
 interface DonationSumPanelProps {
   sum: number | null
