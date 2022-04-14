@@ -177,7 +177,11 @@ export default function BankMonthly() {
               Använd där
               <BoldText>{` ditt betalarnummmer: ${createPaymentResponse?.reference}`}</BoldText>
             </Paragraph>
-            <PrimaryLink href={paymentTexts.altCLink}>
+            <PrimaryLink
+              href={paymentTexts.altCLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {paymentTexts.altCLinkText}
             </PrimaryLink>
           </Pane>
