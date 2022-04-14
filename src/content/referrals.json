@@ -15,20 +15,27 @@
     "id": "4",
     "name": "Facebook"
   },
-    {
+  {
     "id": "5",
     "name": "Twitter"
   },
-    {
+  {
     "id": "6",
     "name": "LinkedIn"
   },
   {
-    "id": "8",
-    "name": "Podcast"
+    "id": "7",
+    "name": "Podcast",
+    "editable": true
   },
   {
-     "id": "10",
-     "name": "Blogg"
+    "id": "8",
+    "name": "Blogg",
+    "editable": true
+  },
+  {
+    "id": "9",
+    "name": "Annat",
+    "editable": true
   }
 ]

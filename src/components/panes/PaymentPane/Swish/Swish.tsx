@@ -7,7 +7,10 @@ import useAllTexts from '../../../../hooks/content/useAllTexts'
 import useTypedDispatch from '../../../../hooks/store/useTypedDispatch'
 import useTypedSelector from '../../../../hooks/store/useTypedSelector'
 import usePollForPaymentStatus from '../../../../hooks/swish/usePollForPaymentStatus'
-import { getCharitiesWithNames } from '../../../../store/payment/payment.api'
+import {
+  getCharitiesWithNames,
+  getReferralName,
+} from '../../../../store/payment/payment.api'
 import {
   paymentAsyncActions,
   paymentActions,
@@ -28,7 +31,7 @@ export default function Swish() {
   const { donorType, donor, causesDistribution } = useTypedSelector(
     (state) => state.donation
   )
-  const { referral } = useTypedSelector((state) => state.referrals)
+  const { referral, textInput } = useTypedSelector((state) => state.referrals)
   const texts = useAllTexts()
   const paneTexts = texts.donations.swish
   const tipId = texts.donations.tip.id
@@ -50,7 +53,7 @@ export default function Swish() {
         approvesPrivacyPolicy: donor?.approvesPrivacyPolicy,
         doNewsletter: donor?.newsletter,
         charities: getCharitiesWithNames(causesDistribution, tipId),
-        referral: referral?.name,
+        referral: getReferralName(referral, textInput),
         tip,
       }
       dispatch(paymentAsyncActions.createSwishPayment(paymentRequest))

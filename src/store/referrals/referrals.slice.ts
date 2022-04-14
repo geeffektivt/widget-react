@@ -6,6 +6,7 @@ import { ReferralsState } from './referrals.types'
 
 const initialState: ReferralsState = {
   referral: undefined,
+  textInput: '',
 }
 
 export const referralsSlice = createSlice({
@@ -15,6 +16,9 @@ export const referralsSlice = createSlice({
   reducers: {
     setReferral(state, action: PayloadAction<ReferralOption | undefined>) {
       state.referral = action.payload
+    },
+    setTextInput(state, action: PayloadAction<string>) {
+      state.textInput = action.payload
     },
     resetState() {
       return initialState

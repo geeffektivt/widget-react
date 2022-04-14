@@ -4,7 +4,10 @@ import { DonorType } from '../../../constants/enums/DonorType'
 import { DonationFrequency } from '../../../constants/enums/RecurringDonation'
 import useAllTexts from '../../../hooks/content/useAllTexts'
 import useTypedSelector from '../../../hooks/store/useTypedSelector'
-import { getCharitiesWithNames } from '../../../store/payment/payment.api'
+import {
+  getCharitiesWithNames,
+  getReferralName,
+} from '../../../store/payment/payment.api'
 import { NavigationButtons } from '../../shared/Buttons/NavigationButtons'
 import {
   Pane,
@@ -18,7 +21,7 @@ import {
 const SummaryPane = () => {
   const { donor, sum, causesDistribution, donorType, method, recurring } =
     useTypedSelector((state) => state.donation)
-  const { referral } = useTypedSelector((state) => state.referrals)
+  const { referral, textInput } = useTypedSelector((state) => state.referrals)
   const texts = useAllTexts()
   const summaryTexts = texts.donations.summary
   const donorTexts = texts.donations.donor
@@ -86,7 +89,7 @@ const SummaryPane = () => {
         {referral && referral.name !== '' && (
           <DetailsRow>
             <BoldText>{summaryTexts.referralTitle}</BoldText>
-            <p>{referral?.name}</p>
+            <p>{getReferralName(referral, textInput)}</p>
           </DetailsRow>
         )}
       </DetailsWrapper>

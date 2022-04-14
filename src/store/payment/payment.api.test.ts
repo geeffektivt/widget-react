@@ -1,7 +1,8 @@
+import { ReferralOption } from '../../@types/import/content/referrals.types'
 import { ShareType } from '../../constants/enums/ShareType'
 import { CauseDistribution } from '../donation/donation.types'
 
-import { getCharitiesWithNames } from './payment.api'
+import { getCharitiesWithNames, getReferralName } from './payment.api'
 
 const baseDistribution = {
   shareType: ShareType.Standard,
@@ -172,5 +173,24 @@ describe('getCharitiesWithNames', () => {
       { name: 'Cause 2', sum: 50 },
       { name: 'Cause 3', sum: 25 },
     ])
+  })
+})
+
+describe('getReferralName', () => {
+  it('should handle without referral', () => {
+    expect(getReferralName(undefined, undefined)).toBe(undefined)
+  })
+
+  it('should handle without input', () => {
+    const referral: ReferralOption = { id: '1', name: 'Google' }
+    expect(getReferralName(referral, undefined)).toBe('Google')
+    expect(getReferralName(referral, '')).toBe('Google')
+    expect(getReferralName(referral, '   ')).toBe('Google')
+  })
+
+  it('should handle with input', () => {
+    const referral: ReferralOption = { id: '1', name: 'Podcast' }
+    const result = getReferralName(referral, 'Great podcast')
+    expect(result).toBe('Podcast: Great podcast')
   })
 })

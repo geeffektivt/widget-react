@@ -5,7 +5,7 @@ import { sliderInput, sliderRoot, sliderProgress } from './Slider.style'
 
 export type SliderProps = Omit<JSX.IntrinsicElements['input'], 'type'>
 
-export default function Slider({
+const Slider = ({
   value,
   min = 0,
   max = 100,
@@ -15,7 +15,7 @@ export default function Slider({
   className,
 
   ...inputProps
-}: SliderProps) {
+}: SliderProps) => {
   const rootRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
@@ -46,3 +46,5 @@ export default function Slider({
     </div>
   )
 }
+
+export default Slider
