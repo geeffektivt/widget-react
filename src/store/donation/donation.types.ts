@@ -22,7 +22,7 @@ export interface Donor {
   email: string
   taxDeduction: boolean
   approvesPrivacyPolicy: boolean
-  ssn: number
+  ssn: string
   newsletter: boolean
 }
 

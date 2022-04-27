@@ -78,7 +78,7 @@ export function DonorPane() {
         name: formValues.name ?? '',
         email: formValues.email ?? '',
         taxDeduction: formValues.taxDeduction ?? false,
-        ssn: formValues.ssn ?? -1,
+        ssn: formValues.ssn ?? '',
         newsletter: formValues.newsletter ?? false,
         approvesPrivacyPolicy: formValues.privacyPolicy,
       }
@@ -135,16 +135,26 @@ export function DonorPane() {
               {watch('taxDeduction') && (
                 <InputFieldWrapper>
                   <TextInput
-                    type="number"
+                    type="tel"
                     inputMode="numeric"
+                    onInput={(e) =>
+                      (e.currentTarget.value = e.currentTarget.value.replace(
+                        /[^0-9]/g,
+                        ''
+                      ))
+                    }
                     placeholder={paneTexts.ssnPlaceholder}
                     {...register('ssn', {
                       required: false,
-                      validate: (val) =>
-                        !watchAllFields.taxDeduction ||
-                        (val !== undefined &&
-                          isValidNumber(val) &&
-                          Validate.matches(val.toString(), /^\d{10}$/)),
+                      validate: (val) => {
+                        const valNumber = Number.parseInt(val ?? '0')
+                        return (
+                          !watchAllFields.taxDeduction ||
+                          (val !== undefined &&
+                            isValidNumber(valNumber) &&
+                            Validate.matches(val, /^\d{10}$/))
+                        )
+                      },
                     })}
                     valid={!isSsnInvalid}
                   />
