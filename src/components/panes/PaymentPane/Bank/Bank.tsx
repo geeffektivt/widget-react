@@ -47,7 +47,7 @@ export default function Bank() {
       name: donor?.name,
       email: donor?.email,
       doTaxDeduction: donor?.taxDeduction,
-      personalNumber: donor?.ssn.toString(),
+      personalNumber: donor?.ssn,
       approvesPrivacyPolicy: donor?.approvesPrivacyPolicy,
       doNewsletter: donor?.newsletter,
       charities: getCharitiesWithNames(causesDistribution, tipId),

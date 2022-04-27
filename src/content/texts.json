@@ -42,7 +42,7 @@
         "name": "Anonym givare",
         "email": "anon@geeffektivt.se",
         "taxDeduction": false,
-        "ssn": 12345678910,
+        "ssn": "12345678910",
         "newsletter": false,
         "approvesPrivacyPolicy": true
       }

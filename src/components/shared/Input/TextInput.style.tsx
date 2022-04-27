@@ -10,6 +10,7 @@ export interface TextInputProps extends TextInputWrapperProps {
   selectOnClick?: boolean
   ref?: React.Ref<HTMLInputElement>
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+  onInput?: (e: ChangeEvent<HTMLInputElement>) => void
   value?: string | number | readonly string[]
   inputMode?: 'tel' | 'decimal' | 'text' | 'numeric' | 'email'
   valid?: boolean
