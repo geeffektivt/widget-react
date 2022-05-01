@@ -58,6 +58,7 @@ export const ReferralButton = styled('button', {
   cursor: 'pointer',
   fontSize: '$16',
   padding: '$s100',
+  color: 'black',
 
   '@media(hover: hover) and (pointer: fine)': {
     '&:hover': {

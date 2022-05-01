@@ -20,6 +20,7 @@ export const CausesAccordionTrigger = styled(Trigger, {
   display: 'flex',
   alignItems: 'center',
   cursor: 'pointer',
+  color: 'black',
 })
 
 export const CausesAccordionChevron = styled(Header, {

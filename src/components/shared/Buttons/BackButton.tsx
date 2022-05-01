@@ -9,6 +9,7 @@ const Button = styled('button', {
   backgroundColor: 'transparent',
   border: 'none',
   cursor: 'pointer',
+  color: 'black',
 })
 
 export const BackButton = ({ onClick }: BackButtonProps) => {
