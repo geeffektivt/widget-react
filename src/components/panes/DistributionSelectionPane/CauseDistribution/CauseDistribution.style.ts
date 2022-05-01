@@ -4,6 +4,7 @@ export const CauseTitle = styled('h3', {
   paddingLeft: '$s50',
   fontSize: '$16',
   padding: '$s50',
+  color: 'black',
 })
 
 export const ShareTypeContainer = styled('div', {

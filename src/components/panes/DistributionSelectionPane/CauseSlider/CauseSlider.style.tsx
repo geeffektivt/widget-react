@@ -23,4 +23,5 @@ export const LockButton = styled('button', {
   backgroundColor: 'transparent',
   border: 'none',
   cursor: 'pointer',
+  color: 'black',
 })
