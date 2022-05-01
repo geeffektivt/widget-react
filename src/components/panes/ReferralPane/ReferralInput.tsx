@@ -46,8 +46,8 @@ const ReferralInput = ({
         <ReferralButton
           key={id}
           onClick={() => {
-            ref.current?.focus()
             onReferralSelect(referral)
+            ref.current?.focus()
           }}
           selected={selected}
         >
