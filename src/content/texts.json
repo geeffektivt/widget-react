@@ -32,8 +32,8 @@
       "emailError": "Den här mejladressen ser inte korrekt ut",
       "taxDeductionLabel": "Jag önskar skatteavdrag.",
       "taxDeductionTooltip": "Vi rapporterar då ditt personnummer till Skatteverket. För donationer inom Global hälsa prioriteras gåvor till Against Malaria Foundation. [Läs mer](https://geeffektivt.se/faq)",
-      "ssnPlaceholder": "Personnummer: ååmmddxxxx",
-      "ssnError": "Personnumret ser inte korrekt ut. Använd formatet ååmmddxxxx.",
+      "ssnPlaceholder": "Personnummer: ÅÅÅÅMMDDXXXX",
+      "ssnError": "Personnumret ser inte korrekt ut. Använd formatet ÅÅÅÅMMDDXXXX.",
       "privacyPolicyLabel": "Jag godkänner [villkoren](https://geeffektivt.se/villkor) med glädje.",
       "privacyPolicyError": "Du måste godkänna",
       "newsletterLabel": "Jag vill gärna få nyhetsbrev.",
@@ -97,7 +97,9 @@
       "altCDescription": "Du kan skapa ett nytt bankgiro genom att fylla i ett formulär på Bankgirocentralens hemsida, och signera med BankID",
       "altCLink": "https://www.mvh.bgonline.se/Public.Web/Templates/MandateApplications/FillInMandateApplication.aspx?formRef=fca9dd8e-056a-44a5-8bfc-0a296b5f6ba5",
       "altCLinkText": "Till bankgirocentralen",
-      "monthlyPaymentMethodValidationError": "Du måste välja en metod för att gå vidare."
+      "monthlyPaymentMethodValidationError": "Du måste välja en metod för att gå vidare.",
+      "selectDateLabel": "Välj datum",
+      "selectDateTitle": "Önskar du att betalningen dras på ett särskilt datum varje månad?"
     },
 
     "swish": {
