@@ -97,7 +97,9 @@
       "altCDescription": "Du kan skapa ett nytt bankgiro genom att fylla i ett formulär på Bankgirocentralens hemsida, och signera med BankID",
       "altCLink": "https://www.mvh.bgonline.se/Public.Web/Templates/MandateApplications/FillInMandateApplication.aspx?formRef=fca9dd8e-056a-44a5-8bfc-0a296b5f6ba5",
       "altCLinkText": "Till bankgirocentralen",
-      "monthlyPaymentMethodValidationError": "Du måste välja en metod för att gå vidare."
+      "monthlyPaymentMethodValidationError": "Du måste välja en metod för att gå vidare.",
+      "selectDateLabel": "Välj datum",
+      "selectDateTitle": "Önskar du att betalningen dras på ett särskilt datum varje månad?"
     },
 
     "swish": {
