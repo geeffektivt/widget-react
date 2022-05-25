@@ -97,7 +97,7 @@ export const validateCreatePayment = (requestArgs: PaymentRequest) => {
   if (
     requestArgs.doTaxDeduction &&
     (!requestArgs.personalNumber ||
-      !Validate.matches(requestArgs.personalNumber, /^\d{10}$|^\d{12}$/))
+      !Validate.matches(requestArgs.personalNumber, /^\d{10}$/))
   ) {
     console.error('validateCreatePayment: personalNumber not valid', [
       JSON.stringify(requestArgs),
