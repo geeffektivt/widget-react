@@ -152,7 +152,7 @@ export function DonorPane() {
                           !watchAllFields.taxDeduction ||
                           (val !== undefined &&
                             isValidNumber(valNumber) &&
-                            Validate.matches(val, /^\d{10}$|^\d{12}$/))
+                            Validate.matches(val, /^\d{10}$/))
                         )
                       },
                     })}

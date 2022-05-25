@@ -1,6 +1,5 @@
 import { createSlice, isAnyOf, PayloadAction } from '@reduxjs/toolkit'
 
-import TransferDateOptions from '../../constants/TransferDateOptions'
 import AppError from '../../utils/api/appError'
 
 import {
@@ -24,7 +23,7 @@ const initialState: PaymentState = {
     isUpdatingPayment: false,
     hasUpdatedPayment: false,
     updatePaymentError: undefined,
-    preferredTransferDate: TransferDateOptions.find((o) => o === '26'),
+    preferredTransferDate: undefined,
     monthlyPaymentMethod: undefined,
   },
 }
@@ -40,9 +39,7 @@ export const paymentSlice = createSlice({
       state.bank.preferredTransferDate = action.payload
     },
     setMonthlyPaymentMethod(state, action: PayloadAction<string>) {
-      state.bank.preferredTransferDate = TransferDateOptions.find(
-        (o) => o === '26'
-      )
+      state.bank.preferredTransferDate = undefined
       state.bank.monthlyPaymentMethod = action.payload
     },
     resetState() {
