@@ -140,13 +140,12 @@ export default function BankMonthly() {
               som referenskod.
             </Paragraph>
             <Paragraph>
-              <BoldText>
-                Önskar du att betalningen dras på ett särskilt datum varje
-                månad?
-              </BoldText>
+              <BoldText>{paymentTexts.selectDateTitle}</BoldText>
             </Paragraph>
             <Paragraph>
-              <InputLabel id="select-date-label">Välj datum</InputLabel>
+              <InputLabel id="select-date-label">
+                {paymentTexts.selectDateLabel}
+              </InputLabel>
             </Paragraph>
             <StyledSelect
               labelId="select-date-label"
