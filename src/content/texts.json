@@ -35,7 +35,7 @@
       "ssnPlaceholder": "Personnummer: ÅÅÅÅMMDDXXXX",
       "ssnError": "Personnumret ser inte korrekt ut. Använd formatet ÅÅÅÅMMDDXXXX.",
       "privacyPolicyLabel": "Jag godkänner [villkoren](https://geeffektivt.se/villkor) med glädje.",
-      "privacyPolicyError": "Du måste godkänna",
+      "privacyPolicyError": "Du måste godkänna villkoren för att kunna donera",
       "newsletterLabel": "Jag vill gärna få nyhetsbrev.",
 
       "anonymousDonor": {
