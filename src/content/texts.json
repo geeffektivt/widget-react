@@ -72,7 +72,7 @@
       "descriptionSingle": "Du kan nu överföra till oss",
       "descriptionMonthly": "Du kan nu överföra till oss med en av tre nedan metoder",
       "paymentRegistredTitle": "Månadsgivande registrerat",
-      "paymentRegistredDescription": "Tack för din gåva!",
+      "paymentRegistredDescription": "Tack för din gåva! Summan går oavkortat till de ändamål du har valt.",
       "paymentRegistrationFailedTitle": "Något gick fel!",
       "paymentRegistrationFailedDescription": "Var vänlig försök igen senare",
       "sumTitle": "Belopp",
@@ -111,7 +111,7 @@
       "paymentFailedTitle": "Betalningen misslyckades",
       "paymentFailedDescription": "Var vänlig försök igen",
       "paymentSuccessTitle": "Betalning mottagen",
-      "paymentSuccessDescription": "Tack för din gåva!"
+      "paymentSuccessDescription": "Tack för din gåva! Summan går oavkortat till de ändamål du har valt."
     }
   }
 }
