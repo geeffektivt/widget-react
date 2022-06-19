@@ -99,6 +99,12 @@
         "name": "Tradewater",
         "infoUrl": "https://www.givinggreen.earth/post/tradewater",
         "shortDescription": "Tradewater bygger nätverk världen över för att hitta kostnadseffektiva möjligheter till att förstöra växthusgaser. Så kallade köldmedium används i bland annat kylskåp, frysar, värmepumpar och luftkonditioneringar, och kan vara 10 000 gånger mer skadliga för klimatet än koldioxid om de tillåts läcka ut."
+      },
+      {
+          "id": "29",
+        "name": "Charm Industrial",
+        "infoUrl": "https://www.givinggreen.earth/carbon-offsets-research/charm-industrial",
+        "shortDescription": "Använder restprodukter från jordbruk för att skapa bioolja som sedan deponeras i geologiska formationer, vilket låser upp växthusgaserna över en miljon år."
       }
     ]
   },
