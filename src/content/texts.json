@@ -37,6 +37,7 @@
       "privacyPolicyLabel": "Jag godkänner [villkoren](https://geeffektivt.se/villkor) med glädje.",
       "privacyPolicyError": "Du måste godkänna villkoren för att kunna donera",
       "newsletterLabel": "Jag vill gärna få nyhetsbrev.",
+      "anonymousSwishInfo": "När du betalar med Swish delar du ditt telefonnummer med oss, men vi kommer inte använda det för att identifiera dig.",
 
       "anonymousDonor": {
         "name": "Anonym givare",

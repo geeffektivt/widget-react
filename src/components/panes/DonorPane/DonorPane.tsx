@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import Validate from 'validator'
 
 import { DonorType } from '../../../constants/enums/DonorType'
+import { PaymentMethod } from '../../../constants/enums/PaymentMethod'
 import useAllTexts from '../../../hooks/content/useAllTexts'
 import useTypedDispatch from '../../../hooks/store/useTypedDispatch'
 import useTypedSelector from '../../../hooks/store/useTypedSelector'
@@ -37,6 +38,7 @@ export function DonorPane() {
   const [selectedDonorType, setDonorType] =
     useState<DonorType>(initialDonorType)
   const donor = useTypedSelector((state) => state.donation.donor)
+  const paymentMethod = useTypedSelector((state) => state.donation.method)
 
   const texts = useAllTexts()
   const paneTexts = texts.donations.donor
@@ -198,6 +200,11 @@ export function DonorPane() {
           <RichSelectOption
             label={paneTexts.donateAnonymouslyLabel}
             value={DonorType.Anonymous}
+            sublabel={
+              isAnonymous && paymentMethod == PaymentMethod.Swish
+                ? paneTexts.anonymousSwishInfo
+                : undefined
+            }
           />
         </RichSelect>
         <NavigationButtons
