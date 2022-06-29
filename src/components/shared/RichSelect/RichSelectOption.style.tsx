@@ -27,6 +27,7 @@ export const RadioBall = styled('span', {
   height: 24,
   position: 'relative',
   width: 24,
+  minWidth: 24,
 
   '&::after': {
     border: '1px solid $grey18',

@@ -37,6 +37,7 @@
       "privacyPolicyLabel": "Jag godkänner [villkoren](https://geeffektivt.se/villkor) med glädje.",
       "privacyPolicyError": "Du måste godkänna villkoren för att kunna donera",
       "newsletterLabel": "Jag vill gärna få nyhetsbrev.",
+      "anonymousSwishInfo": "När du betalar med Swish delar du ditt telefonnummer med oss, men vi kommer inte använda det för att identifiera dig.",
 
       "anonymousDonor": {
         "name": "Anonym givare",
@@ -84,7 +85,7 @@
       "referenceTitleSingle": "Meddelande",
       "ocr": "0000000",
       "recurringSuggestion": "I kontonumret utgör 9960 clearingnummer. Vid problem finns ofta information i din banks kundtjänst. Om du vill donera med samma fördelning senare kan du använda samma meddelande igen. Du kan även sätta upp gåvan som automatiskt återkommande varje månad i din bank om du skulle vilja. Om du har några frågor kan du höra av dig till oss på donationer@geeffektivt.se.",
-      "goBackButtonTitle": "Gå tillbaka till startsidan",
+      "goBackButtonTitle": "Ny betalning",
       "confirmButtonTitle": "Registrera månadsgivande",
       "errorTitle": "Tekniskt fel",
       "errorDescription": "Något gick tyvärr fel, vänligen försök igen senare",

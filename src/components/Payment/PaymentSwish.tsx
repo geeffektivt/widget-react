@@ -9,22 +9,16 @@ import { styled } from '../../styles/stitches.config'
 import { BackButton } from '../shared/Buttons/BackButton'
 import { LeftButtonContainer } from '../shared/Buttons/ButtonsContainer'
 import Spinner from '../shared/Spinner'
-import CheckCircle from '../shared/_svg/CheckCircle'
 import CloseCircle from '../shared/_svg/CloseCircle'
 import SwishLogo from '../shared/_svg/SwishLogo'
 
 import Payment from './Payment'
+import { PaymentDone } from './PaymentDone'
 
 interface PaymentProps {
   status: SwishPaymentStatus
 }
 
-const StyledCheckCircle = styled(CheckCircle, {
-  display: 'flex',
-  height: 100,
-  margin: '$s100 auto',
-  width: 100,
-})
 const StyledLogo = styled(SwishLogo, {
   display: 'flex',
   height: 50,
@@ -86,12 +80,10 @@ export default function PaymentSwish({ status }: PaymentProps) {
 
     case 'PAID':
       return (
-        <Payment
+        <PaymentDone
           title={swishTexts.paymentSuccessTitle}
           description={swishTexts.paymentSuccessDescription}
-        >
-          <StyledCheckCircle />
-        </Payment>
+        />
       )
 
     default:
