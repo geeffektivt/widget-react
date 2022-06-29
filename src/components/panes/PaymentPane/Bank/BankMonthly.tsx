@@ -12,6 +12,7 @@ import {
   paymentAsyncActions,
 } from '../../../../store/payment/payment.slice'
 import Payment from '../../../Payment'
+import { PaymentDone } from '../../../Payment/PaymentDone'
 import { BackButton } from '../../../shared/Buttons/BackButton'
 import { LeftButtonContainer } from '../../../shared/Buttons/ButtonsContainer'
 import { NavigationButtons } from '../../../shared/Buttons/NavigationButtons'
@@ -19,7 +20,6 @@ import { PrimaryLink } from '../../../shared/Link/PrimaryLink'
 import { RichSelect } from '../../../shared/RichSelect/RichSelect'
 import { RichSelectOption } from '../../../shared/RichSelect/RichSelectOption'
 import Spinner from '../../../shared/Spinner'
-import CheckCircle from '../../../shared/_svg/CheckCircle'
 import CloseCircle from '../../../shared/_svg/CloseCircle'
 import {
   Pane,
@@ -68,17 +68,16 @@ export default function BankMonthly() {
   const handlePaymentAlternativeChange = (value: string) =>
     dispatch(paymentActions.setMonthlyPaymentMethod(value))
   const onBackClick = () => dispatch(paymentActions.resetupdatePaymentError())
+
   if (isUpdatingPayment) {
     return <Spinner />
   }
   if (hasUpdatedPayment) {
     return (
-      <Payment
+      <PaymentDone
         title={paymentTexts.paymentRegistredTitle}
         description={paymentTexts.paymentRegistredDescription}
-      >
-        <CheckCircle />
-      </Payment>
+      />
     )
   }
   if (updatePaymentError) {
