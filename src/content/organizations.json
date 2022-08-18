@@ -10,19 +10,19 @@
         "id": "10",
         "name": "GiveWell Maximum Impact Fund",
         "infoUrl": "https://www.givewell.org/maximum-impact-fund",
-        "shortDescription": "En fond där du låter GiveWell välja det ändamål som de tror att människor hjälps av allra mest just nu. Det kan vara organisationer de redan rekommenderar, eller mindre projekt som för tillfället skulle få mycket uträttat med pengarna."
+        "shortDescription": "Låt GiveWell fördela pengarna fritt mellan sina topplistade organisationer."
       },
       {
         "id": "11",
-        "name": "Against Malaria Foundation",
-        "infoUrl": "http://www.givewell.org/international/top-charities/amf",
-        "shortDescription": "Against Malaria Foundation distribuerar impregnerade myggnät i områden med malaria. Varje nät kan skydda två personer från malaria i över fyra år."
+        "name": "GiveWell All Grants Fund",
+        "infoUrl": "https://www.givewell.org/research/all-grants",
+        "shortDescription": "Låt GiveWell fördela pengarna fritt mellan alla sina rekommenderade organisationer. Utöver topplistan kan det vara organisationer med högre risk, eller mindre projekt som för tillfället skulle få mycket uträttat med pengarna."
       },
       {
         "id": "12",
-        "name": "SCI Foundation",
-        "infoUrl": "https://www.givewell.org/charities/sci-foundation",
-        "shortDescription": "SCI Foundation hjälper myndigheter i Afrika söder om Sahara med att starta och utveckla behandlingsprogram för schistosomiasis (snäckfeber) och andra försummade sjukdomar."
+        "name": "Against Malaria Foundation",
+        "infoUrl": "http://www.givewell.org/international/top-charities/amf",
+        "shortDescription": "Against Malaria Foundation distribuerar impregnerade myggnät i områden med malaria. Varje nät kan skydda två personer från malaria i över fyra år."
       },
       {
         "id": "13",
@@ -41,12 +41,6 @@
         "name": "Malaria Consortium",
         "infoUrl": "http://www.givewell.org/charities/malaria-consortium",
         "shortDescription": "Delar ut malariadämpande preparat till barn under fem år under högsäsongen för malariasmitta, för att förebygga insjuknande. Detta kallas seasonal malaria chemoprevention (SMC)."
-      },
-      {
-        "id": "16",
-        "name": "GiveDirectly",
-        "infoUrl": "http://www.givewell.org/International/top-charities/give-directly",
-        "shortDescription": "Direkta kontantöverföringar ger fattiga hushåll möjligheten att köpa det de allra mest behöver."
       }
     ]
   },
