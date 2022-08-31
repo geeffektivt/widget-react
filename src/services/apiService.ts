@@ -17,14 +17,14 @@ export async function apiRequest<T = unknown>(
   const responseData = await attempt(parseResponseData<T>(response))
 
   if (hasFailed(responseData)) {
-    console.error('Failed to parse response', responseData)
+    console.error('Failed to parse response', JSON.stringify(responseData))
     throw AppError.fromError('Failed to parse response', responseData.error, {
       extraData: responseData,
     })
   }
 
   if (response.ok !== true) {
-    console.error('Response not ok', responseData)
+    console.error('Response not ok', JSON.stringify(responseData))
     throw AppError.fromResponse(response, { extraData: responseData })
   }
 

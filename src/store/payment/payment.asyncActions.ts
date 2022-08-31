@@ -36,7 +36,7 @@ const createPayment = <T extends PaymentRequest>(path: string) =>
         ? validateBank(paymentArgs as unknown as BankPaymentRequest)
         : validateSwish(paymentArgs)
       if (!valid) {
-        console.error('Create payment not valid', paymentArgs)
+        console.error('Create payment not valid', JSON.stringify(paymentArgs))
         return rejectWithValue(
           AppError.fromError(
             'Failed to create payment',
@@ -48,7 +48,7 @@ const createPayment = <T extends PaymentRequest>(path: string) =>
       const apiResponse = await attempt(request)
 
       if (hasFailed(apiResponse)) {
-        console.error('Create payment failed', apiResponse)
+        console.error('Create payment failed', JSON.stringify(apiResponse))
         return rejectWithValue(
           AppError.fromError('Failed to create payment', apiResponse.error)
         )
@@ -56,7 +56,10 @@ const createPayment = <T extends PaymentRequest>(path: string) =>
 
       const paymentResponse = apiResponse.body
       if (!paymentResponse) {
-        console.error('Create payment returned invalid response', apiResponse)
+        console.error(
+          'Create payment returned invalid response',
+          JSON.stringify(apiResponse)
+        )
         return rejectWithValue(
           new AppError({
             message: 'Got an invalid response when creating payment',
@@ -84,7 +87,10 @@ export const updateBankPayment = createAsyncThunk(
   async (paymentArgs: UpdatePaymentRequest, { rejectWithValue }) => {
     const valid = validateUpdate(paymentArgs)
     if (!valid) {
-      console.error('Update bank payment not valid', paymentArgs)
+      console.error(
+        'Update bank payment not valid',
+        JSON.stringify(paymentArgs)
+      )
       return rejectWithValue(
         AppError.fromError(
           'Failed to update payment',
@@ -96,7 +102,7 @@ export const updateBankPayment = createAsyncThunk(
     const apiResponse = await attempt(request)
 
     if (hasFailed(apiResponse)) {
-      console.error('Update bank payment failed', apiResponse)
+      console.error('Update bank payment failed', JSON.stringify(apiResponse))
       return rejectWithValue(
         AppError.fromError('Failed to update payment', apiResponse.error)
       )
@@ -113,7 +119,7 @@ export const pollSwishPaymentStatus = createAsyncThunk(
     const apiResponse = await attempt(request)
 
     if (hasFailed(apiResponse)) {
-      console.error('Swish payment failed', apiResponse)
+      console.error('Swish payment failed', JSON.stringify(apiResponse))
       return rejectWithValue(
         AppError.fromError(
           'Failed to fetch swish payment status',
@@ -124,7 +130,10 @@ export const pollSwishPaymentStatus = createAsyncThunk(
 
     const statusResponse = apiResponse.body
     if (!statusResponse) {
-      console.error('Swish payment returned invalid response', apiResponse)
+      console.error(
+        'Swish payment returned invalid response',
+        JSON.stringify(apiResponse)
+      )
       return rejectWithValue(
         new AppError({
           message: 'Got an invalid response from swish payment status',
