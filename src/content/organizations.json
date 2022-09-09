@@ -4,12 +4,12 @@
     "name": "Global hälsa",
     "standardShare": 100,
     "standardOrganizationShareText": "Låt oss välja inom Global hälsa",
-    "standardOrganizationShareExplanation": "Hela summan går till GiveWell Maximum Impact Fund och Against Malaria Foundation.",
+    "standardOrganizationShareExplanation": "Hela summan går till GiveWell Top Charities Fund och Against Malaria Foundation.",
     "organizations": [
       {
         "id": "10",
-        "name": "GiveWell Maximum Impact Fund",
-        "infoUrl": "https://www.givewell.org/maximum-impact-fund",
+        "name": "GiveWell Top Charities Fund",
+        "infoUrl": "https://www.givewell.org/top-charities-fund",
         "shortDescription": "Låt GiveWell fördela pengarna fritt mellan sina topplistade organisationer."
       },
       {
