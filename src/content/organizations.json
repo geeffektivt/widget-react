@@ -63,12 +63,6 @@
         "infoUrl": "https://www.givinggreen.earth/post/clean-air-task-force",
         "shortDescription": "Med ett vetenskapsbaserat tillvägagångssätt satsar Clean Air Task Force på viktiga och negligerade regelverk för att få till stora utsläppsminskningar på kostnadseffektivt sätt."
       },
-      {
-        "id": "22",
-        "name": "Carbon180",
-        "infoUrl": "https://www.givinggreen.earth/us-policy-change-research/carbon180:-recommendation",
-        "shortDescription": "Lobbyistorganisation som fokuserar på att accelerera utvecklingen av teknologi och praxis för negativa utsläpp."
-      },
       
       {
         "id": "23",
@@ -76,29 +70,12 @@
         "infoUrl": "https://www.givinggreen.earth/us-policy-change-research/evergreen-collaborative:-recommendation",
         "shortDescription": "Designar policyförslag, sätter agendan för större miljöorganisationer och bedriver påverkansarbete med extra slagkraft under 2021-2022."
       },
-      {
-        "id": "24",
-        "name": "BURN",
-        "infoUrl": "https://www.givinggreen.earth/post/burnstoves",
-        "shortDescription": "Producerar bränsleeffektiva spisar i Kenya som ger bättre hälsa och ekonomi. Spisarna tillverkas i Kenya och ger 39% minskning i träkolsanvändning, som bekräftas kvarstå 18 månader senare. Organisationen arbetar i östafrika och sparar omkring $119 åt familjerna i bränslekostnader."
-      },
+    
       {
         "id": "25",
-        "name": "Climeworks",
-        "infoUrl": "https://www.givinggreen.earth/post/climeworks",
-        "shortDescription": "Climeworks har utvecklat teknologi för att fånga in CO2 direkt från luften, som sedan kan tas bort genom säker förvaring. Av den koldioxid som fångas upp blir minst 90% permanent begraven, ett resultat av den naturliga mineralisering som omvandlar koldioxiden till sten."
-      },
-      {
-        "id": "26",
-        "name": "Tradewater",
-        "infoUrl": "https://www.givinggreen.earth/post/tradewater",
-        "shortDescription": "Tradewater bygger nätverk världen över för att hitta kostnadseffektiva möjligheter till att förstöra växthusgaser. Så kallade köldmedium används i bland annat kylskåp, frysar, värmepumpar och luftkonditioneringar, och kan vara 10 000 gånger mer skadliga för klimatet än koldioxid om de tillåts läcka ut."
-      },
-      {
-          "id": "29",
-        "name": "Charm Industrial",
-        "infoUrl": "https://www.givinggreen.earth/carbon-offsets-research/charm-industrial",
-        "shortDescription": "Använder restprodukter från jordbruk för att skapa bioolja som sedan deponeras i geologiska formationer, vilket låser upp växthusgaserna över en miljon år."
+        "name": "Good Food Institute",
+        "infoUrl": "https://www.givinggreen.earth/mitigation-research/good-food-institute:-recommendation",
+        "shortDescription": "Good Food Institute främjar utvecklingen av alternativt protein som har potentialen att kraftigt minska utsläppen från matproduktion."
       }
     ]
   },
