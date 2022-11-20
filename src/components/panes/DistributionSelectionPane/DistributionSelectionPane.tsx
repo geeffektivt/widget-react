@@ -14,10 +14,9 @@ import DonationSumPanel from './DonationSumPanel'
 
 export default function DistributionSelectionPane() {
   const allCauses = useAllCauses()
-  const causesDistribution = useTypedSelector(
-    (state) => state.donation.causesDistribution
+  const { causesDistribution, sum, chosenCauseId } = useTypedSelector(
+    (state) => state.donation
   )
-  const sum = useTypedSelector((state) => state.donation.sum)
   const texts = useAllTexts()
 
   const paneTexts = texts.donations.distributionSelection
@@ -25,7 +24,10 @@ export default function DistributionSelectionPane() {
     <Pane>
       <InfoText>{paneTexts.info}</InfoText>
       <DonationSumPanel sum={sum} causesDistribution={causesDistribution} />
-      <CausesAccordion type="multiple">
+      <CausesAccordion
+        type="multiple"
+        defaultValue={chosenCauseId ? [chosenCauseId] : []}
+      >
         {allCauses.map((cause, causeIndex) => {
           const causeDistribution = causesDistribution[causeIndex]
 

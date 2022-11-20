@@ -15,6 +15,8 @@ export interface DonationState {
 
   lastCauseRoundRobinIndex: number
   causesDistribution: CauseDistribution[]
+  chosenOrganizationId?: string
+  chosenCauseId?: string
 }
 
 export interface Donor {

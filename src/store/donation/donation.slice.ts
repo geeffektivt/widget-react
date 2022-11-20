@@ -29,6 +29,9 @@ const initialState: DonationState = {
 
   lastCauseRoundRobinIndex: 0,
   causesDistribution: [],
+  chosenOrganizationId:
+    document.getElementById('root')?.getAttribute('data-organization-id') ??
+    undefined,
 }
 
 export const donationSlice = createSlice({
@@ -61,10 +64,18 @@ export const donationSlice = createSlice({
     },
 
     resetDistribution(state, action: PayloadAction<Cause[]>) {
+      const chosenCauseId =
+        state.chosenOrganizationId &&
+        action.payload.find((c) =>
+          c.organizations.some((o) => o.id === state.chosenOrganizationId)
+        )?.id
       state.causesDistribution = resetDistributionsHelper(
         action.payload,
-        state.sum ?? 0
+        state.sum ?? 0,
+        chosenCauseId,
+        state.chosenOrganizationId ?? undefined
       )
+      state.chosenCauseId = chosenCauseId
       state.lastCauseRoundRobinIndex = 0
     },
 
