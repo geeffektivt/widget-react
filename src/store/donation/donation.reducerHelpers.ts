@@ -111,17 +111,15 @@ export function resetDistributionsHelper(
     const isLastCause = i == causesData.length
     // per cause
     // make sure last share has no more than is left
-    const causeShare = Math.max(
-      remainingShares - cause.standardShare,
-      cause.standardShare
-    )
+    const causeShare = isLastCause
+      ? Math.max(remainingShares - cause.standardShare, cause.standardShare)
+      : cause.standardShare
     // calculate sum from share
     const initialCauseSum = (causeShare / 100) * (donationSum ?? 0)
     // make sure last sum has no more than is left
-    const causeSum = Math.max(
-      remainingSumCauses - initialCauseSum,
-      initialCauseSum
-    )
+    const causeSum = isLastCause
+      ? Math.max(remainingSumCauses - initialCauseSum, initialCauseSum)
+      : initialCauseSum
 
     // deduct sum from total amount
     remainingShares -= causeShare
