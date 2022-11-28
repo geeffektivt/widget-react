@@ -58,6 +58,7 @@ export const RadioBall = styled('span', {
 export const HeaderWrapper = styled('span', {
   marginLeft: 10,
   paddingTop: 4,
+  textAlign: 'left',
 })
 
 export const HeaderLabel = styled('span', {

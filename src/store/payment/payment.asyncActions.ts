@@ -1,5 +1,4 @@
 import { AsyncThunk, createAsyncThunk } from '@reduxjs/toolkit'
-import { attempt, hasFailed } from 'ts-failure'
 
 import {
   PaymentRequest,
@@ -9,6 +8,7 @@ import {
   SwishPaymentStatusRequest,
   UpdatePaymentRequest,
 } from '../../@types/import/api/payment.types'
+import { attempt, hasFailed } from '../../services/ts-failure'
 import AppError from '../../utils/api/appError'
 import {
   validateBank,

@@ -1,5 +1,3 @@
-import { attempt, hasFailed } from 'ts-failure'
-
 import {
   RequestOptions,
   ApiResponse,
@@ -7,6 +5,8 @@ import {
   parseResponseData,
 } from '../utils/api/apiHelpers'
 import AppError from '../utils/api/appError'
+
+import { attempt, hasFailed } from './ts-failure'
 
 export async function apiRequest<T = unknown>(
   url: string,

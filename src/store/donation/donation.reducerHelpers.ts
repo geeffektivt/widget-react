@@ -14,7 +14,11 @@ import {
   OrganizationDistribution,
 } from './donation.types'
 
-function resetOrgDistribution(organizations: Organization[], causeSum: number) {
+export function resetOrgDistribution(
+  organizations: Organization[],
+  causeSum: number,
+  chosenOrganizationId?: string
+) {
   const nbrOfOrgs = organizations.length
   const totalShares = 100
   let remainingSumOrgs = causeSum
@@ -23,10 +27,12 @@ function resetOrgDistribution(organizations: Organization[], causeSum: number) {
   return organizations.map((organization): OrganizationDistribution => {
     // orgShare as equal shar could be replaced with standard values
     // if they are added as a standardValue to the Organization type
-    const orgShare = Math.min(
-      remainingSharesOrgs,
-      Math.ceil(totalShares / nbrOfOrgs)
-    )
+    const orgShare = chosenOrganizationId
+      ? organization.id === chosenOrganizationId
+        ? 100
+        : 0
+      : Math.min(remainingSharesOrgs, Math.ceil(totalShares / nbrOfOrgs))
+
     const orgSum = Math.min(
       (orgShare / 100) * (causeSum ?? 0),
       remainingSumOrgs
@@ -84,25 +90,36 @@ export const updateAllSumsForCauses = (
 
 export function resetDistributionsHelper(
   causesData: Cause[],
-  donationSum: number
+  donationSum: number,
+  chosenCauseId?: string,
+  chosenOrganizationId?: string
 ) {
   let remainingSumCauses = donationSum
   let remainingShares = 100
 
-  return causesData.map((cause) => {
+  causesData = chosenCauseId
+    ? causesData.map((c) =>
+        c.id === chosenCauseId
+          ? { ...c, standardShare: 100 }
+          : { ...c, standardShare: 0 }
+      )
+    : causesData
+
+  return causesData.map((cause, i) => {
+    const organizationOverride = chosenCauseId && cause.id === chosenCauseId
+
+    const isLastCause = i == causesData.length
     // per cause
     // make sure last share has no more than is left
-    const causeShare = Math.max(
-      remainingShares - cause.standardShare,
-      cause.standardShare
-    )
+    const causeShare = isLastCause
+      ? Math.max(remainingShares - cause.standardShare, cause.standardShare)
+      : cause.standardShare
     // calculate sum from share
     const initialCauseSum = (causeShare / 100) * (donationSum ?? 0)
     // make sure last sum has no more than is left
-    const causeSum = Math.max(
-      remainingSumCauses - initialCauseSum,
-      initialCauseSum
-    )
+    const causeSum = isLastCause
+      ? Math.max(remainingSumCauses - initialCauseSum, initialCauseSum)
+      : initialCauseSum
 
     // deduct sum from total amount
     remainingShares -= causeShare
@@ -115,10 +132,11 @@ export function resetDistributionsHelper(
       lastOrganizationRoundRobinIndex: 0,
       organizationsDistribution: resetOrgDistribution(
         cause.organizations,
-        causeSum
+        causeSum,
+        organizationOverride ? chosenOrganizationId : undefined
       ),
       share: causeShare,
-      shareType: ShareType.Standard,
+      shareType: organizationOverride ? ShareType.Custom : ShareType.Standard,
       sum: causeSum,
     }
 

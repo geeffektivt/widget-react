@@ -3,7 +3,7 @@ import { CaptureConsole } from '@sentry/integrations'
 import * as Sentry from '@sentry/react'
 import { Integrations } from '@sentry/tracing'
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 
 import DonationWidget from './components/DonationWidget'
@@ -25,12 +25,13 @@ Sentry.init({
   // We recommend adjusting this value in production <- TODO
   tracesSampleRate: 1.0,
 })
-
-ReactDOM.render(
+const container = document.getElementById('root')
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const root = createRoot(container!)
+root.render(
   <React.StrictMode>
     <Provider store={store}>
       <DonationWidget />
     </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 )
