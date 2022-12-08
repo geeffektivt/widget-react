@@ -47,6 +47,9 @@ export function resetOrgDistribution(
       name: organization.name,
       share: orgShare,
       sum: orgSum,
+      shortDescription: organization.shortDescription,
+      imgUrl: organization.imgUrl,
+      infoUrl: organization.infoUrl,
     }
   })
 }
@@ -129,6 +132,7 @@ export function resetDistributionsHelper(
       id: cause.id,
       isLocked: false,
       name: cause.name,
+      imgUrl: cause.imgUrl,
       lastOrganizationRoundRobinIndex: 0,
       organizationsDistribution: resetOrgDistribution(
         cause.organizations,
@@ -138,6 +142,7 @@ export function resetDistributionsHelper(
       share: causeShare,
       shareType: organizationOverride ? ShareType.Custom : ShareType.Standard,
       sum: causeSum,
+      shortDescription: cause.standardOrganizationShareExplanation,
     }
 
     return causeDistribution
