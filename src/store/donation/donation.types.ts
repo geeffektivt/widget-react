@@ -34,6 +34,9 @@ export interface BaseDistribution {
   isLocked: boolean
   share: number
   sum: number
+  shortDescription?: string
+  infoUrl?: string
+  imgUrl?: string | string[]
 }
 
 export interface CauseDistribution extends BaseDistribution {

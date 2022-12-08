@@ -4,6 +4,7 @@ import createSagaMiddleware from 'redux-saga'
 import { DonationStep } from '../constants/enums/DonationStep'
 
 import { donationReducer } from './donation/donation.slice'
+import { giftCardsReducer } from './giftCards/giftCards.slice'
 import { paymentReducer } from './payment/payment.slice'
 import { referralsReducer } from './referrals/referrals.slice'
 import { uiReducer } from './ui/ui.slice'
@@ -47,6 +48,7 @@ const sagaMiddleware = createSagaMiddleware()
 const store = configureStore({
   reducer: {
     donation: donationReducer,
+    giftCards: giftCardsReducer,
     ui: uiReducer,
     payment: paymentReducer,
     referrals: referralsReducer,
