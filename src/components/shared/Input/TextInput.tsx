@@ -23,6 +23,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       selectOnClick,
       onChange,
       onInput,
+      onBlur,
       value,
       inputMode,
       valid = true,
@@ -53,6 +54,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
         }}
         onChange={onChange}
         onInput={onInput}
+        onBlur={onBlur}
         value={value}
       />
       {denomination && <Denomination>{denomination}</Denomination>}

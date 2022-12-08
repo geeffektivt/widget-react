@@ -3,12 +3,16 @@
     "tip": {
       "id": "0",
       "name": "Hjälp Ge Effektivt samla in mer pengar",
+      "imgUrl": "assets/images/amf_square.png",
       "standardShare": 0,
       "standardOrganizationShareText": "Låt din gåva hjälpa oss samla in mer pengar",
       "standardOrganizationShareExplanation": "Vi använder pengarna efter bästa förmåga för att kunna fortätta bedriva och expandera vår insamling"
     },
     "shared": {
-      "defaultNextButtonTitle": "Nästa"
+      "defaultNextButtonTitle": "Nästa",
+      "defaultAddButtonTitle": "Nya",
+      "defaultPreviewButtonTitle": "Förhandsvisning",
+      "defaultSkipLabel": "Hoppa över"
     },
     "method": {
       "info": "Kostnaderna täcks av oss så att 100% av din donation kommer fram.",
@@ -21,6 +25,27 @@
     },
     "distributionSelection": {
       "info": "Tryck på pilarna för respektive område om du vill ge till en specifik organisation."
+    },
+    "giftCards": {
+      "title": "Vill du ge bort detta som gåva?",
+      "scheduleLabel": "Välj datum när gåvokortet skickas",
+      "namePlaceholder": "Namn",
+      "nameError": "Du måste skriva in ett namn",
+      "emailPlaceholder": "Mejladress",
+      "emailError": "Den här mejladressen ser inte korrekt ut",
+      "bodyPlaceholder": "Skriv en personlig hälsning till",
+      "addGiftCardButtonTitle": "Lägg till gåvokort",
+      "previewHi": "Hej",
+      "previewIntroduction": [
+        "Du har fått en gåva på ",
+        "kronor till effektiv hjälp inom ",
+        "."
+      ],
+      "previewShowMoreOrganisation": "Visa fler organisationer.",
+      "previewShowLessOrganisation": "Visa färre organisationer.",
+      "previewCausesInformation": "Pengarna går till:",
+      "previewAdditionalInformation": "Läs mer om hur vi på Ge Effektivt arbetar för att välja våra rekommenderade organisationer",
+      "previewAdditionalInformationLink": "här."
     },
     "donor": {
       "personalInfoLabel": "Info om dig",
@@ -37,6 +62,7 @@
       "privacyPolicyLabel": "Jag godkänner [villkoren](https://geeffektivt.se/villkor) med glädje.",
       "privacyPolicyError": "Du måste godkänna villkoren för att kunna donera",
       "newsletterLabel": "Jag vill gärna få nyhetsbrev.",
+      "giftCardsLabel": "Would you like to us send gift cards on our behalf.",
       "anonymousSwishInfo": "När du betalar med Swish delar du ditt telefonnummer med oss, men vi kommer inte använda det för att identifiera dig.",
 
       "anonymousDonor": {
