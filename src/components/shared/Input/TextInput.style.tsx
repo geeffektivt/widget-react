@@ -6,7 +6,7 @@ export interface TextInputProps
   extends TextInputWrapperProps,
     GeneralInputProps<HTMLInputElement> {
   type: string
-  inputMode?: 'tel' | 'decimal' | 'text' | 'numeric' | 'email' | 'date'
+  inputMode?: 'tel' | 'decimal' | 'text' | 'numeric' | 'email'
 }
 
 export interface TextInputWrapperProps {
@@ -23,6 +23,7 @@ export interface GeneralInputProps<T> {
   defaultValue?: string | number
   selectOnClick?: boolean
   value?: string | number | readonly string[]
+  min?: string | number
   showWarning?: boolean
   label?: string
   denomination?: string

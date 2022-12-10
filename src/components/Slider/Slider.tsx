@@ -1,20 +1,23 @@
-import { Box } from '@material-ui/core'
 import {
   Children,
   FC,
+  ReactNode,
   useEffect,
   useLayoutEffect,
   useRef,
   useState,
 } from 'react'
 
+import { SliderContainer, SliderWindow } from './Slider.styles'
+
 type SliderProps = {
   slideNumber: number
+  children: ReactNode | ReactNode[]
 }
 
 export const Slider: FC<SliderProps> = ({ children, slideNumber }) => {
   const [sliderWidth, setSliderWidth] = useState(0)
-  const childrenNumber = Children.toArray(children).length
+  const childrenSize = Children.toArray(children).length
   const windowRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -38,16 +41,11 @@ export const Slider: FC<SliderProps> = ({ children, slideNumber }) => {
   })
 
   return (
-    <div ref={windowRef} style={{ width: '100%' }} className="window">
-      <Box
-        display="flex"
-        flexDirection="row"
-        flexWrap="wrap"
-        className="slider"
+    <SliderWindow ref={windowRef}>
+      <SliderContainer
         style={{
-          width: `${100 * childrenNumber}%`,
+          width: `${100 * childrenSize}%`,
           transform: `translate3d(${-slideNumber * sliderWidth}px, 0px, 0px)`,
-          transition: 'transform 200ms ease',
         }}
       >
         {Children.map(children, (child, index) => {
@@ -62,7 +60,7 @@ export const Slider: FC<SliderProps> = ({ children, slideNumber }) => {
             </div>
           )
         })}
-      </Box>
-    </div>
+      </SliderContainer>
+    </SliderWindow>
   )
 }

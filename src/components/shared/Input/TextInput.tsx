@@ -26,6 +26,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       onBlur,
       value,
       inputMode,
+      min,
       valid = true,
       showWarning = true,
     },
@@ -56,6 +57,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
         onInput={onInput}
         onBlur={onBlur}
         value={value}
+        min={min}
       />
       {denomination && <Denomination>{denomination}</Denomination>}
     </TextInputWrapper>
