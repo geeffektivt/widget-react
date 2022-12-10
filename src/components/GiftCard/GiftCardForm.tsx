@@ -47,7 +47,6 @@ export const GiftCardForm: FC<GiftCardProps> = ({ giftCard }) => {
 
   const onBlur = (event: FocusEvent<HTMLFormElement, Element>) => {
     const { name, value } = event.target
-    /* eslint no-console: ["error", { allow: ["log"] }] */
     dispatch(giftCardsActions.updateGiftCard({ ...giftCard, [name]: value }))
   }
 
