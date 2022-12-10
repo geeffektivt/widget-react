@@ -62,6 +62,14 @@ export const GiftCardForm: FC<GiftCardProps> = ({ giftCard }) => {
 
   useEffect(() => {
     setFocus('receiverName')
+    if (giftCard.body === undefined) {
+      dispatch(
+        giftCardsActions.updateGiftCard({
+          ...giftCard,
+          body: paneTexts.bodyDefaultValue,
+        })
+      )
+    }
   }, [])
 
   return (
