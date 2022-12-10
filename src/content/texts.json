@@ -28,12 +28,14 @@
     },
     "giftCards": {
       "title": "Vill du ge bort detta som gåva?",
-      "scheduleLabel": "Välj datum när gåvokortet skickas",
+      "scheduleLabel": "Välj datum",
       "namePlaceholder": "Namn",
       "nameError": "Du måste skriva in ett namn",
       "emailPlaceholder": "Mejladress",
       "emailError": "Den här mejladressen ser inte korrekt ut",
+      "bodyLabel": "Hälsning",
       "bodyPlaceholder": "Skriv en personlig hälsning till",
+      "bodyDefaultValue": "God jul!\nFör att denna gåva ska göra så stor skillnad som möjligt har jag valt att göra det genom Ge Effektivt, som rekommenderar organisationer med särskilt stor effekt per krona.\nKram, din vän",
       "addGiftCardButtonTitle": "Lägg till gåvokort",
       "previewHi": "Hej",
       "previewIntroduction": [
