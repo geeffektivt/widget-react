@@ -5,7 +5,10 @@
   "proxy": "https://europe-west2-geeffektivt-se-dev.cloudfunctions.net",
   "homepage": ".",
   "dependencies": {
-    "@material-ui/core": "^4.12.3",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.10.17",
+    "@mui/styles": "^5.10.16",
     "@radix-ui/react-accordion": "^0.1.6",
     "@radix-ui/react-dialog": "^0.1.7",
     "@radix-ui/react-progress": "^0.1.4",
