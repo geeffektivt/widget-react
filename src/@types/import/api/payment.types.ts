@@ -1,3 +1,5 @@
+import { GiftCard } from 'store/giftCards/giftCards.types'
+
 export interface PaymentRequest {
   isAnonymous: boolean
   name?: string
@@ -7,6 +9,7 @@ export interface PaymentRequest {
   approvesPrivacyPolicy?: boolean
   doNewsletter?: boolean
   charities: Charity[]
+  giftCards?: GiftCard[]
   tip?: number
   referral?: string
 }
