@@ -2,13 +2,9 @@ import AmfSquareLogo from 'assets/images/amf_square.png'
 import AnimalCharityEvaluatorsLogo from 'assets/images/animal_charity_evaluators.png'
 import AnimalWellFate1 from 'assets/images/animal_wellfare_postcard_1.png'
 import AnimalWellFate2 from 'assets/images/animal_wellfare_postcard_2.png'
-import BurnLogo from 'assets/images/burn.png'
-import C180Logo from 'assets/images/c180.png'
 import CatfLogo from 'assets/images/catf.jpg'
-import CharmLogo from 'assets/images/charm.png'
 import ClimatePostcard1 from 'assets/images/climate_postcard_1.png'
 import ClimatePostcard2 from 'assets/images/climate_postcard_2.png'
-import ClimeworksLogo from 'assets/images/climeworks.png'
 import EvergreenLogo from 'assets/images/evergreen.png'
 import FaunalyticsLogo from 'assets/images/faunalytics.png'
 import FoundersPledgeLogo from 'assets/images/founders_pledge.png'
@@ -18,7 +14,6 @@ import GlobalHealthPostcard2 from 'assets/images/global_health_postcard_2.png'
 import HkiLogo from 'assets/images/hki.png'
 import NewIncentivesLogo from 'assets/images/new_incentives.png'
 import TheHumanLeagueLogo from 'assets/images/the_human_league.png'
-import TradewaterLogo from 'assets/images/tradewater.png'
 import WildAnimalInitiativeLogo from 'assets/images/wild_animal_initiative.jpg'
 
 export const ORG_IMAGES: Record<string, string> = {
@@ -28,12 +23,7 @@ export const ORG_IMAGES: Record<string, string> = {
   'assets/images/hki.png': HkiLogo,
   'assets/images/founders_pledge.png': FoundersPledgeLogo,
   'assets/images/catf.jpg': CatfLogo,
-  'assets/images/c180.png': C180Logo,
   'assets/images/evergreen.png': EvergreenLogo,
-  'assets/images/burn.png': BurnLogo,
-  'assets/images/climeworks.png': ClimeworksLogo,
-  'assets/images/tradewater.png': TradewaterLogo,
-  'assets/images/charm.png': CharmLogo,
   'assets/images/animal_charity_evaluators.png': AnimalCharityEvaluatorsLogo,
   'assets/images/the_human_league.png': TheHumanLeagueLogo,
   'assets/images/wild_animal_initiative.jpg': WildAnimalInitiativeLogo,
