@@ -8,7 +8,7 @@ import {
   useState,
 } from 'react'
 
-import { SliderContainer, SliderWindow } from './Slider.styles'
+import { SliderContainer } from './Slider.styles'
 
 type SliderProps = {
   slideNumber: number
@@ -16,14 +16,13 @@ type SliderProps = {
 }
 
 export const Slider: FC<SliderProps> = ({ children, slideNumber }) => {
-  const [sliderWidth, setSliderWidth] = useState(0)
-  const childrenSize = Children.toArray(children).length
+  const [slideWidth, setSlideWidth] = useState(0)
   const windowRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleWindowResize = () => {
-      if (sliderWidth != windowRef.current?.offsetWidth) {
-        setSliderWidth(windowRef.current?.offsetWidth || 0)
+      if (slideWidth != windowRef.current?.offsetWidth) {
+        setSlideWidth(windowRef.current?.offsetWidth || 0)
       }
     }
 
@@ -35,25 +34,27 @@ export const Slider: FC<SliderProps> = ({ children, slideNumber }) => {
   })
 
   useLayoutEffect(() => {
-    if (sliderWidth != windowRef.current?.offsetWidth) {
-      setSliderWidth(windowRef.current?.offsetWidth || 0)
+    if (slideWidth != windowRef.current?.offsetWidth) {
+      setSlideWidth(windowRef.current?.offsetWidth || 0)
     }
   })
 
   return (
-    <SliderWindow ref={windowRef}>
+    <div ref={windowRef} style={{ width: '100%', position: 'relative' }}>
       <SliderContainer
         style={{
-          width: `${100 * childrenSize}%`,
-          transform: `translate3d(${-slideNumber * sliderWidth}px, 0px, 0px)`,
+          width: `${slideWidth}px`,
         }}
       >
         {Children.map(children, (child, index) => {
           return (
             <div
               style={{
-                width: `${sliderWidth}px`,
-                transition: 'width 200ms ease',
+                width: `${slideWidth}px`,
+                transform: `translate3d(${
+                  (index - slideNumber) * slideWidth
+                }px, 0px, 0px)`,
+                transition: 'transform 200ms ease, width 200ms ease',
               }}
             >
               {index == slideNumber && child}
@@ -61,6 +62,6 @@ export const Slider: FC<SliderProps> = ({ children, slideNumber }) => {
           )
         })}
       </SliderContainer>
-    </SliderWindow>
+    </div>
   )
 }

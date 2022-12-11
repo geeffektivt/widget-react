@@ -102,7 +102,6 @@ export const GiftCardForm: FC<GiftCardProps> = ({ giftCard }) => {
           })}
         />
         <TextInput
-          inputMode="date"
           type="date"
           label={paneTexts.scheduleLabel}
           {...register('schedule', {
