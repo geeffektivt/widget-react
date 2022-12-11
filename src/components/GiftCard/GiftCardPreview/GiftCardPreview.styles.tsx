@@ -1,10 +1,5 @@
-import {
-  Box,
-  ImageList,
-  ImageListItem,
-  Paper,
-  withStyles,
-} from '@material-ui/core'
+import { Box, ImageList, ImageListItem, Paper } from '@mui/material';
+import withStyles from '@mui/styles/withStyles';
 import GiftCardBagroundBottom from 'assets/images/chrismas_decoration_1.svg'
 import GiftCardBagroundTop from 'assets/images/chrismas_decoration_2.svg'
 import { PreviewButton } from 'components/shared/Buttons/PreviewButton'

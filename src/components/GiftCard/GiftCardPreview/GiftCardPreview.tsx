@@ -1,4 +1,4 @@
-import { Modal } from '@material-ui/core'
+import { Modal } from '@mui/material'
 import { PreviewButton } from 'components/shared/Buttons/PreviewButton'
 import { FC, useState } from 'react'
 
