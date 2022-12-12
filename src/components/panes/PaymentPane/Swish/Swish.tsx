@@ -7,21 +7,22 @@ import useAllTexts from '../../../../hooks/content/useAllTexts'
 import useTypedDispatch from '../../../../hooks/store/useTypedDispatch'
 import useTypedSelector from '../../../../hooks/store/useTypedSelector'
 import usePollForPaymentStatus from '../../../../hooks/swish/usePollForPaymentStatus'
+import { selectGiftCards } from '../../../../store/giftCards/giftCards.selector'
 import {
   getCharitiesWithNames,
   getReferralName,
 } from '../../../../store/payment/payment.api'
 import {
-  paymentAsyncActions,
   paymentActions,
+  paymentAsyncActions,
 } from '../../../../store/payment/payment.slice'
 import PaymentSwish from '../../../Payment/PaymentSwish'
 import { NavigationButtons } from '../../../shared/Buttons/NavigationButtons'
 import ErrorField from '../../../shared/Error/ErrorField'
 import SwishLogoPrimary from '../../../shared/_svg/SwishLogo/SwishLogoPrimary'
-import { Pane, CenteredContainer } from '../../Panes.style'
+import { CenteredContainer, Pane } from '../../Panes.style'
 
-import { PhoneInputContainer, LogoContainer } from './Swish.style'
+import { LogoContainer, PhoneInputContainer } from './Swish.style'
 
 export default function Swish() {
   const [isDirty, setIsDirty] = useState(false)
@@ -32,6 +33,7 @@ export default function Swish() {
     (state) => state.donation
   )
   const { referral, textInput } = useTypedSelector((state) => state.referrals)
+  const giftCards = useTypedSelector(selectGiftCards)
   const texts = useAllTexts()
   const paneTexts = texts.donations.swish
   const tipId = texts.donations.tip.id
@@ -54,6 +56,7 @@ export default function Swish() {
         doNewsletter: donor?.newsletter,
         charities: getCharitiesWithNames(causesDistribution, tipId),
         referral: getReferralName(referral, textInput),
+        giftCards: giftCards,
         tip,
       }
       dispatch(paymentAsyncActions.createSwishPayment(paymentRequest))

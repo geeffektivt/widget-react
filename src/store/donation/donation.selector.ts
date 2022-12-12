@@ -1,10 +1,11 @@
 import {
+  MAX_CAUSE_POSTERS_SHOWN_IN_GIFTCARD,
   MAX_ORGANISATION_LOGOS_SHOWN_IN_GIFTCARD,
   MAX_ORGANISATION_SHOWN_IN_GIFTCARD,
 } from 'constants/GiftCardConstants'
 
 import { createSelector } from 'reselect'
-import { getCausesPoster, getOrganisationLogo } from 'utils/imageUtils'
+import { getCausesPoster } from 'utils/imageUtils'
 
 import { ShareType } from '../../constants/enums/ShareType'
 import { WidgetStoreState } from '../store'
@@ -31,22 +32,49 @@ export const selectCausesWithDonation = createSelector(
   }
 )
 
+type PosterImage = {
+  id: string
+  imgUrl: string
+  name: string
+}
+
 export const selectCausesWithDonationPosters = createSelector(
   selectCausesWithDonation,
-  (state) =>
-    state
-      .filter((cause) => typeof cause.imgUrl !== undefined)
-      .map((cause) => {
-        // eslint-disable-next-line no-console
-        console.log(cause.imgUrl)
-        // eslint-disable-next-line no-console
-        console.log(getCausesPoster(cause.imgUrl as string))
-        return {
-          id: cause.id,
-          imgUrl: getCausesPoster(cause.imgUrl as string),
-          name: cause.name,
-        }
-      })
+  (state) => {
+    if (state.length == 1) {
+      return state
+        .filter((cause) => typeof cause.imgUrl !== undefined)
+        .reduce((acc, cause) => {
+          if (typeof cause.imgUrl === 'string') {
+            acc.push({
+              id: cause.id,
+              imgUrl: cause.imgUrl,
+              name: cause.name,
+            })
+          } else {
+            cause.imgUrl?.map((url) => {
+              acc.push({
+                id: cause.id,
+                imgUrl: url,
+                name: cause.name,
+              })
+            })
+          }
+          return acc
+        }, [] as PosterImage[])
+    } else {
+      return state
+        .filter((cause) => typeof cause.imgUrl !== undefined)
+        .map((cause) => {
+          return {
+            id: cause.id,
+            imgUrl: getCausesPoster(cause.imgUrl as string | string[]),
+            name: cause.name,
+          }
+        })
+        .slice(0, MAX_CAUSE_POSTERS_SHOWN_IN_GIFTCARD)
+    }
+  }
 )
 
 export const selectCauseNamesWithDonation = createSelector(
@@ -110,7 +138,7 @@ export const selectOrganisationLogos = createSelector(
       .map((organisation) => {
         return {
           id: organisation.id,
-          logo: getOrganisationLogo(organisation.imgUrl as string),
+          logo: organisation.imgUrl as string,
           infoUrl: organisation.infoUrl,
           name: organisation.name,
         }

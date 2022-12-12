@@ -1,4 +1,5 @@
 import React from 'react'
+import { selectGiftCards } from 'store/giftCards/giftCards.selector'
 
 import { BankPaymentRequest } from '../../../../@types/import/api/payment.types'
 import { DonorType } from '../../../../constants/enums/DonorType'
@@ -35,6 +36,7 @@ export default function Bank() {
     (state) => state.payment
   )
   const { referral, textInput } = useTypedSelector((state) => state.referrals)
+  const giftCards = useTypedSelector(selectGiftCards)
   const dispatch = useTypedDispatch()
   const texts = useAllTexts()
   const paymentTexts = texts.donations.payment
@@ -53,6 +55,7 @@ export default function Bank() {
       charities: getCharitiesWithNames(causesDistribution, tipId),
       reoccursMonthly: recurring === DonationFrequency.Monthly,
       referral: getReferralName(referral, textInput),
+      giftCards: giftCards,
       tip,
     }
     dispatch(paymentAsyncActions.createBankPayment(paymentRequest))
