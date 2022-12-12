@@ -1,7 +1,5 @@
-import { Box, ImageList, ImageListItem, Paper } from '@mui/material';
-import withStyles from '@mui/styles/withStyles';
-import GiftCardBagroundBottom from 'assets/images/chrismas_decoration_1.svg'
-import GiftCardBagroundTop from 'assets/images/chrismas_decoration_2.svg'
+import { Box, ImageList, ImageListItem, Paper } from '@mui/material'
+import withStyles from '@mui/styles/withStyles'
 import { PreviewButton } from 'components/shared/Buttons/PreviewButton'
 
 import { styled } from '../../../styles/stitches.config'
@@ -23,7 +21,7 @@ export const GiftCardFullPreviewContainer = withStyles({
     marginTop: '8px',
     padding: '16px',
     display: 'flex',
-    backgroundImage: `url(${GiftCardBagroundBottom})`,
+    backgroundImage: `url('https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/chrismas_decoration_1.svg')`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'bottom 1% right -2%',
     backgroundSize: '15% 20%',
@@ -49,7 +47,7 @@ export const GiftCardPreviewContainer = styled(Box, {
   top: 0,
   left: 0,
   height: '100%',
-  backgroundImage: `url(${GiftCardBagroundTop})`,
+  backgroundImage: `url('https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/chrismas_decoration_2.svg')`,
   backgroundSize: '15% 15%',
   backgroundRepeat: 'no-repeat',
 })
