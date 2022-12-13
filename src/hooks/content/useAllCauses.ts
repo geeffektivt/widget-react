@@ -10,6 +10,7 @@ const useAllCauses = (): Cause[] => {
     id,
     name,
     standardShare,
+    imgUrl,
     standardOrganizationShareText,
     standardOrganizationShareExplanation,
   } = texts.donations.tip
@@ -17,6 +18,7 @@ const useAllCauses = (): Cause[] => {
     id,
     name,
     standardShare,
+    imgUrl,
     standardOrganizationShareText,
     standardOrganizationShareExplanation,
     organizations: [],

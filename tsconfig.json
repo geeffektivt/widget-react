@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "downlevelIteration": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react-jsx",

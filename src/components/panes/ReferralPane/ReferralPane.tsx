@@ -26,6 +26,7 @@ export function ReferralPane() {
 
   const allTexts = useAllTexts()
   const paneTexts = allTexts.donations.referral
+  const sharedTexts = allTexts.donations.shared
 
   const onReferralSelect = (referral: ReferralOption) => {
     dispatch(referralsActions.setTextInput(''))
@@ -71,7 +72,9 @@ export function ReferralPane() {
       </ReferralsWrapper>
       <NavigationButtons
         nextButtonTitle={
-          selectedReferral === undefined ? paneTexts.skipLabel : undefined
+          selectedReferral === undefined
+            ? sharedTexts.defaultSkipLabel
+            : undefined
         }
       />
     </Pane>

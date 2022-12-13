@@ -2,22 +2,20 @@ import React from 'react'
 
 import Warning from '../_svg/Warning/Warning'
 
+import { TextAreaField, TextAreaProps } from './TextArea.style'
 import {
   Denomination,
   Label,
-  TextInputField,
-  TextInputProps,
   TextInputWrapper,
   WarningContainer,
 } from './TextInput.style'
 
-const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
+const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (
     {
       label,
       denomination,
       name,
-      type,
       placeholder,
       defaultValue,
       selectOnClick,
@@ -25,8 +23,6 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       onInput,
       onBlur,
       value,
-      inputMode,
-      min,
       valid = true,
       showWarning = true,
     },
@@ -39,12 +35,10 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
           <Warning />
         </WarningContainer>
       )}
-      <TextInputField
+      <TextAreaField
         label={!!label}
         denomination={!!denomination}
         name={name}
-        type={type}
-        inputMode={inputMode}
         placeholder={placeholder}
         defaultValue={defaultValue}
         ref={ref}
@@ -57,11 +51,10 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
         onInput={onInput}
         onBlur={onBlur}
         value={value}
-        min={min}
       />
       {denomination && <Denomination>{denomination}</Denomination>}
     </TextInputWrapper>
   )
 )
 
-export default TextInput
+export default TextArea

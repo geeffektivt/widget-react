@@ -2,25 +2,31 @@ import { ChangeEvent } from 'react'
 
 import { styled } from '../../../styles/stitches.config'
 
-export interface TextInputProps extends TextInputWrapperProps {
+export interface TextInputProps
+  extends TextInputWrapperProps,
+    GeneralInputProps<HTMLInputElement> {
   type: string
-  name?: string
-  placeholder?: string
-  defaultValue?: string | number
-  selectOnClick?: boolean
-  ref?: React.Ref<HTMLInputElement>
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
-  onInput?: (e: ChangeEvent<HTMLInputElement>) => void
-  value?: string | number | readonly string[]
   inputMode?: 'tel' | 'decimal' | 'text' | 'numeric' | 'email'
-  valid?: boolean
-  showWarning?: boolean
-  label?: string
-  denomination?: string
 }
 
 export interface TextInputWrapperProps {
   valid?: boolean
+}
+
+export interface GeneralInputProps<T> {
+  ref?: React.Ref<T>
+  onChange?: (e: ChangeEvent<T>) => void
+  onInput?: (e: ChangeEvent<T>) => void
+  onBlur?: (e: ChangeEvent<T>) => void
+  name?: string
+  placeholder?: string
+  defaultValue?: string | number
+  selectOnClick?: boolean
+  value?: string | number | readonly string[]
+  min?: string | number
+  showWarning?: boolean
+  label?: string
+  denomination?: string
 }
 
 export const Label = styled('span', {
