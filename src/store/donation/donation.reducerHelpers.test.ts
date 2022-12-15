@@ -44,6 +44,7 @@ const causes = [
     standardOrganizationShareText: 'text',
     standardOrganizationShareExplanation: 'text',
     organizations: getOrganizations('1'),
+    imgUrl: '',
   },
   {
     id: '2',
@@ -52,6 +53,7 @@ const causes = [
     standardOrganizationShareText: 'text',
     standardOrganizationShareExplanation: 'text',
     organizations: getOrganizations('2'),
+    imgUrl: '',
   },
   {
     id: '3',
@@ -60,6 +62,7 @@ const causes = [
     standardOrganizationShareText: 'text',
     standardOrganizationShareExplanation: 'text',
     organizations: getOrganizations('3'),
+    imgUrl: '',
   },
 ]
 

@@ -3,6 +3,10 @@
     "id": "1",
     "name": "Global hälsa",
     "standardShare": 100,
+    "imgUrl": [
+      "https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/global_health_postcard_1.png",
+      "https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/global_health_postcard_2.png"
+    ],
     "standardOrganizationShareText": "Låt oss välja inom Global hälsa",
     "standardOrganizationShareExplanation": "Hela summan går till GiveWell Top Charities Fund och Against Malaria Foundation.",
     "organizations": [
@@ -10,31 +14,36 @@
         "id": "10",
         "name": "GiveWell Top Charities Fund",
         "infoUrl": "https://www.givewell.org/top-charities-fund",
-        "shortDescription": "Låt GiveWell fördela pengarna fritt mellan sina topplistade organisationer."
+        "shortDescription": "Låt GiveWell fördela pengarna fritt mellan sina topplistade organisationer.",
+        "imgUrl": "https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/givewell.png"
       },
       {
         "id": "11",
         "name": "GiveWell All Grants Fund",
         "infoUrl": "https://www.givewell.org/research/all-grants",
-        "shortDescription": "Låt GiveWell fördela pengarna fritt mellan alla sina rekommenderade organisationer. Utöver topplistan kan det vara organisationer med högre risk, eller mindre projekt som för tillfället skulle få mycket uträttat med pengarna."
+        "shortDescription": "Låt GiveWell fördela pengarna fritt mellan alla sina rekommenderade organisationer. Utöver topplistan kan det vara organisationer med högre risk, eller mindre projekt som för tillfället skulle få mycket uträttat med pengarna.",
+        "imgUrl": "https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/givewell.png"
       },
       {
         "id": "12",
         "name": "Against Malaria Foundation",
         "infoUrl": "http://www.givewell.org/international/top-charities/amf",
-        "shortDescription": "Against Malaria Foundation distribuerar impregnerade myggnät i områden med malaria. Varje nät kan skydda två personer från malaria i över fyra år."
+        "shortDescription": "Against Malaria Foundation distribuerar impregnerade myggnät i områden med malaria. Varje nät kan skydda två personer från malaria i över fyra år.",
+        "imgUrl": "https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/amf_square.png"
       },
       {
         "id": "13",
         "name": "New Incentives",
         "infoUrl": "https://www.givewell.org/charities/new-incentives",
-        "shortDescription": "Med kontantöverföringar motsvarande $11 över fem besök höjs vaccinationsgraden för exempelvis tuberkulos, polio och hepatit B i Nigeria."
+        "shortDescription": "Med kontantöverföringar motsvarande $11 över fem besök höjs vaccinationsgraden för exempelvis tuberkulos, polio och hepatit B i Nigeria.",
+        "imgUrl": "https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/new_incentives.png"
       },
       {
         "id": "14",
         "name": "Helen Keller International",
         "infoUrl": "https://www.givewell.org/charities/helen-keller-international",
-        "shortDescription": "Forskning visar att vitamin A-tillskott kan reducera barndödlighet. HKI bistår myndigheter med att planera och implementera sådana projekt i flera afrikanska länder."
+        "shortDescription": "Forskning visar att vitamin A-tillskott kan reducera barndödlighet. HKI bistår myndigheter med att planera och implementera sådana projekt i flera afrikanska länder.",
+        "imgUrl": "https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/hki.png"
       },
       {
         "id": "15",
@@ -48,6 +57,10 @@
     "id": "2",
     "name": "Klimat",
     "standardShare": 0,
+    "imgUrl": [
+      "https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/climate_postcard_1.png",
+      "https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/climate_postcard_2.png"
+    ],
     "standardOrganizationShareText": "Låt experter inom klimatvälgörenhet välja",
     "standardOrganizationShareExplanation": "Vi rådgör med Giving Green och Founders Pledge om hur dina pengar gör störst skillnad för klimatet.",
     "organizations": [
@@ -55,25 +68,39 @@
         "id": "20",
         "name": "Founders Pledge Climate Change Fund",
         "infoUrl": "https://founderspledge.com/funds/climate-change-fund",
-        "shortDescription": "En fond där du låter klimatforskarna på organisationen Founders Pledge välja det ändamål som de tror att klimatet hjälps av allra mest just nu.."
+        "shortDescription": "En fond där du låter klimatforskarna på organisationen Founders Pledge välja det ändamål som de tror att klimatet hjälps av allra mest just nu..",
+        "imgUrl": "https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/founders_pledge.png"
       },
       {
         "id": "21",
         "name": "Clean Air Task Force",
         "infoUrl": "https://www.givinggreen.earth/post/clean-air-task-force",
-        "shortDescription": "Med ett vetenskapsbaserat tillvägagångssätt satsar Clean Air Task Force på viktiga och negligerade regelverk för att få till stora utsläppsminskningar på kostnadseffektivt sätt."
+        "shortDescription": "Med ett vetenskapsbaserat tillvägagångssätt satsar Clean Air Task Force på viktiga och negligerade regelverk för att få till stora utsläppsminskningar på kostnadseffektivt sätt.",
+        "imgUrl": "https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/catf.jpg"
       },
-      
+
       {
         "id": "23",
         "name": "Evergreen Collaborative",
         "infoUrl": "https://www.givinggreen.earth/us-policy-change-research/evergreen-collaborative:-recommendation",
-        "shortDescription": "Designar policyförslag, sätter agendan för större miljöorganisationer och bedriver påverkansarbete med extra slagkraft under 2021-2022."
+        "shortDescription": "Designar policyförslag, sätter agendan för större miljöorganisationer och bedriver påverkansarbete med extra slagkraft under 2021-2022.",
+        "imgUrl": "https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/evergreen.png"
       },
-    
       {
-        "id": "25",
-        "name": "Good Food Institute",
+        "id": "27",
+        "name": "Good Energy Collective",
+        "infoUrl": "https://www.givinggreen.earth/mitigation-research/good-energy-collective:-deep-dive",
+        "shortDescription": "Främjar fossilfri och avancerade kärnreaktorer genom policyforskning och påverkansarbete."
+      },
+      {
+        "id": "28",
+        "name": "Industrious Labs",
+        "infoUrl": "https://www.givinggreen.earth/mitigation-research/industrious-labs:-recommendation",
+        "shortDescription": "Mniskar utsläppen från tunga industrier genom lobbyism för löften om lägre utsläpp, regleringar från statligt håll och statlig finansiering."
+      },
+      {
+        "id": "29",
+        "name": "Good Food Institute – Klimat",
         "infoUrl": "https://www.givinggreen.earth/mitigation-research/good-food-institute:-recommendation",
         "shortDescription": "Good Food Institute främjar utvecklingen av alternativt protein som har potentialen att kraftigt minska utsläppen från matproduktion."
       }
@@ -83,6 +110,10 @@
     "id": "3",
     "name": "Djurhälsa",
     "standardShare": 0,
+    "imgUrl": [
+      "https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/animal_wellfare_postcard_1.png",
+      "https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/animal_wellfare_postcard_2.png"
+    ],
     "standardOrganizationShareText": "Låt Animal Charity Evaluators välja",
     "standardOrganizationShareExplanation": "90% av summan går till Animal Charity Evaluators Recommended Charity Fund, och resten till deras goda arbete.",
     "organizations": [
@@ -90,27 +121,36 @@
         "id": "30",
         "name": "Animal Charity Evaluators Recommended Charity Fund",
         "infoUrl": "https://animalcharityevaluators.org/donation-advice/recommended-charity-fund/",
-        "shortDescription": "En fond där du låter Animal Charity Evaluators välja det ändamål som de tror att djuren hjälps av allra mest just nu."
+        "shortDescription": "En fond där du låter Animal Charity Evaluators välja det ändamål som de tror att djuren hjälps av allra mest just nu.",
+        "imgUrl": "https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/animal_charity_evaluators.png"
       },
       {
         "id": "31",
         "name": "The Humane League",
         "infoUrl": "https://animalcharityevaluators.org/charity-review/the-humane-league/",
-        "shortDescription": "The Humane League arbetar för närvarande från USA, Mexiko, Storbritannien och Japan, där de både arbetar med att stärka djurrättsrörelsen, och att utföra välorganiserade påverkanskampanjer mot livsmedelsföretag i syfte att förbättra välfärden för djur i djurindustrin."
+        "shortDescription": "The Humane League arbetar för närvarande från USA, Mexiko, Storbritannien och Japan, där de både arbetar med att stärka djurrättsrörelsen, och att utföra välorganiserade påverkanskampanjer mot livsmedelsföretag i syfte att förbättra välfärden för djur i djurindustrin.",
+        "imgUrl": "https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/the_human_league.png"
       },
       {
         "id": "33",
         "name": "Wild Animal Initiative",
         "infoUrl": "https://animalcharityevaluators.org/charity-review/wild-animal-initiative/",
-        "shortDescription": "Wild Animal Initiative är en organisation som arbetar inom ett hittills förbisett område: att främja och utföra forskning för att hjälpa vilda djur på stor skala. Deras mål, att bygga grunden till ett akademiskt forskningsfält som studerar vilda djurs välfärd, har möjligheten att leda till en långsiktig förbättring för vilda djur."
+        "shortDescription": "Wild Animal Initiative är en organisation som arbetar inom ett hittills förbisett område: att främja och utföra forskning för att hjälpa vilda djur på stor skala. Deras mål, att bygga grunden till ett akademiskt forskningsfält som studerar vilda djurs välfärd, har möjligheten att leda till en långsiktig förbättring för vilda djur.",
+        "imgUrl": "https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/wild_animal_initiative.jpg"
       },
       {
         "id": "35",
         "name": "Faunalytics",
         "infoUrl": "https://animalcharityevaluators.org/charity-review/faunalytics/",
-        "shortDescription": "Faunalytics arbetar för att ge de som arbetar med djurfrågor tillgång till rätt information. Exempelvis genom egen forskning, arbeta direkt med partnerorganisationer och tillgängliggöra befintlig forskning och data genom sitt öppna digitala bibliotek."
+        "shortDescription": "Faunalytics arbetar för att ge de som arbetar med djurfrågor tillgång till rätt information. Exempelvis genom egen forskning, arbeta direkt med partnerorganisationer och tillgängliggöra befintlig forskning och data genom sitt öppna digitala bibliotek.",
+        "imgUrl": "https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/faunalytics.png"
+      },
+      {
+        "id": "36",
+        "name": "Good Food Institute – Djurvälfärd",
+        "infoUrl": "https://animalcharityevaluators.org/charity-review/the-good-food-institute/",
+        "shortDescription": "Good Food Institute främjar utvecklingen av alternativt protein som har potentialen att kraftigt minska antalet djur i industriella miljöer för matproduktion."
       }
     ]
   }
-
 ]

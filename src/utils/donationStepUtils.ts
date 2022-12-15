@@ -12,3 +12,7 @@ export const getPreviousDonationStep = (step: DonationStep) => {
   const stepIndex = DonationStepsOrder.indexOf(step)
   return DonationStepsOrder[Math.max(0, stepIndex - 1)]
 }
+
+export const countDonationSteps = () => {
+  return DonationStepsOrder.length
+}

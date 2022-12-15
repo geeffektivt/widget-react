@@ -1,4 +1,4 @@
-import { MenuItem, InputLabel } from '@material-ui/core'
+import { MenuItem, InputLabel, SelectChangeEvent } from '@mui/material'
 import React, { useState } from 'react'
 
 import { UpdatePaymentRequest } from '../../../../@types/import/api/payment.types'
@@ -150,12 +150,9 @@ export default function BankMonthly() {
               labelId="select-date-label"
               id="preferred-transfer-date"
               value={preferredTransferDate}
-              onChange={(
-                e: React.ChangeEvent<{
-                  name?: string | undefined
-                  value: unknown
-                }>
-              ) => handleChange((e.target.value as string) ?? '')}
+              onChange={(e: SelectChangeEvent<unknown>) =>
+                handleChange((e.target.value as string) ?? '')
+              }
             >
               {TransferDateOptions.map((o) => (
                 <MenuItem key={o} value={o}>
