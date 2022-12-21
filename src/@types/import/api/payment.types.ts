@@ -30,6 +30,10 @@ export interface UpdatePaymentRequest {
 export interface Charity {
   name: string
   sum: number
+  shortDescription?: string
+  logo?: string
+  url?: string
+  cause?: string
 }
 
 export interface PaymentResponse {

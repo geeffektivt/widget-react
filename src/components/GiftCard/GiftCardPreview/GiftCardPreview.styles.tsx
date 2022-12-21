@@ -24,22 +24,31 @@ export const GiftCardFullPreviewContainer = withStyles({
     backgroundImage: `url('https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/chrismas_decoration_1.svg')`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'bottom 1% right -2%',
-    backgroundSize: '15% 20%',
+    backgroundSize: 'min(15%, 130px) auto',
     fontFamily: 'Inter',
   },
 })(Paper)
 
 export const GiftCardFullPreviewImagesContainer = styled(Box, {
-  minWidth: '30%',
-  maxHeight: '65%',
+  maxWidth: 'min(40%, 400px)',
+  alignItems: 'center',
   marginLeft: '16px',
   paddingTop: '16px',
+  gap: '90px',
   justifyContent: 'space-between',
   flexDirection: 'column',
 })
 
+export const GiftCardPostersContainer = styled('div', {
+  width: '100%',
+  height: '50%',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '8px',
+})
+
 export const GiftCardPosterContainer = styled('img', {
-  height: '49%',
+  aspectRatio: '4 / 3',
   width: '100%',
 })
 
@@ -48,7 +57,8 @@ export const GiftCardPreviewContainer = styled(Box, {
   left: 0,
   height: '100%',
   backgroundImage: `url('https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/chrismas_decoration_2.svg')`,
-  backgroundSize: '15% 15%',
+  backgroundSize: 'min(20%, 100px) auto',
+  backgroundPosition: 'fixed',
   backgroundRepeat: 'no-repeat',
 })
 
@@ -84,13 +94,15 @@ export const GiftCardPreviewFooterContainer = styled('div', {
   margin: '$s100 0 $s150 0',
 })
 
-export const OrganisationLogosContainer = withStyles({
-  root: {
-    paddingTop: '8px',
-    justifyContent: 'center',
-  },
-})(ImageList)
-
+export const OrganisationLogosContainer = styled('div', {
+  display: 'flex',
+  width: '60%',
+  flexWrap: 'wrap',
+  margin: 'auto',
+  marginTop: '64px',
+  gap: '16px',
+  justifyContent: 'center',
+})
 export const OrganisationLogoContainer = withStyles({
   root: {
     margin: '4px',
@@ -103,6 +115,6 @@ export const OrganisationLogoLinkContainer = styled('a', {
 })
 
 export const OrganisationLogoImg = styled('img', {
-  maxWidth: '100%',
+  maxWidth: '96px',
   maxHeight: '100%',
 })

@@ -1,3 +1,4 @@
+import { GIFTCARD_MIN_SCHEDULE_DELAY } from 'constants/GiftCardConstants'
 import { FC, FocusEvent, useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Validate from 'validator'
@@ -30,7 +31,9 @@ export const GiftCardForm: FC<GiftCardProps> = ({ giftCard }) => {
   } = useAllTexts()
   const dispatch = useTypedDispatch()
   const [formId] = useState(`giftCard.${giftCard.id}`)
-
+  const [minDate] = useState(
+    new Date().setDate(new Date().getDate() + GIFTCARD_MIN_SCHEDULE_DELAY)
+  )
   const {
     register,
     setFocus,
@@ -40,7 +43,6 @@ export const GiftCardForm: FC<GiftCardProps> = ({ giftCard }) => {
     defaultValues: {
       receiverName: giftCard.receiverName,
       receiverEmail: giftCard.receiverEmail,
-      schedule: new Date(),
       body: giftCard?.body,
     },
   })
@@ -102,12 +104,13 @@ export const GiftCardForm: FC<GiftCardProps> = ({ giftCard }) => {
           })}
         />
         <TextInput
-          type="date"
+          type="datetime-local"
+          min={`${new Date(minDate).toISOString().split('.')[0]}`}
           label={paneTexts.scheduleLabel}
           {...register('schedule', {
-            required: true,
+            required: false,
           })}
-        />{' '}
+        />
       </InputFieldWrapper>
     </GiftCardFormContainer>
   )

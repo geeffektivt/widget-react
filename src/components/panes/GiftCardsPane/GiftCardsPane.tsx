@@ -1,7 +1,11 @@
 import useAllTexts from '../../../hooks/content/useAllTexts'
 import useTypedDispatch from '../../../hooks/store/useTypedDispatch'
 import useTypedSelector from '../../../hooks/store/useTypedSelector'
-import { selectGiftCards } from '../../../store/giftCards/giftCards.selector'
+import {
+  selectGiftCards,
+  selectHasGiftCards,
+  validateGiftCards,
+} from '../../../store/giftCards/giftCards.selector'
 import { giftCardsActions } from '../../../store/giftCards/giftCards.slice'
 import { GiftCardElement } from '../../GiftCard/GiftCard'
 import { AddButton } from '../../shared/Buttons/AddButton'
@@ -16,6 +20,8 @@ export const GiftCardsPane = () => {
   const sharedTexts = allTexts.donations.shared
 
   const giftCards = useTypedSelector(selectGiftCards)
+  const areGiftCardsValid = useTypedSelector(validateGiftCards)
+  const hasGiftCards = useTypedSelector(selectHasGiftCards)
   const dispatch = useTypedDispatch()
   const onAddGiftCard = () => {
     dispatch(
@@ -38,8 +44,9 @@ export const GiftCardsPane = () => {
         onClick={onAddGiftCard}
       />
       <NavigationButtons
+        isNextDisabled={hasGiftCards && !areGiftCardsValid}
         nextButtonTitle={
-          giftCards?.length
+          hasGiftCards
             ? sharedTexts.defaultNextButtonTitle
             : sharedTexts.defaultSkipLabel
         }

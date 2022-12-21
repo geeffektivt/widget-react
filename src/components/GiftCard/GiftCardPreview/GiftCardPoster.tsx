@@ -5,6 +5,7 @@ import { selectCausesWithDonationPosters } from 'store/donation/donation.selecto
 import {
   GiftCardFullPreviewImagesContainer,
   GiftCardPosterContainer,
+  GiftCardPostersContainer,
 } from './GiftCardPreview.styles'
 
 export const GiftCardPoster: FC = () => {
@@ -16,9 +17,21 @@ export const GiftCardPoster: FC = () => {
         sm: 'flex',
       }}
     >
-      {causePosters.map((poster) => (
-        <GiftCardPosterContainer key={poster.id} src={poster.imgUrl} />
-      ))}
+      <GiftCardPostersContainer>
+        {causePosters.map((poster) => (
+          <GiftCardPosterContainer key={poster.id} src={poster.imgUrl} />
+        ))}
+      </GiftCardPostersContainer>
+      <img
+        src="https://storage.googleapis.com/geeffektivt-se-frontend-3814d91/Geeffektivt_LogoSqua%201.png"
+        alt="geeffektivt.se"
+        style={{
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          width: 'min(60%, 150px)',
+          marginBottom: '64px',
+        }}
+      />
     </GiftCardFullPreviewImagesContainer>
   )
 }

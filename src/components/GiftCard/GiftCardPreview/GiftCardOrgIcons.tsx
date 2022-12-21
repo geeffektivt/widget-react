@@ -13,7 +13,7 @@ export const GiftCardPreviewOrganisationIcons: FC = () => {
   const organisationsLogos = useTypedSelector(selectOrganisationLogos)
 
   return (
-    <OrganisationLogosContainer gap={4} rowHeight={96} cols={4}>
+    <OrganisationLogosContainer>
       {organisationsLogos.map(({ id, name, logo, infoUrl }) => (
         <OrganisationLogoContainer key={id}>
           <OrganisationLogoLinkContainer href={infoUrl} target="_blank">

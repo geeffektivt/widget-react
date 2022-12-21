@@ -4,6 +4,7 @@ import {
   SwishPaymentStatusRequest,
   SwishPaymentStatusResponse,
   UpdatePaymentRequest,
+  Charity,
 } from '../../@types/import/api/payment.types'
 import { ReferralOption } from '../../@types/import/content/referrals.types'
 import { ShareType } from '../../constants/enums/ShareType'
@@ -50,14 +51,24 @@ export const getCharitiesWithNames = (
 ) => {
   return charities
     .filter((c) => (excludeId ? c.id !== excludeId : true))
-    .flatMap((c) => {
+    .flatMap((c): Charity | Charity[] => {
       if (c.shareType === ShareType.Standard) {
-        return { name: c.name, sum: c.sum }
+        return {
+          name: c.name,
+          sum: c.sum,
+          shortDescription: c.shortDescription,
+        }
       }
-      return c.organizationsDistribution.map((o) => ({
-        name: o.name,
-        sum: o.sum,
-      }))
+      return c.organizationsDistribution.map(
+        (o): Charity => ({
+          name: o.name,
+          cause: c.name,
+          sum: o.sum,
+          url: o.infoUrl,
+          logo: o.imgUrl as string,
+          shortDescription: o.shortDescription,
+        })
+      )
     })
     .filter((c) => c.sum !== 0)
 }
