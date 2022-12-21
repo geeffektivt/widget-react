@@ -20,23 +20,26 @@ describe('getCharitiesWithNames', () => {
         ...baseDistribution,
         name: 'Cause 1',
         sum: 100,
+        shortDescription: 'Cause 1',
       },
       {
         ...baseDistribution,
         name: 'Cause 2',
         sum: 50,
+        shortDescription: 'Cause 2',
       },
       {
         ...baseDistribution,
         name: 'Cause 3',
         sum: 25,
+        shortDescription: 'Cause 3',
       },
     ]
     const result = getCharitiesWithNames(charities)
     expect(result).toEqual([
-      { name: 'Cause 1', sum: 100 },
-      { name: 'Cause 2', sum: 50 },
-      { name: 'Cause 3', sum: 25 },
+      { name: 'Cause 1', sum: 100, shortDescription: 'Cause 1' },
+      { name: 'Cause 2', sum: 50, shortDescription: 'Cause 2' },
+      { name: 'Cause 3', sum: 25, shortDescription: 'Cause 3' },
     ])
   })
   it('should ignore organizations for sharetype standard', () => {
@@ -78,33 +81,78 @@ describe('getCharitiesWithNames', () => {
         ...baseDistribution,
         name: 'Cause 1',
         sum: 100,
+        shortDescription: 'Cause 1',
         organizationsDistribution: [
-          { ...baseDistribution, sum: 48, name: 'Organization 3' },
-          { ...baseDistribution, sum: 2, name: 'Organization 4' },
+          {
+            ...baseDistribution,
+            sum: 48,
+            name: 'Organization 3',
+            imgUrl: 'logo',
+            shortDescription: 'Organization 3',
+            infoUrl: 'url',
+          },
+          {
+            ...baseDistribution,
+            sum: 2,
+            name: 'Organization 4',
+            imgUrl: 'logo',
+            shortDescription: 'Organization 4',
+            infoUrl: 'url',
+          },
         ],
       },
       {
         ...baseDistribution,
         name: 'Cause 2',
         shareType: ShareType.Custom,
+        shortDescription: 'Cause 2',
         sum: 50,
         organizationsDistribution: [
-          { ...baseDistribution, sum: 48, name: 'Organization 3' },
-          { ...baseDistribution, sum: 2, name: 'Organization 4' },
+          {
+            ...baseDistribution,
+            sum: 48,
+            name: 'Organization 3',
+            imgUrl: 'logo',
+            shortDescription: 'Organization 3',
+            infoUrl: 'url',
+          },
+          {
+            ...baseDistribution,
+            sum: 2,
+            name: 'Organization 4',
+            imgUrl: 'logo',
+            shortDescription: 'Organization 4',
+            infoUrl: 'url',
+          },
         ],
       },
       {
         ...baseDistribution,
         name: 'Cause 3',
         sum: 25,
+        shortDescription: 'Cause 3',
       },
     ]
     const result = getCharitiesWithNames(charities)
     expect(result).toEqual([
-      { name: 'Cause 1', sum: 100 },
-      { name: 'Organization 3', sum: 48 },
-      { name: 'Organization 4', sum: 2 },
-      { name: 'Cause 3', sum: 25 },
+      { name: 'Cause 1', sum: 100, shortDescription: 'Cause 1' },
+      {
+        cause: 'Cause 2',
+        name: 'Organization 3',
+        sum: 48,
+        logo: 'logo',
+        shortDescription: 'Organization 3',
+        url: 'url',
+      },
+      {
+        cause: 'Cause 2',
+        name: 'Organization 4',
+        sum: 2,
+        logo: 'logo',
+        shortDescription: 'Organization 4',
+        url: 'url',
+      },
+      { name: 'Cause 3', sum: 25, shortDescription: 'Cause 3' },
     ])
   })
   it('should filter out those with sum 0', () => {
@@ -114,8 +162,22 @@ describe('getCharitiesWithNames', () => {
         name: 'Cause 1',
         sum: 0,
         organizationsDistribution: [
-          { ...baseDistribution, sum: 0, name: 'Organization 3' },
-          { ...baseDistribution, sum: 0, name: 'Organization 4' },
+          {
+            ...baseDistribution,
+            sum: 0,
+            name: 'Organization 3',
+            imgUrl: 'logo',
+            shortDescription: 'Organization 3',
+            infoUrl: 'url',
+          },
+          {
+            ...baseDistribution,
+            sum: 0,
+            name: 'Organization 4',
+            imgUrl: 'logo',
+            shortDescription: 'Organization 4',
+            infoUrl: 'url',
+          },
         ],
       },
       {
@@ -124,8 +186,22 @@ describe('getCharitiesWithNames', () => {
         shareType: ShareType.Custom,
         sum: 2,
         organizationsDistribution: [
-          { ...baseDistribution, sum: 0, name: 'Organization 3' },
-          { ...baseDistribution, sum: 2, name: 'Organization 4' },
+          {
+            ...baseDistribution,
+            sum: 0,
+            name: 'Organization 3',
+            imgUrl: 'logo',
+            shortDescription: 'Organization 3',
+            infoUrl: 'url',
+          },
+          {
+            ...baseDistribution,
+            sum: 2,
+            name: 'Organization 4',
+            imgUrl: 'logo',
+            shortDescription: 'Organization 4',
+            infoUrl: 'url',
+          },
         ],
       },
       {
@@ -136,7 +212,14 @@ describe('getCharitiesWithNames', () => {
     ]
     const result = getCharitiesWithNames(charities)
     expect(result).toEqual([
-      { name: 'Organization 4', sum: 2 },
+      {
+        name: 'Organization 4',
+        cause: 'Cause 2',
+        sum: 2,
+        logo: 'logo',
+        shortDescription: 'Organization 4',
+        url: 'url',
+      },
       { name: 'Cause 3', sum: 25 },
     ])
   })
