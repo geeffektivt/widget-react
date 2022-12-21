@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect'
 
 import { WidgetStoreState } from '../store'
+
 import { GiftCard } from './giftCards.types'
 
 const isGiftCardValid = (giftCard: GiftCard) => {

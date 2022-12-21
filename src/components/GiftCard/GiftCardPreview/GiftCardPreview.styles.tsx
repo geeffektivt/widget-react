@@ -1,4 +1,4 @@
-import { Box, ImageList, ImageListItem, Paper } from '@mui/material'
+import { Box, ImageListItem, Paper } from '@mui/material'
 import withStyles from '@mui/styles/withStyles'
 import { PreviewButton } from 'components/shared/Buttons/PreviewButton'
 
