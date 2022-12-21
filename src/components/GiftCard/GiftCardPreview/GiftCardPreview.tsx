@@ -40,7 +40,7 @@ export const GiftCardPreview: FC<GiftCardPreviewProps> = ({ giftCard }) => {
         <GiftCardFullPreviewContainer
           style={{
             maxWidth: '80%',
-            backgroundColor: 'hsl(198deg 82% 23%)',
+            backgroundColor: '#004466',
             marginBottom: '8px',
             overflowY: 'auto',
           }}
