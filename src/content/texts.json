@@ -31,7 +31,7 @@
       "emailPlaceholder": "Mejladress",
       "emailError": "Den här mejladressen ser inte korrekt ut",
       "taxDeductionLabel": "Jag önskar skatteavdrag.",
-      "taxDeductionTooltip": "Vi rapporterar då ditt personnummer till Skatteverket. För donationer inom Global hälsa prioriteras gåvor till Against Malaria Foundation. [Läs mer](https://geeffektivt.se/faq)",
+      "taxDeductionTooltip": "Vi skickar då in kontrolluppgift med ditt personnummer till Skatteverket. Detta gäller alla donationer inom Global hälsa. [Läs mer](https://geeffektivt.se/faq)",
       "ssnPlaceholder": "Personnummer: ÅÅÅÅMMDDXXXX",
       "ssnError": "Personnumret ser inte korrekt ut. Använd formatet ÅÅÅÅMMDDXXXX.",
       "privacyPolicyLabel": "Jag godkänner [villkoren](https://geeffektivt.se/villkor) med glädje.",
