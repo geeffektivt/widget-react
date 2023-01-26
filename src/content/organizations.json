@@ -3,8 +3,8 @@
     "id": "1",
     "name": "Global hälsa",
     "standardShare": 100,
-    "standardOrganizationShareText": "Låt oss välja inom Global hälsa",
-    "standardOrganizationShareExplanation": "Hela summan går till GiveWell Top Charities Fund och Against Malaria Foundation.",
+    "standardOrganizationShareText": "Låt experter inom global hälsa välja",
+    "standardOrganizationShareExplanation": "Hela summan går till GiveWell Top Charities Fund.",
     "organizations": [
       {
         "id": "10",
@@ -16,7 +16,7 @@
         "id": "11",
         "name": "GiveWell All Grants Fund",
         "infoUrl": "https://www.givewell.org/research/all-grants",
-        "shortDescription": "Låt GiveWell fördela pengarna fritt mellan alla sina rekommenderade organisationer. Utöver topplistan kan det vara organisationer med högre risk, eller mindre projekt som för tillfället skulle få mycket uträttat med pengarna."
+        "shortDescription": "Låt GiveWell fördela pengarna fritt på de projekt de tror gör störst skillnad. Utöver topplistan kan det vara organisationer med högre risk, eller mindre projekt som för tillfället skulle få mycket uträttat med pengarna."
       },
       {
         "id": "12",
@@ -94,7 +94,7 @@
     "id": "3",
     "name": "Djurhälsa",
     "standardShare": 0,
-    "standardOrganizationShareText": "Låt Animal Charity Evaluators välja",
+    "standardOrganizationShareText": "Låt experter inom djurvälfärd välja",
     "standardOrganizationShareExplanation": "90% av summan går till Animal Charity Evaluators Recommended Charity Fund, och resten till deras goda arbete.",
     "organizations": [
       {
