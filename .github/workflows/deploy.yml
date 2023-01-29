@@ -33,10 +33,10 @@ jobs:
         run: '[ "$(ls -A ./build/static/js && ls -A ./build/static/css)" ] && echo "Files exist - all good." || (echo "Directory is empty - aborting." && exit 1)'
       - id: 'auth'
         name: Authenticate to Google Cloud
-        uses: 'google-github-actions/auth@v0'
+        uses: 'google-github-actions/auth@v1'
         with:
           credentials_json: '${{ secrets.GCP_CREDENTIALS_LIVE }}'
       - name: Set up Cloud SDK
-        uses: 'google-github-actions/setup-gcloud@v0'
+        uses: 'google-github-actions/setup-gcloud@v1'
       - name: Upload build folder to Google Cloud Storage bucket
         run: 'gsutil -m rsync -d -r -j html,js,css,txt ./build gs://geeffektivt-se-frontend-ec5e8b5'
