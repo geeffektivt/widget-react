@@ -30,6 +30,7 @@ export interface Donation extends DonationInput {
 
 export interface DonorInput {
   name?: string
+  companyName?: string
   email?: string
   taxDeduction?: boolean
   approvesPrivacyPolicy?: boolean

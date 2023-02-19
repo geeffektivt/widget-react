@@ -54,6 +54,7 @@ export function DonorPane() {
       ? {}
       : {
           name: donor?.name,
+          companyName: donor?.companyName,
           email: donor?.email,
           taxDeduction: donor?.taxDeduction,
           ssn: donor?.taxDeduction ? donor?.ssn : undefined,
@@ -65,6 +66,7 @@ export function DonorPane() {
   const watchAllFields = watch()
 
   const isNameInvalid = Boolean(errors.name)
+  const isCompanyNameInvalid = Boolean(errors.companyName)
   const isEmailInvalid = Boolean(errors.email)
   const isSsnInvalid = Boolean(errors.ssn)
   const isPrivacyPolicyInvalid = Boolean(errors.privacyPolicy)
@@ -78,6 +80,7 @@ export function DonorPane() {
     } else {
       donorInfo = {
         name: formValues.name ?? '',
+        companyName: formValues.companyName ?? '',
         email: formValues.email ?? '',
         taxDeduction: formValues.taxDeduction ?? false,
         ssn: formValues.ssn ?? '',
@@ -111,6 +114,19 @@ export function DonorPane() {
                 valid={!isNameInvalid}
               />
               {isNameInvalid && <ErrorField text={paneTexts.nameError} />}
+
+              <TextInput
+                type="text"
+                placeholder={paneTexts.companyNamePlaceholder}
+                {...register('companyName', {
+                  required: !isAnonymous,
+                  minLength: 1,
+                })}
+                valid={!isCompanyNameInvalid}
+              />
+              {isCompanyNameInvalid && (
+                <ErrorField text={paneTexts.companyNameError} />
+              )}
 
               <TextInput
                 inputMode="email"
