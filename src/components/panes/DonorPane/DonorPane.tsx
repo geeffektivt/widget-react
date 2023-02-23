@@ -148,13 +148,15 @@ export function DonorPane() {
             </InputFieldWrapper>
 
             <Container>
-              <CheckboxWrapper>
-                <CheckBox type="checkbox" {...register('taxDeduction')} />
+              {!isInCompanyMode() && (
+                <CheckboxWrapper>
+                  <CheckBox type="checkbox" {...register('taxDeduction')} />
 
-                <CheckboxLabel>{paneTexts.taxDeductionLabel}</CheckboxLabel>
+                  <CheckboxLabel>{paneTexts.taxDeductionLabel}</CheckboxLabel>
 
-                <ToolTipLink text={paneTexts.taxDeductionTooltip} />
-              </CheckboxWrapper>
+                  <ToolTipLink text={paneTexts.taxDeductionTooltip} />
+                </CheckboxWrapper>
+              )}
 
               {watch('taxDeduction') && (
                 <InputFieldWrapper>
