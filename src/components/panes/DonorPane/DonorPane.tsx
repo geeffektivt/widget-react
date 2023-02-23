@@ -10,6 +10,7 @@ import useTypedSelector from '../../../hooks/store/useTypedSelector'
 import { donationActions } from '../../../store/donation/donation.slice'
 import { DonorInput } from '../../../store/state'
 import { uiActions } from '../../../store/ui/ui.slice'
+import { isInCompanyMode } from '../../../utils/modeUtils'
 import { isValidNumber } from '../../../utils/typeUtils'
 import { NavigationButtons } from '../../shared/Buttons/NavigationButtons'
 import ErrorField from '../../shared/Error/ErrorField'
@@ -115,17 +116,22 @@ export function DonorPane() {
               />
               {isNameInvalid && <ErrorField text={paneTexts.nameError} />}
 
-              <TextInput
-                type="text"
-                placeholder={paneTexts.companyNamePlaceholder}
-                {...register('companyName', {
-                  required: !isAnonymous,
-                  minLength: 1,
-                })}
-                valid={!isCompanyNameInvalid}
-              />
-              {isCompanyNameInvalid && (
-                <ErrorField text={paneTexts.companyNameError} />
+              {isInCompanyMode() && (
+                <>
+                  <TextInput
+                    type="text"
+                    placeholder={paneTexts.companyNamePlaceholder}
+                    {...register('companyName', {
+                      required: !isAnonymous,
+                      minLength: 1,
+                    })}
+                    valid={!isCompanyNameInvalid}
+                  />
+
+                  {isCompanyNameInvalid && (
+                    <ErrorField text={paneTexts.companyNameError} />
+                  )}
+                </>
               )}
 
               <TextInput
