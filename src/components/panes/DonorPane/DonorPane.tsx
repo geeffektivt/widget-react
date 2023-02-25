@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Validate from 'validator'
 
+import { IS_IN_COMPANY_MODE } from '../../../config'
 import { DonorType } from '../../../constants/enums/DonorType'
 import { PaymentMethod } from '../../../constants/enums/PaymentMethod'
 import useAllTexts from '../../../hooks/content/useAllTexts'
@@ -10,7 +11,6 @@ import useTypedSelector from '../../../hooks/store/useTypedSelector'
 import { donationActions } from '../../../store/donation/donation.slice'
 import { DonorInput } from '../../../store/state'
 import { uiActions } from '../../../store/ui/ui.slice'
-import { isInCompanyMode } from '../../../utils/modeUtils'
 import { isValidNumber } from '../../../utils/typeUtils'
 import { NavigationButtons } from '../../shared/Buttons/NavigationButtons'
 import ErrorField from '../../shared/Error/ErrorField'
@@ -119,7 +119,7 @@ export function DonorPane() {
               />
               {isNameInvalid && <ErrorField text={paneTexts.nameError} />}
 
-              {isInCompanyMode() && (
+              {IS_IN_COMPANY_MODE && (
                 <>
                   <TextInput
                     type="text"
@@ -166,7 +166,7 @@ export function DonorPane() {
             </InputFieldWrapper>
 
             <Container>
-              {!isInCompanyMode() && (
+              {!IS_IN_COMPANY_MODE && (
                 <CheckboxWrapper>
                   <CheckBox type="checkbox" {...register('taxDeduction')} />
 

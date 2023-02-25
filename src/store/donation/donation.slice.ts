@@ -5,6 +5,7 @@ import {
   CauseId,
   OrganizationId,
 } from '../../@types/import/content/organizations.types'
+import { CHOSEN_ORGANIZATION_ID } from '../../config'
 import { DonorType } from '../../constants/enums/DonorType'
 import { PaymentMethod } from '../../constants/enums/PaymentMethod'
 import { DonationFrequency } from '../../constants/enums/RecurringDonation'
@@ -29,9 +30,7 @@ const initialState: DonationState = {
 
   lastCauseRoundRobinIndex: 0,
   causesDistribution: [],
-  chosenOrganizationId:
-    document.getElementById('root')?.getAttribute('data-organization-id') ??
-    undefined,
+  chosenOrganizationId: CHOSEN_ORGANIZATION_ID,
 }
 
 export const donationSlice = createSlice({

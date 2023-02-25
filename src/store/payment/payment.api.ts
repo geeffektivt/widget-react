@@ -6,6 +6,7 @@ import {
   UpdatePaymentRequest,
 } from '../../@types/import/api/payment.types'
 import { ReferralOption } from '../../@types/import/content/referrals.types'
+import { API_URL, USE_DEV_DATA } from '../../config'
 import { ShareType } from '../../constants/enums/ShareType'
 import { get, post } from '../../services/apiService'
 import { ApiResponse } from '../../utils/api/apiHelpers'
@@ -15,13 +16,13 @@ import { CauseDistribution } from '../donation/donation.types'
 export async function updatePaymentRequest(
   requestArgs: UpdatePaymentRequest
 ): Promise<ApiResponse> {
-  if (process.env.REACT_APP_USE_DEV_DATA === 'true') {
+  if (USE_DEV_DATA) {
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
     return new ApiResponse(undefined, {})
   }
 
-  const url = joinUrlPaths(process.env.REACT_APP_API_URL, '/updatePaymentBank')
+  const url = joinUrlPaths(API_URL, '/updatePaymentBank')
   return post(url, { body: requestArgs })
 }
 
@@ -29,7 +30,7 @@ export async function createPaymentRequest(
   path: string,
   requestArgs: PaymentRequest
 ): Promise<ApiResponse<PaymentResponse>> {
-  if (process.env.REACT_APP_USE_DEV_DATA === 'true') {
+  if (USE_DEV_DATA) {
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
     return new ApiResponse(undefined, {
@@ -40,7 +41,7 @@ export async function createPaymentRequest(
     })
   }
 
-  const url = joinUrlPaths(process.env.REACT_APP_API_URL, path)
+  const url = joinUrlPaths(API_URL, path)
   return post<PaymentResponse>(url, { body: requestArgs })
 }
 
@@ -75,7 +76,7 @@ export const getReferralName = (
 export async function pollSwishPaymentStatusRequest(
   requestArgs: SwishPaymentStatusRequest
 ): Promise<ApiResponse<SwishPaymentStatusResponse>> {
-  if (process.env.REACT_APP_USE_DEV_DATA === 'true') {
+  if (USE_DEV_DATA) {
     await new Promise((resolve) => setTimeout(resolve, 500))
 
     if (Math.random() > 0.5) {
@@ -117,9 +118,6 @@ export async function pollSwishPaymentStatusRequest(
     })
   }
 
-  const url = joinUrlPaths(
-    process.env.REACT_APP_API_URL,
-    `/paymentStatus?id=${requestArgs.id}`
-  )
+  const url = joinUrlPaths(API_URL, `/paymentStatus?id=${requestArgs.id}`)
   return get<SwishPaymentStatusResponse>(url)
 }
