@@ -30,6 +30,8 @@
       "nameError": "Du måste skriva in ett namn eller välja anonym donation",
       "companyNamePlaceholder": "Företagsnamn",
       "companyNameError": "Du måste skriva in ett företagsnamn eller välja anonym donation",
+      "organizationNumberPlaceholder": "Organisationsnummer",
+      "organizationNumberError": "Du måste skriva in ett organisationsnummer eller välja anonym donation",
       "emailPlaceholder": "Mejladress",
       "emailError": "Den här mejladressen ser inte korrekt ut",
       "taxDeductionLabel": "Jag önskar skatteavdrag.",
@@ -44,6 +46,7 @@
       "anonymousDonor": {
         "name": "Anonym givare",
         "companyName": "Anonym givare",
+        "organizationNumber": "",
         "email": "anon@geeffektivt.se",
         "taxDeduction": false,
         "ssn": "12345678910",

@@ -59,6 +59,7 @@ export function DonorPane() {
           email: donor?.email,
           taxDeduction: donor?.taxDeduction,
           ssn: donor?.taxDeduction ? donor?.ssn : undefined,
+          organizationNumber: donor?.organizationNumber,
           newsletter: donor?.newsletter,
           approvesPrivacyPolicy: donor?.approvesPrivacyPolicy,
         },
@@ -68,6 +69,7 @@ export function DonorPane() {
 
   const isNameInvalid = Boolean(errors.name)
   const isCompanyNameInvalid = Boolean(errors.companyName)
+  const isOrganizationNumberInvalid = Boolean(errors.organizationNumber)
   const isEmailInvalid = Boolean(errors.email)
   const isSsnInvalid = Boolean(errors.ssn)
   const isPrivacyPolicyInvalid = Boolean(errors.privacyPolicy)
@@ -85,6 +87,7 @@ export function DonorPane() {
         email: formValues.email ?? '',
         taxDeduction: formValues.taxDeduction ?? false,
         ssn: formValues.ssn ?? '',
+        organizationNumber: formValues.organizationNumber ?? '',
         newsletter: formValues.newsletter ?? false,
         approvesPrivacyPolicy: formValues.privacyPolicy,
       }
@@ -130,6 +133,21 @@ export function DonorPane() {
 
                   {isCompanyNameInvalid && (
                     <ErrorField text={paneTexts.companyNameError} />
+                  )}
+
+                  <TextInput
+                    type="text"
+                    inputMode="numeric"
+                    placeholder={paneTexts.organizationNumberPlaceholder}
+                    {...register('organizationNumber', {
+                      required: !isAnonymous,
+                      minLength: 1,
+                    })}
+                    valid={!isOrganizationNumberInvalid}
+                  />
+
+                  {isOrganizationNumberInvalid && (
+                    <ErrorField text={paneTexts.organizationNumberError} />
                   )}
                 </>
               )}
