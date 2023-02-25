@@ -45,9 +45,11 @@ export default function Bank() {
     const paymentRequest: BankPaymentRequest = {
       isAnonymous: donorType === DonorType.Anonymous,
       name: donor?.name,
+      companyName: donor?.companyName,
       email: donor?.email,
       doTaxDeduction: donor?.taxDeduction,
       personalNumber: donor?.ssn,
+      organizationNumber: donor?.organizationNumber,
       approvesPrivacyPolicy: donor?.approvesPrivacyPolicy,
       doNewsletter: donor?.newsletter,
       charities: getCharitiesWithNames(causesDistribution, tipId),

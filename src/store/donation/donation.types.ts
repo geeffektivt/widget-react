@@ -26,6 +26,7 @@ export interface Donor {
   taxDeduction: boolean
   approvesPrivacyPolicy: boolean
   ssn: string
+  organizationNumber: string
   newsletter: boolean
 }
 

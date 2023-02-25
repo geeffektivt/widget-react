@@ -1,9 +1,11 @@
 export interface PaymentRequest {
   isAnonymous: boolean
   name?: string
+  companyName?: string
   email?: string
   doTaxDeduction?: boolean
   personalNumber?: string
+  organizationNumber?: string
   approvesPrivacyPolicy?: boolean
   doNewsletter?: boolean
   charities: Charity[]
