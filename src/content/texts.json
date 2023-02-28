@@ -31,7 +31,7 @@
       "companyNamePlaceholder": "Företagsnamn",
       "companyNameError": "Du måste skriva in ett företagsnamn eller välja anonym donation",
       "organizationNumberPlaceholder": "Organisationsnummer",
-      "organizationNumberError": "Du måste skriva in ett organisationsnummer eller välja anonym donation",
+      "organizationNumberError": "Det här organisationsnumret ser inte korrekt ut",
       "emailPlaceholder": "Mejladress",
       "emailError": "Den här mejladressen ser inte korrekt ut",
       "taxDeductionLabel": "Jag önskar skatteavdrag.",

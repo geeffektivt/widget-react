@@ -137,11 +137,12 @@ export function DonorPane() {
 
                   <TextInput
                     type="text"
-                    inputMode="numeric"
                     placeholder={paneTexts.organizationNumberPlaceholder}
                     {...register('organizationNumber', {
                       required: !isAnonymous,
-                      minLength: 1,
+                      validate: (val) =>
+                        val &&
+                        Validate.matches(val, /^(\d{1})(\d{5})\-(\d{4})$/),
                     })}
                     valid={!isOrganizationNumberInvalid}
                   />
