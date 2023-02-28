@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { BankPaymentRequest } from '../../../../@types/import/api/payment.types'
+import { IS_IN_COMPANY_MODE } from '../../../../config'
 import { DonorType } from '../../../../constants/enums/DonorType'
 import { DonationFrequency } from '../../../../constants/enums/RecurringDonation'
 import useAllTexts from '../../../../hooks/content/useAllTexts'
@@ -42,21 +43,34 @@ export default function Bank() {
 
   useOnMount(() => {
     const tip = causesDistribution.find((c) => c.id === tipId)?.sum
-    const paymentRequest: BankPaymentRequest = {
+
+    const baseRequest = {
+      _paymentType: 'bank' as const,
       isAnonymous: donorType === DonorType.Anonymous,
       name: donor?.name,
-      companyName: donor?.companyName,
       email: donor?.email,
-      doTaxDeduction: donor?.taxDeduction,
-      personalNumber: donor?.ssn,
-      organizationNumber: donor?.organizationNumber,
       approvesPrivacyPolicy: donor?.approvesPrivacyPolicy,
       doNewsletter: donor?.newsletter,
       charities: getCharitiesWithNames(causesDistribution, tipId),
-      reoccursMonthly: recurring === DonationFrequency.Monthly,
-      referral: getReferralName(referral, textInput),
       tip,
+      referral: getReferralName(referral, textInput),
+      reoccursMonthly: recurring === DonationFrequency.Monthly,
     }
+
+    const paymentRequest: BankPaymentRequest = IS_IN_COMPANY_MODE
+      ? {
+          ...baseRequest,
+          _sourceType: 'company',
+          companyName: donor?.companyName,
+          organizationNumber: donor?.organizationNumber,
+        }
+      : {
+          ...baseRequest,
+          _sourceType: 'individual',
+          doTaxDeduction: donor?.taxDeduction,
+          personalNumber: donor?.ssn,
+        }
+
     dispatch(paymentAsyncActions.createBankPayment(paymentRequest))
   })
   const onBackClick = () => {
