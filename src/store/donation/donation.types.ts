@@ -21,10 +21,12 @@ export interface DonationState {
 
 export interface Donor {
   name: string
+  companyName: string
   email: string
   taxDeduction: boolean
   approvesPrivacyPolicy: boolean
   ssn: string
+  organizationNumber: string
   newsletter: boolean
 }
 

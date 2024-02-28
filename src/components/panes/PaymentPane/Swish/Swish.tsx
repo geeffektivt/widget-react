@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PhoneInput from 'react-phone-input-2'
 
 import { SwishPaymentRequest } from '../../../../@types/import/api/payment.types'
+import { IS_IN_COMPANY_MODE } from '../../../../config'
 import { DonorType } from '../../../../constants/enums/DonorType'
 import useAllTexts from '../../../../hooks/content/useAllTexts'
 import useTypedDispatch from '../../../../hooks/store/useTypedDispatch'
@@ -43,19 +44,33 @@ export default function Swish() {
     setIsDirty(true)
     if (validPhoneNumber(phoneNumber)) {
       const tip = causesDistribution.find((c) => c.id === tipId)?.sum
-      const paymentRequest: SwishPaymentRequest = {
+
+      const baseRequest = {
+        _paymentType: 'swish' as const,
         isAnonymous: donorType === DonorType.Anonymous,
-        phone: phoneNumber ?? '',
         name: donor?.name,
         email: donor?.email,
-        doTaxDeduction: donor?.taxDeduction,
-        personalNumber: donor?.ssn,
         approvesPrivacyPolicy: donor?.approvesPrivacyPolicy,
         doNewsletter: donor?.newsletter,
         charities: getCharitiesWithNames(causesDistribution, tipId),
-        referral: getReferralName(referral, textInput),
         tip,
+        referral: getReferralName(referral, textInput),
+        phone: phoneNumber ?? '',
       }
+
+      const paymentRequest: SwishPaymentRequest = IS_IN_COMPANY_MODE
+        ? {
+            ...baseRequest,
+            _sourceType: 'company',
+            companyName: donor?.companyName,
+            organizationNumber: donor?.organizationNumber,
+          }
+        : {
+            ...baseRequest,
+            _sourceType: 'individual',
+            doTaxDeduction: donor?.taxDeduction,
+            personalNumber: donor?.ssn,
+          }
       dispatch(paymentAsyncActions.createSwishPayment(paymentRequest))
     }
   }

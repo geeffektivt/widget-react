@@ -1,22 +1,45 @@
-export interface PaymentRequest {
+type BaseRequest = {
   isAnonymous: boolean
   name?: string
   email?: string
-  doTaxDeduction?: boolean
-  personalNumber?: string
   approvesPrivacyPolicy?: boolean
   doNewsletter?: boolean
   charities: Charity[]
   tip?: number
   referral?: string
 }
-export interface BankPaymentRequest extends PaymentRequest {
+
+type IndividualPaymentDetails = {
+  _sourceType: 'individual'
+  doTaxDeduction?: boolean
+  personalNumber?: string
+}
+
+type CompanyPaymentDetails = {
+  _sourceType: 'company'
+  companyName?: string
+  organizationNumber?: string
+}
+
+type BankPaymentDetails = {
+  _paymentType: 'bank'
   reoccursMonthly: boolean
 }
 
-export interface SwishPaymentRequest extends PaymentRequest {
+type SwishPaymentDetails = {
+  _paymentType: 'swish'
   phone?: string
 }
+
+export type BankPaymentRequest =
+  | (BaseRequest & BankPaymentDetails & IndividualPaymentDetails)
+  | (BaseRequest & BankPaymentDetails & CompanyPaymentDetails)
+
+export type SwishPaymentRequest =
+  | (BaseRequest & SwishPaymentDetails & IndividualPaymentDetails)
+  | (BaseRequest & SwishPaymentDetails & CompanyPaymentDetails)
+
+export type PaymentRequest = BankPaymentRequest | SwishPaymentRequest
 
 export interface UpdatePaymentRequest {
   id: PaymentResponse['id']

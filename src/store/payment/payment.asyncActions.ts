@@ -1,10 +1,7 @@
-import { AsyncThunk, createAsyncThunk } from '@reduxjs/toolkit'
+import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import {
   PaymentRequest,
-  PaymentResponse,
-  BankPaymentRequest,
-  SwishPaymentRequest,
   SwishPaymentStatusRequest,
   UpdatePaymentRequest,
 } from '../../@types/import/api/payment.types'
@@ -22,19 +19,14 @@ import {
   updatePaymentRequest,
 } from './payment.api'
 
-const isBank = (
-  paymentArgs: SwishPaymentRequest | BankPaymentRequest
-): paymentArgs is BankPaymentRequest =>
-  (paymentArgs as BankPaymentRequest).reoccursMonthly !== undefined
-
-const createPayment = <T extends PaymentRequest>(path: string) =>
+const createPayment = (path: string) =>
   createAsyncThunk(
     'payment/createPayment',
-    async (paymentArgs: T, { rejectWithValue }) => {
-      const bank = isBank(paymentArgs)
-      const valid = bank
-        ? validateBank(paymentArgs as unknown as BankPaymentRequest)
-        : validateSwish(paymentArgs)
+    async (paymentArgs: PaymentRequest, { rejectWithValue }) => {
+      const valid =
+        paymentArgs._paymentType === 'bank'
+          ? validateBank(paymentArgs)
+          : validateSwish(paymentArgs)
       if (!valid) {
         console.error('Create payment not valid', JSON.stringify(paymentArgs))
         return rejectWithValue(
@@ -71,16 +63,9 @@ const createPayment = <T extends PaymentRequest>(path: string) =>
       return paymentResponse
     }
   )
-export const createSwishPayment: AsyncThunk<
-  PaymentResponse,
-  SwishPaymentRequest,
-  Record<string, unknown>
-> = createPayment('/paymentSwish')
-export const createBankPayment: AsyncThunk<
-  PaymentResponse,
-  BankPaymentRequest,
-  Record<string, unknown>
-> = createPayment('/paymentBank')
+
+export const createSwishPayment = createPayment('/paymentSwish')
+export const createBankPayment = createPayment('/paymentBank')
 
 export const updateBankPayment = createAsyncThunk(
   'payment/updatePayment',

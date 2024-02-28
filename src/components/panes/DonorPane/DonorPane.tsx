@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Validate from 'validator'
 
+import { IS_IN_COMPANY_MODE } from '../../../config'
 import { DonorType } from '../../../constants/enums/DonorType'
 import { PaymentMethod } from '../../../constants/enums/PaymentMethod'
 import useAllTexts from '../../../hooks/content/useAllTexts'
@@ -54,9 +55,11 @@ export function DonorPane() {
       ? {}
       : {
           name: donor?.name,
+          companyName: donor?.companyName,
           email: donor?.email,
           taxDeduction: donor?.taxDeduction,
           ssn: donor?.taxDeduction ? donor?.ssn : undefined,
+          organizationNumber: donor?.organizationNumber,
           newsletter: donor?.newsletter,
           approvesPrivacyPolicy: donor?.approvesPrivacyPolicy,
         },
@@ -65,6 +68,8 @@ export function DonorPane() {
   const watchAllFields = watch()
 
   const isNameInvalid = Boolean(errors.name)
+  const isCompanyNameInvalid = Boolean(errors.companyName)
+  const isOrganizationNumberInvalid = Boolean(errors.organizationNumber)
   const isEmailInvalid = Boolean(errors.email)
   const isSsnInvalid = Boolean(errors.ssn)
   const isPrivacyPolicyInvalid = Boolean(errors.privacyPolicy)
@@ -78,9 +83,11 @@ export function DonorPane() {
     } else {
       donorInfo = {
         name: formValues.name ?? '',
+        companyName: formValues.companyName ?? '',
         email: formValues.email ?? '',
         taxDeduction: formValues.taxDeduction ?? false,
         ssn: formValues.ssn ?? '',
+        organizationNumber: formValues.organizationNumber ?? '',
         newsletter: formValues.newsletter ?? false,
         approvesPrivacyPolicy: formValues.privacyPolicy,
       }
@@ -112,6 +119,40 @@ export function DonorPane() {
               />
               {isNameInvalid && <ErrorField text={paneTexts.nameError} />}
 
+              {IS_IN_COMPANY_MODE && (
+                <>
+                  <TextInput
+                    type="text"
+                    placeholder={paneTexts.companyNamePlaceholder}
+                    {...register('companyName', {
+                      required: !isAnonymous,
+                      minLength: 1,
+                    })}
+                    valid={!isCompanyNameInvalid}
+                  />
+
+                  {isCompanyNameInvalid && (
+                    <ErrorField text={paneTexts.companyNameError} />
+                  )}
+
+                  <TextInput
+                    type="text"
+                    placeholder={paneTexts.organizationNumberPlaceholder}
+                    {...register('organizationNumber', {
+                      required: !isAnonymous,
+                      validate: (val) =>
+                        val &&
+                        Validate.matches(val, /^(\d{1})(\d{5})\-(\d{4})$/),
+                    })}
+                    valid={!isOrganizationNumberInvalid}
+                  />
+
+                  {isOrganizationNumberInvalid && (
+                    <ErrorField text={paneTexts.organizationNumberError} />
+                  )}
+                </>
+              )}
+
               <TextInput
                 inputMode="email"
                 type="text"
@@ -126,13 +167,15 @@ export function DonorPane() {
             </InputFieldWrapper>
 
             <Container>
-              <CheckboxWrapper>
-                <CheckBox type="checkbox" {...register('taxDeduction')} />
+              {!IS_IN_COMPANY_MODE && (
+                <CheckboxWrapper>
+                  <CheckBox type="checkbox" {...register('taxDeduction')} />
 
-                <CheckboxLabel>{paneTexts.taxDeductionLabel}</CheckboxLabel>
+                  <CheckboxLabel>{paneTexts.taxDeductionLabel}</CheckboxLabel>
 
-                <ToolTipLink text={paneTexts.taxDeductionTooltip} />
-              </CheckboxWrapper>
+                  <ToolTipLink text={paneTexts.taxDeductionTooltip} />
+                </CheckboxWrapper>
+              )}
 
               {watch('taxDeduction') && (
                 <InputFieldWrapper>

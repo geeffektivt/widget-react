@@ -79,27 +79,8 @@ export const validateCreatePayment = (requestArgs: PaymentRequest) => {
     ])
     return false
   }
-  if (
-    requestArgs.doTaxDeduction !== undefined &&
-    !isBoolean(requestArgs.doTaxDeduction)
-  ) {
-    console.error('validateCreatePayment: doTaxDeduction not valid', [
-      JSON.stringify(requestArgs),
-    ])
-    return false
-  }
   if (!isBoolean(requestArgs.isAnonymous)) {
     console.error('validateCreatePayment: isAnonymous not valid', [
-      JSON.stringify(requestArgs),
-    ])
-    return false
-  }
-  if (
-    requestArgs.doTaxDeduction &&
-    (!requestArgs.personalNumber ||
-      !Validate.matches(requestArgs.personalNumber, /^\d{10}$|^\d{12}$/))
-  ) {
-    console.error('validateCreatePayment: personalNumber not valid', [
       JSON.stringify(requestArgs),
     ])
     return false
@@ -128,6 +109,28 @@ export const validateCreatePayment = (requestArgs: PaymentRequest) => {
       JSON.stringify(requestArgs),
     ])
     return false
+  }
+
+  if (requestArgs._sourceType === 'individual') {
+    if (
+      requestArgs.doTaxDeduction !== undefined &&
+      !isBoolean(requestArgs.doTaxDeduction)
+    ) {
+      console.error('validateCreatePayment: doTaxDeduction not valid', [
+        JSON.stringify(requestArgs),
+      ])
+      return false
+    }
+    if (
+      requestArgs.doTaxDeduction &&
+      (!requestArgs.personalNumber ||
+        !Validate.matches(requestArgs.personalNumber, /^\d{10}$|^\d{12}$/))
+    ) {
+      console.error('validateCreatePayment: personalNumber not valid', [
+        JSON.stringify(requestArgs),
+      ])
+      return false
+    }
   }
 
   return true

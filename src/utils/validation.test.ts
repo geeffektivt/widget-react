@@ -16,6 +16,8 @@ describe('Validate', () => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
       const args: BankPaymentRequest = {
+        _paymentType: 'bank',
+        _sourceType: 'individual',
         reoccursMonthly: true,
         isAnonymous: false,
         name: 'namn',
@@ -34,6 +36,8 @@ describe('Validate', () => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
       const args: BankPaymentRequest = {
+        _paymentType: 'bank',
+        _sourceType: 'individual',
         reoccursMonthly: false,
         isAnonymous: false,
         name: 'namn',
@@ -55,6 +59,8 @@ describe('Validate', () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       const args: BankPaymentRequest = {
+        _paymentType: 'bank',
+        _sourceType: 'individual',
         isAnonymous: false,
         name: 'namn',
         email: 'fdfa.fdg@sdfd.se',
@@ -75,6 +81,8 @@ describe('Validate', () => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
       const args: SwishPaymentRequest = {
+        _paymentType: 'swish',
+        _sourceType: 'individual',
         phone: '46706662345',
         isAnonymous: false,
         name: 'namn',
@@ -94,6 +102,8 @@ describe('Validate', () => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
       const args: SwishPaymentRequest = {
+        _paymentType: 'swish',
+        _sourceType: 'individual',
         phone: '46706662345',
         isAnonymous: false,
         name: 'namn',
@@ -113,6 +123,8 @@ describe('Validate', () => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
       const args: SwishPaymentRequest = {
+        _paymentType: 'swish',
+        _sourceType: 'individual',
         phone: '46706662345',
         isAnonymous: true,
         approvesPrivacyPolicy: true,
@@ -128,6 +140,8 @@ describe('Validate', () => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
       const args: SwishPaymentRequest = {
+        _paymentType: 'swish',
+        _sourceType: 'individual',
         phone: '46706662345',
         isAnonymous: false,
         name: 'namn',
@@ -147,6 +161,8 @@ describe('Validate', () => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
       const args: SwishPaymentRequest = {
+        _paymentType: 'swish',
+        _sourceType: 'individual',
         phone: '46706662345',
         isAnonymous: false,
         email: 'fdfa.fdg@sdfd.se',
@@ -165,6 +181,8 @@ describe('Validate', () => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
       const args: SwishPaymentRequest = {
+        _paymentType: 'swish',
+        _sourceType: 'individual',
         phone: '46706662345',
         isAnonymous: false,
         name: 'namn',
@@ -183,6 +201,8 @@ describe('Validate', () => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
       const args: SwishPaymentRequest = {
+        _paymentType: 'swish',
+        _sourceType: 'individual',
         phone: '46706662345',
         isAnonymous: false,
         name: 'namn',
@@ -202,6 +222,8 @@ describe('Validate', () => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
       const args: SwishPaymentRequest = {
+        _paymentType: 'swish',
+        _sourceType: 'individual',
         isAnonymous: false,
         name: 'namn',
         doTaxDeduction: true,
@@ -219,6 +241,8 @@ describe('Validate', () => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
       const args: SwishPaymentRequest = {
+        _paymentType: 'swish',
+        _sourceType: 'individual',
         phone: '47706662345',
         isAnonymous: false,
         name: 'namn',
@@ -238,6 +262,8 @@ describe('Validate', () => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
       const args: SwishPaymentRequest = {
+        _paymentType: 'swish',
+        _sourceType: 'individual',
         phone: '47706662345',
         isAnonymous: false,
         name: 'namn',
@@ -255,6 +281,8 @@ describe('Validate', () => {
     })
     it('should not allow empty charities unless there is tip', () => {
       const args: SwishPaymentRequest = {
+        _paymentType: 'swish',
+        _sourceType: 'individual',
         phone: '46706662345',
         isAnonymous: false,
         name: 'namn',
@@ -276,6 +304,8 @@ describe('Validate', () => {
         return [c.name, ...c.organizations.map((o) => o.name)]
       })
       const args: SwishPaymentRequest = {
+        _paymentType: 'swish',
+        _sourceType: 'individual',
         phone: '46706662345',
         isAnonymous: false,
         name: 'namn',
